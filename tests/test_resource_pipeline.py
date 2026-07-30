@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import tarfile
 import tempfile
 import unittest
 from pathlib import Path
@@ -86,7 +87,10 @@ class ResourcePipelineTests(unittest.TestCase):
             )
             validated = PIPELINE.validate_resources(source, bundle, desktop)
             self.assertEqual(8, validated["expressions"])
-            ota = PIPELINE.package_resources(bundle, root / "dist", "v0.0.1")
+            desktop_catalog = json.loads((desktop / "desktop_catalog.json").read_text())
+            self.assertEqual(2, desktop_catalog["schema_version"])
+            self.assertEqual("v0.0.1", desktop_catalog["version"])
+            ota = PIPELINE.package_resources(bundle, desktop, root / "dist", "v0.0.1")
             self.assertEqual(3, ota["schema_version"])
             self.assertEqual(2, ota["layout_revision"])
             self.assertEqual("WRSD/2", ota["protocol"])
@@ -106,7 +110,42 @@ class ResourcePipelineTests(unittest.TestCase):
                 ota["archive"]["tos_url"],
             )
             self.assertEqual("official_catalog.json", ota["catalog"]["name"])
-            self.assertTrue((root / "dist" / "v0.0.1" / "watche-sd-resources-v0.0.1.tar.gz").is_file())
+            version_dir = root / "dist" / "v0.0.1"
+            self.assertTrue((version_dir / "watche-sd-resources-v0.0.1.tar.gz").is_file())
+            self.assertEqual("desktop_catalog.json", ota["desktop"]["catalog"]["name"])
+            self.assertEqual(
+                "watche-desktop-previews-v0.0.1.tar.gz",
+                ota["desktop"]["archive"]["name"],
+            )
+            desktop_archive = version_dir / ota["desktop"]["archive"]["name"]
+            self.assertTrue(desktop_archive.is_file())
+            with tarfile.open(desktop_archive, "r:gz") as archive:
+                members = sorted(archive.getnames())
+            self.assertIn("desktop_catalog.json", members)
+            self.assertIn("previews/boot.webp", members)
+            self.assertEqual(9, ota["desktop"]["archive"]["file_count"])
+            self.assertEqual(
+                "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.1/"
+                "watche-desktop-previews-v0.0.1.tar.gz",
+                ota["desktop"]["archive"]["github_url"],
+            )
+            self.assertEqual(
+                "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.1/"
+                "desktop_catalog.json",
+                ota["desktop"]["catalog"]["tos_url"],
+            )
+
+    def test_rejects_stale_desktop_preview_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = self.create_source(root)
+            bundle = root / "bundle"
+            desktop = root / "desktop"
+            PIPELINE.build_resources(source, source / "sound", bundle, desktop, "v0.0.1")
+            (desktop / "previews" / "removed_expression.webp").write_bytes(b"stale")
+
+            with self.assertRaisesRegex(PIPELINE.ResourceError, "Desktop file set"):
+                PIPELINE.validate_resources(source, bundle, desktop)
 
     def test_rejects_wrong_gif_dimensions_before_writing_release(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -201,6 +240,50 @@ class ResourcePipelineTests(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual("v0.0.4", PIPELINE.next_version(index))
+
+    def test_published_v001_manifest_remains_schema_compatible(self) -> None:
+        manifest = PIPELINE.read_json(
+            SCRIPT.parents[1] / "official" / "releases" / "v0.0.1.json"
+        )
+        PIPELINE.schema_validate(manifest, "ota-manifest.schema.json", "v0.0.1")
+
+    def test_checked_in_desktop_catalog_matches_source_snapshot(self) -> None:
+        repository = SCRIPT.parents[1]
+        desktop = repository / "official" / "desktop"
+        catalog = PIPELINE.read_json(desktop / "desktop_catalog.json")
+        snapshot = PIPELINE.read_json(
+            repository / "official" / "source" / "feishu-snapshot.json"
+        )
+        PIPELINE.schema_validate(
+            catalog,
+            "desktop-catalog.schema.json",
+            "official/desktop/desktop_catalog.json",
+        )
+        source_records = sorted(snapshot["records"], key=lambda item: item["order"])
+        self.assertEqual(
+            [
+                (record["resource_id"], record["display_name"], record["source_record_id"])
+                for record in source_records
+            ],
+            [
+                (item["id"], item["display_name"], item["source_record_id"])
+                for item in catalog["expressions"]
+            ],
+        )
+        expected_files = {"desktop_catalog.json"} | {
+            item["preview"] for item in catalog["expressions"]
+        }
+        actual_files = {
+            path.relative_to(desktop).as_posix()
+            for path in desktop.rglob("*")
+            if path.is_file()
+        }
+        self.assertEqual(expected_files, actual_files)
+        for item in catalog["expressions"]:
+            self.assertEqual(
+                item["preview_sha256"],
+                PIPELINE.sha256_file(desktop / item["preview"]),
+            )
 
 
 if __name__ == "__main__":

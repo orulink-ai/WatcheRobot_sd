@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/resource-catalog-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "expressions"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "expressions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "display_name", "source_record_id", "anim", "loop", "order"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+          "display_name": {"type": "string", "minLength": 1, "maxLength": 64},
+          "source_record_id": {"type": "string", "minLength": 1, "maxLength": 128},
+          "anim": {"type": "string", "pattern": "^anim/[a-z][a-z0-9_]{0,22}\\.animpack$"},
+          "action": {"type": "string", "pattern": "^actions/[a-z][a-z0-9_]{0,22}\\.json$"},
+          "sound": {"type": "string", "pattern": "^sfx/[a-z][a-z0-9_]{0,22}\\.pcm$"},
+          "loop": {"type": "boolean"},
+          "order": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/release-index-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "versions"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "latest": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "versions": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"}
+    }
+  }
+}
+

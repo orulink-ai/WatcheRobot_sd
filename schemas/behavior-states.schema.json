@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/behavior-states-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "default_state", "states"],
+  "properties": {
+    "version": {"const": "1.0"},
+    "default_state": {"const": "standby"},
+    "states": {
+      "type": "object",
+      "minProperties": 8,
+      "maxProperties": 8,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["loop", "motion", "expression", "sound"],
+        "properties": {
+          "loop": {"type": "boolean"},
+          "motion": {"type": "array"},
+          "expression": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["at_ms", "anim", "playback_mode", "text", "font_size"],
+              "properties": {
+                "at_ms": {"const": 0},
+                "anim": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+                "playback_mode": {"enum": ["once", "loop_until_replaced"]},
+                "text": {"const": ""},
+                "font_size": {"const": 24}
+              }
+            }
+          },
+          "sound": {
+            "type": "array",
+            "maxItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["at_ms", "sound_id"],
+              "properties": {
+                "at_ms": {"const": 0},
+                "sound_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "product": "WatcheRobot-S3",
+  "display": {
+    "width": 206,
+    "height": 206,
+    "pixel_format": "rgb565",
+    "byte_order": "big-endian",
+    "default_fps": 10
+  },
+  "resource_id": {
+    "pattern": "^[a-z][a-z0-9_]{0,22}$",
+    "max_bytes": 23
+  },
+  "limits": {
+    "expressions": 128,
+    "frames_per_expression": 255,
+    "action_files": 128,
+    "sound_files": 128,
+    "single_file_bytes": 16777216,
+    "bundle_files": 512,
+    "bundle_bytes": 100663296,
+    "transfer_archive_bytes": 67108864
+  },
+  "audio": {
+    "format": "pcm_s16le",
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sample_width_bits": 16
+  },
+  "fixed_states": [
+    "boot",
+    "standby",
+    "listening",
+    "thinking",
+    "speaking",
+    "processing",
+    "error",
+    "upgrade"
+  ],
+  "compiled_registry": [
+    {"id": 0, "name": "boot", "loop": true},
+    {"id": 1, "name": "happy", "loop": true},
+    {"id": 2, "name": "error", "loop": true},
+    {"id": 3, "name": "bluetooth", "loop": true, "force_rgb565": true},
+    {"id": 4, "name": "speaking", "loop": true},
+    {"id": 5, "name": "listening", "loop": true},
+    {"id": 6, "name": "processing", "loop": true},
+    {"id": 7, "name": "standby", "loop": true},
+    {"id": 8, "name": "thinking", "loop": true},
+    {"id": 9, "name": "custom1", "loop": true},
+    {"id": 10, "name": "custom2", "loop": true},
+    {"id": 11, "name": "custom3", "loop": true},
+    {"id": 12, "name": "standby1", "loop": true},
+    {"id": 13, "name": "standby2", "loop": true},
+    {"id": 14, "name": "standby3", "loop": true},
+    {"id": 15, "name": "standby4", "loop": true},
+    {"id": 16, "name": "disconnect", "loop": true},
+    {"id": 17, "name": "shock", "loop": true},
+    {"id": 18, "name": "sunglasses", "loop": true},
+    {"id": 19, "name": "sad", "loop": true},
+    {"id": 20, "name": "get", "loop": true},
+    {"id": 21, "name": "smile", "loop": true},
+    {"id": 22, "name": "recharge", "loop": false},
+    {"id": 23, "name": "speechless", "loop": true},
+    {"id": 24, "name": "concentration", "loop": true},
+    {"id": 25, "name": "fondle_love", "loop": false},
+    {"id": 26, "name": "fondle_anger", "loop": true},
+    {"id": 27, "name": "blink", "loop": true},
+    {"id": 28, "name": "upgrade", "loop": true},
+    {"id": 29, "name": "standby_start", "loop": false},
+    {"id": 30, "name": "standby_loop", "loop": true},
+    {"id": 31, "name": "standby_end", "loop": false},
+    {"id": 32, "name": "music", "loop": true},
+    {"id": 33, "name": "speaking_blink", "loop": false},
+    {"id": 34, "name": "speaking_eye", "loop": false},
+    {"id": 35, "name": "photo", "loop": false},
+    {"id": 36, "name": "sing", "loop": false}
+  ]
+}

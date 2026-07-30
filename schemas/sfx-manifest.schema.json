@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/sfx-manifest-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "format", "sample_rate_hz", "channels", "sounds"],
+  "properties": {
+    "version": {"const": "1.0"},
+    "format": {"const": "pcm_s16le"},
+    "sample_rate_hz": {"const": 24000},
+    "channels": {"const": 1},
+    "sounds": {
+      "type": "object",
+      "maxProperties": 128,
+      "propertyNames": {"pattern": "^[a-z][a-z0-9_]{0,22}$"},
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]{0,22}\\.pcm$"
+      }
+    }
+  }
+}
+

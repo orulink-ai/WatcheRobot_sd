@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/desktop-catalog-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "format", "content_hash", "expressions"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "format": {"const": "watche-desktop-expression-catalog"},
+    "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "expressions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 128,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "display_name", "source_label", "source_record_id", "preview", "preview_sha256", "loop", "order", "device"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+          "display_name": {"type": "string", "minLength": 1, "maxLength": 64},
+          "source_label": {"type": "string", "minLength": 1, "maxLength": 128},
+          "source_record_id": {"type": "string", "minLength": 1, "maxLength": 128},
+          "preview": {"type": "string", "pattern": "^previews/[a-z][a-z0-9_]{0,22}\\.webp$"},
+          "preview_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "loop": {"type": "boolean"},
+          "order": {"type": "integer", "minimum": 0},
+          "device": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["image_name", "anim"],
+            "properties": {
+              "image_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+              "anim": {"type": "string"},
+              "action": {"type": "string"},
+              "sound": {"type": "string"}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

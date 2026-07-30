@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/sd-ota-manifest-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "product", "version", "published_at", "archive", "catalog"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "product": {"const": "WatcheRobot-S3"},
+    "version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "published_at": {"type": "string", "format": "date-time"},
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "size", "sha256", "tos_uri"],
+      "properties": {
+        "format": {"const": "tar.gz"},
+        "size": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "tos_uri": {"type": "string", "pattern": "^tos://erroright/WatcherRobot/sd/v[0-9]+\\.[0-9]+\\.[0-9]+/watche-sd-resources-v[0-9]+\\.[0-9]+\\.[0-9]+\\.tar\\.gz$"}
+      }
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tos_uri", "sha256"],
+      "properties": {
+        "tos_uri": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    }
+  }
+}

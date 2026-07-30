@@ -1,0 +1,12 @@
+{
+  "name": "watcherobot-sd-resources",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "resources:build": "python scripts/resource_pipeline.py build",
+    "resources:validate": "python scripts/resource_pipeline.py validate",
+    "resources:package": "python scripts/resource_pipeline.py package",
+    "test": "python -m unittest discover -s tests -v"
+  }
+}
+

@@ -1,0 +1,48 @@
+{
+    "schema_version":  3,
+    "product":  "WatcheRobot-S3",
+    "version":  "v0.0.2",
+    "layout_revision":  2,
+    "protocol":  "WRSD/2",
+    "published_at":  "2026-07-30T10:55:02Z",
+    "archive":  {
+                    "name":  "watche-sd-resources-v0.0.2.tar.gz",
+                    "format":  "tar.gz",
+                    "size":  6482858,
+                    "expanded_size":  60626016,
+                    "file_count":  83,
+                    "object_count":  80,
+                    "sha256":  "3175eb3ee9d7295c6e379da6456a62263de1ca8fdc30e8a8b09d8b4d27498e5f",
+                    "github_url":  "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.2/watche-sd-resources-v0.0.2.tar.gz",
+                    "tos_url":  "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.2/watche-sd-resources-v0.0.2.tar.gz",
+                    "tos_uri":  "tos://erroright/WatcherRobot/sd/v0.0.2/watche-sd-resources-v0.0.2.tar.gz"
+                },
+    "catalog":  {
+                    "name":  "official_catalog.json",
+                    "github_url":  "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.2/official_catalog.json",
+                    "tos_url":  "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.2/official_catalog.json",
+                    "tos_uri":  "tos://erroright/WatcherRobot/sd/v0.0.2/official_catalog.json",
+                    "sha256":  "c50958605215d2e7c87ee586e87f2f77235a6322af4445689ce988fcf7c31e2c"
+                },
+    "desktop":  {
+                    "catalog":  {
+                                    "name":  "desktop_catalog.json",
+                                    "size":  36398,
+                                    "github_url":  "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.2/desktop_catalog.json",
+                                    "tos_url":  "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.2/desktop_catalog.json",
+                                    "tos_uri":  "tos://erroright/WatcherRobot/sd/v0.0.2/desktop_catalog.json",
+                                    "sha256":  "828250e9a656b3463fae45b7253812bbc1e7781c7c819f6c3b52269b59cc4aa2"
+                                },
+                    "archive":  {
+                                    "name":  "watche-desktop-previews-v0.0.2.tar.gz",
+                                    "format":  "tar.gz",
+                                    "size":  1848313,
+                                    "expanded_size":  2015196,
+                                    "file_count":  42,
+                                    "sha256":  "e118adb8448a2a8c4e77308f939aeccd03c7a466143bd3b455e11cb037d62100",
+                                    "github_url":  "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.2/watche-desktop-previews-v0.0.2.tar.gz",
+                                    "tos_url":  "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.2/watche-desktop-previews-v0.0.2.tar.gz",
+                                    "tos_uri":  "tos://erroright/WatcherRobot/sd/v0.0.2/watche-desktop-previews-v0.0.2.tar.gz"
+                                }
+                }
+}

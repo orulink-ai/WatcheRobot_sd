@@ -1,0 +1,45 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-ef0bd2c4-106a-4e11-b328-3db6f0a3c245",
+  "label": "standby4_1",
+  "exportedAt": "2026-07-08T11:17:56.625Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "standby4-xDeg-0-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "standby4-xDeg-22-3",
+        "axis": "xDeg",
+        "timeMs": 2200,
+        "frameNumber": 22,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "standby4-yDeg-0-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "standby4-yDeg-22-3",
+        "axis": "yDeg",
+        "timeMs": 2200,
+        "frameNumber": 22,
+        "angleDeg": 100,
+        "source": "draft"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-1cbc9cec-c9f5-4b5c-ba34-6361f3b8f864",
+  "label": "standby2_1",
+  "exportedAt": "2026-07-08T11:17:46.552Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "standby2-xDeg-0-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "standby2-xDeg-4-3",
+        "axis": "xDeg",
+        "timeMs": 220,
+        "frameNumber": 4,
+        "angleDeg": 80,
+        "source": "draft"
+      },
+      {
+        "id": "standby2-xDeg-10-5",
+        "axis": "xDeg",
+        "timeMs": 880,
+        "frameNumber": 10,
+        "angleDeg": 80,
+        "source": "draft"
+      },
+      {
+        "id": "standby2-xDeg-11-6",
+        "axis": "xDeg",
+        "timeMs": 1240,
+        "frameNumber": 11,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "standby2-xDeg-18-7",
+        "axis": "xDeg",
+        "timeMs": 1800,
+        "frameNumber": 18,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "standby2-xDeg-22-8",
+        "axis": "xDeg",
+        "timeMs": 2200,
+        "frameNumber": 22,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "standby2-yDeg-0-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "standby2-yDeg-22-8",
+        "axis": "yDeg",
+        "timeMs": 2200,
+        "frameNumber": 22,
+        "angleDeg": 100,
+        "source": "draft"
+      }
+    ]
+  }
+}

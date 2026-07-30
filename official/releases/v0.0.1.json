@@ -1,0 +1,16 @@
+{
+    "schema_version":  1,
+    "product":  "WatcheRobot-S3",
+    "version":  "v0.0.1",
+    "published_at":  "2026-07-30T03:45:03Z",
+    "archive":  {
+                    "format":  "tar.gz",
+                    "size":  6477990,
+                    "sha256":  "3c9098872a208ad5550e89eab614ed01f3bca737e6dd6613c95b79837798e80d",
+                    "tos_uri":  "tos://erroright/WatcherRobot/sd/v0.0.1/watche-sd-resources-v0.0.1.tar.gz"
+                },
+    "catalog":  {
+                    "tos_uri":  "tos://erroright/WatcherRobot/sd/v0.0.1/resource_catalog.json",
+                    "sha256":  "5ec1ae8eead9d386bbab49c8ae8f86f741e7fba0221d3679e36188ba253cf09a"
+                }
+}

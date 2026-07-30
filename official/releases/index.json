@@ -1,4 +1,7 @@
 {
-  "schema_version": 1,
-  "versions": []
+    "schema_version":  1,
+    "latest":  "v0.0.1",
+    "versions":  [
+                     "v0.0.1"
+                 ]
 }

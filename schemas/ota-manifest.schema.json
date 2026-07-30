@@ -1,30 +1,61 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://orulink.ai/schemas/watcher/sd-ota-manifest-v1.json",
+  "$id": "https://orulink.ai/schemas/watcher/sd-ota-manifest-v3.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "product", "version", "published_at", "archive", "catalog"],
+  "required": [
+    "schema_version",
+    "product",
+    "version",
+    "layout_revision",
+    "protocol",
+    "published_at",
+    "archive",
+    "catalog"
+  ],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 3},
     "product": {"const": "WatcheRobot-S3"},
     "version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "layout_revision": {"const": 2},
+    "protocol": {"const": "WRSD/2"},
     "published_at": {"type": "string", "format": "date-time"},
     "archive": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["format", "size", "sha256", "tos_uri"],
+      "required": [
+        "name",
+        "format",
+        "size",
+        "expanded_size",
+        "file_count",
+        "object_count",
+        "sha256",
+        "github_url",
+        "tos_url",
+        "tos_uri"
+      ],
       "properties": {
+        "name": {"type": "string", "pattern": "^watche-sd-resources-v[0-9]+\\.[0-9]+\\.[0-9]+\\.tar\\.gz$"},
         "format": {"const": "tar.gz"},
         "size": {"type": "integer", "minimum": 1},
+        "expanded_size": {"type": "integer", "minimum": 1},
+        "file_count": {"type": "integer", "minimum": 1, "maximum": 512},
+        "object_count": {"type": "integer", "minimum": 1, "maximum": 512},
         "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-        "tos_uri": {"type": "string", "pattern": "^tos://erroright/WatcherRobot/sd/v[0-9]+\\.[0-9]+\\.[0-9]+/watche-sd-resources-v[0-9]+\\.[0-9]+\\.[0-9]+\\.tar\\.gz$"}
+        "github_url": {"type": "string", "format": "uri"},
+        "tos_url": {"type": "string", "format": "uri"},
+        "tos_uri": {"type": "string"}
       }
     },
     "catalog": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["tos_uri", "sha256"],
+      "required": ["name", "github_url", "tos_url", "tos_uri", "sha256"],
       "properties": {
+        "name": {"const": "official_catalog.json"},
+        "github_url": {"type": "string", "format": "uri"},
+        "tos_url": {"type": "string", "format": "uri"},
         "tos_uri": {"type": "string"},
         "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
       }

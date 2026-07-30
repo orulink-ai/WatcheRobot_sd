@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/fixed-states-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "states"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "states": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "boot",
+        "standby",
+        "listening",
+        "thinking",
+        "speaking",
+        "processing",
+        "error",
+        "upgrade"
+      ],
+      "properties": {
+        "boot": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "standby": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "listening": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "thinking": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "speaking": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "processing": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "error": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+        "upgrade": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"}
+      }
+    }
+  }
+}

@@ -25,6 +25,7 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 from PIL import Image, ImageSequence
+from referencing import Registry, Resource
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -35,6 +36,8 @@ DEFAULT_PCM = ROOT / "official" / "device-input" / "sound"
 DEFAULT_BUNDLE = ROOT / "build" / "current" / "bundle"
 DEFAULT_DESKTOP = ROOT / "official" / "desktop"
 DEFAULT_DIST = ROOT / "dist"
+GITHUB_RELEASE_BASE = "https://github.com/orulink-ai/WatcheRobot_sd/releases/download"
+TOS_PUBLIC_BASE = "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd"
 
 PACK_MAGIC = b"ANPK"
 PACK_VERSION = 2
@@ -72,6 +75,40 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+ASSET_EXTENSIONS = {
+    "anim": ".animpack",
+    "action": ".json",
+    "sfx": ".pcm",
+}
+
+ASSET_FORMATS = {
+    "anim": "animpack-v2",
+    "action": "firmware-action-json-v1",
+    "sfx": "pcm-s16le-24khz-mono",
+}
+
+
+def store_asset_object(bundle: Path, source: Path, kind: str) -> dict[str, Any]:
+    if kind not in ASSET_EXTENSIONS:
+        raise ResourceError(f"Unsupported asset kind: {kind}")
+    digest = sha256_file(source)
+    target = bundle / "assets" / ("actions" if kind == "action" else kind) / (
+        digest + ASSET_EXTENSIONS[kind]
+    )
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if target.exists():
+        if target.stat().st_size != source.stat().st_size or sha256_file(target) != digest:
+            raise ResourceError(f"Asset hash collision or corrupt existing object: {target}")
+    else:
+        shutil.copyfile(source, target)
+    return {
+        "kind": kind,
+        "sha256": digest,
+        "size": source.stat().st_size,
+        "format": ASSET_FORMATS[kind],
+    }
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
@@ -82,8 +119,17 @@ def load_policy() -> dict[str, Any]:
 
 def schema_validate(document: Any, schema_name: str, label: str) -> None:
     schema = read_json(SCHEMAS / schema_name)
+    registry = Registry()
+    for schema_path in SCHEMAS.glob("*.schema.json"):
+        candidate = read_json(schema_path)
+        if isinstance(candidate, dict) and isinstance(candidate.get("$id"), str):
+            registry = registry.with_resource(candidate["$id"], Resource.from_contents(candidate))
     errors = sorted(
-        Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(document),
+        Draft202012Validator(
+            schema,
+            format_checker=FormatChecker(),
+            registry=registry,
+        ).iter_errors(document),
         key=lambda error: list(error.absolute_path),
     )
     if errors:
@@ -479,10 +525,10 @@ def build_resources(
         shutil.rmtree(desktop)
     bundle.mkdir(parents=True)
     desktop.mkdir(parents=True)
+    staging = bundle / ".build"
+    staging.mkdir()
 
-    registry = {entry["name"]: entry for entry in policy["compiled_registry"]}
     catalog: list[dict[str, Any]] = []
-    pack_info: dict[str, dict[str, int]] = {}
     adjustments: dict[str, list[str]] = {}
     fps = policy["display"]["default_fps"]
     for record in records:
@@ -491,92 +537,68 @@ def build_resources(
         if not gif_path.is_file():
             raise ResourceError(f"Source GIF is missing for {resource_id}")
         frames = read_gif(gif_path, policy)
-        compiled = registry.get(resource_id, {})
-        pack_info[resource_id] = write_animpack(
-            bundle / "anim" / f"{resource_id}.animpack",
+        compiled = next(
+            (item for item in policy["compiled_registry"] if item["name"] == resource_id),
+            {},
+        )
+        animation_temp = staging / f"{resource_id}.animpack"
+        write_animpack(
+            animation_temp,
             frames,
             fps,
             bool(record["loop"]),
             bool(compiled.get("force_rgb565")),
         )
+        assets: dict[str, Any] = {
+            "animation": store_asset_object(bundle, animation_temp, "anim")
+        }
         entry: dict[str, Any] = {
             "id": resource_id,
             "display_name": record["display_name"],
             "source_record_id": record["source_record_id"],
-            "anim": f"anim/{resource_id}.animpack",
             "loop": bool(record["loop"]),
             "order": record["order"],
+            "assets": assets,
         }
         action_path = source / "actions" / f"{resource_id}.json"
         if record.get("action") is not None:
             if not action_path.is_file():
                 raise ResourceError(f"Action attachment is declared but missing for {resource_id}")
             action, changed = normalize_action(action_path)
-            write_json(bundle / "actions" / f"{resource_id}.json", action)
-            entry["action"] = f"actions/{resource_id}.json"
+            action_temp = staging / f"{resource_id}.json"
+            write_json(action_temp, action)
+            assets["action"] = store_asset_object(bundle, action_temp, "action")
             if changed:
                 adjustments[resource_id] = changed
         sound_path = pcm_root / f"{resource_id}.pcm"
         if record.get("sound") is not None:
             if not sound_path.is_file():
                 raise ResourceError(f"PCM conversion output is missing for {resource_id}")
-            target = bundle / "sfx" / f"{resource_id}.pcm"
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(sound_path, target)
-            entry["sound"] = f"sfx/{resource_id}.pcm"
+            assets["sound"] = store_asset_object(bundle, sound_path, "sfx")
         catalog.append(entry)
 
-    compiled_entries = [item for item in policy["compiled_registry"] if item["name"] in {x["id"] for x in catalog}]
-    manifest_entries: list[bytes] = []
-    for compiled in compiled_entries:
-        info = pack_info[compiled["name"]]
-        manifest_entries.append(
-            struct.pack(
-                MANIFEST_ENTRY_FMT,
-                compiled["id"],
-                info["width"],
-                info["height"],
-                fps,
-                info["frames"],
-                1 if next(x for x in catalog if x["id"] == compiled["name"])["loop"] else 0,
-                encode_c_string(compiled["name"], MANIFEST_NAME_BYTES),
-                encode_c_string(f"{compiled['name']}.animpack", MANIFEST_PATH_BYTES),
-            )
-        )
-    (bundle / "anim" / "anim_manifest.bin").write_bytes(
-        struct.pack("<4sHH", MANIFEST_MAGIC, MANIFEST_VERSION, len(manifest_entries))
-        + b"".join(manifest_entries)
-    )
-
-    catalog_document = {"schema_version": 1, "expressions": catalog}
-    schema_validate(catalog_document, "resource-catalog.schema.json", "resource_catalog.json")
-    write_json(bundle / "resource_catalog.json", catalog_document)
-    write_json(bundle / "behavior" / "states.json", build_behavior(catalog, bundle, policy))
-
-    sounds = {
-        entry["id"]: f"{entry['id']}.pcm"
-        for entry in catalog
-        if entry.get("sound")
+    catalog_document = {
+        "schema_version": 2,
+        "format": "watche-official-catalog",
+        "expressions": catalog,
     }
-    sfx_manifest = {
-        "version": "1.0",
-        "format": policy["audio"]["format"],
-        "sample_rate_hz": policy["audio"]["sample_rate_hz"],
-        "channels": policy["audio"]["channels"],
-        "sounds": sounds,
+    schema_validate(catalog_document, "resource-catalog.schema.json", "official_catalog.json")
+    write_json(bundle / "official_catalog.json", catalog_document)
+    fixed_states = {
+        "schema_version": 1,
+        "states": {state: state for state in policy["fixed_states"]},
     }
-    schema_validate(sfx_manifest, "sfx-manifest.schema.json", "sfx/manifest.json")
-    write_json(bundle / "sfx" / "manifest.json", sfx_manifest)
+    schema_validate(fixed_states, "fixed-states.schema.json", "fixed_states.json")
+    write_json(bundle / "fixed_states.json", fixed_states)
 
     desktop_entries = []
     for record, entry in zip(records, catalog):
         preview = desktop / "previews" / f"{entry['id']}.webp"
         write_preview(source / "gif" / f"{entry['id']}.gif", preview)
-        device = {"image_name": entry["id"], "anim": entry["anim"]}
-        if entry.get("action"):
-            device["action"] = entry["action"]
-        if entry.get("sound"):
-            device["sound"] = entry["sound"]
+        device = {
+            "image_name": entry["id"],
+            "assets": entry["assets"],
+        }
         desktop_entries.append(
             {
                 "id": entry["id"],
@@ -604,13 +626,14 @@ def build_resources(
     schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
     write_json(desktop / "desktop_catalog.json", desktop_catalog)
 
+    shutil.rmtree(staging)
     manifest = write_resource_manifest(bundle, version, policy, catalog)
     validation = validate_resources(source, bundle, desktop)
     return {
         "version": version,
         "expressions": len(catalog),
-        "actions": sum(bool(item.get("action")) for item in catalog),
-        "sounds": len(sounds),
+        "actions": sum("action" in item["assets"] for item in catalog),
+        "sounds": sum("sound" in item["assets"] for item in catalog),
         "frames": validation["frames"],
         "bundle_sha256": manifest["bundle_sha256"],
         "action_adjustments": adjustments,
@@ -651,13 +674,15 @@ def write_resource_manifest(
         for path in files
     ]
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "product": policy["product"],
         "bundle_id": "adepto-official",
         "bundle_version": version,
+        "layout_revision": 2,
         "generated_at": utc_now(),
         "compatibility": {
-            "layout": "/watche/official/current",
+            "layout": "/watche",
+            "protocol": "WRSD/2",
             "animation": {
                 "format": "animpack-v2",
                 "width": policy["display"]["width"],
@@ -669,19 +694,22 @@ def write_resource_manifest(
             "action": {"format": "firmware-action-json-v1"},
         },
         "contents": {
-            "anim": {
-                "path": "anim/anim_manifest.bin",
+            "assets": {
+                "root": "assets",
                 "format": "animpack-v2",
-                "count": len(catalog),
+                "object_count": sum(
+                    len(entry["assets"])
+                    for entry in catalog
+                ),
             },
             "catalog": {
-                "path": "resource_catalog.json",
-                "format": "watcher-sd-resource-catalog-v1",
+                "path": "official_catalog.json",
+                "format": "watche-official-catalog-v2",
                 "count": len(catalog),
             },
-            "behavior": {
-                "path": "behavior/states.json",
-                "format": "behavior-states-v1",
+            "fixed_states": {
+                "path": "fixed_states.json",
+                "format": "watche-fixed-states-v1",
             },
         },
         "files": entries,
@@ -695,16 +723,14 @@ def write_resource_manifest(
 def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict[str, int]:
     policy = load_policy()
     snapshot = source_snapshot(source)
-    catalog = read_json(bundle / "resource_catalog.json")
-    schema_validate(catalog, "resource-catalog.schema.json", "resource_catalog.json")
+    catalog = read_json(bundle / "official_catalog.json")
+    schema_validate(catalog, "resource-catalog.schema.json", "official_catalog.json")
     manifest = read_json(bundle / "resource_manifest.json")
     schema_validate(manifest, "resource-manifest.schema.json", "resource_manifest.json")
-    behavior = read_json(bundle / "behavior" / "states.json")
-    schema_validate(behavior, "behavior-states.schema.json", "behavior/states.json")
-    if set(behavior["states"]) != set(policy["fixed_states"]):
-        raise ResourceError("behavior/states.json must contain exactly the eight fixed states")
-    sfx_manifest = read_json(bundle / "sfx" / "manifest.json")
-    schema_validate(sfx_manifest, "sfx-manifest.schema.json", "sfx/manifest.json")
+    fixed_states = read_json(bundle / "fixed_states.json")
+    schema_validate(fixed_states, "fixed-states.schema.json", "fixed_states.json")
+    if set(fixed_states["states"]) != set(policy["fixed_states"]):
+        raise ResourceError("fixed_states.json must contain exactly the eight fixed states")
 
     source_by_id = {record["resource_id"]: record for record in snapshot["records"]}
     catalog_by_id = {entry["id"]: entry for entry in catalog["expressions"]}
@@ -715,7 +741,11 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
         if entry["source_record_id"] != source_by_id[resource_id]["source_record_id"]:
             raise ResourceError(f"Record association mismatch for {resource_id}")
         source_frames = read_gif(source / "gif" / f"{resource_id}.gif", policy)
-        header, frames = decode_animpack(bundle / entry["anim"])
+        animation = entry["assets"]["animation"]
+        animation_path = bundle / "assets" / "anim" / f"{animation['sha256']}.animpack"
+        if animation_path.stat().st_size != animation["size"]:
+            raise ResourceError(f"Animation size mismatch for {resource_id}")
+        header, frames = decode_animpack(animation_path)
         if len(frames) != len(source_frames):
             raise ResourceError(f"Frame count mismatch for {resource_id}")
         if bool(header["loop"]) != entry["loop"]:
@@ -724,13 +754,16 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
             if actual != rgba_to_rgb565(image):
                 raise ResourceError(f"RGB565 pixel/byte-order mismatch: {resource_id} frame {index}")
         total_frames += len(frames)
-        if entry.get("action"):
-            action = read_json(bundle / entry["action"])
-            schema_validate(action, "action.schema.json", entry["action"])
-        if entry.get("sound"):
-            sound = bundle / entry["sound"]
+        if "action" in entry["assets"]:
+            reference = entry["assets"]["action"]
+            action_path = bundle / "assets" / "actions" / f"{reference['sha256']}.json"
+            action = read_json(action_path)
+            schema_validate(action, "action.schema.json", str(action_path))
+        if "sound" in entry["assets"]:
+            reference = entry["assets"]["sound"]
+            sound = bundle / "assets" / "sfx" / f"{reference['sha256']}.pcm"
             if not sound.is_file() or sound.stat().st_size <= 0 or sound.stat().st_size % 2:
-                raise ResourceError(f"Invalid raw PCM file: {entry['sound']}")
+                raise ResourceError(f"Invalid raw PCM file for {resource_id}")
 
     actual_files = bundle_files(bundle, include_manifest=False)
     expected_files = {item["path"]: item for item in manifest["files"]}
@@ -770,8 +803,8 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
                 raise ResourceError(f"Desktop preview hash mismatch: {item['id']}")
     return {
         "expressions": len(catalog_by_id),
-        "actions": sum(bool(item.get("action")) for item in catalog_by_id.values()),
-        "sounds": sum(bool(item.get("sound")) for item in catalog_by_id.values()),
+        "actions": sum("action" in item["assets"] for item in catalog_by_id.values()),
+        "sounds": sum("sound" in item["assets"] for item in catalog_by_id.values()),
         "frames": total_frames,
         "bytes": total_size,
     }
@@ -809,22 +842,40 @@ def package_resources(bundle: Path, dist: Path, version: str) -> dict[str, Any]:
         raise ResourceError(
             f"Compressed archive exceeds the device transfer limit of {transfer_limit} bytes"
         )
-    catalog_source = bundle / "resource_catalog.json"
-    catalog_target = version_dir / "resource_catalog.json"
+    archive_files = bundle_files(bundle)
+    expanded_size = sum(path.stat().st_size for path in archive_files)
+    object_count = sum(
+        1
+        for path in archive_files
+        if path.relative_to(bundle).as_posix().startswith("assets/")
+    )
+    catalog_source = bundle / "official_catalog.json"
+    catalog_target = version_dir / "official_catalog.json"
     shutil.copyfile(catalog_source, catalog_target)
     ota = {
-        "schema_version": 1,
+        "schema_version": 3,
         "product": "WatcheRobot-S3",
         "version": version,
+        "layout_revision": 2,
+        "protocol": "WRSD/2",
         "published_at": utc_now(),
         "archive": {
+            "name": archive.name,
             "format": "tar.gz",
             "size": archive.stat().st_size,
+            "expanded_size": expanded_size,
+            "file_count": len(archive_files),
+            "object_count": object_count,
             "sha256": sha256_file(archive),
+            "github_url": f"{GITHUB_RELEASE_BASE}/{version}/{archive.name}",
+            "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{archive.name}",
             "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/{archive.name}",
         },
         "catalog": {
-            "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/resource_catalog.json",
+            "name": "official_catalog.json",
+            "github_url": f"{GITHUB_RELEASE_BASE}/{version}/official_catalog.json",
+            "tos_url": f"{TOS_PUBLIC_BASE}/{version}/official_catalog.json",
+            "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/official_catalog.json",
             "sha256": sha256_file(catalog_target),
         },
     }

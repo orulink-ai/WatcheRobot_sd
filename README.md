@@ -1,67 +1,81 @@
 # WatcheRobot_sd
 
-本仓库是 WatcheRobot 官方 SD 资源的格式与发布源，不包含 ESP32 固件代码，也
-不保存用户在桌面端创作的本地作品。它负责定义飞书字段映射、设备资源格式、
-JSON Schema、构建校验器以及 OTA 版本包。
+本仓库管理 WatcheRobot 官方 SD 资源的格式、校验和版本发布，不包含 ESP32 固件，也不保存用户在桌面端创作的作品。官方资源从飞书生成后发布到 GitHub Release 与公开 TOS；两端使用同一个压缩包和同一份 SHA-256。
 
-## 数据边界
+## 目录职责
 
 ```text
-official/source/                 飞书原始附件与同批次快照（可追溯输入）
-  gif/<resource_id>.gif          206×206 GIF
-  actions/<resource_id>.json     飞书动作源文件
-  sound/<resource_id>.mp3        飞书原始 MP3
-  feishu-snapshot.json           飞书行、中文名、英文 ID、附件 token 的绑定
-official/device-input/sound/     Workspace 转码的 24 kHz 单声道 PCM
-official/desktop/                桌面端轻量目录与 WebP 动图预览
-official/releases/index.json     已发布版本索引
-schemas/                         所有对外 JSON 契约
-config/resource-policy.json      硬件尺寸、上限、固定状态和编译注册表
-build/current/bundle/            当前设备 bundle（构建产物，不入 Git）
-dist/vX.Y.Z/                     OTA 压缩包与发布清单（构建产物，不入 Git）
+official/source/                  飞书原始 GIF、动作、音效和记录快照
+official/device-input/sound/      转码后的 24 kHz 单声道 PCM
+official/desktop/                 桌面端轻量目录和 WebP 动图预览
+official/releases/index.json      已发布版本索引
+schemas/                          对外 JSON Schema
+config/resource-policy.json       硬件参数、大小上限和固定状态
+build/current/bundle/             当前设备包，构建产物，不入 Git
+dist/vX.Y.Z/                      OTA 包和下载清单，构建产物，不入 Git
 ```
 
-Workspace 的 `yarn source:adepto` 是唯一飞书入口：它在临时目录下载附件，将
-MP3 转成 PCM，然后调用本仓库生成器，并通过 Workspace 固定版本的火山引擎
-TOS SDK 发布。飞书和 TOS 凭证都不进入本仓库。
+## 飞书字段映射
 
-## 字段绑定
+每条飞书记录只对应一个资源：
 
-一条飞书记录对应一个资源，不能跨行拼接：
-
-| 飞书字段 | 快照字段 | 用途 |
+| 飞书字段 | 生成字段 | 用途 |
 | --- | --- | --- |
-| 文本 | `source_label` | 原始中文标签，例如 `watcher-聆听` |
-| 文本去掉 `watcher-` 前缀 | `display_name` | 桌面端显示 `聆听` |
-| 对应英文 | `resource_id` | 协议参数、文件名和 SD 查找键，例如 `listening` |
-| 播放形式 | `loop` | AnimPack 与目录中的循环标记 |
-| GIF 文件 | `gif` | 生成 `<resource_id>.animpack` 与 WebP 预览 |
-| 动作 2.0 | `action` | 生成固件动作 JSON；可为空 |
-| 音效 MP3 | `sound` | Workspace 转为 PCM；可为空 |
-| 飞书记录 ID | `source_record_id` | 防止中文名、预览和英文 ID 串行 |
+| 文本，如 `watcher-聆听` | `source_label` | 保留原始中文标签 |
+| 文本去掉 `watcher-` | `display_name` | 桌面端显示“聆听” |
+| 对应英文 | `resource_id` | 协议调用键，如 `listening` |
+| 播放形式 | `loop` | 动画是否循环 |
+| GIF | `animation` | 生成 AnimPack v2 和 WebP 预览 |
+| 动作 2.0 | `action` | 可选动作 JSON |
+| 音效 MP3 | `sound` | 可选 PCM 音效 |
+| 飞书记录 ID | `source_record_id` | 保证中文、预览和资源 ID 不串行 |
 
-`resource_id` 当前按硬件最窄字段限制为
-`^[a-z][a-z0-9_]{0,22}$`，最长 23 字节。新英文 ID 不需要加入固件枚举，
-但仍必须通过这个通用规则。
+`resource_id` 必须符合 `^[a-z][a-z0-9_]{0,22}$`。新增名称不需要修改固件枚举。
+
+## 唯一 SD 布局
+
+```text
+/watche/
+  system/                         布局、事务和已安装版本状态
+  official/current/               当前官方版本的目录元数据
+    official_catalog.json
+    fixed_states.json
+    resource_manifest.json
+  assets/                          官方与用户作品共享的不可变素材对象
+    anim/<sha256>.animpack
+    actions/<sha256>.json
+    sfx/<sha256>.pcm
+  works/<work_id>/                 用户作品元数据；官方更新不覆盖
+    work.json
+  staging/                         安装临时区，失败后可清理
+```
+
+SD 卡只保留一套官方版本。更新官方资源时会替换 `official/current`，并清理不再被当前官方目录或用户作品引用的素材对象；`works` 始终保留。固件直接根据目录中的 SHA-256 定位素材，不再复制出 `runtime` 合并目录，因此不会因官方素材与用户素材交叉使用而重复占用空间。
 
 ## 硬件格式
 
-- 动画：AnimPack v2，固定 206×206，RGB565 大端字节序；低色数帧可使用
-  AnimPack v2 的无损 indexed8 编码。
+- 动画：AnimPack v2，206×206，RGB565 大端字节序。
 - 音效：无文件头 `pcm_s16le`，24000 Hz、单声道、16 bit。
-- 动作：保持当前固件解析器可直接读取的 JSON 结构；构建时只保留 `x/z`
-  轴，将机身角度限制为 0–180°、头部角度限制为 100–140°并取整。
-- 行为状态：第一版只生成 `boot`、`standby`、`listening`、`thinking`、
-  `speaking`、`processing`、`error`、`upgrade`。缺任意对应 GIF 时阻断发布。
-- SD 目标：bundle 内容安装到 `/watche/official/current/`，固件再构建
-  `/watche/runtime/` 运行视图；SPIFFS 仍由固件作为救援资源。
+- 动作：`firmware-action-json-v1`，构建时完成舵机安全范围归一化。
+- 固定状态：`boot`、`standby`、`listening`、`thinking`、`speaking`、`processing`、`error`、`upgrade`。
+- SPIFFS 仍是固件救援资源；SD 缺失或资源损坏时回退 SPIFFS。
 
-动作或音效为空时只播放 GIF，不算资源失败；字段声明了附件但文件缺失时则
-阻断构建。
+## 发布包
 
-## 本地命令
+压缩包内只有：
 
-安装 Python 依赖后：
+```text
+assets/anim/<sha256>.animpack
+assets/actions/<sha256>.json
+assets/sfx/<sha256>.pcm
+official_catalog.json
+fixed_states.json
+resource_manifest.json
+```
+
+`ota-manifest.json` Schema v3 记录压缩大小、解压大小、文件数、对象数、SHA-256、GitHub 地址和 TOS 地址。安装器先尝试完整的 GitHub 清单与压缩包，失败后整套切换到 TOS，不能交叉拼接两个来源。
+
+## 本地校验
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -71,23 +85,4 @@ python scripts/resource_pipeline.py package --version v0.0.1
 python -m unittest discover -s tests -v
 ```
 
-发布包为 `dist/vX.Y.Z/watche-sd-resources-vX.Y.Z.tar.gz`。压缩包内直接是
-`anim/`、`actions/`、`sfx/`、`behavior/` 和两个资源清单，路径符合当前
-ESP32 资源传输解包白名单。`ota-manifest.json` 记录压缩包大小、SHA-256 和
-`tos://erroright/WatcherRobot/sd/` 对象路径；客户端必须先校验 SHA-256，
-再把 tar 内容交给设备。
-
-## 发布阻断条件
-
-校验器会实际解码并逐帧对比 GIF 与 AnimPack RGB565 数据，同时检查：
-
-- Schema、重复 ID/记录、目录穿越与文件集合；
-- GIF 尺寸、帧数和 AnimPack v2 头、索引、循环标记、字节序；
-- PCM 非空且按 16 bit 对齐；
-- 动作轴、帧号、整数角度和当前舵机安全范围；
-- 桌面预览、设备目录、飞书记录 ID 三者的一致性；
-- 单文件、资源总量和 bundle 总大小；
-- 当前固件 16 MiB 单文件、512 文件、96 MiB 解压和 64 MiB 传输上限；
-- 每个文件 SHA-256 与整体 bundle SHA-256。
-
-任一项失败都不会生成可发布版本。
+发布由私有 Workspace 的 `yarn source:adepto` 统一执行；飞书和 TOS 凭证不会进入本仓库。

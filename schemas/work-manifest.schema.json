@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://orulink.ai/schemas/watcher/work-manifest-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "work_id", "name", "duration_ms", "tracks"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "work_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+    "name": {"type": "string", "minLength": 1, "maxLength": 64},
+    "duration_ms": {"type": "integer", "minimum": 1, "maximum": 600000},
+    "tracks": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 512,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "start_ms", "asset"],
+        "properties": {
+          "type": {"enum": ["animation", "action", "sound"]},
+          "start_ms": {"type": "integer", "minimum": 0, "maximum": 600000},
+          "duration_ms": {"type": "integer", "minimum": 1, "maximum": 600000},
+          "asset": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["source", "kind", "sha256", "size", "format"],
+            "properties": {
+              "source": {"enum": ["official", "user"]},
+              "resource_id": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9_]{0,22}$"
+              },
+              "kind": {"enum": ["anim", "action", "sfx"]},
+              "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+              "size": {"type": "integer", "minimum": 1, "maximum": 16777216},
+              "format": {
+                "enum": ["animpack-v2", "firmware-action-json-v1", "pcm-s16le-24khz-mono"]
+              }
+            },
+            "allOf": [
+              {
+                "if": {"properties": {"source": {"const": "official"}}},
+                "then": {"required": ["resource_id"]}
+              }
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"type": {"const": "animation"}}},
+            "then": {
+              "properties": {
+                "asset": {
+                  "properties": {
+                    "kind": {"const": "anim"},
+                    "format": {"const": "animpack-v2"}
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {"properties": {"type": {"const": "action"}}},
+            "then": {
+              "properties": {
+                "asset": {
+                  "properties": {
+                    "kind": {"const": "action"},
+                    "format": {"const": "firmware-action-json-v1"}
+                  }
+                }
+              }
+            }
+          },
+          {
+            "if": {"properties": {"type": {"const": "sound"}}},
+            "then": {
+              "properties": {
+                "asset": {
+                  "properties": {
+                    "kind": {"const": "sfx"},
+                    "format": {"const": "pcm-s16le-24khz-mono"}
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

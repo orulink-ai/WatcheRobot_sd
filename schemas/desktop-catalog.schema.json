@@ -28,12 +28,19 @@
           "device": {
             "type": "object",
             "additionalProperties": false,
-            "required": ["image_name", "anim"],
+            "required": ["image_name", "assets"],
             "properties": {
               "image_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
-              "anim": {"type": "string"},
-              "action": {"type": "string"},
-              "sound": {"type": "string"}
+              "assets": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["animation"],
+                "properties": {
+                  "animation": {"$ref": "https://orulink.ai/schemas/watcher/asset-reference-v1.json"},
+                  "action": {"$ref": "https://orulink.ai/schemas/watcher/asset-reference-v1.json"},
+                  "sound": {"$ref": "https://orulink.ai/schemas/watcher/asset-reference-v1.json"}
+                }
+              }
             }
           }
         }
@@ -41,4 +48,3 @@
     }
   }
 }
-

@@ -76,16 +76,36 @@ class ResourcePipelineTests(unittest.TestCase):
             desktop = root / "desktop"
             result = PIPELINE.build_resources(source, source / "sound", bundle, desktop, "v0.0.1")
             self.assertEqual(8, result["expressions"])
-            self.assertTrue((bundle / "anim" / "boot.animpack").is_file())
-            self.assertTrue((bundle / "anim" / "anim_manifest.bin").is_file())
+            catalog = json.loads((bundle / "official_catalog.json").read_text())
+            boot = next(item for item in catalog["expressions"] if item["id"] == "boot")
+            boot_hash = boot["assets"]["animation"]["sha256"]
+            self.assertTrue((bundle / "assets" / "anim" / f"{boot_hash}.animpack").is_file())
             self.assertEqual(
                 set(self.fixed_states),
-                set(json.loads((bundle / "behavior" / "states.json").read_text())["states"]),
+                set(json.loads((bundle / "fixed_states.json").read_text())["states"]),
             )
             validated = PIPELINE.validate_resources(source, bundle, desktop)
             self.assertEqual(8, validated["expressions"])
             ota = PIPELINE.package_resources(bundle, root / "dist", "v0.0.1")
+            self.assertEqual(3, ota["schema_version"])
+            self.assertEqual(2, ota["layout_revision"])
+            self.assertEqual("WRSD/2", ota["protocol"])
+            self.assertGreater(ota["archive"]["expanded_size"], 0)
+            self.assertGreater(ota["archive"]["file_count"], 0)
+            self.assertEqual(8, ota["archive"]["object_count"])
             self.assertRegex(ota["archive"]["sha256"], r"^[a-f0-9]{64}$")
+            self.assertEqual("watche-sd-resources-v0.0.1.tar.gz", ota["archive"]["name"])
+            self.assertEqual(
+                "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.1/"
+                "watche-sd-resources-v0.0.1.tar.gz",
+                ota["archive"]["github_url"],
+            )
+            self.assertEqual(
+                "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.1/"
+                "watche-sd-resources-v0.0.1.tar.gz",
+                ota["archive"]["tos_url"],
+            )
+            self.assertEqual("official_catalog.json", ota["catalog"]["name"])
             self.assertTrue((root / "dist" / "v0.0.1" / "watche-sd-resources-v0.0.1.tar.gz").is_file())
 
     def test_rejects_wrong_gif_dimensions_before_writing_release(self) -> None:
@@ -132,6 +152,45 @@ class ResourcePipelineTests(unittest.TestCase):
             ]
             self.assertEqual([180, 100], angles)
             self.assertEqual(2, len(adjustments))
+
+    def test_work_manifest_links_official_and_user_assets_by_hash(self) -> None:
+        sha256 = "a" * 64
+        work = {
+            "schema_version": 1,
+            "work_id": "morning_show",
+            "name": "早安组合",
+            "duration_ms": 3000,
+            "tracks": [
+                {
+                    "type": "animation",
+                    "start_ms": 0,
+                    "duration_ms": 3000,
+                    "asset": {
+                        "source": "official",
+                        "resource_id": "happy",
+                        "kind": "anim",
+                        "sha256": sha256,
+                        "size": 1024,
+                        "format": "animpack-v2",
+                    },
+                },
+                {
+                    "type": "sound",
+                    "start_ms": 0,
+                    "asset": {
+                        "source": "user",
+                        "kind": "sfx",
+                        "sha256": "b" * 64,
+                        "size": 2048,
+                        "format": "pcm-s16le-24khz-mono",
+                    },
+                },
+            ],
+        }
+        PIPELINE.schema_validate(work, "work-manifest.schema.json", "work")
+        work["tracks"][0]["asset"].pop("resource_id")
+        with self.assertRaisesRegex(PIPELINE.ResourceError, "resource_id"):
+            PIPELINE.schema_validate(work, "work-manifest.schema.json", "work")
 
     def test_version_sequence_starts_at_v001(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

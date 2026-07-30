@@ -1,12 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://orulink.ai/schemas/watcher/desktop-catalog-v1.json",
+  "$id": "https://orulink.ai/schemas/watcher/desktop-catalog-v2.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "format", "content_hash", "expressions"],
+  "required": ["schema_version", "format", "version", "content_hash", "expressions"],
   "properties": {
-    "schema_version": {"const": 1},
+    "schema_version": {"const": 2},
     "format": {"const": "watche-desktop-expression-catalog"},
+    "version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
     "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "expressions": {
       "type": "array",

@@ -44,11 +44,6 @@ PACK_VERSION = 2
 PACK_HEADER_FMT = "<4sHHHHBBHIII"
 FRAME_DESC_FMT = "<IIHH"
 FRAME_FLAG_INDEXED8 = 0x0001
-MANIFEST_MAGIC = b"ANIM"
-MANIFEST_VERSION = 2
-MANIFEST_NAME_BYTES = 24
-MANIFEST_PATH_BYTES = 192
-MANIFEST_ENTRY_FMT = f"<HHHHHB3x{MANIFEST_NAME_BYTES}s{MANIFEST_PATH_BYTES}s"
 
 
 class ResourceError(ValueError):
@@ -138,13 +133,6 @@ def schema_validate(document: Any, schema_name: str, label: str) -> None:
             for error in errors[:8]
         )
         raise ResourceError(f"{label} does not match {schema_name}: {details}")
-
-
-def encode_c_string(value: str, size: int) -> bytes:
-    payload = value.encode("utf-8")
-    if len(payload) >= size:
-        raise ResourceError(f"Value is too long for {size - 1}-byte device field: {value}")
-    return payload + b"\0" * (size - len(payload))
 
 
 def rgba_to_rgb565(image: Image.Image) -> bytes:
@@ -537,17 +525,13 @@ def build_resources(
         if not gif_path.is_file():
             raise ResourceError(f"Source GIF is missing for {resource_id}")
         frames = read_gif(gif_path, policy)
-        compiled = next(
-            (item for item in policy["compiled_registry"] if item["name"] == resource_id),
-            {},
-        )
         animation_temp = staging / f"{resource_id}.animpack"
         write_animpack(
             animation_temp,
             frames,
             fps,
             bool(record["loop"]),
-            bool(compiled.get("force_rgb565")),
+            resource_id in policy["force_rgb565"],
         )
         assets: dict[str, Any] = {
             "animation": store_asset_object(bundle, animation_temp, "anim")
@@ -618,8 +602,9 @@ def build_resources(
         content_digest.update(item["display_name"].encode())
         content_digest.update(item["preview_sha256"].encode())
     desktop_catalog = {
-        "schema_version": 1,
+        "schema_version": 2,
         "format": "watche-desktop-expression-catalog",
+        "version": version,
         "content_hash": content_digest.hexdigest(),
         "expressions": desktop_entries,
     }
@@ -645,6 +630,36 @@ def bundle_files(bundle: Path, include_manifest: bool = True) -> list[Path]:
     if not include_manifest:
         files = [path for path in files if path.name != "resource_manifest.json"]
     return sorted(files, key=lambda path: path.relative_to(bundle).as_posix())
+
+
+def desktop_files(desktop: Path) -> list[Path]:
+    return sorted(
+        (path for path in desktop.rglob("*") if path.is_file()),
+        key=lambda path: path.relative_to(desktop).as_posix(),
+    )
+
+
+def write_deterministic_tar_gz(archive: Path, root: Path, files: list[Path], prefix: str) -> None:
+    with tempfile.TemporaryDirectory(prefix=prefix) as temporary:
+        tar_path = Path(temporary) / "resources.tar"
+        with tarfile.open(tar_path, "w", format=tarfile.USTAR_FORMAT) as tar:
+            for path in files:
+                relative = path.relative_to(root).as_posix()
+                info = tar.gettarinfo(str(path), arcname=relative)
+                info.uid = info.gid = 0
+                info.uname = info.gname = ""
+                info.mtime = 0
+                with path.open("rb") as handle:
+                    tar.addfile(info, handle)
+        with tar_path.open("rb") as source, archive.open("wb") as output:
+            with gzip.GzipFile(
+                filename="",
+                mode="wb",
+                fileobj=output,
+                mtime=0,
+                compresslevel=9,
+            ) as compressed:
+                shutil.copyfileobj(source, compressed)
 
 
 def calculate_bundle_hash(bundle: Path, files: list[Path]) -> str:
@@ -793,10 +808,20 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
     if desktop is not None:
         desktop_catalog = read_json(desktop / "desktop_catalog.json")
         schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
+        if desktop_catalog["version"] != manifest["bundle_version"]:
+            raise ResourceError("Desktop catalog version does not match the device bundle")
         if [item["id"] for item in desktop_catalog["expressions"]] != [
             item["id"] for item in catalog["expressions"]
         ]:
             raise ResourceError("Desktop and device catalog ordering/IDs do not match")
+        expected_desktop_files = {"desktop_catalog.json"} | {
+            item["preview"] for item in desktop_catalog["expressions"]
+        }
+        actual_desktop_files = {
+            path.relative_to(desktop).as_posix() for path in desktop_files(desktop)
+        }
+        if actual_desktop_files != expected_desktop_files:
+            raise ResourceError("Desktop file set does not match desktop_catalog.json")
         for item in desktop_catalog["expressions"]:
             preview = desktop / item["preview"]
             if not preview.is_file() or sha256_file(preview) != item["preview_sha256"]:
@@ -810,11 +835,18 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
     }
 
 
-def package_resources(bundle: Path, dist: Path, version: str) -> dict[str, Any]:
+def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> dict[str, Any]:
     manifest = read_json(bundle / "resource_manifest.json")
     if manifest.get("bundle_version") != version:
         raise ResourceError(
             f"Bundle version {manifest.get('bundle_version')} does not match requested package {version}"
+        )
+    desktop_catalog = read_json(desktop / "desktop_catalog.json")
+    schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
+    if desktop_catalog.get("version") != version:
+        raise ResourceError(
+            f"Desktop catalog version {desktop_catalog.get('version')} "
+            f"does not match requested package {version}"
         )
     dist.mkdir(parents=True, exist_ok=True)
     version_dir = dist / version
@@ -822,27 +854,14 @@ def package_resources(bundle: Path, dist: Path, version: str) -> dict[str, Any]:
         shutil.rmtree(version_dir)
     version_dir.mkdir(parents=True)
     archive = version_dir / f"watche-sd-resources-{version}.tar.gz"
-    with tempfile.TemporaryDirectory(prefix="watche-sd-") as temporary:
-        tar_path = Path(temporary) / "resources.tar"
-        with tarfile.open(tar_path, "w", format=tarfile.USTAR_FORMAT) as tar:
-            for path in bundle_files(bundle):
-                relative = path.relative_to(bundle).as_posix()
-                info = tar.gettarinfo(str(path), arcname=relative)
-                info.uid = info.gid = 0
-                info.uname = info.gname = ""
-                info.mtime = 0
-                with path.open("rb") as handle:
-                    tar.addfile(info, handle)
-        with tar_path.open("rb") as source, archive.open("wb") as output:
-            with gzip.GzipFile(filename="", mode="wb", fileobj=output, mtime=0, compresslevel=9) as compressed:
-                shutil.copyfileobj(source, compressed)
+    archive_files = bundle_files(bundle)
+    write_deterministic_tar_gz(archive, bundle, archive_files, "watche-sd-")
     transfer_limit = load_policy()["limits"]["transfer_archive_bytes"]
     if archive.stat().st_size > transfer_limit:
         archive.unlink()
         raise ResourceError(
             f"Compressed archive exceeds the device transfer limit of {transfer_limit} bytes"
         )
-    archive_files = bundle_files(bundle)
     expanded_size = sum(path.stat().st_size for path in archive_files)
     object_count = sum(
         1
@@ -852,6 +871,16 @@ def package_resources(bundle: Path, dist: Path, version: str) -> dict[str, Any]:
     catalog_source = bundle / "official_catalog.json"
     catalog_target = version_dir / "official_catalog.json"
     shutil.copyfile(catalog_source, catalog_target)
+    desktop_catalog_target = version_dir / "desktop_catalog.json"
+    shutil.copyfile(desktop / "desktop_catalog.json", desktop_catalog_target)
+    desktop_archive_files = desktop_files(desktop)
+    desktop_archive = version_dir / f"watche-desktop-previews-{version}.tar.gz"
+    write_deterministic_tar_gz(
+        desktop_archive,
+        desktop,
+        desktop_archive_files,
+        "watche-desktop-",
+    )
     ota = {
         "schema_version": 3,
         "product": "WatcheRobot-S3",
@@ -877,6 +906,33 @@ def package_resources(bundle: Path, dist: Path, version: str) -> dict[str, Any]:
             "tos_url": f"{TOS_PUBLIC_BASE}/{version}/official_catalog.json",
             "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/official_catalog.json",
             "sha256": sha256_file(catalog_target),
+        },
+        "desktop": {
+            "catalog": {
+                "name": desktop_catalog_target.name,
+                "size": desktop_catalog_target.stat().st_size,
+                "github_url": (
+                    f"{GITHUB_RELEASE_BASE}/{version}/{desktop_catalog_target.name}"
+                ),
+                "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{desktop_catalog_target.name}",
+                "tos_uri": (
+                    f"tos://erroright/WatcherRobot/sd/{version}/{desktop_catalog_target.name}"
+                ),
+                "sha256": sha256_file(desktop_catalog_target),
+            },
+            "archive": {
+                "name": desktop_archive.name,
+                "format": "tar.gz",
+                "size": desktop_archive.stat().st_size,
+                "expanded_size": sum(path.stat().st_size for path in desktop_archive_files),
+                "file_count": len(desktop_archive_files),
+                "sha256": sha256_file(desktop_archive),
+                "github_url": f"{GITHUB_RELEASE_BASE}/{version}/{desktop_archive.name}",
+                "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{desktop_archive.name}",
+                "tos_uri": (
+                    f"tos://erroright/WatcherRobot/sd/{version}/{desktop_archive.name}"
+                ),
+            },
         },
     }
     schema_validate(ota, "ota-manifest.schema.json", "ota-manifest.json")
@@ -917,6 +973,7 @@ def parser() -> argparse.ArgumentParser:
     validate.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
     package = subcommands.add_parser("package")
     package.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
+    package.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
     package.add_argument("--dist-root", type=Path, default=DEFAULT_DIST)
     package.add_argument("--version", required=True)
     next_command = subcommands.add_parser("next-version")
@@ -957,7 +1014,12 @@ def main() -> int:
                 f"{result['sounds']} sound(s), {result['frames']} frame(s), {result['bytes']} bytes."
             )
         elif args.command == "package":
-            result = package_resources(args.bundle_root.resolve(), args.dist_root.resolve(), args.version)
+            result = package_resources(
+                args.bundle_root.resolve(),
+                args.desktop_root.resolve(),
+                args.dist_root.resolve(),
+                args.version,
+            )
             print(f"Packaged {args.version}: {result['archive']['sha256']}")
         else:
             print(next_version(args.releases.resolve()))

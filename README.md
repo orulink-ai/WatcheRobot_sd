@@ -7,7 +7,7 @@
 ```text
 official/source/                  飞书原始 GIF、动作、音效和记录快照
 official/device-input/sound/      转码后的 24 kHz 单声道 PCM
-official/desktop/                 桌面端轻量目录和 WebP 动图预览
+official/desktop/                 当前版本的桌面目录和 WebP 动图预览
 official/releases/index.json      已发布版本索引
 schemas/                          对外 JSON Schema
 config/resource-policy.json       硬件参数、大小上限和固定状态
@@ -62,7 +62,7 @@ SD 卡只保留一套官方版本。更新官方资源时会替换 `official/cur
 
 ## 发布包
 
-压缩包内只有：
+设备压缩包内只有：
 
 ```text
 assets/anim/<sha256>.animpack
@@ -73,7 +73,24 @@ fixed_states.json
 resource_manifest.json
 ```
 
-`ota-manifest.json` Schema v3 记录压缩大小、解压大小、文件数、对象数、SHA-256、GitHub 地址和 TOS 地址。安装器先尝试完整的 GitHub 清单与压缩包，失败后整套切换到 TOS，不能交叉拼接两个来源。
+每个版本还会生成桌面端产物：
+
+```text
+desktop_catalog.json
+watche-desktop-previews-vX.Y.Z.tar.gz
+  desktop_catalog.json
+  previews/<resource_id>.webp
+```
+
+桌面目录 Schema v2 带有与设备资源相同的 `version`。动态 WebP 直接由飞书原始
+GIF 生成，不从 AnimPack 反向转换；`display_name` 用于界面显示，
+`device.image_name` 用于设备协议下发。
+
+`ota-manifest.json` Schema v3 保留现有设备 `archive` / `catalog` 字段，并增加
+可选的 `desktop.catalog` / `desktop.archive` 下载信息，因此当前 ESP32 安装器
+仍可读取同一份清单。清单记录大小、文件数、SHA-256、GitHub 地址和 TOS 地址。
+下载端先尝试同一来源的一整套清单和产物，失败后整套切换到另一个来源，不能交叉
+拼接两个来源。
 
 ## 本地校验
 

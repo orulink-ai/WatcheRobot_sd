@@ -59,6 +59,55 @@
         "tos_uri": {"type": "string"},
         "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
       }
+    },
+    "desktop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["catalog", "archive"],
+      "properties": {
+        "catalog": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "size", "github_url", "tos_url", "tos_uri", "sha256"],
+          "properties": {
+            "name": {"const": "desktop_catalog.json"},
+            "size": {"type": "integer", "minimum": 1},
+            "github_url": {"type": "string", "format": "uri"},
+            "tos_url": {"type": "string", "format": "uri"},
+            "tos_uri": {"type": "string"},
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          }
+        },
+        "archive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "format",
+            "size",
+            "expanded_size",
+            "file_count",
+            "sha256",
+            "github_url",
+            "tos_url",
+            "tos_uri"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "pattern": "^watche-desktop-previews-v[0-9]+\\.[0-9]+\\.[0-9]+\\.tar\\.gz$"
+            },
+            "format": {"const": "tar.gz"},
+            "size": {"type": "integer", "minimum": 1},
+            "expanded_size": {"type": "integer", "minimum": 1},
+            "file_count": {"type": "integer", "minimum": 2, "maximum": 129},
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+            "github_url": {"type": "string", "format": "uri"},
+            "tos_url": {"type": "string", "format": "uri"},
+            "tos_uri": {"type": "string"}
+          }
+        }
+      }
     }
   }
 }

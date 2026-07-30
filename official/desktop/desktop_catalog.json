@@ -14,8 +14,20 @@
       "order": 0,
       "device": {
         "image_name": "listening",
-        "anim": "anim/listening.animpack",
-        "action": "actions/listening.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "6838c3274d8f06f99cf6dd5d1e37db3142f732c031e10143ef947a208bf47e1a",
+            "size": 895314,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "5fb1c190ce863659ca4ceeb809d9a963946518e2f0be68944d9f6caf73a16b7a",
+            "size": 1115,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -29,8 +41,20 @@
       "order": 1,
       "device": {
         "image_name": "speaking",
-        "anim": "anim/speaking.animpack",
-        "action": "actions/speaking.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "b174566c17718391c7eb067db8f605588e97571e67106793bcc4321ce58df68b",
+            "size": 937650,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "962889c6e7925397c054c6313adb051542290290d27a81f570626c3f4e71eb9e",
+            "size": 1459,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -44,8 +68,20 @@
       "order": 2,
       "device": {
         "image_name": "processing",
-        "anim": "anim/processing.animpack",
-        "action": "actions/processing.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "fdcda5d16d98e6172f9a440555652213ff30f97290f33ee1864175de3f75e760",
+            "size": 1748550,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "14edcb6373faad432c80cb1430741ccb78a885ea64272b9f52efc9aab0292d37",
+            "size": 2762,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -59,9 +95,26 @@
       "order": 3,
       "device": {
         "image_name": "standby",
-        "anim": "anim/standby.animpack",
-        "action": "actions/standby.json",
-        "sound": "sfx/standby.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e7f495f42438e1898432e98a9b151fb35598db558a6b77af9e5a3828b65b7b95",
+            "size": 1749586,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "fd8f94e22facfac08a700ac2afd0ad7605fb8c86b607820af32b74a135629d8e",
+            "size": 876,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "f86906a5e1a82e09d1074397ff295f94eb5d0eb62a5415f554f7475d8d1f6a3f",
+            "size": 114104,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -75,8 +128,20 @@
       "order": 4,
       "device": {
         "image_name": "custom3",
-        "anim": "anim/custom3.animpack",
-        "action": "actions/custom3.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "6a62b6ddaf6f0c6084372468b798c73029de8cc07784d0700b97af27646d39bb",
+            "size": 1755778,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "322e4c39acc0cb4a70658534c9dfe7a0ee49c3bb07c86474d42abc27f702e3d2",
+            "size": 3344,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -90,9 +155,26 @@
       "order": 5,
       "device": {
         "image_name": "error",
-        "anim": "anim/error.animpack",
-        "action": "actions/error.json",
-        "sound": "sfx/error.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "f9a761a70bd64227a2946999d81a7e16cd3a97fdbbc8a03bf457084bfe282780",
+            "size": 1410318,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "a4c0aca4487bb69a4a0c46f00c0038a3a64865971e0f6e65f94a02d7bdd99342",
+            "size": 2865,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "4134cba108833875cd8ea581a22266a1a923b64779ce60c5f407c3548749a324",
+            "size": 41378,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -106,9 +188,26 @@
       "order": 6,
       "device": {
         "image_name": "happy",
-        "anim": "anim/happy.animpack",
-        "action": "actions/happy.json",
-        "sound": "sfx/happy.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "beeeab92162703f9eb929c54a0f226240ac6c21fbff14d3fbf4bd2e4db3434c6",
+            "size": 1406262,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "c512c4b0121b2d83ce71d9c93b6dee35f4c02f839825f109d68ce5373aa4eb41",
+            "size": 2630,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "ca5c54e4acf557e2436004462e057d49e860151034b627ca236b49ad12fc675a",
+            "size": 104072,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -122,7 +221,14 @@
       "order": 7,
       "device": {
         "image_name": "custom1",
-        "anim": "anim/custom1.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "afc7a6c3e110b165ec692fa0a3852f871cb6036dcece4344d367f524d5611359",
+            "size": 1409726,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -136,7 +242,14 @@
       "order": 8,
       "device": {
         "image_name": "custom2",
-        "anim": "anim/custom2.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "3de2b56fb648cb175b67dcbda703bade74f15fdc51580928845495cf0bd34335",
+            "size": 978066,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -150,9 +263,26 @@
       "order": 9,
       "device": {
         "image_name": "thinking",
-        "anim": "anim/thinking.animpack",
-        "action": "actions/thinking.json",
-        "sound": "sfx/thinking.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "64952b288f632215a40fea0953e0c177955e2e040b397e63680b910f65f050d2",
+            "size": 1321092,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "dec62c9846dee02545647a857ac34e15b1b14b629279a51830a105d50f58a140",
+            "size": 2168,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "0d8dec08a0ab8d592c1ed7e8a8c2180e3246f5ebbde5bba0e16b9d38498aa7fe",
+            "size": 80248,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -166,8 +296,20 @@
       "order": 10,
       "device": {
         "image_name": "boot",
-        "anim": "anim/boot.animpack",
-        "sound": "sfx/boot.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "9d6091e1c42f94fe7e9213d4f8d966f475e6cb6adc027adfcef921b4de0b07df",
+            "size": 1113914,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "d0d7e17978265122d84048ab2273d3bdf08b0dea31cf123f5e6315cafa4dbd19",
+            "size": 104072,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -181,9 +323,26 @@
       "order": 11,
       "device": {
         "image_name": "bluetooth",
-        "anim": "anim/bluetooth.animpack",
-        "action": "actions/bluetooth.json",
-        "sound": "sfx/bluetooth.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "9616549ac5d7b1bb57ec4c0f7f86a8e2c4e3417f6c942fabe28e4f1188b74ace",
+            "size": 2631432,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "2542a953080958a300ba2b515f74eadf9dec4ec9918d9105cc5b843d6d49a685",
+            "size": 1351,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "98fdb7944e6de161e4c82fa04d2d6e2b4f234eabfb62300fe2985bf2f01c509d",
+            "size": 114104,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -197,9 +356,26 @@
       "order": 12,
       "device": {
         "image_name": "disconnect",
-        "anim": "anim/disconnect.animpack",
-        "action": "actions/disconnect.json",
-        "sound": "sfx/disconnect.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "bb74b598652d0862f8ee61ff5397b25e74064cf6fcb9e0ba300da1bbb548b8bc",
+            "size": 1326346,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "334c0d5e137d5064c1429489fd37e77dd2e9c2e085c024863f27277de68b13c8",
+            "size": 1821,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "633fc5a74c688e8814868d103035c9c912506f99bbd2026fc359415312a6ab88",
+            "size": 151720,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -213,9 +389,26 @@
       "order": 13,
       "device": {
         "image_name": "shock",
-        "anim": "anim/shock.animpack",
-        "action": "actions/shock.json",
-        "sound": "sfx/shock.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "5949ee5f786017ee446c2017496941324c6ee6ade13e2fd21fc4332d308994ff",
+            "size": 983512,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "03518c2d942f9354f2766d728df25d22484495668c655729cdb92088496c7af2",
+            "size": 868,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "bd880fcc5ac661fd0b22f38f0d0f12a5c8a2f67d25ec80280efbf9038d62bb44",
+            "size": 114104,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -229,8 +422,20 @@
       "order": 14,
       "device": {
         "image_name": "sunglasses",
-        "anim": "anim/sunglasses.animpack",
-        "action": "actions/sunglasses.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "37933aa51bbaa4bc8e263895b3f932efaf1327a8a54154bca14c2711de1688d5",
+            "size": 2896464,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "30450bbface0e0433dac4055b75ef260b94798964e4161bed654093f4cf3af51",
+            "size": 3116,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -244,8 +449,20 @@
       "order": 15,
       "device": {
         "image_name": "sad",
-        "anim": "anim/sad.animpack",
-        "action": "actions/sad.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "8d0354f407b1cca1ebf867f97cbf0c9aa1c02ab9b10e2c2af46048e6cc18d119",
+            "size": 3326704,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "2bb19d5d1c6e461d2c9890a2c4d3550671e92557ab22ad4de9ea83f2a0105fbe",
+            "size": 1683,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -259,9 +476,26 @@
       "order": 16,
       "device": {
         "image_name": "get",
-        "anim": "anim/get.animpack",
-        "action": "actions/get.json",
-        "sound": "sfx/get.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "56bc645e468009e0056e077eef2930d85c57ea94dcdf2061b1a46aff9df81d34",
+            "size": 938848,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "1fe66893cc5b47ed9ab393518b12bc818934fff9ffed25885218d83ff7a79730",
+            "size": 1215,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "3bbbb6baa8e724b8a4b185c855d53bd6f2b1a071ce0d5af36e2752c865ab48ac",
+            "size": 109088,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -275,8 +509,20 @@
       "order": 17,
       "device": {
         "image_name": "smile",
-        "anim": "anim/smile.animpack",
-        "action": "actions/smile.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "285056b70c9d7234dc821f84784ec66f19ec13866a46c4563e7fb7fd3480dfd1",
+            "size": 1576534,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "75510a0ea5e51d884ea16d6ba4a1bd29d0e3bcbb51c19f4213cf01484c84666c",
+            "size": 1928,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -290,8 +536,20 @@
       "order": 18,
       "device": {
         "image_name": "recharge",
-        "anim": "anim/recharge.animpack",
-        "sound": "sfx/recharge.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "7f7c8c521d569953af96e936ad0993fe596de5d31bbf2040701414a17598733f",
+            "size": 898830,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "608a5328e22158f1c7fbf32969d7541339639f53b2ffdf6f6dd30984dae8325d",
+            "size": 104072,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -305,7 +563,14 @@
       "order": 19,
       "device": {
         "image_name": "speechless",
-        "anim": "anim/speechless.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e309194038ee8c6635e854aa596aa1ab6a1067b100c6acbdc198906d87335800",
+            "size": 2088858,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -319,9 +584,26 @@
       "order": 20,
       "device": {
         "image_name": "focus",
-        "anim": "anim/focus.animpack",
-        "action": "actions/focus.json",
-        "sound": "sfx/focus.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e3878ef698a8aa7b5af699f54e2b94043a6fef54c3f8fdb8e7030361400968e4",
+            "size": 2005126,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "92368339917456db1fa285cb691e6395b277d24cd2ab0d764c0cca051e593150",
+            "size": 1811,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "c55e83a72e23bb2f8025e0afb934fc01de7e0305959e40add732a03b8afe064f",
+            "size": 228206,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -335,8 +617,20 @@
       "order": 21,
       "device": {
         "image_name": "fondle_love",
-        "anim": "anim/fondle_love.animpack",
-        "action": "actions/fondle_love.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "2fd3e6b165ca539eb219901041c5310fd0f16e3a42f819ecc0e6606b87eabacb",
+            "size": 3375158,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "5f3b3336cda31e8c0fa5fa957ad3a9640d0c36c831e18b22159884275ca124e6",
+            "size": 2650,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -350,8 +644,20 @@
       "order": 22,
       "device": {
         "image_name": "fondle_anger",
-        "anim": "anim/fondle_anger.animpack",
-        "action": "actions/fondle_anger.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "b867b2fb6860d250c9b92f0a86063f2739d159243ae0992375ef342a0b15f53d",
+            "size": 3026590,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "e9cccd50f8a2b69c1ace227f687be6988a235b6862217c5cdada0fc342e902dc",
+            "size": 4642,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -365,8 +671,20 @@
       "order": 23,
       "device": {
         "image_name": "standby1",
-        "anim": "anim/standby1.animpack",
-        "action": "actions/standby1.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "9c616f2aa4e72a89802e63ea40cada31239f54e479de5465607f5a10e795b159",
+            "size": 894418,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "d173f40fed7afc3225172574d5df0445409e98afd811640d558af81650cfdf18",
+            "size": 886,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -380,8 +698,20 @@
       "order": 24,
       "device": {
         "image_name": "standby2",
-        "anim": "anim/standby2.animpack",
-        "action": "actions/standby2.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e1072e4a88093cb88f4f4b5ea3a144caeb8d67fc24fcde1a03928a055044fdc2",
+            "size": 1066310,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "7580fb77c874ae187ec36c533217dedcd60001e46bbadca7b856406cd2db1bca",
+            "size": 1362,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -395,8 +725,20 @@
       "order": 25,
       "device": {
         "image_name": "standby3",
-        "anim": "anim/standby3.animpack",
-        "action": "actions/standby3.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "0cd5274b34730e273942c672e1e4d047cb970e4f88387b2f4a202367dcebebdc",
+            "size": 1535288,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "f4c12578185f127ef47d44c91d3939c0c705297806a8432156508d1114be2ba2",
+            "size": 1125,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -410,8 +752,20 @@
       "order": 26,
       "device": {
         "image_name": "standby4",
-        "anim": "anim/standby4.animpack",
-        "action": "actions/standby4.json"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "fb9d993b8ec8b2ff9bd37baadd0f9cdddd24a2fed06687138f1fb2340215efd5",
+            "size": 1023686,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "d7a3f76582ce029a65e0aa670377c73db2d5caf624e58f2450e1589ae2ff74bf",
+            "size": 886,
+            "format": "firmware-action-json-v1"
+          }
+        }
       }
     },
     {
@@ -425,8 +779,20 @@
       "order": 27,
       "device": {
         "image_name": "blink",
-        "anim": "anim/blink.animpack",
-        "sound": "sfx/blink.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "df7894d07b263fbcb25e431d4c01a16960c52a48ef1ecb314c49bbc44ecbacd2",
+            "size": 255700,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "e5281b0bf23fff7fd59ca349c53e616c03d29444f44bf7d04bb3d18101a47cf2",
+            "size": 31348,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -440,7 +806,14 @@
       "order": 28,
       "device": {
         "image_name": "upgrade",
-        "anim": "anim/upgrade.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "c1e6ba7fa49667209ec3f1446df9ae42d853de86c49a82848a53cb9e0f033dea",
+            "size": 2572596,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -454,7 +827,14 @@
       "order": 29,
       "device": {
         "image_name": "standby_start",
-        "anim": "anim/standby_start.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "4b47f62545ab7a8efe6789d475b2ae8ff8ade37d0dacb1d47d047e87189cb5fe",
+            "size": 1704464,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -468,7 +848,14 @@
       "order": 30,
       "device": {
         "image_name": "standby_loop",
-        "anim": "anim/standby_loop.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "8530106426d43dce21486412c20bf75c4a557476e009b291343768913520a752",
+            "size": 1706916,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -482,7 +869,14 @@
       "order": 31,
       "device": {
         "image_name": "standby_end",
-        "anim": "anim/standby_end.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "9f1c39baa11b9849059cccadc77a6dd1a729b80a1d363b832ec293eb844a2fff",
+            "size": 127940,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -496,7 +890,14 @@
       "order": 32,
       "device": {
         "image_name": "music",
-        "anim": "anim/music.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "044fd7b00633b3e9da015fc4ca26880a02ae1694e5d1f21d6e884aca3d74ec57",
+            "size": 1287880,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -510,8 +911,20 @@
       "order": 33,
       "device": {
         "image_name": "speaking_blink",
-        "anim": "anim/speaking_blink.animpack",
-        "sound": "sfx/speaking_blink.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "33da5390849ace84e81556156c5dbc34fcc4c7a2c6ca837f55320196fb56a763",
+            "size": 213266,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "26d5f09754b99623c314b76b46d3d7aec8325518b56370cd02c9af19b45b73ab",
+            "size": 27586,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -525,7 +938,14 @@
       "order": 34,
       "device": {
         "image_name": "speaking_eye",
-        "anim": "anim/speaking_eye.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "0933a97f955ee2500a1ca37781531d023417a919e16b4aa36a2cca924fd3f101",
+            "size": 341446,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -539,7 +959,14 @@
       "order": 35,
       "device": {
         "image_name": "sing",
-        "anim": "anim/sing.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "7614e3c6c487ca66d5dc2529037d047c9964ccaa7ce7fe02c275b0e8f31a1fe1",
+            "size": 2097546,
+            "format": "animpack-v2"
+          }
+        }
       }
     },
     {
@@ -553,8 +980,20 @@
       "order": 36,
       "device": {
         "image_name": "photo",
-        "anim": "anim/photo.animpack",
-        "sound": "sfx/photo.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "5acd363b8c4099346eac2a9fe4cbd6bff4b78e5d09f3d7e949a7be883c98f8ff",
+            "size": 1494632,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "6dae56f94efde1d537f9c0d7e45a6063f858e0f8174e64cf061b51a9661c7cfb",
+            "size": 170528,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -568,8 +1007,20 @@
       "order": 37,
       "device": {
         "image_name": "blink_fast",
-        "anim": "anim/blink_fast.animpack",
-        "sound": "sfx/blink_fast.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "a8861b39124cdeddc95956bdf2c1d26b3b810cd2f07c4000df1a52eaad1a3334",
+            "size": 170326,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "e5ed59f09534f4c9a8b8456b57eeb9effceb03efc4ee13f036bc69141b54498d",
+            "size": 22570,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -583,8 +1034,20 @@
       "order": 38,
       "device": {
         "image_name": "interference",
-        "anim": "anim/interference.animpack",
-        "sound": "sfx/interference.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "1b29848063892575e5b78d180bf5cd88e6d8ac4f66fddc007f7d52132f57a282",
+            "size": 213960,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "c36294fa515e7d7618512f1e807e05189ac713bfe8d48bb285c336668cf1601a",
+            "size": 27586,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -598,8 +1061,20 @@
       "order": 39,
       "device": {
         "image_name": "click_eye",
-        "anim": "anim/click_eye.animpack",
-        "sound": "sfx/click_eye.pcm"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "a4d268ee89d2d3982a10e776492a5ed21f4b6f1a07e28883d845a46237d6fb99",
+            "size": 468842,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "cc405fb422def345991338e12514871298fb523b59820f052f35bcd538a10172",
+            "size": 56424,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
       }
     },
     {
@@ -613,7 +1088,14 @@
       "order": 40,
       "device": {
         "image_name": "anger",
-        "anim": "anim/anger.animpack"
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "0fd45b0917b1bd042f2122d2bb2c2470088ee3bcd48b88781f74438604109291",
+            "size": 1961528,
+            "format": "animpack-v2"
+          }
+        }
       }
     }
   ]

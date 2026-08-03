@@ -1,0 +1,62 @@
+{
+  "scene_name": "standby2",
+  "frame_start": 0,
+  "frame_end": 2200,
+  "fps": 1000,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "standby2",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 220,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 880,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 1240,
+          "active_axis": "z",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 1800,
+          "active_axis": "z",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 2200,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "standby2",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 2200,
+          "active_axis": "x",
+          "rotation_angle": 100
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "scene_name": "listening",
+  "frame_start": 0,
+  "frame_end": 20,
+  "fps": 10,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "listening",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "listening",
+      "keyframe_data": [
+        {
+          "frame_number": 3,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 5,
+          "active_axis": "x",
+          "rotation_angle": 101
+        },
+        {
+          "frame_number": 7,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 9,
+          "active_axis": "x",
+          "rotation_angle": 101
+        },
+        {
+          "frame_number": 11,
+          "active_axis": "x",
+          "rotation_angle": 100
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
-  "schema_version": 2,
-  "format": "watche-desktop-expression-catalog",
-  "version": "v0.0.2",
-  "content_hash": "b12f4a5e53b569af38ff89052943815954533b34d43eac59c1bb283c56e0e012",
+  "schema_version": 3,
+  "format": "watche-desktop-resource-catalog",
+  "version": "v0.0.3",
+  "content_hash": "7851d9e8b8b3ada1dba806769045bbf579d7b4be942e47d0b8d633771a938bdb",
   "expressions": [
     {
       "id": "listening",
@@ -13,6 +13,15 @@
       "preview_sha256": "38ccb56ad4f9dd61dd01d9944112133cb12f3c5784d3facb44b4c382ad1a0f92",
       "loop": true,
       "order": 0,
+      "creator": {
+        "action": {
+          "path": "actions/listening.json",
+          "kind": "action",
+          "sha256": "5fb1c190ce863659ca4ceeb809d9a963946518e2f0be68944d9f6caf73a16b7a",
+          "size": 1115,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "listening",
         "assets": {
@@ -40,6 +49,15 @@
       "preview_sha256": "702d708d2ce1073eec546215100cf8afa6424f98559185f77a086098839c50ad",
       "loop": true,
       "order": 1,
+      "creator": {
+        "action": {
+          "path": "actions/speaking.json",
+          "kind": "action",
+          "sha256": "962889c6e7925397c054c6313adb051542290290d27a81f570626c3f4e71eb9e",
+          "size": 1459,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "speaking",
         "assets": {
@@ -67,6 +85,15 @@
       "preview_sha256": "091d47f4fb1160a218b618528fb0d0d14c6f827bfcf82f295c6b49e0e722b9aa",
       "loop": true,
       "order": 2,
+      "creator": {
+        "action": {
+          "path": "actions/processing.json",
+          "kind": "action",
+          "sha256": "14edcb6373faad432c80cb1430741ccb78a885ea64272b9f52efc9aab0292d37",
+          "size": 2762,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "processing",
         "assets": {
@@ -94,6 +121,22 @@
       "preview_sha256": "2865e08e396a52fda330513950028453cf0fd292748585620e5d950135e82d05",
       "loop": true,
       "order": 3,
+      "creator": {
+        "action": {
+          "path": "actions/standby.json",
+          "kind": "action",
+          "sha256": "fd8f94e22facfac08a700ac2afd0ad7605fb8c86b607820af32b74a135629d8e",
+          "size": 876,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/standby.pcm",
+          "kind": "sfx",
+          "sha256": "f86906a5e1a82e09d1074397ff295f94eb5d0eb62a5415f554f7475d8d1f6a3f",
+          "size": 114104,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "standby",
         "assets": {
@@ -127,6 +170,15 @@
       "preview_sha256": "f33ae605e42cdd8ff0d792ff31618d7f6699859bff1159f7f4775107ac5451f9",
       "loop": true,
       "order": 4,
+      "creator": {
+        "action": {
+          "path": "actions/custom3.json",
+          "kind": "action",
+          "sha256": "322e4c39acc0cb4a70658534c9dfe7a0ee49c3bb07c86474d42abc27f702e3d2",
+          "size": 3344,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "custom3",
         "assets": {
@@ -154,6 +206,22 @@
       "preview_sha256": "be5c0d98256124b725df61d6ddf5a6c94c80dbf7911162de244f069536eccd2d",
       "loop": true,
       "order": 5,
+      "creator": {
+        "action": {
+          "path": "actions/error.json",
+          "kind": "action",
+          "sha256": "a4c0aca4487bb69a4a0c46f00c0038a3a64865971e0f6e65f94a02d7bdd99342",
+          "size": 2865,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/error.pcm",
+          "kind": "sfx",
+          "sha256": "4134cba108833875cd8ea581a22266a1a923b64779ce60c5f407c3548749a324",
+          "size": 41378,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "error",
         "assets": {
@@ -187,6 +255,22 @@
       "preview_sha256": "c3313d1d74306a3bc3ff7b8a42db9ff8380ad0c2c44dd2735720cc17915699b2",
       "loop": true,
       "order": 6,
+      "creator": {
+        "action": {
+          "path": "actions/happy.json",
+          "kind": "action",
+          "sha256": "c512c4b0121b2d83ce71d9c93b6dee35f4c02f839825f109d68ce5373aa4eb41",
+          "size": 2630,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/happy.pcm",
+          "kind": "sfx",
+          "sha256": "ca5c54e4acf557e2436004462e057d49e860151034b627ca236b49ad12fc675a",
+          "size": 104072,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "happy",
         "assets": {
@@ -220,6 +304,7 @@
       "preview_sha256": "18abe914009f51c41533a514229eb6efb6691811abbb092b515825f82ee895df",
       "loop": true,
       "order": 7,
+      "creator": {},
       "device": {
         "image_name": "custom1",
         "assets": {
@@ -241,6 +326,7 @@
       "preview_sha256": "62d11acea147ced751ef2ae6b2149c031a9ed73ac42458950dec4faa4df51b8e",
       "loop": true,
       "order": 8,
+      "creator": {},
       "device": {
         "image_name": "custom2",
         "assets": {
@@ -262,6 +348,22 @@
       "preview_sha256": "8955d968495419a4713bdb089759415793a8d6e879baea2046bdf4eeae2a3689",
       "loop": true,
       "order": 9,
+      "creator": {
+        "action": {
+          "path": "actions/thinking.json",
+          "kind": "action",
+          "sha256": "dec62c9846dee02545647a857ac34e15b1b14b629279a51830a105d50f58a140",
+          "size": 2168,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/thinking.pcm",
+          "kind": "sfx",
+          "sha256": "0d8dec08a0ab8d592c1ed7e8a8c2180e3246f5ebbde5bba0e16b9d38498aa7fe",
+          "size": 80248,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "thinking",
         "assets": {
@@ -295,6 +397,15 @@
       "preview_sha256": "4103eedc6cb58bc35379fec7361d8286aae73f1a46ff850a25bc3c96b4e5cf5d",
       "loop": true,
       "order": 10,
+      "creator": {
+        "sound": {
+          "path": "sounds/boot.pcm",
+          "kind": "sfx",
+          "sha256": "d0d7e17978265122d84048ab2273d3bdf08b0dea31cf123f5e6315cafa4dbd19",
+          "size": 104072,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "boot",
         "assets": {
@@ -322,6 +433,22 @@
       "preview_sha256": "1a557acfa21e90866f40beae95f59772a427f6b1de98cea4eebea2e7e095882d",
       "loop": false,
       "order": 11,
+      "creator": {
+        "action": {
+          "path": "actions/bluetooth.json",
+          "kind": "action",
+          "sha256": "2542a953080958a300ba2b515f74eadf9dec4ec9918d9105cc5b843d6d49a685",
+          "size": 1351,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/bluetooth.pcm",
+          "kind": "sfx",
+          "sha256": "98fdb7944e6de161e4c82fa04d2d6e2b4f234eabfb62300fe2985bf2f01c509d",
+          "size": 114104,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "bluetooth",
         "assets": {
@@ -355,6 +482,22 @@
       "preview_sha256": "3498b8343f12c9e483e86b33f2d1da02d624b49806817f5368d22ac2a655d411",
       "loop": false,
       "order": 12,
+      "creator": {
+        "action": {
+          "path": "actions/disconnect.json",
+          "kind": "action",
+          "sha256": "334c0d5e137d5064c1429489fd37e77dd2e9c2e085c024863f27277de68b13c8",
+          "size": 1821,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/disconnect.pcm",
+          "kind": "sfx",
+          "sha256": "633fc5a74c688e8814868d103035c9c912506f99bbd2026fc359415312a6ab88",
+          "size": 151720,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "disconnect",
         "assets": {
@@ -388,6 +531,22 @@
       "preview_sha256": "b429ca6a83360234a74a92cfe0063997a437cd74816ae983ff0ad017f20a6dee",
       "loop": false,
       "order": 13,
+      "creator": {
+        "action": {
+          "path": "actions/shock.json",
+          "kind": "action",
+          "sha256": "03518c2d942f9354f2766d728df25d22484495668c655729cdb92088496c7af2",
+          "size": 868,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/shock.pcm",
+          "kind": "sfx",
+          "sha256": "bd880fcc5ac661fd0b22f38f0d0f12a5c8a2f67d25ec80280efbf9038d62bb44",
+          "size": 114104,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "shock",
         "assets": {
@@ -421,6 +580,15 @@
       "preview_sha256": "f8f22aff3860ebdb875d2d41b21f5c8cd8e42974825de1428b6e8ac850456555",
       "loop": true,
       "order": 14,
+      "creator": {
+        "action": {
+          "path": "actions/sunglasses.json",
+          "kind": "action",
+          "sha256": "30450bbface0e0433dac4055b75ef260b94798964e4161bed654093f4cf3af51",
+          "size": 3116,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "sunglasses",
         "assets": {
@@ -448,6 +616,15 @@
       "preview_sha256": "641131e58415413082686c9e7a03b0f57c011ee64dcb0ed0d9d8b65d45e7c5fb",
       "loop": true,
       "order": 15,
+      "creator": {
+        "action": {
+          "path": "actions/sad.json",
+          "kind": "action",
+          "sha256": "2bb19d5d1c6e461d2c9890a2c4d3550671e92557ab22ad4de9ea83f2a0105fbe",
+          "size": 1683,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "sad",
         "assets": {
@@ -475,6 +652,22 @@
       "preview_sha256": "177a58ab380b05a5357286fb28a9ec3451eacf17075988b323edc604be93993e",
       "loop": false,
       "order": 16,
+      "creator": {
+        "action": {
+          "path": "actions/get.json",
+          "kind": "action",
+          "sha256": "1fe66893cc5b47ed9ab393518b12bc818934fff9ffed25885218d83ff7a79730",
+          "size": 1215,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/get.pcm",
+          "kind": "sfx",
+          "sha256": "3bbbb6baa8e724b8a4b185c855d53bd6f2b1a071ce0d5af36e2752c865ab48ac",
+          "size": 109088,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "get",
         "assets": {
@@ -508,6 +701,15 @@
       "preview_sha256": "32ef85caf754b057ca7a629e34f89aaacb5ce8b44eb7fe37a7cfe4e0b30ad268",
       "loop": true,
       "order": 17,
+      "creator": {
+        "action": {
+          "path": "actions/smile.json",
+          "kind": "action",
+          "sha256": "75510a0ea5e51d884ea16d6ba4a1bd29d0e3bcbb51c19f4213cf01484c84666c",
+          "size": 1928,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "smile",
         "assets": {
@@ -535,6 +737,15 @@
       "preview_sha256": "44373a3353f08ad65b41a71c9c4a88c0388158b8257103463b39d7dd27880f4b",
       "loop": false,
       "order": 18,
+      "creator": {
+        "sound": {
+          "path": "sounds/recharge.pcm",
+          "kind": "sfx",
+          "sha256": "608a5328e22158f1c7fbf32969d7541339639f53b2ffdf6f6dd30984dae8325d",
+          "size": 104072,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "recharge",
         "assets": {
@@ -562,6 +773,7 @@
       "preview_sha256": "b26072c8ab238e616ed1e6129a5eb26b274579824fb500105c290f105dd7d226",
       "loop": true,
       "order": 19,
+      "creator": {},
       "device": {
         "image_name": "speechless",
         "assets": {
@@ -583,6 +795,22 @@
       "preview_sha256": "20cba6fbd1ca604b669e719808487deaf35fc2a1a50ae3e02a3457e583ac0df8",
       "loop": false,
       "order": 20,
+      "creator": {
+        "action": {
+          "path": "actions/focus.json",
+          "kind": "action",
+          "sha256": "92368339917456db1fa285cb691e6395b277d24cd2ab0d764c0cca051e593150",
+          "size": 1811,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/focus.pcm",
+          "kind": "sfx",
+          "sha256": "c55e83a72e23bb2f8025e0afb934fc01de7e0305959e40add732a03b8afe064f",
+          "size": 228206,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "focus",
         "assets": {
@@ -616,6 +844,15 @@
       "preview_sha256": "43541e31c4974ec570ed42f97d4831ea10b36d2c5f707b04f5628054e4528c1d",
       "loop": false,
       "order": 21,
+      "creator": {
+        "action": {
+          "path": "actions/fondle_love.json",
+          "kind": "action",
+          "sha256": "5f3b3336cda31e8c0fa5fa957ad3a9640d0c36c831e18b22159884275ca124e6",
+          "size": 2650,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "fondle_love",
         "assets": {
@@ -643,6 +880,15 @@
       "preview_sha256": "0947a19b5e9beec9d78adb49c6242ca7922070d39f7cca7ca357ba2f9f06e675",
       "loop": false,
       "order": 22,
+      "creator": {
+        "action": {
+          "path": "actions/fondle_anger.json",
+          "kind": "action",
+          "sha256": "e9cccd50f8a2b69c1ace227f687be6988a235b6862217c5cdada0fc342e902dc",
+          "size": 4642,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "fondle_anger",
         "assets": {
@@ -670,6 +916,15 @@
       "preview_sha256": "6c64a6dfe4705e3e2e6e43a1e3add09c6a7e80fc192ca0789c7c0cc1aebef39d",
       "loop": true,
       "order": 23,
+      "creator": {
+        "action": {
+          "path": "actions/standby1.json",
+          "kind": "action",
+          "sha256": "d173f40fed7afc3225172574d5df0445409e98afd811640d558af81650cfdf18",
+          "size": 886,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "standby1",
         "assets": {
@@ -697,6 +952,15 @@
       "preview_sha256": "0a198535123b7f838e3f426779d44a683b360d227032cbe156c8e4e71d824089",
       "loop": true,
       "order": 24,
+      "creator": {
+        "action": {
+          "path": "actions/standby2.json",
+          "kind": "action",
+          "sha256": "7580fb77c874ae187ec36c533217dedcd60001e46bbadca7b856406cd2db1bca",
+          "size": 1362,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "standby2",
         "assets": {
@@ -724,6 +988,15 @@
       "preview_sha256": "a8a7c05f85bfc17b1d0e0dbcfbdb0114994c5462d7e2a77f47cf7f606ea8cf11",
       "loop": true,
       "order": 25,
+      "creator": {
+        "action": {
+          "path": "actions/standby3.json",
+          "kind": "action",
+          "sha256": "f4c12578185f127ef47d44c91d3939c0c705297806a8432156508d1114be2ba2",
+          "size": 1125,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "standby3",
         "assets": {
@@ -751,6 +1024,15 @@
       "preview_sha256": "16f7a76a7f889165b72d7095639385f192dbc4a6e8e7bc1cc5f1746e9414303e",
       "loop": true,
       "order": 26,
+      "creator": {
+        "action": {
+          "path": "actions/standby4.json",
+          "kind": "action",
+          "sha256": "d7a3f76582ce029a65e0aa670377c73db2d5caf624e58f2450e1589ae2ff74bf",
+          "size": 886,
+          "format": "firmware-action-json-v1"
+        }
+      },
       "device": {
         "image_name": "standby4",
         "assets": {
@@ -778,6 +1060,15 @@
       "preview_sha256": "967b7bb1dcebfc06b8386f764fd5a3faaceff5721e9c7a34c6e3d4a205d7f5bf",
       "loop": true,
       "order": 27,
+      "creator": {
+        "sound": {
+          "path": "sounds/blink.pcm",
+          "kind": "sfx",
+          "sha256": "e5281b0bf23fff7fd59ca349c53e616c03d29444f44bf7d04bb3d18101a47cf2",
+          "size": 31348,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "blink",
         "assets": {
@@ -805,6 +1096,7 @@
       "preview_sha256": "acc88a5659dce58eadb065cca5b11aba8dcd7af9756d080877b3bdc7a0a78b25",
       "loop": true,
       "order": 28,
+      "creator": {},
       "device": {
         "image_name": "upgrade",
         "assets": {
@@ -826,6 +1118,7 @@
       "preview_sha256": "7706f3d98d4a6106b5168f334b8251883d8c28d65e95135e75f444b79c59cbaf",
       "loop": false,
       "order": 29,
+      "creator": {},
       "device": {
         "image_name": "standby_start",
         "assets": {
@@ -847,6 +1140,7 @@
       "preview_sha256": "2e75e1f045f884a4f6620ec92e0bc103232c6343fdf1e66b1a801b4c3d2d045c",
       "loop": true,
       "order": 30,
+      "creator": {},
       "device": {
         "image_name": "standby_loop",
         "assets": {
@@ -868,6 +1162,7 @@
       "preview_sha256": "b1ee4478492ea400aa8e5136700671e423408915ce37157eaa11b372e52b8118",
       "loop": false,
       "order": 31,
+      "creator": {},
       "device": {
         "image_name": "standby_end",
         "assets": {
@@ -889,6 +1184,7 @@
       "preview_sha256": "d53588dc6c8cf051501d52853fe6341e221a8fdc0860ce76e2020e6b30566286",
       "loop": true,
       "order": 32,
+      "creator": {},
       "device": {
         "image_name": "music",
         "assets": {
@@ -910,6 +1206,15 @@
       "preview_sha256": "bdc7a911ac5f58adec5462c285acde51c4ad33b307bc69c5c890f8161540aa38",
       "loop": true,
       "order": 33,
+      "creator": {
+        "sound": {
+          "path": "sounds/speaking_blink.pcm",
+          "kind": "sfx",
+          "sha256": "26d5f09754b99623c314b76b46d3d7aec8325518b56370cd02c9af19b45b73ab",
+          "size": 27586,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "speaking_blink",
         "assets": {
@@ -937,6 +1242,7 @@
       "preview_sha256": "2bdc1d6d8e6be2a6961bfee3c1812f2d0d07436695f1f8a1f0e561e5374367bd",
       "loop": true,
       "order": 34,
+      "creator": {},
       "device": {
         "image_name": "speaking_eye",
         "assets": {
@@ -958,6 +1264,7 @@
       "preview_sha256": "e35a1e204d9fdce0f260b9e8b6fdf5aa6176db22935afa7ef917ce8b5e5b64cc",
       "loop": true,
       "order": 35,
+      "creator": {},
       "device": {
         "image_name": "sing",
         "assets": {
@@ -979,6 +1286,15 @@
       "preview_sha256": "0ad17366d309baac2088b17c2b09db9a03ca9abb10af0e0b6e85a4a7e4d66256",
       "loop": false,
       "order": 36,
+      "creator": {
+        "sound": {
+          "path": "sounds/photo.pcm",
+          "kind": "sfx",
+          "sha256": "6dae56f94efde1d537f9c0d7e45a6063f858e0f8174e64cf061b51a9661c7cfb",
+          "size": 170528,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "photo",
         "assets": {
@@ -1006,6 +1322,15 @@
       "preview_sha256": "91085dd58f236a20f301484d4d761c4aa39d2f64b9ffaa4553e12040cbe9ef1c",
       "loop": true,
       "order": 37,
+      "creator": {
+        "sound": {
+          "path": "sounds/blink_fast.pcm",
+          "kind": "sfx",
+          "sha256": "e5ed59f09534f4c9a8b8456b57eeb9effceb03efc4ee13f036bc69141b54498d",
+          "size": 22570,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "blink_fast",
         "assets": {
@@ -1033,6 +1358,15 @@
       "preview_sha256": "479d6ff594324a9e4d5a0d8e5d3a244dee4213fd8b2309450b64a5c5f46f14a5",
       "loop": true,
       "order": 38,
+      "creator": {
+        "sound": {
+          "path": "sounds/interference.pcm",
+          "kind": "sfx",
+          "sha256": "c36294fa515e7d7618512f1e807e05189ac713bfe8d48bb285c336668cf1601a",
+          "size": 27586,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "interference",
         "assets": {
@@ -1060,6 +1394,15 @@
       "preview_sha256": "ac8b6d5e7d7c912fd001c3d23c3253126413663eb1966ddaf8b965daf115c28e",
       "loop": true,
       "order": 39,
+      "creator": {
+        "sound": {
+          "path": "sounds/click_eye.pcm",
+          "kind": "sfx",
+          "sha256": "cc405fb422def345991338e12514871298fb523b59820f052f35bcd538a10172",
+          "size": 56424,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
       "device": {
         "image_name": "click_eye",
         "assets": {
@@ -1087,6 +1430,7 @@
       "preview_sha256": "ae04565aa30a721fec6216e715c202779c6b2f3a70e17009826833cc6d94ced0",
       "loop": false,
       "order": 40,
+      "creator": {},
       "device": {
         "image_name": "anger",
         "assets": {

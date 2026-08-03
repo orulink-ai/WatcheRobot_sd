@@ -1,0 +1,87 @@
+{
+  "scene_name": "smile",
+  "frame_start": 0,
+  "frame_end": 37,
+  "fps": 10,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "smile",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "smile",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 2,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 4,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 6,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 8,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 10,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 12,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 14,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 16,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 18,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 20,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 22,
+          "active_axis": "x",
+          "rotation_angle": 100
+        }
+      ]
+    }
+  ]
+}

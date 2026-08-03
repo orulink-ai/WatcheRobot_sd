@@ -1,0 +1,62 @@
+{
+  "scene_name": "bluetooth",
+  "frame_start": 0,
+  "frame_end": 30,
+  "fps": 10,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "bluetooth",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "bluetooth",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 4,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 6,
+          "active_axis": "x",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 8,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 12,
+          "active_axis": "x",
+          "rotation_angle": 110
+        },
+        {
+          "frame_number": 21,
+          "active_axis": "x",
+          "rotation_angle": 110
+        },
+        {
+          "frame_number": 28,
+          "active_axis": "x",
+          "rotation_angle": 100
+        }
+      ]
+    }
+  ]
+}

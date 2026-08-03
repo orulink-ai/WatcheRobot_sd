@@ -1,0 +1,67 @@
+{
+  "scene_name": "speaking",
+  "frame_start": 0,
+  "frame_end": 21,
+  "fps": 10,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "speaking",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 2,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 3,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 5,
+          "active_axis": "z",
+          "rotation_angle": 72
+        },
+        {
+          "frame_number": 10,
+          "active_axis": "z",
+          "rotation_angle": 72
+        },
+        {
+          "frame_number": 12,
+          "active_axis": "z",
+          "rotation_angle": 98
+        },
+        {
+          "frame_number": 15,
+          "active_axis": "z",
+          "rotation_angle": 98
+        },
+        {
+          "frame_number": 17,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "speaking",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 100
+        }
+      ]
+    }
+  ]
+}

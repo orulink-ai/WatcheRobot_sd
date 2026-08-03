@@ -67,6 +67,36 @@ class ResourcePipelineTests(unittest.TestCase):
             ),
             encoding="utf-8",
         )
+        action = {
+            "scene_name": "Scene",
+            "frame_start": 0,
+            "frame_end": 10,
+            "fps": 10,
+            "animated_objects": [
+                {
+                    "keyframe_data": [
+                        {"frame_number": 0, "active_axis": "x", "rotation_angle": 90},
+                        {"frame_number": 10, "active_axis": "z", "rotation_angle": 0},
+                    ]
+                }
+            ],
+        }
+        (source / "actions" / "boot.json").write_text(json.dumps(action), encoding="utf-8")
+        (source / "sound" / "boot.pcm").write_bytes(b"\x00\x00\x01\x00")
+        records[0]["action"] = "token-boot-action"
+        records[0]["sound"] = "token-boot-sound"
+        (source / "feishu-snapshot.json").write_text(
+            json.dumps(
+                {
+                    "schema_version": 1,
+                    "source": "Watcher expression overview",
+                    "imported_at": "2026-07-30T00:00:00Z",
+                    "records": records,
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
         return source
 
     def test_build_validate_and_package_device_compatible_bundle(self) -> None:
@@ -88,15 +118,23 @@ class ResourcePipelineTests(unittest.TestCase):
             validated = PIPELINE.validate_resources(source, bundle, desktop)
             self.assertEqual(8, validated["expressions"])
             desktop_catalog = json.loads((desktop / "desktop_catalog.json").read_text())
-            self.assertEqual(2, desktop_catalog["schema_version"])
+            self.assertEqual(3, desktop_catalog["schema_version"])
+            self.assertEqual("watche-desktop-resource-catalog", desktop_catalog["format"])
             self.assertEqual("v0.0.1", desktop_catalog["version"])
+            desktop_boot = next(
+                item for item in desktop_catalog["expressions"] if item["id"] == "boot"
+            )
+            self.assertEqual("actions/boot.json", desktop_boot["creator"]["action"]["path"])
+            self.assertEqual("sounds/boot.pcm", desktop_boot["creator"]["sound"]["path"])
+            self.assertTrue((desktop / "actions" / "boot.json").is_file())
+            self.assertTrue((desktop / "sounds" / "boot.pcm").is_file())
             ota = PIPELINE.package_resources(bundle, desktop, root / "dist", "v0.0.1")
             self.assertEqual(3, ota["schema_version"])
             self.assertEqual(2, ota["layout_revision"])
             self.assertEqual("WRSD/2", ota["protocol"])
             self.assertGreater(ota["archive"]["expanded_size"], 0)
             self.assertGreater(ota["archive"]["file_count"], 0)
-            self.assertEqual(8, ota["archive"]["object_count"])
+            self.assertEqual(10, ota["archive"]["object_count"])
             self.assertRegex(ota["archive"]["sha256"], r"^[a-f0-9]{64}$")
             self.assertEqual("watche-sd-resources-v0.0.1.tar.gz", ota["archive"]["name"])
             self.assertEqual(
@@ -114,7 +152,7 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertTrue((version_dir / "watche-sd-resources-v0.0.1.tar.gz").is_file())
             self.assertEqual("desktop_catalog.json", ota["desktop"]["catalog"]["name"])
             self.assertEqual(
-                "watche-desktop-previews-v0.0.1.tar.gz",
+                "watche-desktop-resources-v0.0.1.tar.gz",
                 ota["desktop"]["archive"]["name"],
             )
             desktop_archive = version_dir / ota["desktop"]["archive"]["name"]
@@ -123,10 +161,12 @@ class ResourcePipelineTests(unittest.TestCase):
                 members = sorted(archive.getnames())
             self.assertIn("desktop_catalog.json", members)
             self.assertIn("previews/boot.webp", members)
-            self.assertEqual(9, ota["desktop"]["archive"]["file_count"])
+            self.assertIn("actions/boot.json", members)
+            self.assertIn("sounds/boot.pcm", members)
+            self.assertEqual(11, ota["desktop"]["archive"]["file_count"])
             self.assertEqual(
                 "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.1/"
-                "watche-desktop-previews-v0.0.1.tar.gz",
+                "watche-desktop-resources-v0.0.1.tar.gz",
                 ota["desktop"]["archive"]["github_url"],
             )
             self.assertEqual(
@@ -270,9 +310,12 @@ class ResourcePipelineTests(unittest.TestCase):
                 for item in catalog["expressions"]
             ],
         )
-        expected_files = {"desktop_catalog.json"} | {
-            item["preview"] for item in catalog["expressions"]
-        }
+        expected_files = {"desktop_catalog.json"}
+        for item in catalog["expressions"]:
+            expected_files.add(item["preview"])
+            expected_files.update(
+                asset["path"] for asset in item.get("creator", {}).values()
+            )
         actual_files = {
             path.relative_to(desktop).as_posix()
             for path in desktop.rglob("*")
@@ -284,6 +327,8 @@ class ResourcePipelineTests(unittest.TestCase):
                 item["preview_sha256"],
                 PIPELINE.sha256_file(desktop / item["preview"]),
             )
+            for asset in item.get("creator", {}).values():
+                self.assertEqual(asset["sha256"], PIPELINE.sha256_file(desktop / asset["path"]))
 
 
 if __name__ == "__main__":

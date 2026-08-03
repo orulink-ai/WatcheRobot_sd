@@ -7,7 +7,7 @@
 ```text
 official/source/                  飞书原始 GIF、动作、音效和记录快照
 official/device-input/sound/      转码后的 24 kHz 单声道 PCM
-official/desktop/                 当前版本的桌面目录和 WebP 动图预览
+official/desktop/                 当前版本的桌面目录、WebP 预览、动作与音效
 official/releases/index.json      已发布版本索引
 schemas/                          对外 JSON Schema
 config/resource-policy.json       硬件参数、大小上限和固定状态
@@ -77,14 +77,18 @@ resource_manifest.json
 
 ```text
 desktop_catalog.json
-watche-desktop-previews-vX.Y.Z.tar.gz
+watche-desktop-resources-vX.Y.Z.tar.gz
   desktop_catalog.json
   previews/<resource_id>.webp
+  actions/<resource_id>.json
+  sounds/<resource_id>.pcm
 ```
 
-桌面目录 Schema v2 带有与设备资源相同的 `version`。动态 WebP 直接由飞书原始
-GIF 生成，不从 AnimPack 反向转换；`display_name` 用于界面显示，
-`device.image_name` 用于设备协议下发。
+从 v0.0.3 开始，桌面目录使用 Schema v3，并与设备资源使用相同的 `version`。
+动态 WebP 直接由飞书原始 GIF 生成，不从 AnimPack 反向转换；动作 JSON 与 24 kHz
+单声道 16-bit PCM 音效来自同一次规范化构建，桌面端以一个原子快照同时更新表情页
+和创作模式素材库。`display_name` 用于界面显示，`device.image_name` 用于设备协议下发。
+客户端仍兼容仅包含预览的 Schema v2 历史包。
 
 `ota-manifest.json` Schema v3 保留现有设备 `archive` / `catalog` 字段，并增加
 可选的 `desktop.catalog` / `desktop.archive` 下载信息，因此当前 ESP32 安装器

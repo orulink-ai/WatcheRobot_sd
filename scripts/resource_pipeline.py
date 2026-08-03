@@ -579,6 +579,27 @@ def build_resources(
     for record, entry in zip(records, catalog):
         preview = desktop / "previews" / f"{entry['id']}.webp"
         write_preview(source / "gif" / f"{entry['id']}.gif", preview)
+        creator: dict[str, Any] = {}
+        if "action" in entry["assets"]:
+            reference = entry["assets"]["action"]
+            relative = f"actions/{entry['id']}.json"
+            target = desktop / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(
+                bundle / "assets" / "actions" / f"{reference['sha256']}.json",
+                target,
+            )
+            creator["action"] = {"path": relative, **reference}
+        if "sound" in entry["assets"]:
+            reference = entry["assets"]["sound"]
+            relative = f"sounds/{entry['id']}.pcm"
+            target = desktop / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(
+                bundle / "assets" / "sfx" / f"{reference['sha256']}.pcm",
+                target,
+            )
+            creator["sound"] = {"path": relative, **reference}
         device = {
             "image_name": entry["id"],
             "assets": entry["assets"],
@@ -593,6 +614,7 @@ def build_resources(
                 "preview_sha256": sha256_file(preview),
                 "loop": entry["loop"],
                 "order": entry["order"],
+                "creator": creator,
                 "device": device,
             }
         )
@@ -601,9 +623,12 @@ def build_resources(
         content_digest.update(item["id"].encode())
         content_digest.update(item["display_name"].encode())
         content_digest.update(item["preview_sha256"].encode())
+        content_digest.update(
+            json.dumps(item["creator"], sort_keys=True, separators=(",", ":")).encode()
+        )
     desktop_catalog = {
-        "schema_version": 2,
-        "format": "watche-desktop-expression-catalog",
+        "schema_version": 3,
+        "format": "watche-desktop-resource-catalog",
         "version": version,
         "content_hash": content_digest.hexdigest(),
         "expressions": desktop_entries,
@@ -814,9 +839,12 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
             item["id"] for item in catalog["expressions"]
         ]:
             raise ResourceError("Desktop and device catalog ordering/IDs do not match")
-        expected_desktop_files = {"desktop_catalog.json"} | {
-            item["preview"] for item in desktop_catalog["expressions"]
-        }
+        expected_desktop_files = {"desktop_catalog.json"}
+        for item in desktop_catalog["expressions"]:
+            expected_desktop_files.add(item["preview"])
+            expected_desktop_files.update(
+                asset["path"] for asset in item.get("creator", {}).values()
+            )
         actual_desktop_files = {
             path.relative_to(desktop).as_posix() for path in desktop_files(desktop)
         }
@@ -826,6 +854,18 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
             preview = desktop / item["preview"]
             if not preview.is_file() or sha256_file(preview) != item["preview_sha256"]:
                 raise ResourceError(f"Desktop preview hash mismatch: {item['id']}")
+            for kind, asset in item.get("creator", {}).items():
+                path = desktop / asset["path"]
+                if (
+                    not path.is_file()
+                    or path.stat().st_size != asset["size"]
+                    or sha256_file(path) != asset["sha256"]
+                ):
+                    raise ResourceError(f"Desktop {kind} hash mismatch: {item['id']}")
+                if kind == "action":
+                    schema_validate(read_json(path), "action.schema.json", str(path))
+                elif path.stat().st_size % 2:
+                    raise ResourceError(f"Desktop sound is not 16-bit PCM: {item['id']}")
     return {
         "expressions": len(catalog_by_id),
         "actions": sum("action" in item["assets"] for item in catalog_by_id.values()),
@@ -874,7 +914,7 @@ def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> 
     desktop_catalog_target = version_dir / "desktop_catalog.json"
     shutil.copyfile(desktop / "desktop_catalog.json", desktop_catalog_target)
     desktop_archive_files = desktop_files(desktop)
-    desktop_archive = version_dir / f"watche-desktop-previews-{version}.tar.gz"
+    desktop_archive = version_dir / f"watche-desktop-resources-{version}.tar.gz"
     write_deterministic_tar_gz(
         desktop_archive,
         desktop,

@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://orulink.ai/schemas/watcher/desktop-catalog-v2.json",
+  "$id": "https://orulink.ai/schemas/watcher/desktop-catalog-v3.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "format", "version", "content_hash", "expressions"],
   "properties": {
-    "schema_version": {"const": 2},
-    "format": {"const": "watche-desktop-expression-catalog"},
+    "schema_version": {"enum": [2, 3]},
+    "format": {"enum": ["watche-desktop-expression-catalog", "watche-desktop-resource-catalog"]},
     "version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
     "content_hash": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "expressions": {
@@ -26,6 +26,14 @@
           "preview_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
           "loop": {"type": "boolean"},
           "order": {"type": "integer", "minimum": 0},
+          "creator": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "action": {"$ref": "#/$defs/action"},
+              "sound": {"$ref": "#/$defs/sound"}
+            }
+          },
           "device": {
             "type": "object",
             "additionalProperties": false,
@@ -45,6 +53,47 @@
             }
           }
         }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": 2}}},
+      "then": {"properties": {"format": {"const": "watche-desktop-expression-catalog"}}}
+    },
+    {
+      "if": {"properties": {"schema_version": {"const": 3}}},
+      "then": {
+        "properties": {
+          "format": {"const": "watche-desktop-resource-catalog"},
+          "expressions": {"items": {"required": ["creator"]}}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "kind", "sha256", "size", "format"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^actions/[a-z][a-z0-9_]{0,22}\\.json$"},
+        "kind": {"const": "action"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "size": {"type": "integer", "minimum": 1},
+        "format": {"const": "firmware-action-json-v1"}
+      }
+    },
+    "sound": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "kind", "sha256", "size", "format"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^sounds/[a-z][a-z0-9_]{0,22}\\.pcm$"},
+        "kind": {"const": "sfx"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "size": {"type": "integer", "minimum": 2},
+        "format": {"const": "pcm-s16le-24khz-mono"}
       }
     }
   }

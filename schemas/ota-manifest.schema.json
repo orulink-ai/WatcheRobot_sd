@@ -95,7 +95,7 @@
           "properties": {
             "name": {
               "type": "string",
-              "pattern": "^watche-desktop-previews-v[0-9]+\\.[0-9]+\\.[0-9]+\\.tar\\.gz$"
+              "pattern": "^watche-desktop-(previews|resources)-v[0-9]+\\.[0-9]+\\.[0-9]+\\.tar\\.gz$"
             },
             "format": {"const": "tar.gz"},
             "size": {"type": "integer", "minimum": 1},

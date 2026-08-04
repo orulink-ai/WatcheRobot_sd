@@ -1,7 +1,7 @@
 {
     "schema_version":  1,
     "source":  "Watcher expression overview",
-    "imported_at":  "2026-08-04T02:51:39.0949464Z",
+    "imported_at":  "2026-08-04T04:25:27.5897366Z",
     "records":  [
                     {
                         "source_record_id":  "recbwadAdh",
@@ -9,7 +9,6 @@
                         "display_name":  "聆听",
                         "resource_id":  "listening",
                         "order":  0,
-                        "loop":  true,
                         "gif":  "O0A4bN5Sbo8amOxgqHTc7lLAnBd",
                         "action":  "GMpPb7Uk4oJw22x2WkGcNccTnJb",
                         "sound":  null
@@ -20,7 +19,6 @@
                         "display_name":  "说话",
                         "resource_id":  "speaking",
                         "order":  1,
-                        "loop":  true,
                         "gif":  "P6cwbYKSCo7MC8x6pcNcw2gDnOF",
                         "action":  "ULLcbdLvcoFYugxox6xcEpGQnqh",
                         "sound":  null
@@ -31,7 +29,6 @@
                         "display_name":  "分析",
                         "resource_id":  "processing",
                         "order":  2,
-                        "loop":  true,
                         "gif":  "Bk0VbOw64oaWIgxDiyicqY0UnCe",
                         "action":  "VS5EbyhCSoh43qxdbu6cgj6znjc",
                         "sound":  null
@@ -42,7 +39,6 @@
                         "display_name":  "睡觉",
                         "resource_id":  "standby",
                         "order":  3,
-                        "loop":  true,
                         "gif":  "IJgVbO26io2bjyxDwLWc9xM6nUs",
                         "action":  "LqVYbgh0QoDE05xsbYkcp1wrnhh",
                         "sound":  "EuXPbs10zok63CxDnUkcK4HWn2b"
@@ -53,7 +49,6 @@
                         "display_name":  "工具",
                         "resource_id":  "custom3",
                         "order":  4,
-                        "loop":  true,
                         "gif":  "W2YUbZI3jowll3xaPlQcjnxgnIh",
                         "action":  "QL5Yb8lnXoIerOxouIhcAHDan4p",
                         "sound":  null
@@ -64,7 +59,6 @@
                         "display_name":  "错误",
                         "resource_id":  "error",
                         "order":  5,
-                        "loop":  true,
                         "gif":  "XCDMbMm4GoEuFjx0qKmcCq7Unde",
                         "action":  "H8RPbOJ6Fo6FuExwtGJcdkz3nfb",
                         "sound":  "RE8Kb288sov0kqxIc2GcEv1rn2e"
@@ -75,7 +69,6 @@
                         "display_name":  "成功",
                         "resource_id":  "happy",
                         "order":  6,
-                        "loop":  true,
                         "gif":  "TJRGbuHEuoFoVQxcDTXcN8Ufnyh",
                         "action":  "YGVubi48EoPtpsxJJzlc6HGenQf",
                         "sound":  "MbgqbsCBboJKGoxHTb8caTugnke"
@@ -86,7 +79,6 @@
                         "display_name":  "爱心",
                         "resource_id":  "custom1",
                         "order":  7,
-                        "loop":  true,
                         "gif":  "ZUZNbTNRhosKuExyBtucaUXmnTg",
                         "action":  null,
                         "sound":  null
@@ -97,7 +89,6 @@
                         "display_name":  "执行",
                         "resource_id":  "custom2",
                         "order":  8,
-                        "loop":  true,
                         "gif":  "Uqcjb2NgYoF4Z6x9ux4celdIn2d",
                         "action":  null,
                         "sound":  null
@@ -108,7 +99,6 @@
                         "display_name":  "思考",
                         "resource_id":  "thinking",
                         "order":  9,
-                        "loop":  true,
                         "gif":  "FsPabO8YWoXIolxIKwCczGxen3M",
                         "action":  "HPHlbGSh0oymtZx6v2xckj5ynIU",
                         "sound":  "YS2xbmOxmojf9Vxeb7Kc4jUsnBl"
@@ -119,7 +109,6 @@
                         "display_name":  "开机",
                         "resource_id":  "boot",
                         "order":  10,
-                        "loop":  true,
                         "gif":  "QQqgbwdiAoFKwBx21VPcHf7GnKh",
                         "action":  null,
                         "sound":  "IJf6bdcdDo7lhxxXzxccRumtnWb"
@@ -130,7 +119,6 @@
                         "display_name":  "蓝牙",
                         "resource_id":  "bluetooth",
                         "order":  11,
-                        "loop":  false,
                         "gif":  "KA4jb1uYiooz3GxJytWc8dbMnyb",
                         "action":  "Jf1KbRhJBouJb0xfjUKcQkQVnQ4",
                         "sound":  "L5i0b8E44ojVw2x1yeLcjj4inle"
@@ -141,7 +129,6 @@
                         "display_name":  "断开蓝牙",
                         "resource_id":  "disconnect",
                         "order":  12,
-                        "loop":  false,
                         "gif":  "RZKubl59lo50N3x3ApncvY3JnCh",
                         "action":  "LQlnbQPDroqMSVxqcb8cig7ZnUd",
                         "sound":  "SCrxbPNCEoPZJXxxAHtcVlwXneh"
@@ -152,7 +139,6 @@
                         "display_name":  "感叹号",
                         "resource_id":  "shock",
                         "order":  13,
-                        "loop":  false,
                         "gif":  "NnycbZpNroq0NQx2NZ5cqaMIn4z",
                         "action":  "RnnNbml0MohKicxJO86cUwK6nzf",
                         "sound":  "DbPDbyDdWoynS2xGiS3cXHOOnwh"
@@ -163,7 +149,6 @@
                         "display_name":  "墨镜",
                         "resource_id":  "sunglasses",
                         "order":  14,
-                        "loop":  true,
                         "gif":  "R3QubHjBVoDzvyx8Okqca1B1njg",
                         "action":  "DA1ib8p3IoZnfJxlcv5czUZQnCc",
                         "sound":  null
@@ -174,7 +159,6 @@
                         "display_name":  "伤心",
                         "resource_id":  "sad",
                         "order":  15,
-                        "loop":  true,
                         "gif":  "CjjlbmwR1o0apwxpSOdcQEkJnhl",
                         "action":  "MKAqbeEXKochWfx9M5Qc5Z8Knnd",
                         "sound":  null
@@ -185,7 +169,6 @@
                         "display_name":  "收到",
                         "resource_id":  "get",
                         "order":  16,
-                        "loop":  false,
                         "gif":  "UT4xbYTfBoNLOgxTDdlcVV35n4g",
                         "action":  "XsZGbDrCjoBl0sxh2cxca7krnlc",
                         "sound":  "CxG3byP7VoFuvpxdzuqcHogHnvo"
@@ -196,7 +179,6 @@
                         "display_name":  "微笑",
                         "resource_id":  "smile",
                         "order":  17,
-                        "loop":  true,
                         "gif":  "L8hrb6mz2ogtyRxjfj0cEqzen3f",
                         "action":  "Ic5wbNFvfoYAurxWUvockiVAnBb",
                         "sound":  null
@@ -207,7 +189,6 @@
                         "display_name":  "无线充电",
                         "resource_id":  "recharge",
                         "order":  18,
-                        "loop":  false,
                         "gif":  "B8EqbjYWvohncvxRqStc92rnnMd",
                         "action":  null,
                         "sound":  "FH0Mbu4IHovu28xUc6TckGrQnBp"
@@ -218,7 +199,6 @@
                         "display_name":  "无语",
                         "resource_id":  "speechless",
                         "order":  19,
-                        "loop":  true,
                         "gif":  "YIpGbvrcfoU1Dqx8g2dc0Vjhnng",
                         "action":  null,
                         "sound":  null
@@ -229,7 +209,6 @@
                         "display_name":  "专注",
                         "resource_id":  "focus",
                         "order":  20,
-                        "loop":  false,
                         "gif":  "Z7GPbZLf9ofQlyxuMMpc7qUPnZb",
                         "action":  "LoccbVnoKoAhilxDmsvcyZben8d",
                         "sound":  "CgLAb0rZuoZX2dxDW2ocToJ3nGb"
@@ -240,7 +219,6 @@
                         "display_name":  "抚摸-爱心",
                         "resource_id":  "fondle_love",
                         "order":  21,
-                        "loop":  false,
                         "gif":  "QKmabnWp6omQ0kxAmiMcyNsUnrf",
                         "action":  "A4RWb4f9SocsfNxon6RchlBTnmg",
                         "sound":  null
@@ -251,7 +229,6 @@
                         "display_name":  "抚摸-生气",
                         "resource_id":  "fondle_anger",
                         "order":  22,
-                        "loop":  false,
                         "gif":  "OsMCbO7fSozC7FxC31fcApn6nvd",
                         "action":  "KahLbcpQ7oAA5JxSJIMcKNGRnWg",
                         "sound":  null
@@ -262,7 +239,6 @@
                         "display_name":  "静默1",
                         "resource_id":  "standby1",
                         "order":  23,
-                        "loop":  true,
                         "gif":  "L6JtbT14socudGxaeogc3gztnig",
                         "action":  "Qka0bWRRMogdgaxpmgrcsCCNnPf",
                         "sound":  null
@@ -273,7 +249,6 @@
                         "display_name":  "静默2",
                         "resource_id":  "standby2",
                         "order":  24,
-                        "loop":  true,
                         "gif":  "OwVwbvFdFoAdlCxrrOLc0nsUnt7",
                         "action":  "ARPZbPlXNoJQu1xrkxzcmTxanCc",
                         "sound":  null
@@ -284,7 +259,6 @@
                         "display_name":  "静默3",
                         "resource_id":  "standby3",
                         "order":  25,
-                        "loop":  true,
                         "gif":  "EHyobATj7oE5S7xUYffcWuIanJd",
                         "action":  "KVsJbf0fCoYtDCx86N6cfHg7nVb",
                         "sound":  null
@@ -295,7 +269,6 @@
                         "display_name":  "静默4",
                         "resource_id":  "standby4",
                         "order":  26,
-                        "loop":  true,
                         "gif":  "X6NTbUGUQotkqexpSlUcCpSZnEg",
                         "action":  "BVRVbwO0joCcY1xXfWccdk25nyz",
                         "sound":  null
@@ -306,7 +279,6 @@
                         "display_name":  "眨眼",
                         "resource_id":  "blink",
                         "order":  27,
-                        "loop":  true,
                         "gif":  "KqeWblYvqoNMZ9xa6bBcKofbnff",
                         "action":  null,
                         "sound":  "KMZ7bPIw1oJ4KYxKkN6cw8JanGb"
@@ -317,7 +289,6 @@
                         "display_name":  "固件升级",
                         "resource_id":  "upgrade",
                         "order":  28,
-                        "loop":  true,
                         "gif":  "USG4bVtrjoqN33x7DYFcWY4pnaf",
                         "action":  null,
                         "sound":  null
@@ -328,7 +299,6 @@
                         "display_name":  "睡觉-开始",
                         "resource_id":  "standby_start",
                         "order":  29,
-                        "loop":  false,
                         "gif":  "MsiUbymonoWDdmx38EccWTi7nRZ",
                         "action":  null,
                         "sound":  null
@@ -339,7 +309,6 @@
                         "display_name":  "睡觉-中间",
                         "resource_id":  "standby_loop",
                         "order":  30,
-                        "loop":  true,
                         "gif":  "VfFbbTyI6oBUs4xIHm3cylitnpb",
                         "action":  null,
                         "sound":  null
@@ -350,7 +319,6 @@
                         "display_name":  "睡觉-结束",
                         "resource_id":  "standby_end",
                         "order":  31,
-                        "loop":  false,
                         "gif":  "SbGdbEPazofjofxYb6pcurDpnRh",
                         "action":  null,
                         "sound":  null
@@ -361,7 +329,6 @@
                         "display_name":  "听音乐",
                         "resource_id":  "music",
                         "order":  32,
-                        "loop":  true,
                         "gif":  "B1o1bF00CoKTwrx6dn3cjhFpnec",
                         "action":  null,
                         "sound":  null
@@ -372,7 +339,6 @@
                         "display_name":  "说话眨眼",
                         "resource_id":  "speaking_blink",
                         "order":  33,
-                        "loop":  true,
                         "gif":  "Rsp9bEq1ooyFBHxhLSWcn1HFnNg",
                         "action":  null,
                         "sound":  "IlIQbtBvsomEpaxSiQHcL7Lgn1f"
@@ -383,7 +349,6 @@
                         "display_name":  "说话动",
                         "resource_id":  "speaking_eye",
                         "order":  34,
-                        "loop":  true,
                         "gif":  "ZTnwbc3vYok83xxtKVxcIzfUnig",
                         "action":  null,
                         "sound":  null
@@ -394,7 +359,6 @@
                         "display_name":  "唱歌",
                         "resource_id":  "sing",
                         "order":  35,
-                        "loop":  true,
                         "gif":  "RuDMbPL4Xovb9Hx3XgwcuzxxnEe",
                         "action":  null,
                         "sound":  null
@@ -405,7 +369,6 @@
                         "display_name":  "拍照",
                         "resource_id":  "photo",
                         "order":  36,
-                        "loop":  false,
                         "gif":  "HvYSbU2zdo1ZYwx95JMcTgMenwd",
                         "action":  null,
                         "sound":  "Is2ebDaPvoUMJyx1DbUcqj8enNh"
@@ -416,7 +379,6 @@
                         "display_name":  "眨眼-快",
                         "resource_id":  "blink_fast",
                         "order":  37,
-                        "loop":  true,
                         "gif":  "QE4KblN48oFzt7x6JCbc9GognNf",
                         "action":  null,
                         "sound":  "TNHnbzXD2oyAWLxQ9oUcrUJMndb"
@@ -427,7 +389,6 @@
                         "display_name":  "故障",
                         "resource_id":  "interference",
                         "order":  38,
-                        "loop":  true,
                         "gif":  "YMjkbFBAkoBnzFxiBm1csaqdnSe",
                         "action":  null,
                         "sound":  "UxzlbOScZo7OeGxX7dhcS76hnFb"
@@ -438,7 +399,6 @@
                         "display_name":  "点击闭眼",
                         "resource_id":  "click_eye",
                         "order":  39,
-                        "loop":  true,
                         "gif":  "Ff5rbdq6Aoyjt3xTBZDckUzin3f",
                         "action":  null,
                         "sound":  "GjeLbouQaoLrcJxpKMocIuxXnmh"
@@ -449,7 +409,6 @@
                         "display_name":  "生气",
                         "resource_id":  "anger",
                         "order":  40,
-                        "loop":  true,
                         "gif":  "AsRFbIJiOowwZLxPC4gcBVtXn7c",
                         "action":  null,
                         "sound":  null
@@ -460,7 +419,6 @@
                         "display_name":  "问号",
                         "resource_id":  "query",
                         "order":  41,
-                        "loop":  true,
                         "gif":  "Qn7rbeVinoFvL1xLz6XcIhlWnPf",
                         "action":  null,
                         "sound":  "CgL7bSTp6oIz7jxb8udcIaswnvl"
@@ -471,7 +429,6 @@
                         "display_name":  "睡觉-中间分支1",
                         "resource_id":  "standby_sleep1",
                         "order":  42,
-                        "loop":  true,
                         "gif":  "JvkjbJFnxoGLC2xzCAOc8SRknSd",
                         "action":  null,
                         "sound":  null
@@ -482,7 +439,6 @@
                         "display_name":  "睡觉-中间分支2",
                         "resource_id":  "standby_sleep2",
                         "order":  43,
-                        "loop":  true,
                         "gif":  "ZFvsbc7Ugo1gyXx2fZPcpRfCnwc",
                         "action":  null,
                         "sound":  null
@@ -493,7 +449,6 @@
                         "display_name":  "静默6",
                         "resource_id":  "standby6",
                         "order":  44,
-                        "loop":  true,
                         "gif":  "W777bTlOTomKjNxxbeMcx9Eun7P",
                         "action":  null,
                         "sound":  null
@@ -504,7 +459,6 @@
                         "display_name":  "静默5",
                         "resource_id":  "standby5",
                         "order":  45,
-                        "loop":  true,
                         "gif":  "Crqfb1UdhoxhmmxqsAZcmXrXnVe",
                         "action":  null,
                         "sound":  null
@@ -515,7 +469,6 @@
                         "display_name":  "静默-轻微4",
                         "resource_id":  "standby_little4",
                         "order":  46,
-                        "loop":  true,
                         "gif":  "ZJvtbnnPwoUjfSxGSCjcLktBn4b",
                         "action":  null,
                         "sound":  null
@@ -526,7 +479,6 @@
                         "display_name":  "静默-轻微3",
                         "resource_id":  "standby_little3",
                         "order":  47,
-                        "loop":  true,
                         "gif":  "UpMIbcvfpoGjBexnROicRkiInKc",
                         "action":  null,
                         "sound":  null
@@ -537,7 +489,6 @@
                         "display_name":  "静默-轻微2",
                         "resource_id":  "standby_little2",
                         "order":  48,
-                        "loop":  true,
                         "gif":  "KpJZbAO5uoQaNuxfYW6ck6Yensc",
                         "action":  null,
                         "sound":  null
@@ -548,7 +499,6 @@
                         "display_name":  "静默-轻微1",
                         "resource_id":  "standby_little1",
                         "order":  49,
-                        "loop":  true,
                         "gif":  "Of9Qbhkluomh1Ex6VQdc1tFGnGc",
                         "action":  null,
                         "sound":  null

@@ -1,6 +1,6 @@
 # WatcheRobot_sd
 
-本仓库管理 WatcheRobot 官方 SD 资源的格式、校验和版本发布，不包含 ESP32 固件，也不保存用户在桌面端创作的作品。官方资源从飞书生成后发布到 GitHub Release 与公开 TOS；两端使用同一个压缩包和同一份 SHA-256。
+本仓库管理 WatcheRobot 官方 SD 资源的格式、校验和版本发布，不包含 ESP32 固件，也不保存用户在桌面端创作的作品。官方资源从飞书生成后发布到 GitHub Release 与公开 TOS；设备、桌面和移动端产物共用同一版本及 SHA-256 清单。
 
 ## 目录职责
 
@@ -8,6 +8,7 @@
 official/source/                  飞书原始 GIF、动作、音效和记录快照
 official/device-input/sound/      转码后的 24 kHz 单声道 PCM
 official/desktop/                 当前版本的桌面目录、WebP 预览、动作与音效
+official/mobile/                  当前版本的移动端目录和原始动态 GIF
 official/releases/index.json      已发布版本索引
 schemas/                          对外 JSON Schema
 config/resource-policy.json       硬件参数、大小上限和固定状态
@@ -24,7 +25,7 @@ dist/vX.Y.Z/                      OTA 包和下载清单，构建产物，不入
 | 文本，如 `watcher-聆听` | `source_label` | 保留原始中文标签 |
 | 文本去掉 `watcher-` | `display_name` | 桌面端显示“聆听” |
 | 对应英文 | `resource_id` | 协议调用键，如 `listening` |
-| GIF | `animation` | 生成 AnimPack v2 和 WebP 预览 |
+| GIF | `animation` | 生成 AnimPack v2、桌面 WebP 预览和移动端 GIF |
 | 动作 2.0 | `action` | 可选动作 JSON |
 | 音效 MP3 | `sound` | 可选 PCM 音效 |
 | 飞书记录 ID | `source_record_id` | 保证中文、预览和资源 ID 不串行 |
@@ -89,8 +90,20 @@ watche-desktop-resources-vX.Y.Z.tar.gz
 和创作模式素材库。`display_name` 用于界面显示，`device.image_name` 用于设备协议下发。
 客户端仍兼容仅包含预览的 Schema v2 历史包。
 
+每个版本同时生成移动端目录：
+
+```text
+mobile_catalog.json
+mobile/gif/<resource_id>.gif
+```
+
+移动端目录记录显示名称、设备 `image_name`、文件大小和 SHA-256。GitHub 使用版本
+Tag 下的 `official/mobile/gif/` 原始文件，TOS 使用相同版本下的 `mobile/gif/`
+镜像；App 可以逐文件从 GitHub 下载，失败后只对失败文件切换到 TOS，全部校验通过
+后再切换当前版本。
+
 `ota-manifest.json` Schema v3 保留现有设备 `archive` / `catalog` 字段，并增加
-可选的 `desktop.catalog` / `desktop.archive` 下载信息，因此当前 ESP32 安装器
+可选的 `desktop` 与 `mobile` 下载信息，因此当前 ESP32 安装器
 仍可读取同一份清单。清单记录大小、文件数、SHA-256、GitHub 地址和 TOS 地址。
 下载端先尝试同一来源的一整套清单和产物，失败后整套切换到另一个来源，不能交叉
 拼接两个来源。

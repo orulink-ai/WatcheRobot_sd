@@ -1,0 +1,558 @@
+{
+  "schema_version": 1,
+  "format": "watche-mobile-expression-catalog",
+  "version": "v0.0.7",
+  "content_hash": "f503fe9a1b87b019fc225fc02f577e472dfef302b150612d072c45d8ced47dd3",
+  "expressions": [
+    {
+      "id": "listening",
+      "display_name": "聆听",
+      "order": 0,
+      "preview": "gif/listening.gif",
+      "preview_sha256": "f791fdac2bac84fc84a98e299a8a22c09c308b462259aa4365e02f55572073e1",
+      "preview_size": 195622,
+      "device": {
+        "image_name": "listening"
+      }
+    },
+    {
+      "id": "speaking",
+      "display_name": "说话",
+      "order": 1,
+      "preview": "gif/speaking.gif",
+      "preview_sha256": "a4856f54d01f23b0fedae55b59a5bc6d85366a17da9cc4ac6c05c9a75a1988c7",
+      "preview_size": 205302,
+      "device": {
+        "image_name": "speaking"
+      }
+    },
+    {
+      "id": "processing",
+      "display_name": "分析",
+      "order": 2,
+      "preview": "gif/processing.gif",
+      "preview_sha256": "ea83e85f62f72ff3103a0a795c6576cf5c673cca1ad34c711cc84079ccd3522d",
+      "preview_size": 168963,
+      "device": {
+        "image_name": "processing"
+      }
+    },
+    {
+      "id": "standby",
+      "display_name": "睡觉",
+      "order": 3,
+      "preview": "gif/standby.gif",
+      "preview_sha256": "db5862874027f9f3f8f3ff248547a80908e8625cc1766e0000fad4bac0e584e8",
+      "preview_size": 103739,
+      "device": {
+        "image_name": "standby"
+      }
+    },
+    {
+      "id": "custom3",
+      "display_name": "工具",
+      "order": 4,
+      "preview": "gif/custom3.gif",
+      "preview_sha256": "e819afa8a85f01c4926fe23245c3d6cd97c0cc63017caabb3eae2621fd1ce525",
+      "preview_size": 421638,
+      "device": {
+        "image_name": "custom3"
+      }
+    },
+    {
+      "id": "error",
+      "display_name": "错误",
+      "order": 5,
+      "preview": "gif/error.gif",
+      "preview_sha256": "55d9761f433a34e426d564394de16da09cd0a354a49acc8450fa1d25d45b6f9b",
+      "preview_size": 288527,
+      "device": {
+        "image_name": "error"
+      }
+    },
+    {
+      "id": "happy",
+      "display_name": "成功",
+      "order": 6,
+      "preview": "gif/happy.gif",
+      "preview_sha256": "6025eea6cd72d842ccde0adbca5f6c96535c2da7a8ea6681dd66fa4ce12ff30c",
+      "preview_size": 122572,
+      "device": {
+        "image_name": "happy"
+      }
+    },
+    {
+      "id": "custom1",
+      "display_name": "爱心",
+      "order": 7,
+      "preview": "gif/custom1.gif",
+      "preview_sha256": "a48951ba126204097dff7c5f9944fdc7e5b612b9f4fd33d2e2518f3039eec44b",
+      "preview_size": 213475,
+      "device": {
+        "image_name": "custom1"
+      }
+    },
+    {
+      "id": "custom2",
+      "display_name": "执行",
+      "order": 8,
+      "preview": "gif/custom2.gif",
+      "preview_sha256": "c71e7791f6b021364f0bf9b37d323a146127931ba448123a51f2fe792a458a34",
+      "preview_size": 273228,
+      "device": {
+        "image_name": "custom2"
+      }
+    },
+    {
+      "id": "thinking",
+      "display_name": "思考",
+      "order": 9,
+      "preview": "gif/thinking.gif",
+      "preview_sha256": "2062e33a46465d104dc316c4f2575ce913971d906623221a717c579b9f6b7c0a",
+      "preview_size": 42056,
+      "device": {
+        "image_name": "thinking"
+      }
+    },
+    {
+      "id": "boot",
+      "display_name": "开机",
+      "order": 10,
+      "preview": "gif/boot.gif",
+      "preview_sha256": "b2ffac91ad7f61af567d75e7313042b10b5ef09cb9822af51f5e6f5af52be08b",
+      "preview_size": 366469,
+      "device": {
+        "image_name": "boot"
+      }
+    },
+    {
+      "id": "bluetooth",
+      "display_name": "蓝牙",
+      "order": 11,
+      "preview": "gif/bluetooth.gif",
+      "preview_sha256": "9b48c03aa011a2a6b557b941231fc8c2074bf25cf701526cfe7c1c8edfe9e592",
+      "preview_size": 229826,
+      "device": {
+        "image_name": "bluetooth"
+      }
+    },
+    {
+      "id": "disconnect",
+      "display_name": "断开蓝牙",
+      "order": 12,
+      "preview": "gif/disconnect.gif",
+      "preview_sha256": "828aae617323f7a343d05dbd5754a8136af2916d7d549a7040c8c14173871d02",
+      "preview_size": 310708,
+      "device": {
+        "image_name": "disconnect"
+      }
+    },
+    {
+      "id": "shock",
+      "display_name": "感叹号",
+      "order": 13,
+      "preview": "gif/shock.gif",
+      "preview_sha256": "639facca9a2ab5802b0285a6693556b583696a576277c9986137e4d7e31cee0a",
+      "preview_size": 53308,
+      "device": {
+        "image_name": "shock"
+      }
+    },
+    {
+      "id": "sunglasses",
+      "display_name": "墨镜",
+      "order": 14,
+      "preview": "gif/sunglasses.gif",
+      "preview_sha256": "851170aec17ce2b8ba24d46244b0291a76ba6029a9c4de226e751167b9165ed1",
+      "preview_size": 71877,
+      "device": {
+        "image_name": "sunglasses"
+      }
+    },
+    {
+      "id": "sad",
+      "display_name": "伤心",
+      "order": 15,
+      "preview": "gif/sad.gif",
+      "preview_sha256": "151bd7c31a147171340a85d59ad50236b96a3e36950d8303b30a804b2ddacc64",
+      "preview_size": 161506,
+      "device": {
+        "image_name": "sad"
+      }
+    },
+    {
+      "id": "get",
+      "display_name": "收到",
+      "order": 16,
+      "preview": "gif/get.gif",
+      "preview_sha256": "3220bebd56193fa479e09b7b8101f27f466c0a0d0cbc9d02e0961247ef0ed4c6",
+      "preview_size": 68229,
+      "device": {
+        "image_name": "get"
+      }
+    },
+    {
+      "id": "smile",
+      "display_name": "微笑",
+      "order": 17,
+      "preview": "gif/smile.gif",
+      "preview_sha256": "f1aca919f087cbb60b706ff82a68aaac75b4c8e440e44da717e09649f1d625e9",
+      "preview_size": 73552,
+      "device": {
+        "image_name": "smile"
+      }
+    },
+    {
+      "id": "recharge",
+      "display_name": "无线充电",
+      "order": 18,
+      "preview": "gif/recharge.gif",
+      "preview_sha256": "b3b9e5b8913df955faf131545b8790a805b78396d9a1af0036ad802394bf58d8",
+      "preview_size": 377598,
+      "device": {
+        "image_name": "recharge"
+      }
+    },
+    {
+      "id": "speechless",
+      "display_name": "无语",
+      "order": 19,
+      "preview": "gif/speechless.gif",
+      "preview_sha256": "b299db0fa65c65696c32ee669b773237034c7e156afe735f33d02f6f8f639278",
+      "preview_size": 91189,
+      "device": {
+        "image_name": "speechless"
+      }
+    },
+    {
+      "id": "focus",
+      "display_name": "专注",
+      "order": 20,
+      "preview": "gif/focus.gif",
+      "preview_sha256": "91207ee124e10c1eae4b3ae798b8f7f594c6bda6428ac8b753c6d743ef20172c",
+      "preview_size": 120969,
+      "device": {
+        "image_name": "focus"
+      }
+    },
+    {
+      "id": "fondle_love",
+      "display_name": "抚摸-爱心",
+      "order": 21,
+      "preview": "gif/fondle_love.gif",
+      "preview_sha256": "afb94de0866f94e4218d760d9970d8b03b910c9276637f95bd27eb238596ec39",
+      "preview_size": 432948,
+      "device": {
+        "image_name": "fondle_love"
+      }
+    },
+    {
+      "id": "fondle_anger",
+      "display_name": "抚摸-生气",
+      "order": 22,
+      "preview": "gif/fondle_anger.gif",
+      "preview_sha256": "430f869c874ffabfb0e355b64a0ee4804d2262f82c03043af4acf4079c15d24a",
+      "preview_size": 151194,
+      "device": {
+        "image_name": "fondle_anger"
+      }
+    },
+    {
+      "id": "standby1",
+      "display_name": "静默1",
+      "order": 23,
+      "preview": "gif/standby1.gif",
+      "preview_sha256": "8167b112d6f2acb0eb5d6dcd742eba8d0d87a4c5ccf687fd1ffcc1db5b015a99",
+      "preview_size": 18585,
+      "device": {
+        "image_name": "standby1"
+      }
+    },
+    {
+      "id": "standby2",
+      "display_name": "静默2",
+      "order": 24,
+      "preview": "gif/standby2.gif",
+      "preview_sha256": "f622be0823dde3cff83a5b664b3764341a2883c786d0216dfe2edd7b00b62c0c",
+      "preview_size": 73939,
+      "device": {
+        "image_name": "standby2"
+      }
+    },
+    {
+      "id": "standby3",
+      "display_name": "静默3",
+      "order": 25,
+      "preview": "gif/standby3.gif",
+      "preview_sha256": "f4b363f05dbe2cba164e3e971da75debe21728636c5444653ea6364b92dbb8cf",
+      "preview_size": 91075,
+      "device": {
+        "image_name": "standby3"
+      }
+    },
+    {
+      "id": "standby4",
+      "display_name": "静默4",
+      "order": 26,
+      "preview": "gif/standby4.gif",
+      "preview_sha256": "4e0751c4d3b446171f91994a33b540a2a6244fbc257ca6d0ef515fcef5198420",
+      "preview_size": 73626,
+      "device": {
+        "image_name": "standby4"
+      }
+    },
+    {
+      "id": "blink",
+      "display_name": "眨眼",
+      "order": 27,
+      "preview": "gif/blink.gif",
+      "preview_sha256": "828bc3ad2fe7ba2baa1dbbeedbbeb0343fb7b6b19b2d0eff2a8f89527111bc89",
+      "preview_size": 22713,
+      "device": {
+        "image_name": "blink"
+      }
+    },
+    {
+      "id": "upgrade",
+      "display_name": "固件升级",
+      "order": 28,
+      "preview": "gif/upgrade.gif",
+      "preview_sha256": "28c6340fcb143db22d7cd923002f3dbb3cba1ae92c7933378e6179b40d432a94",
+      "preview_size": 500259,
+      "device": {
+        "image_name": "upgrade"
+      }
+    },
+    {
+      "id": "standby_start",
+      "display_name": "睡觉-开始",
+      "order": 29,
+      "preview": "gif/standby_start.gif",
+      "preview_sha256": "5becda74a9454d0c04f56dba07fc9ae35528db0d2905df407a94587962fa94ff",
+      "preview_size": 88332,
+      "device": {
+        "image_name": "standby_start"
+      }
+    },
+    {
+      "id": "standby_loop",
+      "display_name": "睡觉-中间",
+      "order": 30,
+      "preview": "gif/standby_loop.gif",
+      "preview_sha256": "aef149fea58646d9c0d2a9ec7ca628a0c67138de2a865ee58a8c57adce49e2a8",
+      "preview_size": 106024,
+      "device": {
+        "image_name": "standby_loop"
+      }
+    },
+    {
+      "id": "standby_end",
+      "display_name": "睡觉-结束",
+      "order": 31,
+      "preview": "gif/standby_end.gif",
+      "preview_sha256": "80454c5346a58b38532dfc9eba30609bdfe07d754efac448e5ce90f90b91ee64",
+      "preview_size": 24915,
+      "device": {
+        "image_name": "standby_end"
+      }
+    },
+    {
+      "id": "music",
+      "display_name": "听音乐",
+      "order": 32,
+      "preview": "gif/music.gif",
+      "preview_sha256": "a8dbdebd465cc8f7106ac863701170d8731d941e861b193c3eea8d0f8db68cd2",
+      "preview_size": 313337,
+      "device": {
+        "image_name": "music"
+      }
+    },
+    {
+      "id": "speaking_blink",
+      "display_name": "说话眨眼",
+      "order": 33,
+      "preview": "gif/speaking_blink.gif",
+      "preview_sha256": "9231c4a06b387f9e33ee6a879e6db54bdc676adf3268a6de92d5f6bab91ea382",
+      "preview_size": 55053,
+      "device": {
+        "image_name": "speaking_blink"
+      }
+    },
+    {
+      "id": "speaking_eye",
+      "display_name": "说话动",
+      "order": 34,
+      "preview": "gif/speaking_eye.gif",
+      "preview_sha256": "f7993cda1311d38dc29bf180f30d20649d227723e3481e5d59f9de69e0c6a981",
+      "preview_size": 89659,
+      "device": {
+        "image_name": "speaking_eye"
+      }
+    },
+    {
+      "id": "sing",
+      "display_name": "唱歌",
+      "order": 35,
+      "preview": "gif/sing.gif",
+      "preview_sha256": "15ce74a1242122b1c785c721a7276640d7ddb18394603654dff8855524b377a9",
+      "preview_size": 538490,
+      "device": {
+        "image_name": "sing"
+      }
+    },
+    {
+      "id": "photo",
+      "display_name": "拍照",
+      "order": 36,
+      "preview": "gif/photo.gif",
+      "preview_sha256": "5cd3230e15e1b45cd45ffdfa3f8be6f2fb579cd2ab5eab8ed47af0922fde75e3",
+      "preview_size": 235461,
+      "device": {
+        "image_name": "photo"
+      }
+    },
+    {
+      "id": "blink_fast",
+      "display_name": "眨眼-快",
+      "order": 37,
+      "preview": "gif/blink_fast.gif",
+      "preview_sha256": "04ff471807deaf47c435bc5bfc469639a2ef7788520bd8e754d8d9139305b68a",
+      "preview_size": 19131,
+      "device": {
+        "image_name": "blink_fast"
+      }
+    },
+    {
+      "id": "interference",
+      "display_name": "故障",
+      "order": 38,
+      "preview": "gif/interference.gif",
+      "preview_sha256": "280e19994e3b45027770305594457a15d209df9ba85a6a7a7eb2b3028d581dc3",
+      "preview_size": 42564,
+      "device": {
+        "image_name": "interference"
+      }
+    },
+    {
+      "id": "click_eye",
+      "display_name": "点击闭眼",
+      "order": 39,
+      "preview": "gif/click_eye.gif",
+      "preview_sha256": "e66ae7a7aaa39932bcb1fd425ce699e0343d82225fc71ac761f3c75a1b9995ac",
+      "preview_size": 40416,
+      "device": {
+        "image_name": "click_eye"
+      }
+    },
+    {
+      "id": "anger",
+      "display_name": "生气",
+      "order": 40,
+      "preview": "gif/anger.gif",
+      "preview_sha256": "a73006822e6fd69f93d623800d629c70b3954cd4a188d22181ea83bda9719449",
+      "preview_size": 100217,
+      "device": {
+        "image_name": "anger"
+      }
+    },
+    {
+      "id": "query",
+      "display_name": "问号",
+      "order": 41,
+      "preview": "gif/query.gif",
+      "preview_sha256": "96ab086a52fb083600b555e86791c6cdcbe64e6184a389b0bac199c4ad6f3681",
+      "preview_size": 36693,
+      "device": {
+        "image_name": "query"
+      }
+    },
+    {
+      "id": "standby_sleep1",
+      "display_name": "睡觉-中间分支1",
+      "order": 42,
+      "preview": "gif/standby_sleep1.gif",
+      "preview_sha256": "431d71028f3fd3fe1e1a44aeda689d87838d4ba8a7f90aba86e719e8baf341a3",
+      "preview_size": 42544,
+      "device": {
+        "image_name": "standby_sleep1"
+      }
+    },
+    {
+      "id": "standby_sleep2",
+      "display_name": "睡觉-中间分支2",
+      "order": 43,
+      "preview": "gif/standby_sleep2.gif",
+      "preview_sha256": "a4c95bffaa34f7be63ba3c5e4b41c82ac864370be08dd6d5739590a9c25ec116",
+      "preview_size": 127495,
+      "device": {
+        "image_name": "standby_sleep2"
+      }
+    },
+    {
+      "id": "standby6",
+      "display_name": "静默6",
+      "order": 44,
+      "preview": "gif/standby6.gif",
+      "preview_sha256": "6a7f70def04b53b1f34b04b9caac039b7b171980ef0d0d0cd56b96115482466f",
+      "preview_size": 79737,
+      "device": {
+        "image_name": "standby6"
+      }
+    },
+    {
+      "id": "standby5",
+      "display_name": "静默5",
+      "order": 45,
+      "preview": "gif/standby5.gif",
+      "preview_sha256": "41c83941725b56db5ec4a92f1190e582f2ec2d649599497fce325e986ed55600",
+      "preview_size": 74190,
+      "device": {
+        "image_name": "standby5"
+      }
+    },
+    {
+      "id": "standby_little4",
+      "display_name": "静默-轻微4",
+      "order": 46,
+      "preview": "gif/standby_little4.gif",
+      "preview_sha256": "67a45305c59332803d322a1f643012b5417cfedc62dc720ce05d7b218a6f6d9c",
+      "preview_size": 45620,
+      "device": {
+        "image_name": "standby_little4"
+      }
+    },
+    {
+      "id": "standby_little3",
+      "display_name": "静默-轻微3",
+      "order": 47,
+      "preview": "gif/standby_little3.gif",
+      "preview_sha256": "ec9c731b5caa8d4043d8efb2b4d19f3ad0b2583c15244b76992b746938fa63ce",
+      "preview_size": 41033,
+      "device": {
+        "image_name": "standby_little3"
+      }
+    },
+    {
+      "id": "standby_little2",
+      "display_name": "静默-轻微2",
+      "order": 48,
+      "preview": "gif/standby_little2.gif",
+      "preview_sha256": "f995936218ada128694e5fba92c2a645062f57cb83062fdee60ead650f32b69b",
+      "preview_size": 40550,
+      "device": {
+        "image_name": "standby_little2"
+      }
+    },
+    {
+      "id": "standby_little1",
+      "display_name": "静默-轻微1",
+      "order": 49,
+      "preview": "gif/standby_little1.gif",
+      "preview_sha256": "ee11e1372d2dc832209c31d9c76d0d19569bb12abbb943139bc5307076b67a24",
+      "preview_size": 31721,
+      "device": {
+        "image_name": "standby_little1"
+      }
+    }
+  ]
+}

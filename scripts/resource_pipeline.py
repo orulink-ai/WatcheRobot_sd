@@ -35,6 +35,7 @@ DEFAULT_SOURCE = ROOT / "official" / "source"
 DEFAULT_PCM = ROOT / "official" / "device-input" / "sound"
 DEFAULT_BUNDLE = ROOT / "build" / "current" / "bundle"
 DEFAULT_DESKTOP = ROOT / "official" / "desktop"
+DEFAULT_MOBILE = ROOT / "official" / "mobile"
 DEFAULT_DIST = ROOT / "dist"
 GITHUB_RELEASE_BASE = "https://github.com/orulink-ai/WatcheRobot_sd/releases/download"
 TOS_PUBLIC_BASE = "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd"
@@ -536,6 +537,7 @@ def build_resources(
     bundle: Path,
     desktop: Path,
     version: str,
+    mobile: Path | None = None,
 ) -> dict[str, Any]:
     policy = load_policy()
     if not re.fullmatch(r"v\d+\.\d+\.\d+", version):
@@ -546,8 +548,12 @@ def build_resources(
         shutil.rmtree(bundle)
     if desktop.exists():
         shutil.rmtree(desktop)
+    mobile = mobile or desktop.parent / "mobile"
+    if mobile.exists():
+        shutil.rmtree(mobile)
     bundle.mkdir(parents=True)
     desktop.mkdir(parents=True)
+    mobile.mkdir(parents=True)
     staging = bundle / ".build"
     staging.mkdir()
 
@@ -668,6 +674,42 @@ def build_resources(
     schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
     write_json(desktop / "desktop_catalog.json", desktop_catalog)
 
+    mobile_entries = []
+    mobile_digest = hashlib.sha256()
+    for record, entry in zip(records, catalog):
+        relative = f"gif/{entry['id']}.gif"
+        source_gif = source / relative
+        target_gif = mobile / relative
+        target_gif.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source_gif, target_gif)
+        mobile_entry = {
+            "id": entry["id"],
+            "display_name": record["display_name"],
+            "order": entry["order"],
+            "preview": relative,
+            "preview_sha256": sha256_file(target_gif),
+            "preview_size": target_gif.stat().st_size,
+            "device": {"image_name": entry["id"]},
+        }
+        mobile_entries.append(mobile_entry)
+        mobile_digest.update(
+            json.dumps(
+                mobile_entry,
+                ensure_ascii=False,
+                sort_keys=True,
+                separators=(",", ":"),
+            ).encode("utf-8")
+        )
+    mobile_catalog = {
+        "schema_version": 1,
+        "format": "watche-mobile-expression-catalog",
+        "version": version,
+        "content_hash": mobile_digest.hexdigest(),
+        "expressions": mobile_entries,
+    }
+    schema_validate(mobile_catalog, "mobile-catalog.schema.json", "mobile_catalog.json")
+    write_json(mobile / "mobile_catalog.json", mobile_catalog)
+
     shutil.rmtree(staging)
     manifest = write_resource_manifest(bundle, version, policy, catalog)
     validation = validate_resources(source, bundle, desktop)
@@ -693,6 +735,13 @@ def desktop_files(desktop: Path) -> list[Path]:
     return sorted(
         (path for path in desktop.rglob("*") if path.is_file()),
         key=lambda path: path.relative_to(desktop).as_posix(),
+    )
+
+
+def mobile_files(mobile: Path) -> list[Path]:
+    return sorted(
+        (path for path in mobile.rglob("*") if path.is_file()),
+        key=lambda path: path.relative_to(mobile).as_posix(),
     )
 
 
@@ -792,7 +841,12 @@ def write_resource_manifest(
     return manifest
 
 
-def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict[str, int]:
+def validate_resources(
+    source: Path,
+    bundle: Path,
+    desktop: Path | None,
+    mobile: Path | None = None,
+) -> dict[str, int]:
     policy = load_policy()
     snapshot = source_snapshot(source)
     catalog = read_json(bundle / "official_catalog.json")
@@ -897,6 +951,32 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
                     schema_validate(read_json(path), "action.schema.json", str(path))
                 elif path.stat().st_size % 2:
                     raise ResourceError(f"Desktop sound is not 16-bit PCM: {item['id']}")
+        mobile = mobile or desktop.parent / "mobile"
+        mobile_catalog = read_json(mobile / "mobile_catalog.json")
+        schema_validate(mobile_catalog, "mobile-catalog.schema.json", "mobile_catalog.json")
+        if mobile_catalog["version"] != manifest["bundle_version"]:
+            raise ResourceError("Mobile catalog version does not match the device bundle")
+        if [item["id"] for item in mobile_catalog["expressions"]] != [
+            item["id"] for item in catalog["expressions"]
+        ]:
+            raise ResourceError("Mobile and device catalog ordering/IDs do not match")
+        expected_mobile_files = {"mobile_catalog.json"}
+        expected_mobile_files.update(
+            item["preview"] for item in mobile_catalog["expressions"]
+        )
+        actual_mobile_files = {
+            path.relative_to(mobile).as_posix() for path in mobile_files(mobile)
+        }
+        if actual_mobile_files != expected_mobile_files:
+            raise ResourceError("Mobile file set does not match mobile_catalog.json")
+        for item in mobile_catalog["expressions"]:
+            preview = mobile / item["preview"]
+            if (
+                not preview.is_file()
+                or preview.stat().st_size != item["preview_size"]
+                or sha256_file(preview) != item["preview_sha256"]
+            ):
+                raise ResourceError(f"Mobile preview hash mismatch: {item['id']}")
     return {
         "expressions": len(catalog_by_id),
         "dynamic_expressions": device_contract["dynamic_expressions"],
@@ -946,7 +1026,13 @@ def validate_packaged_device_archive(archive: Path) -> dict[str, int]:
         return validate_device_playback_contract(catalog, root, load_policy())
 
 
-def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> dict[str, Any]:
+def package_resources(
+    bundle: Path,
+    desktop: Path,
+    dist: Path,
+    version: str,
+    mobile: Path | None = None,
+) -> dict[str, Any]:
     manifest = read_json(bundle / "resource_manifest.json")
     if manifest.get("bundle_version") != version:
         raise ResourceError(
@@ -957,6 +1043,14 @@ def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> 
     if desktop_catalog.get("version") != version:
         raise ResourceError(
             f"Desktop catalog version {desktop_catalog.get('version')} "
+            f"does not match requested package {version}"
+        )
+    mobile = mobile or desktop.parent / "mobile"
+    mobile_catalog = read_json(mobile / "mobile_catalog.json")
+    schema_validate(mobile_catalog, "mobile-catalog.schema.json", "mobile_catalog.json")
+    if mobile_catalog.get("version") != version:
+        raise ResourceError(
+            f"Mobile catalog version {mobile_catalog.get('version')} "
             f"does not match requested package {version}"
         )
     dist.mkdir(parents=True, exist_ok=True)
@@ -992,6 +1086,18 @@ def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> 
         desktop,
         desktop_archive_files,
         "watche-desktop-",
+    )
+    mobile_catalog_target = version_dir / "mobile_catalog.json"
+    shutil.copyfile(mobile / "mobile_catalog.json", mobile_catalog_target)
+    mobile_asset_root = version_dir / "mobile" / "gif"
+    mobile_asset_root.mkdir(parents=True)
+    for expression in mobile_catalog["expressions"]:
+        shutil.copyfile(
+            mobile / expression["preview"],
+            mobile_asset_root / f"{expression['id']}.gif",
+        )
+    mobile_size = sum(
+        expression["preview_size"] for expression in mobile_catalog["expressions"]
     )
     ota = {
         "schema_version": 3,
@@ -1046,6 +1152,31 @@ def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> 
                 ),
             },
         },
+        "mobile": {
+            "catalog": {
+                "name": mobile_catalog_target.name,
+                "size": mobile_catalog_target.stat().st_size,
+                "github_url": (
+                    f"{GITHUB_RELEASE_BASE}/{version}/{mobile_catalog_target.name}"
+                ),
+                "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{mobile_catalog_target.name}",
+                "tos_uri": (
+                    f"tos://erroright/WatcherRobot/sd/{version}/{mobile_catalog_target.name}"
+                ),
+                "sha256": sha256_file(mobile_catalog_target),
+            },
+            "assets": {
+                "format": "individual-gif",
+                "count": len(mobile_catalog["expressions"]),
+                "size": mobile_size,
+                "github_base_url": (
+                    "https://raw.githubusercontent.com/orulink-ai/WatcheRobot_sd/"
+                    f"{version}/official/mobile/gif/"
+                ),
+                "tos_base_url": f"{TOS_PUBLIC_BASE}/{version}/mobile/gif/",
+                "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/mobile/gif/",
+            },
+        },
     }
     schema_validate(ota, "ota-manifest.schema.json", "ota-manifest.json")
     write_json(version_dir / "ota-manifest.json", ota)
@@ -1083,14 +1214,17 @@ def parser() -> argparse.ArgumentParser:
     build.add_argument("--pcm-root", type=Path, default=DEFAULT_PCM)
     build.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
     build.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
+    build.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
     build.add_argument("--version", required=True)
     validate = subcommands.add_parser("validate")
     validate.add_argument("--source-root", type=Path, default=DEFAULT_SOURCE)
     validate.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
     validate.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
+    validate.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
     package = subcommands.add_parser("package")
     package.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
     package.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
+    package.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
     package.add_argument("--dist-root", type=Path, default=DEFAULT_DIST)
     package.add_argument("--version", required=True)
     next_command = subcommands.add_parser("next-version")
@@ -1112,6 +1246,7 @@ def main() -> int:
                 args.bundle_root.resolve(),
                 args.desktop_root.resolve(),
                 args.version,
+                args.mobile_root.resolve(),
             )
             print(
                 f"Built {result['expressions']} expression(s), {result['actions']} action(s), "
@@ -1125,6 +1260,7 @@ def main() -> int:
                 args.source_root.resolve(),
                 args.bundle_root.resolve(),
                 args.desktop_root.resolve(),
+                args.mobile_root.resolve(),
             )
             print(
                 f"Validated {result['expressions']} expression(s), {result['actions']} action(s), "
@@ -1136,6 +1272,7 @@ def main() -> int:
                 args.desktop_root.resolve(),
                 args.dist_root.resolve(),
                 args.version,
+                args.mobile_root.resolve(),
             )
             print(f"Packaged {args.version}: {result['archive']['sha256']}")
         else:

@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "format": "watche-desktop-resource-catalog",
-  "version": "v0.0.6",
-  "content_hash": "2535f1999b845c2f8610b79135551a4e573036a111836de16f886b3e22353416",
+  "version": "v0.0.7",
+  "content_hash": "231903a38f46509e5dcd9ecad88b1e3edba590aed4a47ab223c09d7f18d8277c",
   "expressions": [
     {
       "id": "listening",
@@ -26,7 +26,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "6838c3274d8f06f99cf6dd5d1e37db3142f732c031e10143ef947a208bf47e1a",
+            "sha256": "7f68ab2500fc9460cf6aed06d1ba035e706c3bc3ff1a07c8f15f3c94439e8474",
             "size": 895314,
             "format": "animpack-v2"
           },
@@ -61,7 +61,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "b174566c17718391c7eb067db8f605588e97571e67106793bcc4321ce58df68b",
+            "sha256": "d3f6f085b2783b84cd674345df8412e8ba5698511487c89918a4f5a385439b50",
             "size": 937650,
             "format": "animpack-v2"
           },
@@ -96,7 +96,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "fdcda5d16d98e6172f9a440555652213ff30f97290f33ee1864175de3f75e760",
+            "sha256": "e519c4fc38acf276475bcd36aef8d5c8e415e7c299c06ca3ec07abf9a490d9c3",
             "size": 1748550,
             "format": "animpack-v2"
           },
@@ -138,7 +138,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "e7f495f42438e1898432e98a9b151fb35598db558a6b77af9e5a3828b65b7b95",
+            "sha256": "04463a247709103d2172ebae765ff424ac6c6dac1df7f1d41f65c629f8333ab5",
             "size": 1749586,
             "format": "animpack-v2"
           },
@@ -179,7 +179,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "6a62b6ddaf6f0c6084372468b798c73029de8cc07784d0700b97af27646d39bb",
+            "sha256": "a9636e58476b86ec82b4f2aba0baee90eaae594c8ba03e36635d9d5142acb9fb",
             "size": 1755778,
             "format": "animpack-v2"
           },
@@ -221,7 +221,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "f9a761a70bd64227a2946999d81a7e16cd3a97fdbbc8a03bf457084bfe282780",
+            "sha256": "4d8785f764f268d4c3a54e6c05aba94341a9bd15385dcfab4160ba6c9187637d",
             "size": 1410318,
             "format": "animpack-v2"
           },
@@ -269,7 +269,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "beeeab92162703f9eb929c54a0f226240ac6c21fbff14d3fbf4bd2e4db3434c6",
+            "sha256": "38c8c36aad24df082afbe4f4989b8bdd2e59266c4ab6f05b4c5a8620618320c8",
             "size": 1406262,
             "format": "animpack-v2"
           },
@@ -302,7 +302,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "afc7a6c3e110b165ec692fa0a3852f871cb6036dcece4344d367f524d5611359",
+            "sha256": "9fc9b1d5814e9a6ab8015e7f8ab98733aaf44da651aaafa68daf79f62f464438",
             "size": 1409726,
             "format": "animpack-v2"
           }
@@ -323,7 +323,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "3de2b56fb648cb175b67dcbda703bade74f15fdc51580928845495cf0bd34335",
+            "sha256": "d9a897fc2183432316d1c3c665967c8f3a11313e54173b6effde6d426066590a",
             "size": 978066,
             "format": "animpack-v2"
           }
@@ -359,7 +359,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "64952b288f632215a40fea0953e0c177955e2e040b397e63680b910f65f050d2",
+            "sha256": "ddb067ecbbef4a95cb56e3a07879719e9035bf52060cae0efeef0072413f836c",
             "size": 1321092,
             "format": "animpack-v2"
           },
@@ -400,7 +400,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "9d6091e1c42f94fe7e9213d4f8d966f475e6cb6adc027adfcef921b4de0b07df",
+            "sha256": "2286f8297496fda1a96f8c6aeee6776aa7f6029619b96a324dae65cc47c78904",
             "size": 1113914,
             "format": "animpack-v2"
           },
@@ -442,7 +442,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "8ba6213380b15de9f0424f15cf4bd724af3b4bf357e528deae3f94f408a6dd41",
+            "sha256": "9616549ac5d7b1bb57ec4c0f7f86a8e2c4e3417f6c942fabe28e4f1188b74ace",
             "size": 2631432,
             "format": "animpack-v2"
           },
@@ -490,7 +490,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "342a3434b9e884814c31b2709c80c441f5ccb278b6e8235bee780cd8b9c55ac9",
+            "sha256": "bb74b598652d0862f8ee61ff5397b25e74064cf6fcb9e0ba300da1bbb548b8bc",
             "size": 1326346,
             "format": "animpack-v2"
           },
@@ -538,7 +538,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "215a92c656e7a53e92a677513aa4d4cc4c6d8d15507893117fcedf5dc3e9dd00",
+            "sha256": "5949ee5f786017ee446c2017496941324c6ee6ade13e2fd21fc4332d308994ff",
             "size": 983512,
             "format": "animpack-v2"
           },
@@ -579,7 +579,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "37933aa51bbaa4bc8e263895b3f932efaf1327a8a54154bca14c2711de1688d5",
+            "sha256": "54b774517a1a4c37722325ce7753e218253b2505611aa339cebc491cea8f1bb4",
             "size": 2896464,
             "format": "animpack-v2"
           },
@@ -614,7 +614,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "8d0354f407b1cca1ebf867f97cbf0c9aa1c02ab9b10e2c2af46048e6cc18d119",
+            "sha256": "edd922d7e8e735f67c523439cdced9059cb36659c6f79df7b55edbc7f81219d5",
             "size": 3326704,
             "format": "animpack-v2"
           },
@@ -656,7 +656,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "c3e683702508dbc72ecff96987718f1682c4e9586dc68e171b4ee3ff4a442dc8",
+            "sha256": "56bc645e468009e0056e077eef2930d85c57ea94dcdf2061b1a46aff9df81d34",
             "size": 938848,
             "format": "animpack-v2"
           },
@@ -697,7 +697,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "285056b70c9d7234dc821f84784ec66f19ec13866a46c4563e7fb7fd3480dfd1",
+            "sha256": "0b4111338428496d62e320b14ae80d7efe43c20aa0033dcd5e570f5f5bf06601",
             "size": 1576534,
             "format": "animpack-v2"
           },
@@ -732,7 +732,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "00cc31a867bd68c34865207ae0074fb1423874a111e769675977b4d724760ee6",
+            "sha256": "7f7c8c521d569953af96e936ad0993fe596de5d31bbf2040701414a17598733f",
             "size": 898830,
             "format": "animpack-v2"
           },
@@ -759,7 +759,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "e309194038ee8c6635e854aa596aa1ab6a1067b100c6acbdc198906d87335800",
+            "sha256": "b01de363e8c1589aebdbf26f1d72b7cbab3a039510045306b62b931084ea5503",
             "size": 2088858,
             "format": "animpack-v2"
           }
@@ -795,7 +795,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "cab6a6afbf72add2556c81ebb33456ba6957f29ec12c9ac91566aa9a2dc04131",
+            "sha256": "e3878ef698a8aa7b5af699f54e2b94043a6fef54c3f8fdb8e7030361400968e4",
             "size": 2005126,
             "format": "animpack-v2"
           },
@@ -836,7 +836,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "95b94bb0b216cd1327dcb2a7d39507b072308561d296e9bd11fec3b6510b2808",
+            "sha256": "2fd3e6b165ca539eb219901041c5310fd0f16e3a42f819ecc0e6606b87eabacb",
             "size": 3375158,
             "format": "animpack-v2"
           },
@@ -871,7 +871,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "5590775ef1a0ac4dbbe5efaf2b8e46e4860b2467409e0828a624294a94e29860",
+            "sha256": "b867b2fb6860d250c9b92f0a86063f2739d159243ae0992375ef342a0b15f53d",
             "size": 3026590,
             "format": "animpack-v2"
           },
@@ -906,7 +906,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "9c616f2aa4e72a89802e63ea40cada31239f54e479de5465607f5a10e795b159",
+            "sha256": "4f695b396788bfa31551d7096f48d50eaa77eeeba8cd7c4f05693eb82055bbcf",
             "size": 894418,
             "format": "animpack-v2"
           },
@@ -941,7 +941,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "4a1c0c9a3c44a9f5e8343c2c989c2c57705638e2757187e57cbf23dbd69abbd4",
+            "sha256": "c2592013e214ba5cd35e6abbaafd3f813b1b9f9734280c4d43c81bd527a612bb",
             "size": 1065972,
             "format": "animpack-v2"
           },
@@ -976,7 +976,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "550651c8579750326b0195e64c1781ee82d801c7d59d95ee19fe89444960c1ab",
+            "sha256": "46fd2ed959317a0ff058ef3581a0f3e4ffbebf4ba06bd1512ae249cc3754000d",
             "size": 1534984,
             "format": "animpack-v2"
           },
@@ -1011,7 +1011,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "fb9d993b8ec8b2ff9bd37baadd0f9cdddd24a2fed06687138f1fb2340215efd5",
+            "sha256": "57ef03936bf8827efc0bb70b56e9d8feb33854fbca6dda98cf27dfec70aff992",
             "size": 1023686,
             "format": "animpack-v2"
           },
@@ -1046,7 +1046,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "df7894d07b263fbcb25e431d4c01a16960c52a48ef1ecb314c49bbc44ecbacd2",
+            "sha256": "94c601ce5202a6c2196df1910cfd5d3fb44118e1f1438c9917fe35727a592586",
             "size": 255700,
             "format": "animpack-v2"
           },
@@ -1073,7 +1073,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "c1e6ba7fa49667209ec3f1446df9ae42d853de86c49a82848a53cb9e0f033dea",
+            "sha256": "ca5c8b621aed1afae69e7f11df5e9021f61cb31fd4f80a0dd1b44de1149617d6",
             "size": 2572596,
             "format": "animpack-v2"
           }
@@ -1094,7 +1094,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "65b3c44e18447ea78e30d9e55daded294ae1c6e975ebd2ac8d8e5fbb1ceac45e",
+            "sha256": "4b47f62545ab7a8efe6789d475b2ae8ff8ade37d0dacb1d47d047e87189cb5fe",
             "size": 1704464,
             "format": "animpack-v2"
           }
@@ -1115,7 +1115,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "8530106426d43dce21486412c20bf75c4a557476e009b291343768913520a752",
+            "sha256": "cb55e16eb179dbfcdd5096a581ad46d3f6f6c5267d10b0f2ae3c9afc325afca6",
             "size": 1706916,
             "format": "animpack-v2"
           }
@@ -1136,7 +1136,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "ede8006d7a914b03e4b3a55b6f601da10cf466df9341561dc3b5b7fdb4d3a8a1",
+            "sha256": "9f1c39baa11b9849059cccadc77a6dd1a729b80a1d363b832ec293eb844a2fff",
             "size": 127940,
             "format": "animpack-v2"
           }
@@ -1157,7 +1157,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "044fd7b00633b3e9da015fc4ca26880a02ae1694e5d1f21d6e884aca3d74ec57",
+            "sha256": "3541768c00845517be526483465d306162249a4c20d3513e818513c0472fa39b",
             "size": 1287880,
             "format": "animpack-v2"
           }
@@ -1172,29 +1172,15 @@
       "preview": "previews/speaking_blink.webp",
       "preview_sha256": "bdc7a911ac5f58adec5462c285acde51c4ad33b307bc69c5c890f8161540aa38",
       "order": 33,
-      "creator": {
-        "sound": {
-          "path": "sounds/speaking_blink.pcm",
-          "kind": "sfx",
-          "sha256": "26d5f09754b99623c314b76b46d3d7aec8325518b56370cd02c9af19b45b73ab",
-          "size": 27586,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
+      "creator": {},
       "device": {
         "image_name": "speaking_blink",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "33da5390849ace84e81556156c5dbc34fcc4c7a2c6ca837f55320196fb56a763",
+            "sha256": "f7dc088ccc4969f26fa14a1ce572aa089ee189dc16e05c857e2c34680ded5c86",
             "size": 213266,
             "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "26d5f09754b99623c314b76b46d3d7aec8325518b56370cd02c9af19b45b73ab",
-            "size": 27586,
-            "format": "pcm-s16le-24khz-mono"
           }
         }
       }
@@ -1213,7 +1199,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "0933a97f955ee2500a1ca37781531d023417a919e16b4aa36a2cca924fd3f101",
+            "sha256": "de5e22989714afb9d3c2ba11bb4a5ef47736ad8c7f11ea761de0a4f4b32087ec",
             "size": 341446,
             "format": "animpack-v2"
           }
@@ -1234,7 +1220,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "7614e3c6c487ca66d5dc2529037d047c9964ccaa7ce7fe02c275b0e8f31a1fe1",
+            "sha256": "d2a7e56e1a37dbfb5a5c59b941ba7670319ee7d36bcc5b4cf65ea0f32433f9ff",
             "size": 2097546,
             "format": "animpack-v2"
           }
@@ -1263,7 +1249,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "6ce0d33b15ce8243a83ec5fe6b0f95b11685f819e0db0e33a76409d7ab0f0fcb",
+            "sha256": "5acd363b8c4099346eac2a9fe4cbd6bff4b78e5d09f3d7e949a7be883c98f8ff",
             "size": 1494632,
             "format": "animpack-v2"
           },
@@ -1298,7 +1284,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "a8861b39124cdeddc95956bdf2c1d26b3b810cd2f07c4000df1a52eaad1a3334",
+            "sha256": "77fe06f970bdbb3f51612834adc19ab81f2504942f4c50f3696c3becae644ceb",
             "size": 170326,
             "format": "animpack-v2"
           },
@@ -1333,7 +1319,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "1b29848063892575e5b78d180bf5cd88e6d8ac4f66fddc007f7d52132f57a282",
+            "sha256": "7f7684d41ded88aa4730220d72d4d4e9d60c097eda35e18fdfaf46c3ef7a86e2",
             "size": 213960,
             "format": "animpack-v2"
           },
@@ -1368,7 +1354,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "a4d268ee89d2d3982a10e776492a5ed21f4b6f1a07e28883d845a46237d6fb99",
+            "sha256": "03e468a8b4b073c55f5aa79e0b0fc2ead6e73ce9f6bcafbce37b1ca25680b759",
             "size": 468842,
             "format": "animpack-v2"
           },
@@ -1395,7 +1381,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "4bfae8544834775355b0c45f7840fae1eddd3b22b747b50e7fff514a391f2e43",
+            "sha256": "0fd45b0917b1bd042f2122d2bb2c2470088ee3bcd48b88781f74438604109291",
             "size": 1961528,
             "format": "animpack-v2"
           }
@@ -1424,7 +1410,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "90f6df1a839bf8d3ff1b5dd519c0d3c79e24efb734ab5c480aac063f2dab8544",
+            "sha256": "6dcd38d8004463b9bcba2cd3b2ec3016ebb34c16ac8e46cc8110db3a7934ca2d",
             "size": 639812,
             "format": "animpack-v2"
           },
@@ -1451,7 +1437,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "8a04173a7eba92e9a9cf3004a0d5a44380f671a2b878f507f54f8779e66352ad",
+            "sha256": "bd9a33da76e3376b057d30e830046867814face4edd1e8616b04f8d2b23512f4",
             "size": 937372,
             "format": "animpack-v2"
           }
@@ -1472,7 +1458,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "5d7e9c8ca0f95d232c17037dbeb2a0ce8ffde337c1d906f6ca6c92232cae2136",
+            "sha256": "748de13e20af890f41546313d1848a678b1681a9dba433986e7bb6c3535177f3",
             "size": 3493626,
             "format": "animpack-v2"
           }
@@ -1493,7 +1479,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "01fb561deb74e9cef6812c9c1112eeb315be9ff088ba171200b70d32e2560d20",
+            "sha256": "96b6f240541282d74a349b99766bb862c1177dfefd58554a414e7379c3d7f4cd",
             "size": 1108860,
             "format": "animpack-v2"
           }
@@ -1514,7 +1500,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "e5d90abdd428fd5381fe435526f4b8aa47d1c0e210852a4f5359cff6685aad68",
+            "sha256": "471e5b0af6acd967f8a6de4aa25af2ee5d286693a9bb985e6eb95fad5a2074de",
             "size": 1491978,
             "format": "animpack-v2"
           }
@@ -1535,7 +1521,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "3c75ccb195213fb390565387692ed7c0cd9a2464158f184534a3c1c3b764ea13",
+            "sha256": "a40676c534f9a6dcd91a524b2d341540d5df1a9cbb117b71327e3a453e684ab5",
             "size": 1192922,
             "format": "animpack-v2"
           }
@@ -1556,7 +1542,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "c49afe8168ef4709c3d7de3feccf2e0a82e3e3ec52235fda8a87670daa928188",
+            "sha256": "4b82a08fd0ea7caad74b7bf5a4b1a9c404115a5b2608fc8531c5af242abe9d36",
             "size": 1321302,
             "format": "animpack-v2"
           }
@@ -1577,7 +1563,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "10b89602bcb14f7fcce866dd831d978ae4b60df8943b47f5623377f4b2a494a4",
+            "sha256": "848ef5d3fb9919d6cf16884b9b38b897deba582c81d19d80b4e84f0479d9c57f",
             "size": 980330,
             "format": "animpack-v2"
           }
@@ -1598,7 +1584,7 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "230eec64026eb28ca56f0d619f3024f64107f7cc31f2b3e09241062f0806704f",
+            "sha256": "7453960d2e6228dd2b4118fa8cef448920b6f18a7fdf2993972a571263ef9318",
             "size": 468954,
             "format": "animpack-v2"
           }

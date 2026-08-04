@@ -154,6 +154,24 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertEqual("sounds/boot.pcm", desktop_boot["creator"]["sound"]["path"])
             self.assertTrue((desktop / "actions" / "boot.json").is_file())
             self.assertTrue((desktop / "sounds" / "boot.pcm").is_file())
+            mobile = root / "mobile"
+            mobile_catalog = json.loads((mobile / "mobile_catalog.json").read_text())
+            self.assertEqual(1, mobile_catalog["schema_version"])
+            self.assertEqual("watche-mobile-expression-catalog", mobile_catalog["format"])
+            self.assertEqual("v0.0.1", mobile_catalog["version"])
+            mobile_boot = next(
+                item for item in mobile_catalog["expressions"] if item["id"] == "boot"
+            )
+            self.assertEqual("gif/boot.gif", mobile_boot["preview"])
+            self.assertEqual(
+                PIPELINE.sha256_file(source / "gif" / "boot.gif"),
+                mobile_boot["preview_sha256"],
+            )
+            self.assertEqual(
+                (source / "gif" / "boot.gif").stat().st_size,
+                mobile_boot["preview_size"],
+            )
+            self.assertTrue((mobile / "gif" / "boot.gif").is_file())
             ota = PIPELINE.package_resources(bundle, desktop, root / "dist", "v0.0.1")
             self.assertEqual(3, ota["schema_version"])
             self.assertEqual(2, ota["layout_revision"])
@@ -200,6 +218,21 @@ class ResourcePipelineTests(unittest.TestCase):
                 "desktop_catalog.json",
                 ota["desktop"]["catalog"]["tos_url"],
             )
+            self.assertEqual("mobile_catalog.json", ota["mobile"]["catalog"]["name"])
+            self.assertEqual(9, ota["mobile"]["assets"]["count"])
+            self.assertEqual("individual-gif", ota["mobile"]["assets"]["format"])
+            self.assertEqual(
+                "https://raw.githubusercontent.com/orulink-ai/WatcheRobot_sd/v0.0.1/"
+                "official/mobile/gif/",
+                ota["mobile"]["assets"]["github_base_url"],
+            )
+            self.assertEqual(
+                "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.1/"
+                "mobile/gif/",
+                ota["mobile"]["assets"]["tos_base_url"],
+            )
+            self.assertTrue((version_dir / "mobile_catalog.json").is_file())
+            self.assertTrue((version_dir / "mobile" / "gif" / "boot.gif").is_file())
 
     def test_rejects_stale_desktop_preview_files(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -211,6 +244,18 @@ class ResourcePipelineTests(unittest.TestCase):
             (desktop / "previews" / "removed_expression.webp").write_bytes(b"stale")
 
             with self.assertRaisesRegex(PIPELINE.ResourceError, "Desktop file set"):
+                PIPELINE.validate_resources(source, bundle, desktop)
+
+    def test_rejects_stale_mobile_gif_files(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = self.create_source(root)
+            bundle = root / "bundle"
+            desktop = root / "desktop"
+            PIPELINE.build_resources(source, source / "sound", bundle, desktop, "v0.0.1")
+            (root / "mobile" / "gif" / "removed_expression.gif").write_bytes(b"stale")
+
+            with self.assertRaisesRegex(PIPELINE.ResourceError, "Mobile file set"):
                 PIPELINE.validate_resources(source, bundle, desktop)
 
     def test_rejects_wrong_gif_dimensions_before_writing_release(self) -> None:
@@ -355,6 +400,36 @@ class ResourcePipelineTests(unittest.TestCase):
             )
             for asset in item.get("creator", {}).values():
                 self.assertEqual(asset["sha256"], PIPELINE.sha256_file(desktop / asset["path"]))
+
+    def test_checked_in_mobile_catalog_matches_source_snapshot(self) -> None:
+        repository = SCRIPT.parents[1]
+        mobile = repository / "official" / "mobile"
+        catalog = PIPELINE.read_json(mobile / "mobile_catalog.json")
+        snapshot = PIPELINE.read_json(
+            repository / "official" / "source" / "feishu-snapshot.json"
+        )
+        PIPELINE.schema_validate(
+            catalog,
+            "mobile-catalog.schema.json",
+            "official/mobile/mobile_catalog.json",
+        )
+        source_records = sorted(snapshot["records"], key=lambda item: item["order"])
+        self.assertEqual(
+            [(record["resource_id"], record["display_name"]) for record in source_records],
+            [(item["id"], item["display_name"]) for item in catalog["expressions"]],
+        )
+        expected_files = {"mobile_catalog.json"}
+        expected_files.update(item["preview"] for item in catalog["expressions"])
+        actual_files = {
+            path.relative_to(mobile).as_posix()
+            for path in mobile.rglob("*")
+            if path.is_file()
+        }
+        self.assertEqual(expected_files, actual_files)
+        for item in catalog["expressions"]:
+            preview = mobile / item["preview"]
+            self.assertEqual(item["preview_size"], preview.stat().st_size)
+            self.assertEqual(item["preview_sha256"], PIPELINE.sha256_file(preview))
 
 
 if __name__ == "__main__":

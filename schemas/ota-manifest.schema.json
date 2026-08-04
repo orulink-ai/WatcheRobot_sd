@@ -108,6 +108,39 @@
           }
         }
       }
+    },
+    "mobile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["catalog", "assets"],
+      "properties": {
+        "catalog": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "size", "github_url", "tos_url", "tos_uri", "sha256"],
+          "properties": {
+            "name": {"const": "mobile_catalog.json"},
+            "size": {"type": "integer", "minimum": 1, "maximum": 1048576},
+            "github_url": {"type": "string", "format": "uri"},
+            "tos_url": {"type": "string", "format": "uri"},
+            "tos_uri": {"type": "string"},
+            "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          }
+        },
+        "assets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["format", "count", "size", "github_base_url", "tos_base_url", "tos_uri"],
+          "properties": {
+            "format": {"const": "individual-gif"},
+            "count": {"type": "integer", "minimum": 1, "maximum": 128},
+            "size": {"type": "integer", "minimum": 1},
+            "github_base_url": {"type": "string", "format": "uri"},
+            "tos_base_url": {"type": "string", "format": "uri"},
+            "tos_uri": {"type": "string"}
+          }
+        }
+      }
     }
   }
 }

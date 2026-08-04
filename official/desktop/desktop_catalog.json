@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "format": "watche-desktop-resource-catalog",
-  "version": "v0.0.3",
-  "content_hash": "7851d9e8b8b3ada1dba806769045bbf579d7b4be942e47d0b8d633771a938bdb",
+  "version": "v0.0.4",
+  "content_hash": "2535f1999b845c2f8610b79135551a4e573036a111836de16f886b3e22353416",
   "expressions": [
     {
       "id": "listening",
@@ -949,7 +949,7 @@
       "source_label": "watcher-静默2",
       "source_record_id": "recvi333bb3XYM",
       "preview": "previews/standby2.webp",
-      "preview_sha256": "0a198535123b7f838e3f426779d44a683b360d227032cbe156c8e4e71d824089",
+      "preview_sha256": "4198e052ce38fc413609feb17b95e3f93a7a27674b67d812f912538d0ef9f1f4",
       "loop": true,
       "order": 24,
       "creator": {
@@ -966,8 +966,8 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "e1072e4a88093cb88f4f4b5ea3a144caeb8d67fc24fcde1a03928a055044fdc2",
-            "size": 1066310,
+            "sha256": "4a1c0c9a3c44a9f5e8343c2c989c2c57705638e2757187e57cbf23dbd69abbd4",
+            "size": 1065972,
             "format": "animpack-v2"
           },
           "action": {
@@ -985,7 +985,7 @@
       "source_label": "watcher-静默3",
       "source_record_id": "recvi333m3qLOU",
       "preview": "previews/standby3.webp",
-      "preview_sha256": "a8a7c05f85bfc17b1d0e0dbcfbdb0114994c5462d7e2a77f47cf7f606ea8cf11",
+      "preview_sha256": "8205dac1ec85f1f57508ada8ff923e79a8fdab8db89e53d1b608882cac0a15df",
       "loop": true,
       "order": 25,
       "creator": {
@@ -1002,8 +1002,8 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "0cd5274b34730e273942c672e1e4d047cb970e4f88387b2f4a202367dcebebdc",
-            "size": 1535288,
+            "sha256": "550651c8579750326b0195e64c1781ee82d801c7d59d95ee19fe89444960c1ab",
+            "size": 1534984,
             "format": "animpack-v2"
           },
           "action": {
@@ -1428,7 +1428,7 @@
       "source_record_id": "recvqL1YZWQtqq",
       "preview": "previews/anger.webp",
       "preview_sha256": "ae04565aa30a721fec6216e715c202779c6b2f3a70e17009826833cc6d94ced0",
-      "loop": false,
+      "loop": true,
       "order": 40,
       "creator": {},
       "device": {
@@ -1436,8 +1436,220 @@
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "0fd45b0917b1bd042f2122d2bb2c2470088ee3bcd48b88781f74438604109291",
+            "sha256": "4bfae8544834775355b0c45f7840fae1eddd3b22b747b50e7fff514a391f2e43",
             "size": 1961528,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "query",
+      "display_name": "问号",
+      "source_label": "watcher-问号",
+      "source_record_id": "recvri1PB9kHgn",
+      "preview": "previews/query.webp",
+      "preview_sha256": "13b29904e73b542bfb820af8aa64a3ca2f7492dc8c5aaf99b05ef4ece84ecbf6",
+      "loop": true,
+      "order": 41,
+      "creator": {
+        "sound": {
+          "path": "sounds/query.pcm",
+          "kind": "sfx",
+          "sha256": "406cb6450111f528e644137ed016bb4fc02461cc1b6d8be62485da98fdcec123",
+          "size": 75232,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "query",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "90f6df1a839bf8d3ff1b5dd519c0d3c79e24efb734ab5c480aac063f2dab8544",
+            "size": 639812,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "406cb6450111f528e644137ed016bb4fc02461cc1b6d8be62485da98fdcec123",
+            "size": 75232,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_sleep1",
+      "display_name": "睡觉-中间分支1",
+      "source_label": "watcher-睡觉-中间分支1",
+      "source_record_id": "recvri1PWaZHLs",
+      "preview": "previews/standby_sleep1.webp",
+      "preview_sha256": "97a15d86466010f70325e2f3d5167a270efa9ad7e9d7e32d2cfdfd1818644161",
+      "loop": true,
+      "order": 42,
+      "creator": {},
+      "device": {
+        "image_name": "standby_sleep1",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "8a04173a7eba92e9a9cf3004a0d5a44380f671a2b878f507f54f8779e66352ad",
+            "size": 937372,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_sleep2",
+      "display_name": "睡觉-中间分支2",
+      "source_label": "watcher-睡觉-中间分支2",
+      "source_record_id": "recvri1QAtc0Bl",
+      "preview": "previews/standby_sleep2.webp",
+      "preview_sha256": "cff2610ad2a4447d90d0e91687ea6ee467b95b5aa36fd38dd366e47812692039",
+      "loop": true,
+      "order": 43,
+      "creator": {},
+      "device": {
+        "image_name": "standby_sleep2",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "5d7e9c8ca0f95d232c17037dbeb2a0ce8ffde337c1d906f6ca6c92232cae2136",
+            "size": 3493626,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby6",
+      "display_name": "静默6",
+      "source_label": "watcher-静默6",
+      "source_record_id": "recvri1QRpwCEJ",
+      "preview": "previews/standby6.webp",
+      "preview_sha256": "dc6554b6973785af916da14ba23d74b7bf3768aa97ba010792e5a300a038501d",
+      "loop": true,
+      "order": 44,
+      "creator": {},
+      "device": {
+        "image_name": "standby6",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "01fb561deb74e9cef6812c9c1112eeb315be9ff088ba171200b70d32e2560d20",
+            "size": 1108860,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby5",
+      "display_name": "静默5",
+      "source_label": "watcher-静默5",
+      "source_record_id": "recvri4SbSJqJ8",
+      "preview": "previews/standby5.webp",
+      "preview_sha256": "c5b562b373c2802db134610c9dcdd98354a743c779c766c88ecdcd4ad685bb57",
+      "loop": true,
+      "order": 45,
+      "creator": {},
+      "device": {
+        "image_name": "standby5",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e5d90abdd428fd5381fe435526f4b8aa47d1c0e210852a4f5359cff6685aad68",
+            "size": 1491978,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little4",
+      "display_name": "静默-轻微4",
+      "source_label": "watcher-静默-轻微4",
+      "source_record_id": "recvri4Sss0sLD",
+      "preview": "previews/standby_little4.webp",
+      "preview_sha256": "28b7d03aca75d44c95824ef058ad22cc924a296d74a4a22031b6b80a62083d84",
+      "loop": true,
+      "order": 46,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little4",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "3c75ccb195213fb390565387692ed7c0cd9a2464158f184534a3c1c3b764ea13",
+            "size": 1192922,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little3",
+      "display_name": "静默-轻微3",
+      "source_label": "watcher-静默-轻微3",
+      "source_record_id": "recvri6052GcGP",
+      "preview": "previews/standby_little3.webp",
+      "preview_sha256": "446331d50f167537fd7349804aa9d3b3cb3db9fa5c36ffc742a8f8e8d907ab92",
+      "loop": true,
+      "order": 47,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little3",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "c49afe8168ef4709c3d7de3feccf2e0a82e3e3ec52235fda8a87670daa928188",
+            "size": 1321302,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little2",
+      "display_name": "静默-轻微2",
+      "source_label": "watcher-静默-轻微2",
+      "source_record_id": "recvri60jIOvKm",
+      "preview": "previews/standby_little2.webp",
+      "preview_sha256": "0f45eb35b165ec7fdb839b61607ddc61e43f687fe1be046890900b41cb2d1c04",
+      "loop": true,
+      "order": 48,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little2",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "10b89602bcb14f7fcce866dd831d978ae4b60df8943b47f5623377f4b2a494a4",
+            "size": 980330,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little1",
+      "display_name": "静默-轻微1",
+      "source_label": "watcher-静默-轻微1",
+      "source_record_id": "recvri60RuUQEq",
+      "preview": "previews/standby_little1.webp",
+      "preview_sha256": "83f259ad2f197f88fb89e88c4417591faf68f8d2a08f8c447948e6acc1f22529",
+      "loop": true,
+      "order": 49,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little1",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "230eec64026eb28ca56f0d619f3024f64107f7cc31f2b3e09241062f0806704f",
+            "size": 468954,
             "format": "animpack-v2"
           }
         }

@@ -1,7 +1,7 @@
 {
     "schema_version":  1,
     "source":  "Watcher expression overview",
-    "imported_at":  "2026-08-03T19:04:43.3521342Z",
+    "imported_at":  "2026-08-04T02:51:39.0949464Z",
     "records":  [
                     {
                         "source_record_id":  "recbwadAdh",
@@ -274,7 +274,7 @@
                         "resource_id":  "standby2",
                         "order":  24,
                         "loop":  true,
-                        "gif":  "CecpbOLJEok3aGxuE2pclcNVnsh",
+                        "gif":  "OwVwbvFdFoAdlCxrrOLc0nsUnt7",
                         "action":  "ARPZbPlXNoJQu1xrkxzcmTxanCc",
                         "sound":  null
                     },
@@ -285,7 +285,7 @@
                         "resource_id":  "standby3",
                         "order":  25,
                         "loop":  true,
-                        "gif":  "DI6SbQmbQodsdMx4QMUcdyaenye",
+                        "gif":  "EHyobATj7oE5S7xUYffcWuIanJd",
                         "action":  "KVsJbf0fCoYtDCx86N6cfHg7nVb",
                         "sound":  null
                     },
@@ -296,7 +296,7 @@
                         "resource_id":  "standby4",
                         "order":  26,
                         "loop":  true,
-                        "gif":  "TY8Hbf4JToyzJlx7EKXcbBqfnLe",
+                        "gif":  "X6NTbUGUQotkqexpSlUcCpSZnEg",
                         "action":  "BVRVbwO0joCcY1xXfWccdk25nyz",
                         "sound":  null
                     },
@@ -449,8 +449,107 @@
                         "display_name":  "生气",
                         "resource_id":  "anger",
                         "order":  40,
-                        "loop":  false,
+                        "loop":  true,
                         "gif":  "AsRFbIJiOowwZLxPC4gcBVtXn7c",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri1PB9kHgn",
+                        "source_label":  "watcher-问号",
+                        "display_name":  "问号",
+                        "resource_id":  "query",
+                        "order":  41,
+                        "loop":  true,
+                        "gif":  "Qn7rbeVinoFvL1xLz6XcIhlWnPf",
+                        "action":  null,
+                        "sound":  "CgL7bSTp6oIz7jxb8udcIaswnvl"
+                    },
+                    {
+                        "source_record_id":  "recvri1PWaZHLs",
+                        "source_label":  "watcher-睡觉-中间分支1",
+                        "display_name":  "睡觉-中间分支1",
+                        "resource_id":  "standby_sleep1",
+                        "order":  42,
+                        "loop":  true,
+                        "gif":  "JvkjbJFnxoGLC2xzCAOc8SRknSd",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri1QAtc0Bl",
+                        "source_label":  "watcher-睡觉-中间分支2",
+                        "display_name":  "睡觉-中间分支2",
+                        "resource_id":  "standby_sleep2",
+                        "order":  43,
+                        "loop":  true,
+                        "gif":  "ZFvsbc7Ugo1gyXx2fZPcpRfCnwc",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri1QRpwCEJ",
+                        "source_label":  "watcher-静默6",
+                        "display_name":  "静默6",
+                        "resource_id":  "standby6",
+                        "order":  44,
+                        "loop":  true,
+                        "gif":  "W777bTlOTomKjNxxbeMcx9Eun7P",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri4SbSJqJ8",
+                        "source_label":  "watcher-静默5",
+                        "display_name":  "静默5",
+                        "resource_id":  "standby5",
+                        "order":  45,
+                        "loop":  true,
+                        "gif":  "Crqfb1UdhoxhmmxqsAZcmXrXnVe",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri4Sss0sLD",
+                        "source_label":  "watcher-静默-轻微4",
+                        "display_name":  "静默-轻微4",
+                        "resource_id":  "standby_little4",
+                        "order":  46,
+                        "loop":  true,
+                        "gif":  "ZJvtbnnPwoUjfSxGSCjcLktBn4b",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri6052GcGP",
+                        "source_label":  "watcher-静默-轻微3",
+                        "display_name":  "静默-轻微3",
+                        "resource_id":  "standby_little3",
+                        "order":  47,
+                        "loop":  true,
+                        "gif":  "UpMIbcvfpoGjBexnROicRkiInKc",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri60jIOvKm",
+                        "source_label":  "watcher-静默-轻微2",
+                        "display_name":  "静默-轻微2",
+                        "resource_id":  "standby_little2",
+                        "order":  48,
+                        "loop":  true,
+                        "gif":  "KpJZbAO5uoQaNuxfYW6ck6Yensc",
+                        "action":  null,
+                        "sound":  null
+                    },
+                    {
+                        "source_record_id":  "recvri60RuUQEq",
+                        "source_label":  "watcher-静默-轻微1",
+                        "display_name":  "静默-轻微1",
+                        "resource_id":  "standby_little1",
+                        "order":  49,
+                        "loop":  true,
+                        "gif":  "Of9Qbhkluomh1Ex6VQdc1tFGnGc",
                         "action":  null,
                         "sound":  null
                     }

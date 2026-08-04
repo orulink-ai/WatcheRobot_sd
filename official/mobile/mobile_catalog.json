@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "format": "watche-mobile-expression-catalog",
-  "version": "v0.0.7",
+  "version": "v0.0.8",
   "content_hash": "f503fe9a1b87b019fc225fc02f577e472dfef302b150612d072c45d8ced47dd3",
   "expressions": [
     {

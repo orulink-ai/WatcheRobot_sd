@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
   "format": "watche-desktop-resource-catalog",
-  "version": "v0.0.5",
+  "version": "v0.0.6",
   "content_hash": "2535f1999b845c2f8610b79135551a4e573036a111836de16f886b3e22353416",
   "expressions": [
     {

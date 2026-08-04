@@ -130,7 +130,10 @@ class ResourcePipelineTests(unittest.TestCase):
             boot = next(item for item in catalog["expressions"] if item["id"] == "boot")
             self.assertNotIn("loop", boot)
             boot_hash = boot["assets"]["animation"]["sha256"]
-            self.assertTrue((bundle / "assets" / "anim" / f"{boot_hash}.animpack").is_file())
+            boot_pack = bundle / "assets" / "anim" / f"{boot_hash}.animpack"
+            self.assertTrue(boot_pack.is_file())
+            boot_header, _ = PIPELINE.decode_animpack(boot_pack)
+            self.assertEqual(0, boot_header["loop"])
             self.assertEqual(
                 set(self.fixed_states),
                 set(json.loads((bundle / "fixed_states.json").read_text())["states"]),

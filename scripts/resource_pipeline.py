@@ -200,7 +200,6 @@ def write_animpack(
     target: Path,
     frames: list[tuple[Image.Image, int]],
     fps: int,
-    loop: bool,
     force_rgb565: bool,
 ) -> dict[str, int]:
     width, height = frames[0][0].size
@@ -225,7 +224,7 @@ def write_animpack(
         width,
         height,
         len(frames),
-        1 if loop else 0,
+        0,
         0,
         max(1, round(1000 / fps)),
         header_size,
@@ -531,12 +530,6 @@ def source_snapshot(source: Path) -> dict[str, Any]:
     return snapshot
 
 
-def gif_has_loop_extension(path: Path) -> bool:
-    """Read AnimPack's technical loop bit from the GIF rather than Base metadata."""
-    with Image.open(path) as image:
-        return "loop" in image.info
-
-
 def build_resources(
     source: Path,
     pcm_root: Path,
@@ -572,7 +565,6 @@ def build_resources(
             animation_temp,
             frames,
             fps,
-            gif_has_loop_extension(gif_path),
             resource_id in policy["force_rgb565"],
         )
         assets: dict[str, Any] = {

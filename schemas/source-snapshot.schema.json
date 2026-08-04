@@ -16,14 +16,14 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["source_record_id", "source_label", "display_name", "resource_id", "order", "loop", "gif"],
+        "required": ["source_record_id", "source_label", "display_name", "resource_id", "order", "gif"],
         "properties": {
           "source_record_id": {"type": "string", "minLength": 1, "maxLength": 128},
           "source_label": {"type": "string", "minLength": 1, "maxLength": 128},
           "display_name": {"type": "string", "minLength": 1, "maxLength": 64},
           "resource_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
           "order": {"type": "integer", "minimum": 0},
-          "loop": {"type": "boolean"},
+          "loop": {"type": "boolean", "deprecated": true},
           "gif": {"type": "string", "minLength": 1},
           "action": {"type": ["string", "null"]},
           "sound": {"type": ["string", "null"]}

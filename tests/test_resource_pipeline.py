@@ -49,7 +49,6 @@ class ResourcePipelineTests(unittest.TestCase):
                     "display_name": resource_id,
                     "resource_id": resource_id,
                     "order": order,
-                    "loop": resource_id != "boot",
                     "gif": f"token-{resource_id}",
                     "action": None,
                     "sound": None,
@@ -109,6 +108,7 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertEqual(8, result["expressions"])
             catalog = json.loads((bundle / "official_catalog.json").read_text())
             boot = next(item for item in catalog["expressions"] if item["id"] == "boot")
+            self.assertNotIn("loop", boot)
             boot_hash = boot["assets"]["animation"]["sha256"]
             self.assertTrue((bundle / "assets" / "anim" / f"{boot_hash}.animpack").is_file())
             self.assertEqual(
@@ -124,6 +124,7 @@ class ResourcePipelineTests(unittest.TestCase):
             desktop_boot = next(
                 item for item in desktop_catalog["expressions"] if item["id"] == "boot"
             )
+            self.assertNotIn("loop", desktop_boot)
             self.assertEqual("actions/boot.json", desktop_boot["creator"]["action"]["path"])
             self.assertEqual("sounds/boot.pcm", desktop_boot["creator"]["sound"]["path"])
             self.assertTrue((desktop / "actions" / "boot.json").is_file())

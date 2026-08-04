@@ -446,37 +446,6 @@ def write_preview(source: Path, target: Path) -> None:
     )
 
 
-def build_behavior(entries: list[dict[str, Any]], bundle: Path, policy: dict[str, Any]) -> dict[str, Any]:
-    available = {entry["id"]: entry for entry in entries}
-    missing = [state for state in policy["fixed_states"] if state not in available]
-    if missing:
-        raise ResourceError("Required fixed-state GIFs are missing: " + ", ".join(missing))
-    states: dict[str, Any] = {}
-    for state in policy["fixed_states"]:
-        entry = available[state]
-        sound = []
-        if entry.get("sound") and (bundle / entry["sound"]).is_file():
-            sound.append({"at_ms": 0, "sound_id": state})
-        loop = bool(entry["loop"])
-        states[state] = {
-            "loop": loop,
-            "motion": [],
-            "expression": [
-                {
-                    "at_ms": 0,
-                    "anim": state,
-                    "playback_mode": "loop_until_replaced" if loop else "once",
-                    "text": "",
-                    "font_size": 24,
-                }
-            ],
-            "sound": sound,
-        }
-    behavior = {"version": "1.0", "default_state": "standby", "states": states}
-    schema_validate(behavior, "behavior-states.schema.json", "behavior/states.json")
-    return behavior
-
-
 def source_snapshot(source: Path) -> dict[str, Any]:
     snapshot_path = source / "feishu-snapshot.json"
     if not snapshot_path.is_file():
@@ -493,6 +462,12 @@ def source_snapshot(source: Path) -> dict[str, Any]:
         seen_ids.add(record["resource_id"])
         seen_records.add(record["source_record_id"])
     return snapshot
+
+
+def gif_has_loop_extension(path: Path) -> bool:
+    """Read AnimPack's technical loop bit from the GIF rather than Base metadata."""
+    with Image.open(path) as image:
+        return "loop" in image.info
 
 
 def build_resources(
@@ -530,7 +505,7 @@ def build_resources(
             animation_temp,
             frames,
             fps,
-            bool(record["loop"]),
+            gif_has_loop_extension(gif_path),
             resource_id in policy["force_rgb565"],
         )
         assets: dict[str, Any] = {
@@ -540,7 +515,6 @@ def build_resources(
             "id": resource_id,
             "display_name": record["display_name"],
             "source_record_id": record["source_record_id"],
-            "loop": bool(record["loop"]),
             "order": record["order"],
             "assets": assets,
         }
@@ -612,7 +586,6 @@ def build_resources(
                 "source_record_id": record["source_record_id"],
                 "preview": f"previews/{entry['id']}.webp",
                 "preview_sha256": sha256_file(preview),
-                "loop": entry["loop"],
                 "order": entry["order"],
                 "creator": creator,
                 "device": device,
@@ -788,8 +761,6 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
         header, frames = decode_animpack(animation_path)
         if len(frames) != len(source_frames):
             raise ResourceError(f"Frame count mismatch for {resource_id}")
-        if bool(header["loop"]) != entry["loop"]:
-            raise ResourceError(f"Loop flag mismatch for {resource_id}")
         for index, ((image, _), actual) in enumerate(zip(source_frames, frames)):
             if actual != rgba_to_rgb565(image):
                 raise ResourceError(f"RGB565 pixel/byte-order mismatch: {resource_id} frame {index}")

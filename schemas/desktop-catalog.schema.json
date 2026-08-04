@@ -16,7 +16,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["id", "display_name", "source_label", "source_record_id", "preview", "preview_sha256", "loop", "order", "device"],
+        "required": ["id", "display_name", "source_label", "source_record_id", "preview", "preview_sha256", "order", "device"],
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
           "display_name": {"type": "string", "minLength": 1, "maxLength": 64},
@@ -24,7 +24,7 @@
           "source_record_id": {"type": "string", "minLength": 1, "maxLength": 128},
           "preview": {"type": "string", "pattern": "^previews/[a-z][a-z0-9_]{0,22}\\.webp$"},
           "preview_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
-          "loop": {"type": "boolean"},
+          "loop": {"type": "boolean", "deprecated": true},
           "order": {"type": "integer", "minimum": 0},
           "creator": {
             "type": "object",

@@ -24,7 +24,6 @@ dist/vX.Y.Z/                      OTA 包和下载清单，构建产物，不入
 | 文本，如 `watcher-聆听` | `source_label` | 保留原始中文标签 |
 | 文本去掉 `watcher-` | `display_name` | 桌面端显示“聆听” |
 | 对应英文 | `resource_id` | 协议调用键，如 `listening` |
-| 播放形式 | `loop` | 动画是否循环 |
 | GIF | `animation` | 生成 AnimPack v2 和 WebP 预览 |
 | 动作 2.0 | `action` | 可选动作 JSON |
 | 音效 MP3 | `sound` | 可选 PCM 音效 |

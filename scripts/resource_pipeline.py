@@ -44,6 +44,9 @@ PACK_VERSION = 2
 PACK_HEADER_FMT = "<4sHHHHBBHIII"
 FRAME_DESC_FMT = "<IIHH"
 FRAME_FLAG_INDEXED8 = 0x0001
+DEVICE_CATALOG_MAX_BYTES = 128 * 1024
+DEVICE_PATH_MAX_BYTES = 192
+DEVICE_DISPLAY_NAME_MAX_BYTES = 192
 
 
 class ResourceError(ValueError):
@@ -305,6 +308,70 @@ def decode_animpack(path: Path) -> tuple[dict[str, int], list[bytes]]:
         "loop": loop,
         "delay": delay,
     }, frames
+
+
+def device_asset_path(asset: dict[str, Any]) -> str:
+    """Return the exact content-addressed path resolved by the ESP32 catalog."""
+    kind = asset["kind"]
+    directory = "actions" if kind == "action" else kind
+    return f"/sdcard/watche/assets/{directory}/{asset['sha256']}{ASSET_EXTENSIONS[kind]}"
+
+
+def validate_device_playback_contract(
+    catalog: dict[str, Any], bundle: Path, policy: dict[str, Any]
+) -> dict[str, int]:
+    """Validate every official expression using the ESP32 dynamic-SD contract.
+
+    This deliberately does not consult the firmware's compiled animation registry.
+    A newly published resource is required to be playable solely from its catalog ID
+    and content-addressed SD objects.
+    """
+    expressions = catalog["expressions"]
+    if (bundle / "official_catalog.json").stat().st_size > DEVICE_CATALOG_MAX_BYTES:
+        raise ResourceError("official_catalog.json exceeds the ESP32 catalog size limit")
+
+    id_pattern = re.compile(policy["resource_id"]["pattern"])
+    max_id_bytes = policy["resource_id"]["max_bytes"]
+    fixed_ids = set(policy["fixed_states"])
+    dynamic_count = 0
+    total_first_frames = 0
+    for entry in expressions:
+        resource_id = entry["id"]
+        if not id_pattern.fullmatch(resource_id) or len(resource_id.encode("utf-8")) > max_id_bytes:
+            raise ResourceError(f"ESP32 rejects resource ID: {resource_id}")
+        if len(entry["display_name"].encode("utf-8")) > DEVICE_DISPLAY_NAME_MAX_BYTES:
+            raise ResourceError(f"ESP32 display name is too long: {resource_id}")
+        if len(entry["source_record_id"].encode("utf-8")) > 128:
+            raise ResourceError(f"ESP32 source record ID is too long: {resource_id}")
+        if resource_id not in fixed_ids:
+            dynamic_count += 1
+
+        for kind, asset in entry["assets"].items():
+            expected_kind = {"animation": "anim", "action": "action", "sound": "sfx"}[kind]
+            if asset["kind"] != expected_kind:
+                raise ResourceError(f"Unexpected {kind} kind for {resource_id}")
+            resolved = device_asset_path(asset)
+            if len(resolved.encode("utf-8")) >= DEVICE_PATH_MAX_BYTES:
+                raise ResourceError(f"ESP32 asset path is too long: {resource_id}/{kind}")
+            path = bundle / "assets" / ("actions" if asset["kind"] == "action" else asset["kind"]) / (
+                asset["sha256"] + ASSET_EXTENSIONS[asset["kind"]]
+            )
+            if not path.is_file() or path.stat().st_size != asset["size"] or sha256_file(path) != asset["sha256"]:
+                raise ResourceError(f"ESP32 asset resolution failed: {resource_id}/{kind}")
+
+        animation = entry["assets"]["animation"]
+        animation_path = bundle / "assets" / "anim" / f"{animation['sha256']}.animpack"
+        header, frames = decode_animpack(animation_path)
+        if (
+            header["width"] != policy["display"]["width"]
+            or header["height"] != policy["display"]["height"]
+            or header["frame_count"] > policy["limits"]["frames_per_expression"]
+            or not frames
+            or len(frames[0]) != header["width"] * header["height"] * 2
+        ):
+            raise ResourceError(f"ESP32 dynamic playback contract failed: {resource_id}")
+        total_first_frames += 1
+    return {"dynamic_expressions": dynamic_count, "first_frames": total_first_frames}
 
 
 def normalize_action(source: Path) -> tuple[dict[str, Any], list[str]]:
@@ -749,6 +816,7 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
     catalog_by_id = {entry["id"]: entry for entry in catalog["expressions"]}
     if set(source_by_id) != set(catalog_by_id):
         raise ResourceError("Source snapshot and device catalog resource IDs do not match")
+    device_contract = validate_device_playback_contract(catalog, bundle, policy)
     total_frames = 0
     for resource_id, entry in catalog_by_id.items():
         if entry["source_record_id"] != source_by_id[resource_id]["source_record_id"]:
@@ -839,11 +907,51 @@ def validate_resources(source: Path, bundle: Path, desktop: Path | None) -> dict
                     raise ResourceError(f"Desktop sound is not 16-bit PCM: {item['id']}")
     return {
         "expressions": len(catalog_by_id),
+        "dynamic_expressions": device_contract["dynamic_expressions"],
+        "device_first_frames": device_contract["first_frames"],
         "actions": sum("action" in item["assets"] for item in catalog_by_id.values()),
         "sounds": sum("sound" in item["assets"] for item in catalog_by_id.values()),
         "frames": total_frames,
         "bytes": total_size,
     }
+
+
+def validate_packaged_device_archive(archive: Path) -> dict[str, int]:
+    """Re-read the final tar.gz and validate the exact bytes sent to the ESP32."""
+    with tempfile.TemporaryDirectory(prefix="watche-sd-archive-verify-") as temporary:
+        root = Path(temporary)
+        with tarfile.open(archive, "r:gz") as tar:
+            members = tar.getmembers()
+            names = [member.name for member in members]
+            if any(member.isdir() or member.issym() or member.islnk() or Path(member.name).is_absolute() or ".." in Path(member.name).parts for member in members):
+                raise ResourceError("Packaged SD archive contains an unsafe entry")
+            if len(names) != len(set(names)):
+                raise ResourceError("Packaged SD archive contains duplicate paths")
+            for member in members:
+                source = tar.extractfile(member)
+                if source is None:
+                    raise ResourceError(f"Unable to read packaged archive entry: {member.name}")
+                target = root / member.name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                with target.open("wb") as output:
+                    shutil.copyfileobj(source, output)
+
+        manifest = read_json(root / "resource_manifest.json")
+        schema_validate(manifest, "resource-manifest.schema.json", "packaged resource_manifest.json")
+        catalog = read_json(root / "official_catalog.json")
+        schema_validate(catalog, "resource-catalog.schema.json", "packaged official_catalog.json")
+        expected = {item["path"]: item for item in manifest["files"]}
+        actual = {
+            path.relative_to(root).as_posix()
+            for path in bundle_files(root, include_manifest=False)
+        }
+        if set(expected) != actual:
+            raise ResourceError("Packaged SD archive file set does not match its manifest")
+        for relative, item in expected.items():
+            path = root / relative
+            if path.stat().st_size != item["size"] or sha256_file(path) != item["sha256"]:
+                raise ResourceError(f"Packaged SD archive hash mismatch: {relative}")
+        return validate_device_playback_contract(catalog, root, load_policy())
 
 
 def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> dict[str, Any]:
@@ -873,6 +981,7 @@ def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> 
         raise ResourceError(
             f"Compressed archive exceeds the device transfer limit of {transfer_limit} bytes"
         )
+    archive_contract = validate_packaged_device_archive(archive)
     expanded_size = sum(path.stat().st_size for path in archive_files)
     object_count = sum(
         1
@@ -949,6 +1058,11 @@ def package_resources(bundle: Path, desktop: Path, dist: Path, version: str) -> 
     schema_validate(ota, "ota-manifest.schema.json", "ota-manifest.json")
     write_json(version_dir / "ota-manifest.json", ota)
     write_json(dist / "latest.json", ota)
+    print(
+        "Validated final device archive: "
+        f"{archive_contract['first_frames']} first frame(s), "
+        f"{archive_contract['dynamic_expressions']} dynamic expression(s)."
+    )
     return ota
 
 

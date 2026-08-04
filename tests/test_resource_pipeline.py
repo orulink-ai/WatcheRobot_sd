@@ -54,6 +54,26 @@ class ResourcePipelineTests(unittest.TestCase):
                     "sound": None,
                 }
             )
+        future_order = len(records)
+        future_id = "future_expression"
+        Image.new("RGB", size, (30, 90, 220)).save(
+            source / "gif" / f"{future_id}.gif",
+            save_all=True,
+            duration=100,
+            loop=0,
+        )
+        records.append(
+            {
+                "source_record_id": "rec-future-expression",
+                "source_label": "watcher-future-expression",
+                "display_name": "future expression",
+                "resource_id": future_id,
+                "order": future_order,
+                "gif": "token-future-expression",
+                "action": None,
+                "sound": None,
+            }
+        )
         (source / "feishu-snapshot.json").write_text(
             json.dumps(
                 {
@@ -105,7 +125,7 @@ class ResourcePipelineTests(unittest.TestCase):
             bundle = root / "bundle"
             desktop = root / "desktop"
             result = PIPELINE.build_resources(source, source / "sound", bundle, desktop, "v0.0.1")
-            self.assertEqual(8, result["expressions"])
+            self.assertEqual(9, result["expressions"])
             catalog = json.loads((bundle / "official_catalog.json").read_text())
             boot = next(item for item in catalog["expressions"] if item["id"] == "boot")
             self.assertNotIn("loop", boot)
@@ -116,7 +136,9 @@ class ResourcePipelineTests(unittest.TestCase):
                 set(json.loads((bundle / "fixed_states.json").read_text())["states"]),
             )
             validated = PIPELINE.validate_resources(source, bundle, desktop)
-            self.assertEqual(8, validated["expressions"])
+            self.assertEqual(9, validated["expressions"])
+            self.assertEqual(1, validated["dynamic_expressions"])
+            self.assertEqual(9, validated["device_first_frames"])
             desktop_catalog = json.loads((desktop / "desktop_catalog.json").read_text())
             self.assertEqual(3, desktop_catalog["schema_version"])
             self.assertEqual("watche-desktop-resource-catalog", desktop_catalog["format"])
@@ -135,7 +157,7 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertEqual("WRSD/2", ota["protocol"])
             self.assertGreater(ota["archive"]["expanded_size"], 0)
             self.assertGreater(ota["archive"]["file_count"], 0)
-            self.assertEqual(10, ota["archive"]["object_count"])
+            self.assertEqual(11, ota["archive"]["object_count"])
             self.assertRegex(ota["archive"]["sha256"], r"^[a-f0-9]{64}$")
             self.assertEqual("watche-sd-resources-v0.0.1.tar.gz", ota["archive"]["name"])
             self.assertEqual(
@@ -164,7 +186,7 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertIn("previews/boot.webp", members)
             self.assertIn("actions/boot.json", members)
             self.assertIn("sounds/boot.pcm", members)
-            self.assertEqual(11, ota["desktop"]["archive"]["file_count"])
+            self.assertEqual(12, ota["desktop"]["archive"]["file_count"])
             self.assertEqual(
                 "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.1/"
                 "watche-desktop-resources-v0.0.1.tar.gz",

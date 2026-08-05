@@ -2,7 +2,7 @@
   "schema_version": 1,
   "format": "watche-mobile-expression-catalog",
   "version": "v0.0.8",
-  "content_hash": "f503fe9a1b87b019fc225fc02f577e472dfef302b150612d072c45d8ced47dd3",
+  "content_hash": "cfdbcca8694c488a7217c8bc31e7b8c6a3407452f4e2085552075416a0ab907b",
   "expressions": [
     {
       "id": "listening",
@@ -12,7 +12,8 @@
       "preview_sha256": "f791fdac2bac84fc84a98e299a8a22c09c308b462259aa4365e02f55572073e1",
       "preview_size": 195622,
       "device": {
-        "image_name": "listening"
+        "image_name": "listening",
+        "action_file": "listening"
       }
     },
     {
@@ -23,7 +24,8 @@
       "preview_sha256": "a4856f54d01f23b0fedae55b59a5bc6d85366a17da9cc4ac6c05c9a75a1988c7",
       "preview_size": 205302,
       "device": {
-        "image_name": "speaking"
+        "image_name": "speaking",
+        "action_file": "speaking"
       }
     },
     {
@@ -34,7 +36,8 @@
       "preview_sha256": "ea83e85f62f72ff3103a0a795c6576cf5c673cca1ad34c711cc84079ccd3522d",
       "preview_size": 168963,
       "device": {
-        "image_name": "processing"
+        "image_name": "processing",
+        "action_file": "processing"
       }
     },
     {
@@ -45,7 +48,9 @@
       "preview_sha256": "db5862874027f9f3f8f3ff248547a80908e8625cc1766e0000fad4bac0e584e8",
       "preview_size": 103739,
       "device": {
-        "image_name": "standby"
+        "image_name": "standby",
+        "action_file": "standby",
+        "sound_file": "standby"
       }
     },
     {
@@ -56,7 +61,8 @@
       "preview_sha256": "e819afa8a85f01c4926fe23245c3d6cd97c0cc63017caabb3eae2621fd1ce525",
       "preview_size": 421638,
       "device": {
-        "image_name": "custom3"
+        "image_name": "custom3",
+        "action_file": "custom3"
       }
     },
     {
@@ -67,7 +73,9 @@
       "preview_sha256": "55d9761f433a34e426d564394de16da09cd0a354a49acc8450fa1d25d45b6f9b",
       "preview_size": 288527,
       "device": {
-        "image_name": "error"
+        "image_name": "error",
+        "action_file": "error",
+        "sound_file": "error"
       }
     },
     {
@@ -78,7 +86,9 @@
       "preview_sha256": "6025eea6cd72d842ccde0adbca5f6c96535c2da7a8ea6681dd66fa4ce12ff30c",
       "preview_size": 122572,
       "device": {
-        "image_name": "happy"
+        "image_name": "happy",
+        "action_file": "happy",
+        "sound_file": "happy"
       }
     },
     {
@@ -111,7 +121,9 @@
       "preview_sha256": "2062e33a46465d104dc316c4f2575ce913971d906623221a717c579b9f6b7c0a",
       "preview_size": 42056,
       "device": {
-        "image_name": "thinking"
+        "image_name": "thinking",
+        "action_file": "thinking",
+        "sound_file": "thinking"
       }
     },
     {
@@ -122,7 +134,8 @@
       "preview_sha256": "b2ffac91ad7f61af567d75e7313042b10b5ef09cb9822af51f5e6f5af52be08b",
       "preview_size": 366469,
       "device": {
-        "image_name": "boot"
+        "image_name": "boot",
+        "sound_file": "boot"
       }
     },
     {
@@ -133,7 +146,9 @@
       "preview_sha256": "9b48c03aa011a2a6b557b941231fc8c2074bf25cf701526cfe7c1c8edfe9e592",
       "preview_size": 229826,
       "device": {
-        "image_name": "bluetooth"
+        "image_name": "bluetooth",
+        "action_file": "bluetooth",
+        "sound_file": "bluetooth"
       }
     },
     {
@@ -144,7 +159,9 @@
       "preview_sha256": "828aae617323f7a343d05dbd5754a8136af2916d7d549a7040c8c14173871d02",
       "preview_size": 310708,
       "device": {
-        "image_name": "disconnect"
+        "image_name": "disconnect",
+        "action_file": "disconnect",
+        "sound_file": "disconnect"
       }
     },
     {
@@ -155,7 +172,9 @@
       "preview_sha256": "639facca9a2ab5802b0285a6693556b583696a576277c9986137e4d7e31cee0a",
       "preview_size": 53308,
       "device": {
-        "image_name": "shock"
+        "image_name": "shock",
+        "action_file": "shock",
+        "sound_file": "shock"
       }
     },
     {
@@ -166,7 +185,8 @@
       "preview_sha256": "851170aec17ce2b8ba24d46244b0291a76ba6029a9c4de226e751167b9165ed1",
       "preview_size": 71877,
       "device": {
-        "image_name": "sunglasses"
+        "image_name": "sunglasses",
+        "action_file": "sunglasses"
       }
     },
     {
@@ -177,7 +197,8 @@
       "preview_sha256": "151bd7c31a147171340a85d59ad50236b96a3e36950d8303b30a804b2ddacc64",
       "preview_size": 161506,
       "device": {
-        "image_name": "sad"
+        "image_name": "sad",
+        "action_file": "sad"
       }
     },
     {
@@ -188,7 +209,9 @@
       "preview_sha256": "3220bebd56193fa479e09b7b8101f27f466c0a0d0cbc9d02e0961247ef0ed4c6",
       "preview_size": 68229,
       "device": {
-        "image_name": "get"
+        "image_name": "get",
+        "action_file": "get",
+        "sound_file": "get"
       }
     },
     {
@@ -199,7 +222,8 @@
       "preview_sha256": "f1aca919f087cbb60b706ff82a68aaac75b4c8e440e44da717e09649f1d625e9",
       "preview_size": 73552,
       "device": {
-        "image_name": "smile"
+        "image_name": "smile",
+        "action_file": "smile"
       }
     },
     {
@@ -210,7 +234,8 @@
       "preview_sha256": "b3b9e5b8913df955faf131545b8790a805b78396d9a1af0036ad802394bf58d8",
       "preview_size": 377598,
       "device": {
-        "image_name": "recharge"
+        "image_name": "recharge",
+        "sound_file": "recharge"
       }
     },
     {
@@ -232,7 +257,9 @@
       "preview_sha256": "91207ee124e10c1eae4b3ae798b8f7f594c6bda6428ac8b753c6d743ef20172c",
       "preview_size": 120969,
       "device": {
-        "image_name": "focus"
+        "image_name": "focus",
+        "action_file": "focus",
+        "sound_file": "focus"
       }
     },
     {
@@ -243,7 +270,8 @@
       "preview_sha256": "afb94de0866f94e4218d760d9970d8b03b910c9276637f95bd27eb238596ec39",
       "preview_size": 432948,
       "device": {
-        "image_name": "fondle_love"
+        "image_name": "fondle_love",
+        "action_file": "fondle_love"
       }
     },
     {
@@ -254,7 +282,8 @@
       "preview_sha256": "430f869c874ffabfb0e355b64a0ee4804d2262f82c03043af4acf4079c15d24a",
       "preview_size": 151194,
       "device": {
-        "image_name": "fondle_anger"
+        "image_name": "fondle_anger",
+        "action_file": "fondle_anger"
       }
     },
     {
@@ -265,7 +294,8 @@
       "preview_sha256": "8167b112d6f2acb0eb5d6dcd742eba8d0d87a4c5ccf687fd1ffcc1db5b015a99",
       "preview_size": 18585,
       "device": {
-        "image_name": "standby1"
+        "image_name": "standby1",
+        "action_file": "standby1"
       }
     },
     {
@@ -276,7 +306,8 @@
       "preview_sha256": "f622be0823dde3cff83a5b664b3764341a2883c786d0216dfe2edd7b00b62c0c",
       "preview_size": 73939,
       "device": {
-        "image_name": "standby2"
+        "image_name": "standby2",
+        "action_file": "standby2"
       }
     },
     {
@@ -287,7 +318,8 @@
       "preview_sha256": "f4b363f05dbe2cba164e3e971da75debe21728636c5444653ea6364b92dbb8cf",
       "preview_size": 91075,
       "device": {
-        "image_name": "standby3"
+        "image_name": "standby3",
+        "action_file": "standby3"
       }
     },
     {
@@ -298,7 +330,8 @@
       "preview_sha256": "4e0751c4d3b446171f91994a33b540a2a6244fbc257ca6d0ef515fcef5198420",
       "preview_size": 73626,
       "device": {
-        "image_name": "standby4"
+        "image_name": "standby4",
+        "action_file": "standby4"
       }
     },
     {
@@ -309,7 +342,8 @@
       "preview_sha256": "828bc3ad2fe7ba2baa1dbbeedbbeb0343fb7b6b19b2d0eff2a8f89527111bc89",
       "preview_size": 22713,
       "device": {
-        "image_name": "blink"
+        "image_name": "blink",
+        "sound_file": "blink"
       }
     },
     {
@@ -408,7 +442,8 @@
       "preview_sha256": "5cd3230e15e1b45cd45ffdfa3f8be6f2fb579cd2ab5eab8ed47af0922fde75e3",
       "preview_size": 235461,
       "device": {
-        "image_name": "photo"
+        "image_name": "photo",
+        "sound_file": "photo"
       }
     },
     {
@@ -419,7 +454,8 @@
       "preview_sha256": "04ff471807deaf47c435bc5bfc469639a2ef7788520bd8e754d8d9139305b68a",
       "preview_size": 19131,
       "device": {
-        "image_name": "blink_fast"
+        "image_name": "blink_fast",
+        "sound_file": "blink_fast"
       }
     },
     {
@@ -430,7 +466,8 @@
       "preview_sha256": "280e19994e3b45027770305594457a15d209df9ba85a6a7a7eb2b3028d581dc3",
       "preview_size": 42564,
       "device": {
-        "image_name": "interference"
+        "image_name": "interference",
+        "sound_file": "interference"
       }
     },
     {
@@ -441,7 +478,8 @@
       "preview_sha256": "e66ae7a7aaa39932bcb1fd425ce699e0343d82225fc71ac761f3c75a1b9995ac",
       "preview_size": 40416,
       "device": {
-        "image_name": "click_eye"
+        "image_name": "click_eye",
+        "sound_file": "click_eye"
       }
     },
     {
@@ -463,7 +501,8 @@
       "preview_sha256": "96ab086a52fb083600b555e86791c6cdcbe64e6184a389b0bac199c4ad6f3681",
       "preview_size": 36693,
       "device": {
-        "image_name": "query"
+        "image_name": "query",
+        "sound_file": "query"
       }
     },
     {

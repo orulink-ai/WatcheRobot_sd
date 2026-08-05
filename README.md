@@ -97,7 +97,7 @@ mobile_catalog.json
 mobile/gif/<resource_id>.gif
 ```
 
-移动端目录记录显示名称、设备 `image_name`、文件大小和 SHA-256。GitHub 使用版本
+移动端目录独立记录显示名称、设备 `image_name`、可选的 `action_file` / `sound_file`、文件大小和 SHA-256，不依赖桌面端目录。GitHub 使用版本
 Tag 下的 `official/mobile/gif/` 原始文件，TOS 使用相同版本下的 `mobile/gif/`
 镜像；App 可以逐文件从 GitHub 下载，失败后只对失败文件切换到 TOS，全部校验通过
 后再切换当前版本。

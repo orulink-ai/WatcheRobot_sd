@@ -171,6 +171,14 @@ class ResourcePipelineTests(unittest.TestCase):
                 (source / "gif" / "boot.gif").stat().st_size,
                 mobile_boot["preview_size"],
             )
+            self.assertEqual(
+                {
+                    "image_name": "boot",
+                    "action_file": "boot",
+                    "sound_file": "boot",
+                },
+                mobile_boot["device"],
+            )
             self.assertTrue((mobile / "gif" / "boot.gif").is_file())
             ota = PIPELINE.package_resources(bundle, desktop, root / "dist", "v0.0.1")
             self.assertEqual(3, ota["schema_version"])

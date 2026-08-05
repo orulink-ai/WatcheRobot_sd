@@ -29,7 +29,9 @@
             "additionalProperties": false,
             "required": ["image_name"],
             "properties": {
-              "image_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"}
+              "image_name": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+              "action_file": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
+              "sound_file": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"}
             }
           }
         }

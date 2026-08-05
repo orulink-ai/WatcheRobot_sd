@@ -682,6 +682,11 @@ def build_resources(
         target_gif = mobile / relative
         target_gif.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source_gif, target_gif)
+        mobile_device = {"image_name": entry["id"]}
+        if "action" in entry["assets"]:
+            mobile_device["action_file"] = entry["id"]
+        if "sound" in entry["assets"]:
+            mobile_device["sound_file"] = entry["id"]
         mobile_entry = {
             "id": entry["id"],
             "display_name": record["display_name"],
@@ -689,7 +694,7 @@ def build_resources(
             "preview": relative,
             "preview_sha256": sha256_file(target_gif),
             "preview_size": target_gif.stat().st_size,
-            "device": {"image_name": entry["id"]},
+            "device": mobile_device,
         }
         mobile_entries.append(mobile_entry)
         mobile_digest.update(

@@ -1,0 +1,189 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-89426d45-4007-49f1-8b66-d1495b0d87fe",
+  "label": "happy_1",
+  "exportedAt": "2026-08-17T08:41:28.590Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "happy-xDeg-0-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "happy-xDeg-2-1",
+        "axis": "xDeg",
+        "timeMs": 200,
+        "frameNumber": 2,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "happy-xDeg-5-2",
+        "axis": "xDeg",
+        "timeMs": 500,
+        "frameNumber": 5,
+        "angleDeg": 75,
+        "source": "draft"
+      },
+      {
+        "id": "happy-xDeg-15-7",
+        "axis": "xDeg",
+        "timeMs": 1500,
+        "frameNumber": 15,
+        "angleDeg": 75,
+        "source": "draft"
+      },
+      {
+        "id": "happy-xDeg-17-8",
+        "axis": "xDeg",
+        "timeMs": 1700,
+        "frameNumber": 17,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-xDeg-25-12",
+        "axis": "xDeg",
+        "timeMs": 2500,
+        "frameNumber": 25,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-xDeg-29-13",
+        "axis": "xDeg",
+        "timeMs": 2900,
+        "frameNumber": 29,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "happy-yDeg-0-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-2-1",
+        "axis": "yDeg",
+        "timeMs": 140,
+        "frameNumber": 2,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-5-2",
+        "axis": "yDeg",
+        "timeMs": 340,
+        "frameNumber": 5,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-7-3",
+        "axis": "yDeg",
+        "timeMs": 520,
+        "frameNumber": 7,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-10-4",
+        "axis": "yDeg",
+        "timeMs": 720,
+        "frameNumber": 10,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-12-6",
+        "axis": "yDeg",
+        "timeMs": 900,
+        "frameNumber": 12,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-15-7",
+        "axis": "yDeg",
+        "timeMs": 1120,
+        "frameNumber": 15,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-17-8",
+        "axis": "yDeg",
+        "timeMs": 1280,
+        "frameNumber": 17,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-20-9",
+        "axis": "yDeg",
+        "timeMs": 1500,
+        "frameNumber": 20,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-22-10",
+        "axis": "yDeg",
+        "timeMs": 1660,
+        "frameNumber": 22,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-25-12",
+        "axis": "yDeg",
+        "timeMs": 1900,
+        "frameNumber": 25,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "draft-yDeg-1784269711951-2160",
+        "axis": "yDeg",
+        "timeMs": 2080,
+        "frameNumber": 108,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "draft-yDeg-1784269717459-2260",
+        "axis": "yDeg",
+        "timeMs": 2320,
+        "frameNumber": 113,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "draft-yDeg-1784269722086-2520",
+        "axis": "yDeg",
+        "timeMs": 2520,
+        "frameNumber": 126,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "happy-yDeg-29-13",
+        "axis": "yDeg",
+        "timeMs": 2900,
+        "frameNumber": 29,
+        "angleDeg": 100,
+        "source": "draft"
+      }
+    ]
+  }
+}

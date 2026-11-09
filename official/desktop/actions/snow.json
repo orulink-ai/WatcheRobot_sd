@@ -1,0 +1,117 @@
+{
+  "scene_name": "snow",
+  "frame_start": 0,
+  "frame_end": 12100,
+  "fps": 1000,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "snow",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 2020,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 2340,
+          "active_axis": "z",
+          "rotation_angle": 96
+        },
+        {
+          "frame_number": 3620,
+          "active_axis": "z",
+          "rotation_angle": 96
+        },
+        {
+          "frame_number": 4000,
+          "active_axis": "z",
+          "rotation_angle": 92
+        },
+        {
+          "frame_number": 4340,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 12100,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "snow",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 120,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 360,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 600,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 3620,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 4000,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 4340,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 6620,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 7100,
+          "active_axis": "x",
+          "rotation_angle": 113
+        },
+        {
+          "frame_number": 9920,
+          "active_axis": "x",
+          "rotation_angle": 113
+        },
+        {
+          "frame_number": 10800,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 12100,
+          "active_axis": "x",
+          "rotation_angle": 115
+        }
+      ]
+    }
+  ]
+}

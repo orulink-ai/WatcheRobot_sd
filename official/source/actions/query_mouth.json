@@ -1,0 +1,69 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-a2bbd638-a46b-40db-b8ba-e63bfbe172af",
+  "label": "query",
+  "exportedAt": "2026-08-19T09:09:39.877Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "blank-x-start-1787121743349",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "blank-x-end-1787121743349",
+        "axis": "xDeg",
+        "timeMs": 1500,
+        "frameNumber": 100,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "blank-y-start-1787121743349",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "draft-yDeg-1787122267595-140",
+        "axis": "yDeg",
+        "timeMs": 320,
+        "frameNumber": 7,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "draft-yDeg-1787122241391-40",
+        "axis": "yDeg",
+        "timeMs": 440,
+        "frameNumber": 2,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "draft-yDeg-1787122319366-620",
+        "axis": "yDeg",
+        "timeMs": 860,
+        "frameNumber": 31,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "blank-y-end-1787121743349",
+        "axis": "yDeg",
+        "timeMs": 1500,
+        "frameNumber": 100,
+        "angleDeg": 100,
+        "source": "draft"
+      }
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-153d318d-b193-4122-8a4b-6f1ca8bda9d8",
+  "label": "custom3_1",
+  "exportedAt": "2026-08-17T08:41:21.123Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "custom3-xDeg-0-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-3-1",
+        "axis": "xDeg",
+        "timeMs": 300,
+        "frameNumber": 3,
+        "angleDeg": 65,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-11-6",
+        "axis": "xDeg",
+        "timeMs": 940,
+        "frameNumber": 11,
+        "angleDeg": 65,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-12-7",
+        "axis": "xDeg",
+        "timeMs": 1200,
+        "frameNumber": 12,
+        "angleDeg": 85,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-16-10",
+        "axis": "xDeg",
+        "timeMs": 1600,
+        "frameNumber": 16,
+        "angleDeg": 85,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-20-11",
+        "axis": "xDeg",
+        "timeMs": 2000,
+        "frameNumber": 20,
+        "angleDeg": 95,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-30-17",
+        "axis": "xDeg",
+        "timeMs": 3000,
+        "frameNumber": 30,
+        "angleDeg": 95,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-32-18",
+        "axis": "xDeg",
+        "timeMs": 3200,
+        "frameNumber": 32,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-34-19",
+        "axis": "xDeg",
+        "timeMs": 3560,
+        "frameNumber": 34,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-xDeg-40-20",
+        "axis": "xDeg",
+        "timeMs": 4000,
+        "frameNumber": 40,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "custom3-yDeg-0-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-3-1",
+        "axis": "yDeg",
+        "timeMs": 300,
+        "frameNumber": 3,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-5-2",
+        "axis": "yDeg",
+        "timeMs": 500,
+        "frameNumber": 5,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-7-3",
+        "axis": "yDeg",
+        "timeMs": 700,
+        "frameNumber": 7,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-9-5",
+        "axis": "yDeg",
+        "timeMs": 900,
+        "frameNumber": 9,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-11-6",
+        "axis": "yDeg",
+        "timeMs": 1100,
+        "frameNumber": 11,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-13-8",
+        "axis": "yDeg",
+        "timeMs": 1300,
+        "frameNumber": 13,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-15-9",
+        "axis": "yDeg",
+        "timeMs": 1500,
+        "frameNumber": 15,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-22-12",
+        "axis": "yDeg",
+        "timeMs": 2200,
+        "frameNumber": 22,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-24-13",
+        "axis": "yDeg",
+        "timeMs": 2400,
+        "frameNumber": 24,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-26-15",
+        "axis": "yDeg",
+        "timeMs": 2600,
+        "frameNumber": 26,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-28-16",
+        "axis": "yDeg",
+        "timeMs": 2800,
+        "frameNumber": 28,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-30-17",
+        "axis": "yDeg",
+        "timeMs": 3000,
+        "frameNumber": 30,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-32-18",
+        "axis": "yDeg",
+        "timeMs": 3200,
+        "frameNumber": 32,
+        "angleDeg": 110,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-34-19",
+        "axis": "yDeg",
+        "timeMs": 3400,
+        "frameNumber": 34,
+        "angleDeg": 100,
+        "source": "draft"
+      },
+      {
+        "id": "custom3-yDeg-40-20",
+        "axis": "yDeg",
+        "timeMs": 4000,
+        "frameNumber": 40,
+        "angleDeg": 100,
+        "source": "draft"
+      }
+    ]
+  }
+}

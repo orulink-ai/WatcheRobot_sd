@@ -1,156 +1,86 @@
 {
   "schema_version": 3,
   "format": "watche-desktop-resource-catalog",
-  "version": "v0.0.8",
-  "content_hash": "231903a38f46509e5dcd9ecad88b1e3edba590aed4a47ab223c09d7f18d8277c",
+  "version": "v0.0.9",
+  "content_hash": "9b06805b8d9295793f9140e894a3e657d8e9c808775f98307bc183f37b26ce15",
   "expressions": [
     {
-      "id": "listening",
-      "display_name": "聆听",
-      "source_label": "watcher-聆听",
-      "source_record_id": "recbwadAdh",
-      "preview": "previews/listening.webp",
-      "preview_sha256": "38ccb56ad4f9dd61dd01d9944112133cb12f3c5784d3facb44b4c382ad1a0f92",
+      "id": "custom3_mouth",
+      "display_name": "工具",
+      "source_label": "watcher-工具",
+      "source_record_id": "recvdwKxW8TQzA",
+      "preview": "previews/custom3_mouth.webp",
+      "preview_sha256": "3fc4412accdacadbc89737d1323e98a31214da64c5569337f46c0e7daad40161",
       "order": 0,
       "creator": {
         "action": {
-          "path": "actions/listening.json",
+          "path": "actions/custom3_mouth.json",
           "kind": "action",
-          "sha256": "5fb1c190ce863659ca4ceeb809d9a963946518e2f0be68944d9f6caf73a16b7a",
-          "size": 1115,
+          "sha256": "09b5cb58a11b32c8d59f7f35e88cfb32c091462e3257d2531ec4586aeedad970",
+          "size": 3529,
           "format": "firmware-action-json-v1"
         }
       },
       "device": {
-        "image_name": "listening",
+        "image_name": "custom3_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "7f68ab2500fc9460cf6aed06d1ba035e706c3bc3ff1a07c8f15f3c94439e8474",
-            "size": 895314,
+            "sha256": "6104f16f85881edd515edf7c1be6aa85142561287f1c8c4f995921c5867892fd",
+            "size": 1711942,
             "format": "animpack-v2"
           },
           "action": {
             "kind": "action",
-            "sha256": "5fb1c190ce863659ca4ceeb809d9a963946518e2f0be68944d9f6caf73a16b7a",
-            "size": 1115,
+            "sha256": "09b5cb58a11b32c8d59f7f35e88cfb32c091462e3257d2531ec4586aeedad970",
+            "size": 3529,
             "format": "firmware-action-json-v1"
           }
         }
       }
     },
     {
-      "id": "speaking",
-      "display_name": "说话",
-      "source_label": "watcher-说话",
-      "source_record_id": "recvdwKxiUJZ7V",
-      "preview": "previews/speaking.webp",
-      "preview_sha256": "702d708d2ce1073eec546215100cf8afa6424f98559185f77a086098839c50ad",
+      "id": "bluetooth_mouth",
+      "display_name": "蓝牙",
+      "source_label": "watcher-蓝牙",
+      "source_record_id": "recvdxn4DMRrnB",
+      "preview": "previews/bluetooth_mouth.webp",
+      "preview_sha256": "e7760ec1f4a1bd813a89cc4fc9017b71d26d6de33bad3f6a51cc12c5badefcd3",
       "order": 1,
       "creator": {
         "action": {
-          "path": "actions/speaking.json",
+          "path": "actions/bluetooth_mouth.json",
           "kind": "action",
-          "sha256": "962889c6e7925397c054c6313adb051542290290d27a81f570626c3f4e71eb9e",
-          "size": 1459,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "speaking",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "d3f6f085b2783b84cd674345df8412e8ba5698511487c89918a4f5a385439b50",
-            "size": 937650,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "962889c6e7925397c054c6313adb051542290290d27a81f570626c3f4e71eb9e",
-            "size": 1459,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "processing",
-      "display_name": "分析",
-      "source_label": "watcher-分析",
-      "source_record_id": "recvdwKxxte9bg",
-      "preview": "previews/processing.webp",
-      "preview_sha256": "091d47f4fb1160a218b618528fb0d0d14c6f827bfcf82f295c6b49e0e722b9aa",
-      "order": 2,
-      "creator": {
-        "action": {
-          "path": "actions/processing.json",
-          "kind": "action",
-          "sha256": "14edcb6373faad432c80cb1430741ccb78a885ea64272b9f52efc9aab0292d37",
-          "size": 2762,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "processing",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "e519c4fc38acf276475bcd36aef8d5c8e415e7c299c06ca3ec07abf9a490d9c3",
-            "size": 1748550,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "14edcb6373faad432c80cb1430741ccb78a885ea64272b9f52efc9aab0292d37",
-            "size": 2762,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby",
-      "display_name": "睡觉",
-      "source_label": "watcher-睡觉",
-      "source_record_id": "recvdwKxL7ppUo",
-      "preview": "previews/standby.webp",
-      "preview_sha256": "2865e08e396a52fda330513950028453cf0fd292748585620e5d950135e82d05",
-      "order": 3,
-      "creator": {
-        "action": {
-          "path": "actions/standby.json",
-          "kind": "action",
-          "sha256": "fd8f94e22facfac08a700ac2afd0ad7605fb8c86b607820af32b74a135629d8e",
-          "size": 876,
+          "sha256": "99354af5b0ce65eec95b0a9cb83a9085fec2b3939dadf6eaf3341284c3b496df",
+          "size": 1369,
           "format": "firmware-action-json-v1"
         },
         "sound": {
-          "path": "sounds/standby.pcm",
+          "path": "sounds/bluetooth_mouth.pcm",
           "kind": "sfx",
-          "sha256": "f86906a5e1a82e09d1074397ff295f94eb5d0eb62a5415f554f7475d8d1f6a3f",
+          "sha256": "98fdb7944e6de161e4c82fa04d2d6e2b4f234eabfb62300fe2985bf2f01c509d",
           "size": 114104,
           "format": "pcm-s16le-24khz-mono"
         }
       },
       "device": {
-        "image_name": "standby",
+        "image_name": "bluetooth_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "04463a247709103d2172ebae765ff424ac6c6dac1df7f1d41f65c629f8333ab5",
-            "size": 1749586,
+            "sha256": "52756572f36257fc24ffaeaa226e740aa94a6b898db5759356bf2bb4e2b63b93",
+            "size": 1280654,
             "format": "animpack-v2"
           },
           "action": {
             "kind": "action",
-            "sha256": "fd8f94e22facfac08a700ac2afd0ad7605fb8c86b607820af32b74a135629d8e",
-            "size": 876,
+            "sha256": "99354af5b0ce65eec95b0a9cb83a9085fec2b3939dadf6eaf3341284c3b496df",
+            "size": 1369,
             "format": "firmware-action-json-v1"
           },
           "sound": {
             "kind": "sfx",
-            "sha256": "f86906a5e1a82e09d1074397ff295f94eb5d0eb62a5415f554f7475d8d1f6a3f",
+            "sha256": "98fdb7944e6de161e4c82fa04d2d6e2b4f234eabfb62300fe2985bf2f01c509d",
             "size": 114104,
             "format": "pcm-s16le-24khz-mono"
           }
@@ -158,106 +88,671 @@
       }
     },
     {
-      "id": "custom3",
-      "display_name": "工具",
-      "source_label": "watcher-工具",
-      "source_record_id": "recvdwKxW8TQzA",
-      "preview": "previews/custom3.webp",
-      "preview_sha256": "f33ae605e42cdd8ff0d792ff31618d7f6699859bff1159f7f4775107ac5451f9",
-      "order": 4,
+      "id": "disconnect_mouth",
+      "display_name": "断开蓝牙",
+      "source_label": "watcher-断开蓝牙",
+      "source_record_id": "recvdxn4R6TqKS",
+      "preview": "previews/disconnect_mouth.webp",
+      "preview_sha256": "8339d75b8c83a225329be919bab57d98e0479c2b5bd04534b26ddc4258782394",
+      "order": 2,
       "creator": {
         "action": {
-          "path": "actions/custom3.json",
+          "path": "actions/disconnect_mouth.json",
           "kind": "action",
-          "sha256": "322e4c39acc0cb4a70658534c9dfe7a0ee49c3bb07c86474d42abc27f702e3d2",
-          "size": 3344,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "custom3",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "a9636e58476b86ec82b4f2aba0baee90eaae594c8ba03e36635d9d5142acb9fb",
-            "size": 1755778,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "322e4c39acc0cb4a70658534c9dfe7a0ee49c3bb07c86474d42abc27f702e3d2",
-            "size": 3344,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "error",
-      "display_name": "错误",
-      "source_label": "watcher-错误",
-      "source_record_id": "recvdwKy91WjHK",
-      "preview": "previews/error.webp",
-      "preview_sha256": "be5c0d98256124b725df61d6ddf5a6c94c80dbf7911162de244f069536eccd2d",
-      "order": 5,
-      "creator": {
-        "action": {
-          "path": "actions/error.json",
-          "kind": "action",
-          "sha256": "a4c0aca4487bb69a4a0c46f00c0038a3a64865971e0f6e65f94a02d7bdd99342",
-          "size": 2865,
+          "sha256": "f300e47925fe04980a3f5b71d0bf8f7836d25bc75f4ab14ebee1b888679848bd",
+          "size": 1839,
           "format": "firmware-action-json-v1"
         },
         "sound": {
-          "path": "sounds/error.pcm",
+          "path": "sounds/disconnect_mouth.pcm",
           "kind": "sfx",
-          "sha256": "4134cba108833875cd8ea581a22266a1a923b64779ce60c5f407c3548749a324",
-          "size": 41378,
+          "sha256": "633fc5a74c688e8814868d103035c9c912506f99bbd2026fc359415312a6ab88",
+          "size": 151720,
           "format": "pcm-s16le-24khz-mono"
         }
       },
       "device": {
-        "image_name": "error",
+        "image_name": "disconnect_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "4d8785f764f268d4c3a54e6c05aba94341a9bd15385dcfab4160ba6c9187637d",
-            "size": 1410318,
+            "sha256": "de3d2463f751b4f4ab49ff477eee4a5df65409e0218e96845e24ffc4c7f2506e",
+            "size": 1324734,
             "format": "animpack-v2"
           },
           "action": {
             "kind": "action",
-            "sha256": "a4c0aca4487bb69a4a0c46f00c0038a3a64865971e0f6e65f94a02d7bdd99342",
-            "size": 2865,
+            "sha256": "f300e47925fe04980a3f5b71d0bf8f7836d25bc75f4ab14ebee1b888679848bd",
+            "size": 1839,
             "format": "firmware-action-json-v1"
           },
           "sound": {
             "kind": "sfx",
-            "sha256": "4134cba108833875cd8ea581a22266a1a923b64779ce60c5f407c3548749a324",
-            "size": 41378,
+            "sha256": "633fc5a74c688e8814868d103035c9c912506f99bbd2026fc359415312a6ab88",
+            "size": 151720,
             "format": "pcm-s16le-24khz-mono"
           }
         }
       }
     },
     {
-      "id": "happy",
-      "display_name": "成功",
-      "source_label": "watcher-成功",
-      "source_record_id": "recvdwKUdEP6OZ",
-      "preview": "previews/happy.webp",
-      "preview_sha256": "c3313d1d74306a3bc3ff7b8a42db9ff8380ad0c2c44dd2735720cc17915699b2",
+      "id": "recharge_mouth",
+      "display_name": "无线充电",
+      "source_label": "watcher-无线充电",
+      "source_record_id": "recvi30buNF2qB",
+      "preview": "previews/recharge_mouth.webp",
+      "preview_sha256": "f41d8e4ac59261ae42496b45ef667d5e4bfb4184800211e6015621ec9f037b1c",
+      "order": 3,
+      "creator": {
+        "sound": {
+          "path": "sounds/recharge_mouth.pcm",
+          "kind": "sfx",
+          "sha256": "608a5328e22158f1c7fbf32969d7541339639f53b2ffdf6f6dd30984dae8325d",
+          "size": 104072,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "recharge_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "ab76ba27f37e7027af3bf6603d2a7387d0a714c8becb3dddbe3150d073f3d772",
+            "size": 899920,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "608a5328e22158f1c7fbf32969d7541339639f53b2ffdf6f6dd30984dae8325d",
+            "size": 104072,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "upgrade",
+      "display_name": "固件升级",
+      "source_label": "watcher-固件升级",
+      "source_record_id": "recviVuvF18Wfz",
+      "preview": "previews/upgrade.webp",
+      "preview_sha256": "5cac53c6ea09684c53823ce639f82a6f0d8aa39388932f55842f0e6598d6627c",
+      "order": 4,
+      "creator": {},
+      "device": {
+        "image_name": "upgrade",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "d46a83966a99c193d3a3cd016c9d411c2fab0854263df0643ef436be4338b312",
+            "size": 2566500,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "music_mouth",
+      "display_name": "听音乐",
+      "source_label": "watcher-听音乐",
+      "source_record_id": "recvo1ti0CFCeG",
+      "preview": "previews/music_mouth.webp",
+      "preview_sha256": "b93f86fa9e1a516789226cae24c0bf5897524516f4b5b5783a3ce0acf6064865",
+      "order": 5,
+      "creator": {
+        "action": {
+          "path": "actions/music_mouth.json",
+          "kind": "action",
+          "sha256": "63ca55b66968b44fc9e0ddd135c4ca2f8fdd3d454ff9f74e676a4342ea30fc2a",
+          "size": 2689,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "music_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "62c8e3472945a588634ab69232c69864887aaf8fecd2a244b9b6e1e5bfd23477",
+            "size": 1287482,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "63ca55b66968b44fc9e0ddd135c4ca2f8fdd3d454ff9f74e676a4342ea30fc2a",
+            "size": 2689,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "coding",
+      "display_name": "打代码",
+      "source_label": "watcher-打代码",
+      "source_record_id": "reczz28NzOF6jJAm",
+      "preview": "previews/coding.webp",
+      "preview_sha256": "1624dffe29855eb4eedc9eb8afb8d35d158518dcdbb1e1371ce9249ffe2d4d51",
       "order": 6,
       "creator": {
         "action": {
-          "path": "actions/happy.json",
+          "path": "actions/coding.json",
           "kind": "action",
-          "sha256": "c512c4b0121b2d83ce71d9c93b6dee35f4c02f839825f109d68ce5373aa4eb41",
-          "size": 2630,
+          "sha256": "fd747fcfc2ad5cb91e3471cde7baccb7311d486bf8ecbf9df37ae8fd6d5add07",
+          "size": 9295,
           "format": "firmware-action-json-v1"
         },
         "sound": {
-          "path": "sounds/happy.pcm",
+          "path": "sounds/coding.pcm",
+          "kind": "sfx",
+          "sha256": "05b3b7fe2819ecc85c901cedb0e1a8f9315ed24d8ec30fb40c1bc623ada5e8a6",
+          "size": 915330,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "coding",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "4d3889b48b86d350e59b68136feaad57213552939b33b1a0ec42141bc1ae6138",
+            "size": 8180616,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "fd747fcfc2ad5cb91e3471cde7baccb7311d486bf8ecbf9df37ae8fd6d5add07",
+            "size": 9295,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "05b3b7fe2819ecc85c901cedb0e1a8f9315ed24d8ec30fb40c1bc623ada5e8a6",
+            "size": 915330,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "swimming",
+      "display_name": "潜水",
+      "source_label": "watcher-潜水",
+      "source_record_id": "reczz28NzOGXy4Rd",
+      "preview": "previews/swimming.webp",
+      "preview_sha256": "0bdfa5b65609f5702df3cebabaccd1a8c9eccd2e6dcc24645b5f336763719c9c",
+      "order": 7,
+      "creator": {
+        "sound": {
+          "path": "sounds/swimming.pcm",
+          "kind": "sfx",
+          "sha256": "2b5e5acb4b5f3dfada91d654cfb90d3ccc7e9fd12025bca1049794e1510471bb",
+          "size": 1035704,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "swimming",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "d3f5f069d7a12fbe039650c0e6e62531e0a63bc3c3c8d0b9f0e4bd6b2ad1cd59",
+            "size": 9193756,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "2b5e5acb4b5f3dfada91d654cfb90d3ccc7e9fd12025bca1049794e1510471bb",
+            "size": 1035704,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "fondle_love_mouth",
+      "display_name": "摸头爱心",
+      "source_label": "watcher-摸头爱心",
+      "source_record_id": "reczz28TbhNqIeLZ",
+      "preview": "previews/fondle_love_mouth.webp",
+      "preview_sha256": "cb51a8d96f081fe7e63551d9ab822433a39880bb190b229bca4efe61d57ca71f",
+      "order": 8,
+      "creator": {
+        "action": {
+          "path": "actions/fondle_love_mouth.json",
+          "kind": "action",
+          "sha256": "40329c1b00f52412e40285382a1f24f26dd51bd8afe39928ca9f48eab0d00e5a",
+          "size": 2668,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "fondle_love_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "f717aa5f11ff49414e8a1c99a5971b82528f01549bc962ccae56310915b4d1de",
+            "size": 3369564,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "40329c1b00f52412e40285382a1f24f26dd51bd8afe39928ca9f48eab0d00e5a",
+            "size": 2668,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "fondle_anger_mouth",
+      "display_name": "摸头生气",
+      "source_label": "watcher-摸头生气",
+      "source_record_id": "reczz28TbhOejlKY",
+      "preview": "previews/fondle_anger_mouth.webp",
+      "preview_sha256": "835bfbee23783965cee3204f9b45b174d467c990b24b240f89e9f944469fe9ea",
+      "order": 9,
+      "creator": {
+        "action": {
+          "path": "actions/fondle_anger_mouth.json",
+          "kind": "action",
+          "sha256": "2276959622e067f530061f0099027809b2b22066185662e382585e145cd9f831",
+          "size": 4660,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "fondle_anger_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "aa4a2480e69e3857e07a5170285373e2865d84929bcaef48444d942572f88f15",
+            "size": 3021162,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "2276959622e067f530061f0099027809b2b22066185662e382585e145cd9f831",
+            "size": 4660,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_mouth1",
+      "display_name": "静默1",
+      "source_label": "watcher-静默1",
+      "source_record_id": "reczz28Uj3YX4xoH",
+      "preview": "previews/standby_mouth1.webp",
+      "preview_sha256": "df944604ab45f0c3066aa3793ec300a518306e0c6dd8f62870ab96b43bf021f8",
+      "order": 10,
+      "creator": {},
+      "device": {
+        "image_name": "standby_mouth1",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "2a0d24b66a3fc97f7dee44b62beb2df2b8b047c7a7f30de577ebc4b3126c1cd1",
+            "size": 893158,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_mouth2",
+      "display_name": "静默2",
+      "source_label": "watcher-静默2",
+      "source_record_id": "reczz28Uj3ZKQVif",
+      "preview": "previews/standby_mouth2.webp",
+      "preview_sha256": "f53c3f654a7642259828a0567576187d8f024ac194ecdfa84525aeff7c4d815c",
+      "order": 11,
+      "creator": {
+        "action": {
+          "path": "actions/standby_mouth2.json",
+          "kind": "action",
+          "sha256": "66eb5cddcbcad4b3db472009ebfd02a777ccf701af6b1c50979961e9cbc3dd60",
+          "size": 1380,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "standby_mouth2",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "a522c8b6507c416ae6b1d46d2029342a2a9db996b9eaf39f135e0c73e060266e",
+            "size": 1063910,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "66eb5cddcbcad4b3db472009ebfd02a777ccf701af6b1c50979961e9cbc3dd60",
+            "size": 1380,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_mouth3",
+      "display_name": "静默3",
+      "source_label": "watcher-静默3",
+      "source_record_id": "reczz28Uj3a8chNV",
+      "preview": "previews/standby_mouth3.webp",
+      "preview_sha256": "a1e814a587577c74d93b8a2594a84955062889f55759a048f5f2ed7f30775bca",
+      "order": 12,
+      "creator": {
+        "action": {
+          "path": "actions/standby_mouth3.json",
+          "kind": "action",
+          "sha256": "496042fdcec5db476b5d021c36f07962dfba312fa15c2dc7ce7f953602cd73f5",
+          "size": 1143,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "standby_mouth3",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "f655c0b07268d1908302f739b7b7975dcc419c88e67bf375186bae03bba7fb7d",
+            "size": 1531920,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "496042fdcec5db476b5d021c36f07962dfba312fa15c2dc7ce7f953602cd73f5",
+            "size": 1143,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_mouth4",
+      "display_name": "静默4",
+      "source_label": "watcher-静默4",
+      "source_record_id": "reczz28UjOgUIcJg",
+      "preview": "previews/standby_mouth4.webp",
+      "preview_sha256": "9ad9fd0cd03615f78fc6eed02ba30ed007924947ad55e0e2e0f6780ca5ea9940",
+      "order": 13,
+      "creator": {},
+      "device": {
+        "image_name": "standby_mouth4",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "6097353f8a7084b3f24eb5e35510da20291b9312e476d7173ba20e349db3f6fe",
+            "size": 1021418,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_mouth5",
+      "display_name": "静默5",
+      "source_label": "watcher-静默5",
+      "source_record_id": "reczz28UjOhF8ciy",
+      "preview": "previews/standby_mouth5.webp",
+      "preview_sha256": "2f22dda28322a097146af97c73937169044075929ba546e29ab5e560cd27d380",
+      "order": 14,
+      "creator": {},
+      "device": {
+        "image_name": "standby_mouth5",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "b2db9e9d1b004201b057a8ddf0df88f3d26901d011bb23139d56871cb254eb2a",
+            "size": 1489250,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_mouth6",
+      "display_name": "静默6",
+      "source_label": "watcher-静默6",
+      "source_record_id": "reczz28UjOi9PUYC",
+      "preview": "previews/standby_mouth6.webp",
+      "preview_sha256": "e779dcab2a4926b1c4edf04bd9a6d53775aba8a693346d9ac3f7d2334788d749",
+      "order": 15,
+      "creator": {
+        "action": {
+          "path": "actions/standby_mouth6.json",
+          "kind": "action",
+          "sha256": "3edba1aa9e613c7fb29a3223ad792f86795fff42b9da0e49261a9317153e7cfd",
+          "size": 1144,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "standby_mouth6",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "47a31d3c11293ad57553fe74fa33e0ffa3520467c86241d1b94a3cb83469861b",
+            "size": 1106432,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "3edba1aa9e613c7fb29a3223ad792f86795fff42b9da0e49261a9317153e7cfd",
+            "size": 1144,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little_mouth1",
+      "display_name": "静默-轻微1",
+      "source_label": "watcher-静默-轻微1",
+      "source_record_id": "reczz28UjOyYWte8",
+      "preview": "previews/standby_little_mouth1.webp",
+      "preview_sha256": "82eec66d95324ac49a6445a12849bc41d55d589d821b7d9f23f6b8ae7c412f84",
+      "order": 16,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little_mouth1",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "55f6f6dde84abb533bb8f9c71f648e5ce8034da3d4db4d741da6ccdbaa7fd391",
+            "size": 468038,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little_mouth2",
+      "display_name": "静默-轻微2",
+      "source_label": "watcher-静默-轻微2",
+      "source_record_id": "reczz28UjOzIwZLU",
+      "preview": "previews/standby_little_mouth2.webp",
+      "preview_sha256": "9d01cf8ddd69c82d3f21c8a03e77e237571b3287a93f535a735b2a40ba5eca85",
+      "order": 17,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little_mouth2",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "a629b3be86d04de7f3a49fac835d7d464bfe4c38f13f075fd10f2c2628155fd7",
+            "size": 978564,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little_mouth3",
+      "display_name": "静默-轻微3",
+      "source_label": "watcher-静默-轻微3",
+      "source_record_id": "reczz28UjP0AddPH",
+      "preview": "previews/standby_little_mouth3.webp",
+      "preview_sha256": "071958af331298f102857875987511827d833ab7defed487ee339ab25cc35895",
+      "order": 18,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little_mouth3",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "0269790641fe6c99fe0a483fc4e5410aaa6b1c3c63a2fa88de59793ffb21f2db",
+            "size": 1319100,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "standby_little_mouth4",
+      "display_name": "静默-轻微4",
+      "source_label": "watcher-静默-轻微4",
+      "source_record_id": "reczz28UjP16bnPo",
+      "preview": "previews/standby_little_mouth4.webp",
+      "preview_sha256": "74cd1c6003cb697f4da83bdd121e89f0b6dbae2b4f4eccd9065c5f336b164d3c",
+      "order": 19,
+      "creator": {},
+      "device": {
+        "image_name": "standby_little_mouth4",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "78cf45d45f4fe3c3631ecda70804f1bfb3dc060421cf8e7ba524fccdec210919",
+            "size": 1191092,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "funnyface",
+      "display_name": "鬼脸",
+      "source_label": "watcher-鬼脸",
+      "source_record_id": "reczz28UjP2FwK7x",
+      "preview": "previews/funnyface.webp",
+      "preview_sha256": "db8e3600bff393d064301d4d0ede3c72d98c3bf53ea16d7316ea3941308b1aa0",
+      "order": 20,
+      "creator": {
+        "action": {
+          "path": "actions/funnyface.json",
+          "kind": "action",
+          "sha256": "65e0a802e5dad02fdfb68dbc74756f47087868f9d33cbd2e9fa0a1528330fdca",
+          "size": 3044,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/funnyface.pcm",
+          "kind": "sfx",
+          "sha256": "59d8058f4ae283f52d922c2f18c604afaf8c47b81e41c5297cbaa3a6d10f2d58",
+          "size": 492774,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "funnyface",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "c2c014be643aca0cf14ed26358190d38af0b37df49ff7176a2a219b3edc5586d",
+            "size": 4405340,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "65e0a802e5dad02fdfb68dbc74756f47087868f9d33cbd2e9fa0a1528330fdca",
+            "size": 3044,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "59d8058f4ae283f52d922c2f18c604afaf8c47b81e41c5297cbaa3a6d10f2d58",
+            "size": 492774,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "snow",
+      "display_name": "下雪",
+      "source_label": "watcher-下雪",
+      "source_record_id": "reczz28UjUW9GBod",
+      "preview": "previews/snow.webp",
+      "preview_sha256": "72563470d362a2279f212bdc79be1c5a55ed1c5fe7480e45010b286cd04c5ff1",
+      "order": 21,
+      "creator": {
+        "action": {
+          "path": "actions/snow.json",
+          "kind": "action",
+          "sha256": "14cbe09fafb7cb47f52746e7eae830c98ab85392af5a53d9ac1c7b93bc546d72",
+          "size": 2670,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "snow",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "2d6d316516f7e6e6746a7825d6225ff5635b6e81aab5c113009bdc63c20d55d5",
+            "size": 5169600,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "14cbe09fafb7cb47f52746e7eae830c98ab85392af5a53d9ac1c7b93bc546d72",
+            "size": 2670,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "love_mouth",
+      "display_name": "爱心",
+      "source_label": "watcher-爱心",
+      "source_record_id": "reczz28V7gCpLRL8",
+      "preview": "previews/love_mouth.webp",
+      "preview_sha256": "1586f6036e2fb70911f07da23875f45ee96549422615c7d4f2f06e37517b45a4",
+      "order": 22,
+      "creator": {},
+      "device": {
+        "image_name": "love_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "57982a89b7870cda0c6ee3fe3569df0e681c563f7741d9316719fe6315dce9d7",
+            "size": 1408918,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "happy_mouth",
+      "display_name": "成功",
+      "source_label": "watcher-成功",
+      "source_record_id": "reczz28V7gDfU8GX",
+      "preview": "previews/happy_mouth.webp",
+      "preview_sha256": "20780c529fa367fe3cd81c99c5c510bfdb7b5a63020f9b7372d2a31e55e3eb06",
+      "order": 23,
+      "creator": {
+        "action": {
+          "path": "actions/happy_mouth.json",
+          "kind": "action",
+          "sha256": "b551222b41007665fa9ca67c0b7740ff5d1279439bb55c4af6545f9271de5cfb",
+          "size": 3045,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/happy_mouth.pcm",
           "kind": "sfx",
           "sha256": "ca5c54e4acf557e2436004462e057d49e860151034b627ca236b49ad12fc675a",
           "size": 104072,
@@ -265,18 +760,18 @@
         }
       },
       "device": {
-        "image_name": "happy",
+        "image_name": "happy_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "38c8c36aad24df082afbe4f4989b8bdd2e59266c4ab6f05b4c5a8620618320c8",
-            "size": 1406262,
+            "sha256": "077109c3ed972f5dc41fd6763be9b10aee4338ce7b59050740eb91cbe60c7003",
+            "size": 1405506,
             "format": "animpack-v2"
           },
           "action": {
             "kind": "action",
-            "sha256": "c512c4b0121b2d83ce71d9c93b6dee35f4c02f839825f109d68ce5373aa4eb41",
-            "size": 2630,
+            "sha256": "b551222b41007665fa9ca67c0b7740ff5d1279439bb55c4af6545f9271de5cfb",
+            "size": 3045,
             "format": "firmware-action-json-v1"
           },
           "sound": {
@@ -289,90 +784,375 @@
       }
     },
     {
-      "id": "custom1",
-      "display_name": "爱心",
-      "source_label": "watcher-爱心",
-      "source_record_id": "recvdwKVOautn8",
-      "preview": "previews/custom1.webp",
-      "preview_sha256": "18abe914009f51c41533a514229eb6efb6691811abbb092b515825f82ee895df",
-      "order": 7,
+      "id": "biyeyes_mouth",
+      "display_name": "大眼",
+      "source_label": "watcher-大眼",
+      "source_record_id": "reczz28V7gEULu17",
+      "preview": "previews/biyeyes_mouth.webp",
+      "preview_sha256": "dfb68c38d0b6731ad976c549ce1504f0631cb0ef4de9e52c59108e2a86755a80",
+      "order": 24,
       "creator": {},
       "device": {
-        "image_name": "custom1",
+        "image_name": "biyeyes_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "9fc9b1d5814e9a6ab8015e7f8ab98733aaf44da651aaafa68daf79f62f464438",
-            "size": 1409726,
+            "sha256": "873a8b7c4ff3bef56b775bf79939cefe3a30d0db4d8d9adb3d42c19ca0832752",
+            "size": 1745610,
             "format": "animpack-v2"
           }
         }
       }
     },
     {
-      "id": "custom2",
-      "display_name": "执行",
-      "source_label": "watcher-执行",
-      "source_record_id": "recvdwLdDj9jJm",
-      "preview": "previews/custom2.webp",
-      "preview_sha256": "62d11acea147ced751ef2ae6b2149c031a9ed73ac42458950dec4faa4df51b8e",
-      "order": 8,
+      "id": "clmness_mouth",
+      "display_name": "平静",
+      "source_label": "watcher-平静",
+      "source_record_id": "reczz28V7gFGIOKJ",
+      "preview": "previews/clmness_mouth.webp",
+      "preview_sha256": "697663aa9efd2ef4f5cf836264a1697b9c8c3f2c63a22b95ffb19c774311ed70",
+      "order": 25,
       "creator": {},
       "device": {
-        "image_name": "custom2",
+        "image_name": "clmness_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "d9a897fc2183432316d1c3c665967c8f3a11313e54173b6effde6d426066590a",
-            "size": 978066,
+            "sha256": "06b3dc2a47c02e588c8d9cc993505b4f6fca979a4cfe0ed6ab043b9aa5c3b6ba",
+            "size": 2849964,
             "format": "animpack-v2"
           }
         }
       }
     },
     {
-      "id": "thinking",
-      "display_name": "思考",
-      "source_label": "watcher-思考",
-      "source_record_id": "recvdxlLKRauKk",
-      "preview": "previews/thinking.webp",
-      "preview_sha256": "8955d968495419a4713bdb089759415793a8d6e879baea2046bdf4eeae2a3689",
-      "order": 9,
+      "id": "inquisitive_mouth",
+      "display_name": "好奇",
+      "source_label": "watcher-好奇",
+      "source_record_id": "reczz28V7gG1XZGI",
+      "preview": "previews/inquisitive_mouth.webp",
+      "preview_sha256": "1ccb897b53329aa1f0d08ec2fdfec821869c219893cebfd5db57f3d6afb08907",
+      "order": 26,
+      "creator": {},
+      "device": {
+        "image_name": "inquisitive_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "d076a14086297c37ccafd5f12ae32106226bf4f3a9303fda5929acbb46208218",
+            "size": 1404650,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "sunglasses_mouth",
+      "display_name": "墨镜",
+      "source_label": "watcher-墨镜",
+      "source_record_id": "reczz28V7gGhK9pW",
+      "preview": "previews/sunglasses_mouth.webp",
+      "preview_sha256": "ddb9d2cd33312b354686e9bbeb8885c90f8e9341bf5357e3f3e3d11602022599",
+      "order": 27,
       "creator": {
         "action": {
-          "path": "actions/thinking.json",
+          "path": "actions/sunglasses_mouth.json",
           "kind": "action",
-          "sha256": "dec62c9846dee02545647a857ac34e15b1b14b629279a51830a105d50f58a140",
-          "size": 2168,
+          "sha256": "ccde6cad35200871c96e218bf97aadcabf669d32860bf67829a5ad2fdda65b7f",
+          "size": 3134,
           "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/thinking.pcm",
-          "kind": "sfx",
-          "sha256": "0d8dec08a0ab8d592c1ed7e8a8c2180e3246f5ebbde5bba0e16b9d38498aa7fe",
-          "size": 80248,
-          "format": "pcm-s16le-24khz-mono"
         }
       },
       "device": {
-        "image_name": "thinking",
+        "image_name": "sunglasses_mouth",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "ddb067ecbbef4a95cb56e3a07879719e9035bf52060cae0efeef0072413f836c",
-            "size": 1321092,
+            "sha256": "50e4dfbeab4a31d726565c369aa4db0e860173a9f453ce31254099a5c24d4891",
+            "size": 2893976,
             "format": "animpack-v2"
           },
           "action": {
             "kind": "action",
-            "sha256": "dec62c9846dee02545647a857ac34e15b1b14b629279a51830a105d50f58a140",
-            "size": 2168,
+            "sha256": "ccde6cad35200871c96e218bf97aadcabf669d32860bf67829a5ad2fdda65b7f",
+            "size": 3134,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "hesitate_mouth",
+      "display_name": "犹豫",
+      "source_label": "watcher-犹豫",
+      "source_record_id": "reczz28V7iIqQqsA",
+      "preview": "previews/hesitate_mouth.webp",
+      "preview_sha256": "245ca1fb0616efd6a517b6dc4bb5ebb35377eb2984c25d474cce0fb56d6cf297",
+      "order": 28,
+      "creator": {},
+      "device": {
+        "image_name": "hesitate_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "b48a9ba07c15cdd2db809a9d03ff505d3b4406c5b183b18ad8829d8717d155ec",
+            "size": 2042484,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "anger_mouth",
+      "display_name": "生气",
+      "source_label": "watcher-生气",
+      "source_record_id": "reczz28VPpbp3BOn",
+      "preview": "previews/anger_mouth.webp",
+      "preview_sha256": "f2476be2aaadcbeb07e20e46188b90af008753456caf142856cbcebfad5a2404",
+      "order": 29,
+      "creator": {
+        "action": {
+          "path": "actions/anger_mouth.json",
+          "kind": "action",
+          "sha256": "0deba90626c647ae963bf74e6ddec4eeae740e5332916a169ab6401bdce0e615",
+          "size": 1491,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "anger_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "5ba618b5a3d7a192f90a19cf193bdf8d8e914f5fc83cb48d523868e8e2cdae2b",
+            "size": 1958206,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "0deba90626c647ae963bf74e6ddec4eeae740e5332916a169ab6401bdce0e615",
+            "size": 1491,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "sad_mouth",
+      "display_name": "伤心",
+      "source_label": "watcher-伤心",
+      "source_record_id": "reczz28VPpcpmEPB",
+      "preview": "previews/sad_mouth.webp",
+      "preview_sha256": "dc8404f7205b14149f2b316f5de7154431cd91bc34ae853cf5a88ad5812f9c0b",
+      "order": 30,
+      "creator": {
+        "action": {
+          "path": "actions/sad_mouth.json",
+          "kind": "action",
+          "sha256": "1944818ee53191d7657c51a16b4a4216ccaf12115a06716af805408756117be5",
+          "size": 1701,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "sad_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "fb1ec791eeb4ee6c26c7e95a28cac741f2477d6549910830e71890a112225688",
+            "size": 3320136,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "1944818ee53191d7657c51a16b4a4216ccaf12115a06716af805408756117be5",
+            "size": 1701,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "speechless_mouth",
+      "display_name": "无语",
+      "source_label": "watcher-无语",
+      "source_record_id": "reczz28VqTUtcNgN",
+      "preview": "previews/speechless_mouth.webp",
+      "preview_sha256": "dbdba985c5d1795e5320bc2d2da2257b931eb5c544dfb906c39a64bdbfe4cb95",
+      "order": 31,
+      "creator": {},
+      "device": {
+        "image_name": "speechless_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e08b8cfa3793a3c7d8b912c2716f4e7f12e9464a84ff1d7ecf24aae9361a9908",
+            "size": 2085628,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "wink_mouth",
+      "display_name": "wink",
+      "source_label": "watcher-wink",
+      "source_record_id": "reczz28VqTWEsm0b",
+      "preview": "previews/wink_mouth.webp",
+      "preview_sha256": "32e5a04ce90245db4c4b4ab6d6a7d4c110f6afd4372384a6477e9c672830e35f",
+      "order": 32,
+      "creator": {
+        "action": {
+          "path": "actions/wink_mouth.json",
+          "kind": "action",
+          "sha256": "a8408ae090edd8bd29db7b6dfaa615042f961b4df26e3b741d25d2931294f596",
+          "size": 1236,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/wink_mouth.pcm",
+          "kind": "sfx",
+          "sha256": "3bbbb6baa8e724b8a4b185c855d53bd6f2b1a071ce0d5af36e2752c865ab48ac",
+          "size": 109088,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "wink_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "7560ff69efaafd7183b39bebea89715b02e6961a931c16025932faafca20a507",
+            "size": 936392,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "a8408ae090edd8bd29db7b6dfaa615042f961b4df26e3b741d25d2931294f596",
+            "size": 1236,
             "format": "firmware-action-json-v1"
           },
           "sound": {
             "kind": "sfx",
-            "sha256": "0d8dec08a0ab8d592c1ed7e8a8c2180e3246f5ebbde5bba0e16b9d38498aa7fe",
-            "size": 80248,
+            "sha256": "3bbbb6baa8e724b8a4b185c855d53bd6f2b1a071ce0d5af36e2752c865ab48ac",
+            "size": 109088,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "boredom_mouth",
+      "display_name": "厌倦",
+      "source_label": "watcher-厌倦",
+      "source_record_id": "reczz28VqU2JDM72",
+      "preview": "previews/boredom_mouth.webp",
+      "preview_sha256": "2d3a38cf5348d640eedc82263871c610ca32abd2f1ee5f5db7cd06cbfd7b7f51",
+      "order": 33,
+      "creator": {},
+      "device": {
+        "image_name": "boredom_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "692f9cca0025e15843b00b5354553c734db6869fdf32093789240a38aac727c1",
+            "size": 1745062,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "shock_mouth",
+      "display_name": "感叹号",
+      "source_label": "watcher-感叹号",
+      "source_record_id": "reczz28VqiNu0QKI",
+      "preview": "previews/shock_mouth.webp",
+      "preview_sha256": "8000cfc19235c51f88e4ea11c689d1f95ee60f5df1537ddb5e6b02a3a674e032",
+      "order": 34,
+      "creator": {
+        "action": {
+          "path": "actions/shock_mouth.json",
+          "kind": "action",
+          "sha256": "6bea72d7d478a069f44fd806ccac6a0c3aa51d8b2753eda2640d345b2a493aa0",
+          "size": 886,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/shock_mouth.pcm",
+          "kind": "sfx",
+          "sha256": "bd880fcc5ac661fd0b22f38f0d0f12a5c8a2f67d25ec80280efbf9038d62bb44",
+          "size": 114104,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "shock_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "32f3d51e71dc95ea736d9552c9417be1a2d28da885c99dc5d161118986b88e6f",
+            "size": 981022,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "6bea72d7d478a069f44fd806ccac6a0c3aa51d8b2753eda2640d345b2a493aa0",
+            "size": 886,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "bd880fcc5ac661fd0b22f38f0d0f12a5c8a2f67d25ec80280efbf9038d62bb44",
+            "size": 114104,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "query_mouth",
+      "display_name": "问号",
+      "source_label": "watcher-问号",
+      "source_record_id": "reczz28VqiOqP2gg",
+      "preview": "previews/query_mouth.webp",
+      "preview_sha256": "251f46ec9abe6202e154cd69686f33daaf89bd6bd14b4ac705c203812bdbe272",
+      "order": 35,
+      "creator": {
+        "action": {
+          "path": "actions/query_mouth.json",
+          "kind": "action",
+          "sha256": "e135910597024d8389121f8bc3c1d1aa2baef2a6fecdb0a5fd4821005d6f6ca6",
+          "size": 1252,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/query_mouth.pcm",
+          "kind": "sfx",
+          "sha256": "406cb6450111f528e644137ed016bb4fc02461cc1b6d8be62485da98fdcec123",
+          "size": 75232,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "query_mouth",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "9261c988a8bfed466437c6bad34aa27f8d66e4721009d1f3bf81ed40fa5b5424",
+            "size": 639248,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "e135910597024d8389121f8bc3c1d1aa2baef2a6fecdb0a5fd4821005d6f6ca6",
+            "size": 1252,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "406cb6450111f528e644137ed016bb4fc02461cc1b6d8be62485da98fdcec123",
+            "size": 75232,
             "format": "pcm-s16le-24khz-mono"
           }
         }
@@ -382,10 +1162,10 @@
       "id": "boot",
       "display_name": "开机",
       "source_label": "watcher-开机",
-      "source_record_id": "recvdxn4mrrgzp",
+      "source_record_id": "reczz28XWUrC7agw",
       "preview": "previews/boot.webp",
       "preview_sha256": "4103eedc6cb58bc35379fec7361d8286aae73f1a46ff850a25bc3c96b4e5cf5d",
-      "order": 10,
+      "order": 36,
       "creator": {
         "sound": {
           "path": "sounds/boot.pcm",
@@ -414,1178 +1194,153 @@
       }
     },
     {
-      "id": "bluetooth",
-      "display_name": "蓝牙",
-      "source_label": "watcher-蓝牙",
-      "source_record_id": "recvdxn4DMRrnB",
-      "preview": "previews/bluetooth.webp",
-      "preview_sha256": "1a557acfa21e90866f40beae95f59772a427f6b1de98cea4eebea2e7e095882d",
-      "order": 11,
-      "creator": {
-        "action": {
-          "path": "actions/bluetooth.json",
-          "kind": "action",
-          "sha256": "2542a953080958a300ba2b515f74eadf9dec4ec9918d9105cc5b843d6d49a685",
-          "size": 1351,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/bluetooth.pcm",
-          "kind": "sfx",
-          "sha256": "98fdb7944e6de161e4c82fa04d2d6e2b4f234eabfb62300fe2985bf2f01c509d",
-          "size": 114104,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "bluetooth",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "9616549ac5d7b1bb57ec4c0f7f86a8e2c4e3417f6c942fabe28e4f1188b74ace",
-            "size": 2631432,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "2542a953080958a300ba2b515f74eadf9dec4ec9918d9105cc5b843d6d49a685",
-            "size": 1351,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "98fdb7944e6de161e4c82fa04d2d6e2b4f234eabfb62300fe2985bf2f01c509d",
-            "size": 114104,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "disconnect",
-      "display_name": "断开蓝牙",
-      "source_label": "watcher-断开蓝牙",
-      "source_record_id": "recvdxn4R6TqKS",
-      "preview": "previews/disconnect.webp",
-      "preview_sha256": "3498b8343f12c9e483e86b33f2d1da02d624b49806817f5368d22ac2a655d411",
-      "order": 12,
-      "creator": {
-        "action": {
-          "path": "actions/disconnect.json",
-          "kind": "action",
-          "sha256": "334c0d5e137d5064c1429489fd37e77dd2e9c2e085c024863f27277de68b13c8",
-          "size": 1821,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/disconnect.pcm",
-          "kind": "sfx",
-          "sha256": "633fc5a74c688e8814868d103035c9c912506f99bbd2026fc359415312a6ab88",
-          "size": 151720,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "disconnect",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "bb74b598652d0862f8ee61ff5397b25e74064cf6fcb9e0ba300da1bbb548b8bc",
-            "size": 1326346,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "334c0d5e137d5064c1429489fd37e77dd2e9c2e085c024863f27277de68b13c8",
-            "size": 1821,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "633fc5a74c688e8814868d103035c9c912506f99bbd2026fc359415312a6ab88",
-            "size": 151720,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "shock",
-      "display_name": "感叹号",
-      "source_label": "watcher-感叹号",
-      "source_record_id": "recvi2TAd9G4gY",
-      "preview": "previews/shock.webp",
-      "preview_sha256": "b429ca6a83360234a74a92cfe0063997a437cd74816ae983ff0ad017f20a6dee",
-      "order": 13,
-      "creator": {
-        "action": {
-          "path": "actions/shock.json",
-          "kind": "action",
-          "sha256": "03518c2d942f9354f2766d728df25d22484495668c655729cdb92088496c7af2",
-          "size": 868,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/shock.pcm",
-          "kind": "sfx",
-          "sha256": "bd880fcc5ac661fd0b22f38f0d0f12a5c8a2f67d25ec80280efbf9038d62bb44",
-          "size": 114104,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "shock",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "5949ee5f786017ee446c2017496941324c6ee6ade13e2fd21fc4332d308994ff",
-            "size": 983512,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "03518c2d942f9354f2766d728df25d22484495668c655729cdb92088496c7af2",
-            "size": 868,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "bd880fcc5ac661fd0b22f38f0d0f12a5c8a2f67d25ec80280efbf9038d62bb44",
-            "size": 114104,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "sunglasses",
-      "display_name": "墨镜",
-      "source_label": "watcher-墨镜",
-      "source_record_id": "recvi2TAB2Pcnx",
-      "preview": "previews/sunglasses.webp",
-      "preview_sha256": "f8f22aff3860ebdb875d2d41b21f5c8cd8e42974825de1428b6e8ac850456555",
-      "order": 14,
-      "creator": {
-        "action": {
-          "path": "actions/sunglasses.json",
-          "kind": "action",
-          "sha256": "30450bbface0e0433dac4055b75ef260b94798964e4161bed654093f4cf3af51",
-          "size": 3116,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "sunglasses",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "54b774517a1a4c37722325ce7753e218253b2505611aa339cebc491cea8f1bb4",
-            "size": 2896464,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "30450bbface0e0433dac4055b75ef260b94798964e4161bed654093f4cf3af51",
-            "size": 3116,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "sad",
-      "display_name": "伤心",
-      "source_label": "watcher-伤心",
-      "source_record_id": "recvi2TAOYpVc3",
-      "preview": "previews/sad.webp",
-      "preview_sha256": "641131e58415413082686c9e7a03b0f57c011ee64dcb0ed0d9d8b65d45e7c5fb",
-      "order": 15,
-      "creator": {
-        "action": {
-          "path": "actions/sad.json",
-          "kind": "action",
-          "sha256": "2bb19d5d1c6e461d2c9890a2c4d3550671e92557ab22ad4de9ea83f2a0105fbe",
-          "size": 1683,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "sad",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "edd922d7e8e735f67c523439cdced9059cb36659c6f79df7b55edbc7f81219d5",
-            "size": 3326704,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "2bb19d5d1c6e461d2c9890a2c4d3550671e92557ab22ad4de9ea83f2a0105fbe",
-            "size": 1683,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "get",
-      "display_name": "收到",
-      "source_label": "watcher-收到",
-      "source_record_id": "recvi2TBg00IVq",
-      "preview": "previews/get.webp",
-      "preview_sha256": "177a58ab380b05a5357286fb28a9ec3451eacf17075988b323edc604be93993e",
-      "order": 16,
-      "creator": {
-        "action": {
-          "path": "actions/get.json",
-          "kind": "action",
-          "sha256": "1fe66893cc5b47ed9ab393518b12bc818934fff9ffed25885218d83ff7a79730",
-          "size": 1215,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/get.pcm",
-          "kind": "sfx",
-          "sha256": "3bbbb6baa8e724b8a4b185c855d53bd6f2b1a071ce0d5af36e2752c865ab48ac",
-          "size": 109088,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "get",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "56bc645e468009e0056e077eef2930d85c57ea94dcdf2061b1a46aff9df81d34",
-            "size": 938848,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "1fe66893cc5b47ed9ab393518b12bc818934fff9ffed25885218d83ff7a79730",
-            "size": 1215,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "3bbbb6baa8e724b8a4b185c855d53bd6f2b1a071ce0d5af36e2752c865ab48ac",
-            "size": 109088,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "smile",
-      "display_name": "微笑",
-      "source_label": "watcher-微笑",
-      "source_record_id": "recvi2TBDZMYW9",
-      "preview": "previews/smile.webp",
-      "preview_sha256": "32ef85caf754b057ca7a629e34f89aaacb5ce8b44eb7fe37a7cfe4e0b30ad268",
-      "order": 17,
-      "creator": {
-        "action": {
-          "path": "actions/smile.json",
-          "kind": "action",
-          "sha256": "75510a0ea5e51d884ea16d6ba4a1bd29d0e3bcbb51c19f4213cf01484c84666c",
-          "size": 1928,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "smile",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "0b4111338428496d62e320b14ae80d7efe43c20aa0033dcd5e570f5f5bf06601",
-            "size": 1576534,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "75510a0ea5e51d884ea16d6ba4a1bd29d0e3bcbb51c19f4213cf01484c84666c",
-            "size": 1928,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "recharge",
-      "display_name": "无线充电",
-      "source_label": "watcher-无线充电",
-      "source_record_id": "recvi30buNF2qB",
-      "preview": "previews/recharge.webp",
-      "preview_sha256": "44373a3353f08ad65b41a71c9c4a88c0388158b8257103463b39d7dd27880f4b",
-      "order": 18,
-      "creator": {
-        "sound": {
-          "path": "sounds/recharge.pcm",
-          "kind": "sfx",
-          "sha256": "608a5328e22158f1c7fbf32969d7541339639f53b2ffdf6f6dd30984dae8325d",
-          "size": 104072,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "recharge",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "7f7c8c521d569953af96e936ad0993fe596de5d31bbf2040701414a17598733f",
-            "size": 898830,
-            "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "608a5328e22158f1c7fbf32969d7541339639f53b2ffdf6f6dd30984dae8325d",
-            "size": 104072,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "speechless",
-      "display_name": "无语",
-      "source_label": "watcher-无语",
-      "source_record_id": "recvi30bHMhwvH",
-      "preview": "previews/speechless.webp",
-      "preview_sha256": "b26072c8ab238e616ed1e6129a5eb26b274579824fb500105c290f105dd7d226",
-      "order": 19,
-      "creator": {},
-      "device": {
-        "image_name": "speechless",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "b01de363e8c1589aebdbf26f1d72b7cbab3a039510045306b62b931084ea5503",
-            "size": 2088858,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "focus",
-      "display_name": "专注",
-      "source_label": "watcher-专注",
-      "source_record_id": "recvi30bVhcK9k",
-      "preview": "previews/focus.webp",
-      "preview_sha256": "20cba6fbd1ca604b669e719808487deaf35fc2a1a50ae3e02a3457e583ac0df8",
-      "order": 20,
-      "creator": {
-        "action": {
-          "path": "actions/focus.json",
-          "kind": "action",
-          "sha256": "92368339917456db1fa285cb691e6395b277d24cd2ab0d764c0cca051e593150",
-          "size": 1811,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/focus.pcm",
-          "kind": "sfx",
-          "sha256": "c55e83a72e23bb2f8025e0afb934fc01de7e0305959e40add732a03b8afe064f",
-          "size": 228206,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "focus",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "e3878ef698a8aa7b5af699f54e2b94043a6fef54c3f8fdb8e7030361400968e4",
-            "size": 2005126,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "92368339917456db1fa285cb691e6395b277d24cd2ab0d764c0cca051e593150",
-            "size": 1811,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "c55e83a72e23bb2f8025e0afb934fc01de7e0305959e40add732a03b8afe064f",
-            "size": 228206,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "fondle_love",
-      "display_name": "抚摸-爱心",
-      "source_label": "watcher-抚摸-爱心",
-      "source_record_id": "recvi30caMMUN8",
-      "preview": "previews/fondle_love.webp",
-      "preview_sha256": "43541e31c4974ec570ed42f97d4831ea10b36d2c5f707b04f5628054e4528c1d",
-      "order": 21,
-      "creator": {
-        "action": {
-          "path": "actions/fondle_love.json",
-          "kind": "action",
-          "sha256": "5f3b3336cda31e8c0fa5fa957ad3a9640d0c36c831e18b22159884275ca124e6",
-          "size": 2650,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "fondle_love",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "2fd3e6b165ca539eb219901041c5310fd0f16e3a42f819ecc0e6606b87eabacb",
-            "size": 3375158,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "5f3b3336cda31e8c0fa5fa957ad3a9640d0c36c831e18b22159884275ca124e6",
-            "size": 2650,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "fondle_anger",
-      "display_name": "抚摸-生气",
-      "source_label": "watcher-抚摸-生气",
-      "source_record_id": "recvi30cn7zkKC",
-      "preview": "previews/fondle_anger.webp",
-      "preview_sha256": "0947a19b5e9beec9d78adb49c6242ca7922070d39f7cca7ca357ba2f9f06e675",
-      "order": 22,
-      "creator": {
-        "action": {
-          "path": "actions/fondle_anger.json",
-          "kind": "action",
-          "sha256": "e9cccd50f8a2b69c1ace227f687be6988a235b6862217c5cdada0fc342e902dc",
-          "size": 4642,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "fondle_anger",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "b867b2fb6860d250c9b92f0a86063f2739d159243ae0992375ef342a0b15f53d",
-            "size": 3026590,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "e9cccd50f8a2b69c1ace227f687be6988a235b6862217c5cdada0fc342e902dc",
-            "size": 4642,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby1",
-      "display_name": "静默1",
-      "source_label": "watcher-静默1",
-      "source_record_id": "recvi3323lWzDp",
-      "preview": "previews/standby1.webp",
-      "preview_sha256": "6c64a6dfe4705e3e2e6e43a1e3add09c6a7e80fc192ca0789c7c0cc1aebef39d",
-      "order": 23,
-      "creator": {
-        "action": {
-          "path": "actions/standby1.json",
-          "kind": "action",
-          "sha256": "d173f40fed7afc3225172574d5df0445409e98afd811640d558af81650cfdf18",
-          "size": 886,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "standby1",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "4f695b396788bfa31551d7096f48d50eaa77eeeba8cd7c4f05693eb82055bbcf",
-            "size": 894418,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "d173f40fed7afc3225172574d5df0445409e98afd811640d558af81650cfdf18",
-            "size": 886,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby2",
-      "display_name": "静默2",
-      "source_label": "watcher-静默2",
-      "source_record_id": "recvi333bb3XYM",
-      "preview": "previews/standby2.webp",
-      "preview_sha256": "4198e052ce38fc413609feb17b95e3f93a7a27674b67d812f912538d0ef9f1f4",
-      "order": 24,
-      "creator": {
-        "action": {
-          "path": "actions/standby2.json",
-          "kind": "action",
-          "sha256": "7580fb77c874ae187ec36c533217dedcd60001e46bbadca7b856406cd2db1bca",
-          "size": 1362,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "standby2",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "c2592013e214ba5cd35e6abbaafd3f813b1b9f9734280c4d43c81bd527a612bb",
-            "size": 1065972,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "7580fb77c874ae187ec36c533217dedcd60001e46bbadca7b856406cd2db1bca",
-            "size": 1362,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby3",
-      "display_name": "静默3",
-      "source_label": "watcher-静默3",
-      "source_record_id": "recvi333m3qLOU",
-      "preview": "previews/standby3.webp",
-      "preview_sha256": "8205dac1ec85f1f57508ada8ff923e79a8fdab8db89e53d1b608882cac0a15df",
-      "order": 25,
-      "creator": {
-        "action": {
-          "path": "actions/standby3.json",
-          "kind": "action",
-          "sha256": "f4c12578185f127ef47d44c91d3939c0c705297806a8432156508d1114be2ba2",
-          "size": 1125,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "standby3",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "46fd2ed959317a0ff058ef3581a0f3e4ffbebf4ba06bd1512ae249cc3754000d",
-            "size": 1534984,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "f4c12578185f127ef47d44c91d3939c0c705297806a8432156508d1114be2ba2",
-            "size": 1125,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby4",
-      "display_name": "静默4",
-      "source_label": "watcher-静默4",
-      "source_record_id": "recvi333xNJltr",
-      "preview": "previews/standby4.webp",
-      "preview_sha256": "16f7a76a7f889165b72d7095639385f192dbc4a6e8e7bc1cc5f1746e9414303e",
-      "order": 26,
-      "creator": {
-        "action": {
-          "path": "actions/standby4.json",
-          "kind": "action",
-          "sha256": "d7a3f76582ce029a65e0aa670377c73db2d5caf624e58f2450e1589ae2ff74bf",
-          "size": 886,
-          "format": "firmware-action-json-v1"
-        }
-      },
-      "device": {
-        "image_name": "standby4",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "57ef03936bf8827efc0bb70b56e9d8feb33854fbca6dda98cf27dfec70aff992",
-            "size": 1023686,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "d7a3f76582ce029a65e0aa670377c73db2d5caf624e58f2450e1589ae2ff74bf",
-            "size": 886,
-            "format": "firmware-action-json-v1"
-          }
-        }
-      }
-    },
-    {
-      "id": "blink",
-      "display_name": "眨眼",
-      "source_label": "watcher-眨眼",
-      "source_record_id": "recvi333EF4Rs3",
-      "preview": "previews/blink.webp",
-      "preview_sha256": "967b7bb1dcebfc06b8386f764fd5a3faaceff5721e9c7a34c6e3d4a205d7f5bf",
-      "order": 27,
-      "creator": {
-        "sound": {
-          "path": "sounds/blink.pcm",
-          "kind": "sfx",
-          "sha256": "e5281b0bf23fff7fd59ca349c53e616c03d29444f44bf7d04bb3d18101a47cf2",
-          "size": 31348,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "blink",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "94c601ce5202a6c2196df1910cfd5d3fb44118e1f1438c9917fe35727a592586",
-            "size": 255700,
-            "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "e5281b0bf23fff7fd59ca349c53e616c03d29444f44bf7d04bb3d18101a47cf2",
-            "size": 31348,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "upgrade",
-      "display_name": "固件升级",
-      "source_label": "watcher-固件升级",
-      "source_record_id": "recviVuvF18Wfz",
-      "preview": "previews/upgrade.webp",
-      "preview_sha256": "acc88a5659dce58eadb065cca5b11aba8dcd7af9756d080877b3bdc7a0a78b25",
-      "order": 28,
-      "creator": {},
-      "device": {
-        "image_name": "upgrade",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "ca5c8b621aed1afae69e7f11df5e9021f61cb31fd4f80a0dd1b44de1149617d6",
-            "size": 2572596,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_start",
-      "display_name": "睡觉-开始",
-      "source_label": "watcher-睡觉-开始",
-      "source_record_id": "recvo1sZqpI62Y",
-      "preview": "previews/standby_start.webp",
-      "preview_sha256": "7706f3d98d4a6106b5168f334b8251883d8c28d65e95135e75f444b79c59cbaf",
-      "order": 29,
-      "creator": {},
-      "device": {
-        "image_name": "standby_start",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "4b47f62545ab7a8efe6789d475b2ae8ff8ade37d0dacb1d47d047e87189cb5fe",
-            "size": 1704464,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_loop",
-      "display_name": "睡觉-中间",
-      "source_label": "watcher-睡觉-中间",
-      "source_record_id": "recvo1sZDKIRdN",
-      "preview": "previews/standby_loop.webp",
-      "preview_sha256": "2e75e1f045f884a4f6620ec92e0bc103232c6343fdf1e66b1a801b4c3d2d045c",
-      "order": 30,
-      "creator": {},
-      "device": {
-        "image_name": "standby_loop",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "cb55e16eb179dbfcdd5096a581ad46d3f6f6c5267d10b0f2ae3c9afc325afca6",
-            "size": 1706916,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_end",
-      "display_name": "睡觉-结束",
-      "source_label": "watcher-睡觉-结束",
-      "source_record_id": "recvo1sZNE0cQn",
-      "preview": "previews/standby_end.webp",
-      "preview_sha256": "b1ee4478492ea400aa8e5136700671e423408915ce37157eaa11b372e52b8118",
-      "order": 31,
-      "creator": {},
-      "device": {
-        "image_name": "standby_end",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "9f1c39baa11b9849059cccadc77a6dd1a729b80a1d363b832ec293eb844a2fff",
-            "size": 127940,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "music",
-      "display_name": "听音乐",
-      "source_label": "watcher-听音乐",
-      "source_record_id": "recvo1ti0CFCeG",
-      "preview": "previews/music.webp",
-      "preview_sha256": "d53588dc6c8cf051501d52853fe6341e221a8fdc0860ce76e2020e6b30566286",
-      "order": 32,
-      "creator": {},
-      "device": {
-        "image_name": "music",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "3541768c00845517be526483465d306162249a4c20d3513e818513c0472fa39b",
-            "size": 1287880,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "speaking_blink",
-      "display_name": "说话眨眼",
-      "source_label": "watcher-说话眨眼",
-      "source_record_id": "recvoMlIEoSSol",
-      "preview": "previews/speaking_blink.webp",
-      "preview_sha256": "bdc7a911ac5f58adec5462c285acde51c4ad33b307bc69c5c890f8161540aa38",
-      "order": 33,
-      "creator": {},
-      "device": {
-        "image_name": "speaking_blink",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "f7dc088ccc4969f26fa14a1ce572aa089ee189dc16e05c857e2c34680ded5c86",
-            "size": 213266,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "speaking_eye",
-      "display_name": "说话动",
-      "source_label": "watcher-说话动",
-      "source_record_id": "recvoMlKi5FJS7",
-      "preview": "previews/speaking_eye.webp",
-      "preview_sha256": "2bdc1d6d8e6be2a6961bfee3c1812f2d0d07436695f1f8a1f0e561e5374367bd",
-      "order": 34,
-      "creator": {},
-      "device": {
-        "image_name": "speaking_eye",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "de5e22989714afb9d3c2ba11bb4a5ef47736ad8c7f11ea761de0a4f4b32087ec",
-            "size": 341446,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "sing",
-      "display_name": "唱歌",
-      "source_label": "watcher-唱歌",
-      "source_record_id": "recvqhvF78YSg1",
-      "preview": "previews/sing.webp",
-      "preview_sha256": "e35a1e204d9fdce0f260b9e8b6fdf5aa6176db22935afa7ef917ce8b5e5b64cc",
-      "order": 35,
-      "creator": {},
-      "device": {
-        "image_name": "sing",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "d2a7e56e1a37dbfb5a5c59b941ba7670319ee7d36bcc5b4cf65ea0f32433f9ff",
-            "size": 2097546,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "photo",
-      "display_name": "拍照",
-      "source_label": "watcher-拍照",
-      "source_record_id": "recvqhvFrgLRXU",
-      "preview": "previews/photo.webp",
-      "preview_sha256": "0ad17366d309baac2088b17c2b09db9a03ca9abb10af0e0b6e85a4a7e4d66256",
-      "order": 36,
-      "creator": {
-        "sound": {
-          "path": "sounds/photo.pcm",
-          "kind": "sfx",
-          "sha256": "6dae56f94efde1d537f9c0d7e45a6063f858e0f8174e64cf061b51a9661c7cfb",
-          "size": 170528,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "photo",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "5acd363b8c4099346eac2a9fe4cbd6bff4b78e5d09f3d7e949a7be883c98f8ff",
-            "size": 1494632,
-            "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "6dae56f94efde1d537f9c0d7e45a6063f858e0f8174e64cf061b51a9661c7cfb",
-            "size": 170528,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "blink_fast",
-      "display_name": "眨眼-快",
-      "source_label": "watcher-眨眼-快",
-      "source_record_id": "recvqEWUE66uLD",
-      "preview": "previews/blink_fast.webp",
-      "preview_sha256": "91085dd58f236a20f301484d4d761c4aa39d2f64b9ffaa4553e12040cbe9ef1c",
+      "id": "error",
+      "display_name": "错误",
+      "source_label": "watcher-错误",
+      "source_record_id": "reczz28XWUs0Kzgo",
+      "preview": "previews/error.webp",
+      "preview_sha256": "8dec8e48b98bd1565609e7b514fdf41b0bd9f3200189529c878a577484b5965f",
       "order": 37,
       "creator": {
+        "action": {
+          "path": "actions/error.json",
+          "kind": "action",
+          "sha256": "a4c0aca4487bb69a4a0c46f00c0038a3a64865971e0f6e65f94a02d7bdd99342",
+          "size": 2865,
+          "format": "firmware-action-json-v1"
+        },
         "sound": {
-          "path": "sounds/blink_fast.pcm",
+          "path": "sounds/error.pcm",
           "kind": "sfx",
-          "sha256": "e5ed59f09534f4c9a8b8456b57eeb9effceb03efc4ee13f036bc69141b54498d",
-          "size": 22570,
+          "sha256": "4134cba108833875cd8ea581a22266a1a923b64779ce60c5f407c3548749a324",
+          "size": 41378,
           "format": "pcm-s16le-24khz-mono"
         }
       },
       "device": {
-        "image_name": "blink_fast",
+        "image_name": "error",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "77fe06f970bdbb3f51612834adc19ab81f2504942f4c50f3696c3becae644ceb",
-            "size": 170326,
+            "sha256": "61d977c4f4dbfbda79112e7bbc4263e138706dd59bdba37f5ac271b22ad03673",
+            "size": 1367808,
             "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "a4c0aca4487bb69a4a0c46f00c0038a3a64865971e0f6e65f94a02d7bdd99342",
+            "size": 2865,
+            "format": "firmware-action-json-v1"
           },
           "sound": {
             "kind": "sfx",
-            "sha256": "e5ed59f09534f4c9a8b8456b57eeb9effceb03efc4ee13f036bc69141b54498d",
-            "size": 22570,
+            "sha256": "4134cba108833875cd8ea581a22266a1a923b64779ce60c5f407c3548749a324",
+            "size": 41378,
             "format": "pcm-s16le-24khz-mono"
           }
         }
       }
     },
     {
-      "id": "interference",
-      "display_name": "故障",
-      "source_label": "watcher-故障",
-      "source_record_id": "recvqL1YjcaoCp",
-      "preview": "previews/interference.webp",
-      "preview_sha256": "479d6ff594324a9e4d5a0d8e5d3a244dee4213fd8b2309450b64a5c5f46f14a5",
+      "id": "standby",
+      "display_name": "待机",
+      "source_label": "watcher-待机",
+      "source_record_id": "reczz28XWYOeUuQV",
+      "preview": "previews/standby.webp",
+      "preview_sha256": "df944604ab45f0c3066aa3793ec300a518306e0c6dd8f62870ab96b43bf021f8",
       "order": 38,
-      "creator": {
-        "sound": {
-          "path": "sounds/interference.pcm",
-          "kind": "sfx",
-          "sha256": "c36294fa515e7d7618512f1e807e05189ac713bfe8d48bb285c336668cf1601a",
-          "size": 27586,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
+      "creator": {},
       "device": {
-        "image_name": "interference",
+        "image_name": "standby",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "7f7684d41ded88aa4730220d72d4d4e9d60c097eda35e18fdfaf46c3ef7a86e2",
-            "size": 213960,
+            "sha256": "2a0d24b66a3fc97f7dee44b62beb2df2b8b047c7a7f30de577ebc4b3126c1cd1",
+            "size": 893158,
             "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "c36294fa515e7d7618512f1e807e05189ac713bfe8d48bb285c336668cf1601a",
-            "size": 27586,
-            "format": "pcm-s16le-24khz-mono"
           }
         }
       }
     },
     {
-      "id": "click_eye",
-      "display_name": "点击闭眼",
-      "source_label": "watcher-点击闭眼",
-      "source_record_id": "recvqL1YyFoTdX",
-      "preview": "previews/click_eye.webp",
-      "preview_sha256": "ac8b6d5e7d7c912fd001c3d23c3253126413663eb1966ddaf8b965daf115c28e",
+      "id": "listening",
+      "display_name": "聆听",
+      "source_label": "watcher-聆听",
+      "source_record_id": "reczz28XWYPp4mrJ",
+      "preview": "previews/listening.webp",
+      "preview_sha256": "d773dd9ee8098ce0e72e23a7fbad43510d8f746872e097618a7016e30ff4f3ba",
       "order": 39,
-      "creator": {
-        "sound": {
-          "path": "sounds/click_eye.pcm",
-          "kind": "sfx",
-          "sha256": "cc405fb422def345991338e12514871298fb523b59820f052f35bcd538a10172",
-          "size": 56424,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
+      "creator": {},
       "device": {
-        "image_name": "click_eye",
+        "image_name": "listening",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "03e468a8b4b073c55f5aa79e0b0fc2ead6e73ce9f6bcafbce37b1ca25680b759",
-            "size": 468842,
+            "sha256": "f07e8dcafc18e5f74429e12f70f25b4c2aa0089909ca749f5d1cef4a4419f039",
+            "size": 851092,
             "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "cc405fb422def345991338e12514871298fb523b59820f052f35bcd538a10172",
-            "size": 56424,
-            "format": "pcm-s16le-24khz-mono"
           }
         }
       }
     },
     {
-      "id": "anger",
-      "display_name": "生气",
-      "source_label": "watcher-生气",
-      "source_record_id": "recvqL1YZWQtqq",
-      "preview": "previews/anger.webp",
-      "preview_sha256": "ae04565aa30a721fec6216e715c202779c6b2f3a70e17009826833cc6d94ced0",
+      "id": "thinking",
+      "display_name": "思考",
+      "source_label": "watcher-思考",
+      "source_record_id": "reczz28XWYREiJci",
+      "preview": "previews/thinking.webp",
+      "preview_sha256": "70cb7a3dff7c20fc3f0542365deb212466ff192706dbf30b4e313a81cb9cffa4",
       "order": 40,
       "creator": {},
       "device": {
-        "image_name": "anger",
+        "image_name": "thinking",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "0fd45b0917b1bd042f2122d2bb2c2470088ee3bcd48b88781f74438604109291",
-            "size": 1961528,
+            "sha256": "0234453b8b052808115258430f4cc80bf48581edeb13db33317689dc8b2131f3",
+            "size": 1277142,
             "format": "animpack-v2"
           }
         }
       }
     },
     {
-      "id": "query",
-      "display_name": "问号",
-      "source_label": "watcher-问号",
-      "source_record_id": "recvri1PB9kHgn",
-      "preview": "previews/query.webp",
-      "preview_sha256": "13b29904e73b542bfb820af8aa64a3ca2f7492dc8c5aaf99b05ef4ece84ecbf6",
+      "id": "speaking",
+      "display_name": "说话",
+      "source_label": "watcher-说话",
+      "source_record_id": "reczz28XWZem9ELi",
+      "preview": "previews/speaking.webp",
+      "preview_sha256": "35ff2cbd722be34f33aebf0221627e33339dec88a4a6283a374235b56d0ca7a8",
       "order": 41,
-      "creator": {
-        "sound": {
-          "path": "sounds/query.pcm",
-          "kind": "sfx",
-          "sha256": "406cb6450111f528e644137ed016bb4fc02461cc1b6d8be62485da98fdcec123",
-          "size": 75232,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
+      "creator": {},
       "device": {
-        "image_name": "query",
+        "image_name": "speaking",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "6dcd38d8004463b9bcba2cd3b2ec3016ebb34c16ac8e46cc8110db3a7934ca2d",
-            "size": 639812,
+            "sha256": "f4d0eb5e0a913627ce94ce420d7ba4043afb6a369ed64293a1898a9235d3a4b1",
+            "size": 468152,
             "format": "animpack-v2"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "406cb6450111f528e644137ed016bb4fc02461cc1b6d8be62485da98fdcec123",
-            "size": 75232,
-            "format": "pcm-s16le-24khz-mono"
           }
         }
       }
     },
     {
-      "id": "standby_sleep1",
-      "display_name": "睡觉-中间分支1",
-      "source_label": "watcher-睡觉-中间分支1",
-      "source_record_id": "recvri1PWaZHLs",
-      "preview": "previews/standby_sleep1.webp",
-      "preview_sha256": "97a15d86466010f70325e2f3d5167a270efa9ad7e9d7e32d2cfdfd1818644161",
+      "id": "processing",
+      "display_name": "处理中",
+      "source_label": "watcher-处理中",
+      "source_record_id": "reczz28XWZg0M820",
+      "preview": "previews/processing.webp",
+      "preview_sha256": "2558ba6d0d52d3673c246c99c4e95605c0bb2489b175ff5a178e12a66e1b2bba",
       "order": 42,
       "creator": {},
       "device": {
-        "image_name": "standby_sleep1",
+        "image_name": "processing",
         "assets": {
           "animation": {
             "kind": "anim",
-            "sha256": "bd9a33da76e3376b057d30e830046867814face4edd1e8616b04f8d2b23512f4",
-            "size": 937372,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_sleep2",
-      "display_name": "睡觉-中间分支2",
-      "source_label": "watcher-睡觉-中间分支2",
-      "source_record_id": "recvri1QAtc0Bl",
-      "preview": "previews/standby_sleep2.webp",
-      "preview_sha256": "cff2610ad2a4447d90d0e91687ea6ee467b95b5aa36fd38dd366e47812692039",
-      "order": 43,
-      "creator": {},
-      "device": {
-        "image_name": "standby_sleep2",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "748de13e20af890f41546313d1848a678b1681a9dba433986e7bb6c3535177f3",
-            "size": 3493626,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby6",
-      "display_name": "静默6",
-      "source_label": "watcher-静默6",
-      "source_record_id": "recvri1QRpwCEJ",
-      "preview": "previews/standby6.webp",
-      "preview_sha256": "dc6554b6973785af916da14ba23d74b7bf3768aa97ba010792e5a300a038501d",
-      "order": 44,
-      "creator": {},
-      "device": {
-        "image_name": "standby6",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "96b6f240541282d74a349b99766bb862c1177dfefd58554a414e7379c3d7f4cd",
-            "size": 1108860,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby5",
-      "display_name": "静默5",
-      "source_label": "watcher-静默5",
-      "source_record_id": "recvri4SbSJqJ8",
-      "preview": "previews/standby5.webp",
-      "preview_sha256": "c5b562b373c2802db134610c9dcdd98354a743c779c766c88ecdcd4ad685bb57",
-      "order": 45,
-      "creator": {},
-      "device": {
-        "image_name": "standby5",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "471e5b0af6acd967f8a6de4aa25af2ee5d286693a9bb985e6eb95fad5a2074de",
-            "size": 1491978,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_little4",
-      "display_name": "静默-轻微4",
-      "source_label": "watcher-静默-轻微4",
-      "source_record_id": "recvri4Sss0sLD",
-      "preview": "previews/standby_little4.webp",
-      "preview_sha256": "28b7d03aca75d44c95824ef058ad22cc924a296d74a4a22031b6b80a62083d84",
-      "order": 46,
-      "creator": {},
-      "device": {
-        "image_name": "standby_little4",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "a40676c534f9a6dcd91a524b2d341540d5df1a9cbb117b71327e3a453e684ab5",
-            "size": 1192922,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_little3",
-      "display_name": "静默-轻微3",
-      "source_label": "watcher-静默-轻微3",
-      "source_record_id": "recvri6052GcGP",
-      "preview": "previews/standby_little3.webp",
-      "preview_sha256": "446331d50f167537fd7349804aa9d3b3cb3db9fa5c36ffc742a8f8e8d907ab92",
-      "order": 47,
-      "creator": {},
-      "device": {
-        "image_name": "standby_little3",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "4b82a08fd0ea7caad74b7bf5a4b1a9c404115a5b2608fc8531c5af242abe9d36",
-            "size": 1321302,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_little2",
-      "display_name": "静默-轻微2",
-      "source_label": "watcher-静默-轻微2",
-      "source_record_id": "recvri60jIOvKm",
-      "preview": "previews/standby_little2.webp",
-      "preview_sha256": "0f45eb35b165ec7fdb839b61607ddc61e43f687fe1be046890900b41cb2d1c04",
-      "order": 48,
-      "creator": {},
-      "device": {
-        "image_name": "standby_little2",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "848ef5d3fb9919d6cf16884b9b38b897deba582c81d19d80b4e84f0479d9c57f",
-            "size": 980330,
-            "format": "animpack-v2"
-          }
-        }
-      }
-    },
-    {
-      "id": "standby_little1",
-      "display_name": "静默-轻微1",
-      "source_label": "watcher-静默-轻微1",
-      "source_record_id": "recvri60RuUQEq",
-      "preview": "previews/standby_little1.webp",
-      "preview_sha256": "83f259ad2f197f88fb89e88c4417591faf68f8d2a08f8c447948e6acc1f22529",
-      "order": 49,
-      "creator": {},
-      "device": {
-        "image_name": "standby_little1",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "7453960d2e6228dd2b4118fa8cef448920b6f18a7fdf2993972a571263ef9318",
-            "size": 468954,
+            "sha256": "bf8cc1a9ce22a05a8807753f379e1a584154734d08330f70b70f1fe09567fba3",
+            "size": 1704110,
             "format": "animpack-v2"
           }
         }

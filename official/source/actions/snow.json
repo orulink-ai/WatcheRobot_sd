@@ -1,0 +1,165 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-ee27f2fe-0b26-4a1a-b240-7134665a562f",
+  "label": "未命名大作品 2026/11/03",
+  "exportedAt": "2026-11-03T08:35:44.758Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-4",
+        "axis": "xDeg",
+        "timeMs": 2020,
+        "frameNumber": 101,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-5",
+        "axis": "xDeg",
+        "timeMs": 2340,
+        "frameNumber": 117,
+        "angleDeg": 96,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-6",
+        "axis": "xDeg",
+        "timeMs": 3620,
+        "frameNumber": 181,
+        "angleDeg": 96,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-7",
+        "axis": "xDeg",
+        "timeMs": 4000,
+        "frameNumber": 200,
+        "angleDeg": 92,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-8",
+        "axis": "xDeg",
+        "timeMs": 4340,
+        "frameNumber": 217,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-xDeg-13",
+        "axis": "xDeg",
+        "timeMs": 12100,
+        "frameNumber": 605,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-1",
+        "axis": "yDeg",
+        "timeMs": 120,
+        "frameNumber": 6,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-2",
+        "axis": "yDeg",
+        "timeMs": 360,
+        "frameNumber": 18,
+        "angleDeg": 118,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-3",
+        "axis": "yDeg",
+        "timeMs": 600,
+        "frameNumber": 30,
+        "angleDeg": 120,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-6",
+        "axis": "yDeg",
+        "timeMs": 3620,
+        "frameNumber": 181,
+        "angleDeg": 120,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-7",
+        "axis": "yDeg",
+        "timeMs": 4000,
+        "frameNumber": 200,
+        "angleDeg": 118,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-8",
+        "axis": "yDeg",
+        "timeMs": 4340,
+        "frameNumber": 217,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-9",
+        "axis": "yDeg",
+        "timeMs": 6620,
+        "frameNumber": 331,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-10",
+        "axis": "yDeg",
+        "timeMs": 7100,
+        "frameNumber": 355,
+        "angleDeg": 113,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-11",
+        "axis": "yDeg",
+        "timeMs": 9920,
+        "frameNumber": 496,
+        "angleDeg": 113,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-12",
+        "axis": "yDeg",
+        "timeMs": 10800,
+        "frameNumber": 540,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694916854-kw9qxd-yDeg-13",
+        "axis": "yDeg",
+        "timeMs": 12100,
+        "frameNumber": 605,
+        "angleDeg": 115,
+        "source": "draft"
+      }
+    ]
+  }
+}

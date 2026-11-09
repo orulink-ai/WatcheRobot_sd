@@ -1,0 +1,189 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-5b9ef491-17b3-4657-9419-072469315bab",
+  "label": "未命名大作品 2026/11/03",
+  "exportedAt": "2026-11-03T08:32:54.607Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-7",
+        "axis": "xDeg",
+        "timeMs": 3120,
+        "frameNumber": 156,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-8",
+        "axis": "xDeg",
+        "timeMs": 3520,
+        "frameNumber": 176,
+        "angleDeg": 84,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-9",
+        "axis": "xDeg",
+        "timeMs": 4420,
+        "frameNumber": 221,
+        "angleDeg": 84,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-10",
+        "axis": "xDeg",
+        "timeMs": 4780,
+        "frameNumber": 239,
+        "angleDeg": 80,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-11",
+        "axis": "xDeg",
+        "timeMs": 5620,
+        "frameNumber": 281,
+        "angleDeg": 80,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-12",
+        "axis": "xDeg",
+        "timeMs": 5900,
+        "frameNumber": 295,
+        "angleDeg": 85,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-13",
+        "axis": "xDeg",
+        "timeMs": 6220,
+        "frameNumber": 311,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-xDeg-18",
+        "axis": "xDeg",
+        "timeMs": 10300,
+        "frameNumber": 515,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-1",
+        "axis": "yDeg",
+        "timeMs": 320,
+        "frameNumber": 16,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-2",
+        "axis": "yDeg",
+        "timeMs": 720,
+        "frameNumber": 36,
+        "angleDeg": 108,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-3",
+        "axis": "yDeg",
+        "timeMs": 1000,
+        "frameNumber": 50,
+        "angleDeg": 105,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-4",
+        "axis": "yDeg",
+        "timeMs": 1120,
+        "frameNumber": 56,
+        "angleDeg": 105,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-5",
+        "axis": "yDeg",
+        "timeMs": 1440,
+        "frameNumber": 72,
+        "angleDeg": 111,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-6",
+        "axis": "yDeg",
+        "timeMs": 1720,
+        "frameNumber": 86,
+        "angleDeg": 109,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-13",
+        "axis": "yDeg",
+        "timeMs": 6220,
+        "frameNumber": 311,
+        "angleDeg": 109,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-14",
+        "axis": "yDeg",
+        "timeMs": 6620,
+        "frameNumber": 331,
+        "angleDeg": 107,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-15",
+        "axis": "yDeg",
+        "timeMs": 9620,
+        "frameNumber": 481,
+        "angleDeg": 107,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-16",
+        "axis": "yDeg",
+        "timeMs": 9900,
+        "frameNumber": 495,
+        "angleDeg": 113,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-17",
+        "axis": "yDeg",
+        "timeMs": 10120,
+        "frameNumber": 506,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1793694738447-osqsct-yDeg-18",
+        "axis": "yDeg",
+        "timeMs": 10300,
+        "frameNumber": 515,
+        "angleDeg": 115,
+        "source": "draft"
+      }
+    ]
+  }
+}

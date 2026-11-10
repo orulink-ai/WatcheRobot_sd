@@ -1,13 +1,13 @@
 {
-  "scene_name": "standby_mouth2",
+  "scene_name": "sad",
   "frame_start": 0,
-  "frame_end": 2200,
-  "fps": 1000,
+  "frame_end": 78,
+  "fps": 10,
   "animated_objects": [
     {
       "object_name": "body_x",
       "object_type": "MESH",
-      "action_name": "standby_mouth2",
+      "action_name": "sad",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -15,27 +15,47 @@
           "rotation_angle": 90
         },
         {
-          "frame_number": 220,
+          "frame_number": 5,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 10,
           "active_axis": "z",
           "rotation_angle": 80
         },
         {
-          "frame_number": 880,
+          "frame_number": 20,
+          "active_axis": "z",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 30,
           "active_axis": "z",
           "rotation_angle": 80
         },
         {
-          "frame_number": 1240,
+          "frame_number": 40,
           "active_axis": "z",
           "rotation_angle": 100
         },
         {
-          "frame_number": 1800,
+          "frame_number": 50,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 60,
           "active_axis": "z",
           "rotation_angle": 100
         },
         {
-          "frame_number": 2200,
+          "frame_number": 70,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 75,
           "active_axis": "z",
           "rotation_angle": 90
         }
@@ -44,15 +64,10 @@
     {
       "object_name": "head_y",
       "object_type": "EMPTY",
-      "action_name": "standby_mouth2",
+      "action_name": "sad",
       "keyframe_data": [
         {
           "frame_number": 0,
-          "active_axis": "x",
-          "rotation_angle": 100
-        },
-        {
-          "frame_number": 2200,
           "active_axis": "x",
           "rotation_angle": 100
         }

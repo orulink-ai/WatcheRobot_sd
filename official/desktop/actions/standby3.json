@@ -1,5 +1,5 @@
 {
-  "scene_name": "standby_mouth3",
+  "scene_name": "standby3",
   "frame_start": 0,
   "frame_end": 3200,
   "fps": 1000,
@@ -7,7 +7,7 @@
     {
       "object_name": "body_x",
       "object_type": "MESH",
-      "action_name": "standby_mouth3",
+      "action_name": "standby3",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -34,7 +34,7 @@
     {
       "object_name": "head_y",
       "object_type": "EMPTY",
-      "action_name": "standby_mouth3",
+      "action_name": "standby3",
       "keyframe_data": [
         {
           "frame_number": 0,

@@ -1,0 +1,66 @@
+{
+  "schema_version": 3,
+  "product": "WatcheRobot-S3",
+  "version": "v0.0.10",
+  "layout_revision": 2,
+  "protocol": "WRSD/2",
+  "published_at": "2026-11-10T12:44:06Z",
+  "archive": {
+    "name": "watche-sd-resources-v0.0.10.tar.gz",
+    "format": "tar.gz",
+    "size": 12770532,
+    "expanded_size": 92059543,
+    "file_count": 79,
+    "object_count": 76,
+    "sha256": "407ef46fd498ccb3461c268de33a30b12897b5c6ddf6868f2bb4a48e6387479a",
+    "github_url": "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.10/watche-sd-resources-v0.0.10.tar.gz",
+    "tos_url": "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.10/watche-sd-resources-v0.0.10.tar.gz",
+    "tos_uri": "tos://erroright/WatcherRobot/sd/v0.0.10/watche-sd-resources-v0.0.10.tar.gz"
+  },
+  "catalog": {
+    "name": "official_catalog.json",
+    "github_url": "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.10/official_catalog.json",
+    "tos_url": "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.10/official_catalog.json",
+    "tos_uri": "tos://erroright/WatcherRobot/sd/v0.0.10/official_catalog.json",
+    "sha256": "e1ed5e37fcd8e8049d80eceb739f3da25590be049e19a36b3c70942d0b059d20"
+  },
+  "desktop": {
+    "catalog": {
+      "name": "desktop_catalog.json",
+      "size": 45951,
+      "github_url": "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.10/desktop_catalog.json",
+      "tos_url": "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.10/desktop_catalog.json",
+      "tos_uri": "tos://erroright/WatcherRobot/sd/v0.0.10/desktop_catalog.json",
+      "sha256": "7404e2a7611d7a68fff21824b795e90bcd0be0d536358f02a0b324864695dcd2"
+    },
+    "archive": {
+      "name": "watche-desktop-resources-v0.0.10.tar.gz",
+      "format": "tar.gz",
+      "size": 4855380,
+      "expanded_size": 7257031,
+      "file_count": 78,
+      "sha256": "9f390ef5c1d4203386d0a7abb804790879f900dddfdda138b2a8430f61470081",
+      "github_url": "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.10/watche-desktop-resources-v0.0.10.tar.gz",
+      "tos_url": "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.10/watche-desktop-resources-v0.0.10.tar.gz",
+      "tos_uri": "tos://erroright/WatcherRobot/sd/v0.0.10/watche-desktop-resources-v0.0.10.tar.gz"
+    }
+  },
+  "mobile": {
+    "catalog": {
+      "name": "mobile_catalog.json",
+      "size": 15340,
+      "github_url": "https://github.com/orulink-ai/WatcheRobot_sd/releases/download/v0.0.10/mobile_catalog.json",
+      "tos_url": "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.10/mobile_catalog.json",
+      "tos_uri": "tos://erroright/WatcherRobot/sd/v0.0.10/mobile_catalog.json",
+      "sha256": "f896d4e9050eefa81253996cedd00c4d379df0e8a58ae5d5d31100b09a81ca3f"
+    },
+    "assets": {
+      "format": "individual-gif",
+      "count": 44,
+      "size": 12051379,
+      "github_base_url": "https://raw.githubusercontent.com/orulink-ai/WatcheRobot_sd/v0.0.10/official/mobile/gif/",
+      "tos_base_url": "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.10/mobile/gif/",
+      "tos_uri": "tos://erroright/WatcherRobot/sd/v0.0.10/mobile/gif/"
+    }
+  }
+}

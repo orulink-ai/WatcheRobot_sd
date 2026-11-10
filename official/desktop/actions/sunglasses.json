@@ -1,13 +1,13 @@
 {
-  "scene_name": "happy_mouth",
+  "scene_name": "sunglasses",
   "frame_start": 0,
-  "frame_end": 2900,
-  "fps": 1000,
+  "frame_end": 68,
+  "fps": 10,
   "animated_objects": [
     {
       "object_name": "body_x",
       "object_type": "MESH",
-      "action_name": "happy_mouth",
+      "action_name": "sunglasses",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -15,32 +15,62 @@
           "rotation_angle": 90
         },
         {
-          "frame_number": 200,
+          "frame_number": 9,
           "active_axis": "z",
           "rotation_angle": 90
         },
         {
-          "frame_number": 500,
+          "frame_number": 11,
           "active_axis": "z",
           "rotation_angle": 75
         },
         {
-          "frame_number": 1500,
+          "frame_number": 16,
           "active_axis": "z",
           "rotation_angle": 75
         },
         {
-          "frame_number": 1700,
+          "frame_number": 21,
+          "active_axis": "z",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 31,
+          "active_axis": "z",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 34,
           "active_axis": "z",
           "rotation_angle": 100
         },
         {
-          "frame_number": 2500,
+          "frame_number": 37,
           "active_axis": "z",
           "rotation_angle": 100
         },
         {
-          "frame_number": 2900,
+          "frame_number": 39,
+          "active_axis": "z",
+          "rotation_angle": 75
+        },
+        {
+          "frame_number": 43,
+          "active_axis": "z",
+          "rotation_angle": 75
+        },
+        {
+          "frame_number": 55,
+          "active_axis": "z",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 61,
+          "active_axis": "z",
+          "rotation_angle": 100
+        },
+        {
+          "frame_number": 65,
           "active_axis": "z",
           "rotation_angle": 90
         }
@@ -49,7 +79,7 @@
     {
       "object_name": "head_y",
       "object_type": "EMPTY",
-      "action_name": "happy_mouth",
+      "action_name": "sunglasses",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -57,72 +87,47 @@
           "rotation_angle": 100
         },
         {
-          "frame_number": 140,
+          "frame_number": 1,
           "active_axis": "x",
-          "rotation_angle": 110
+          "rotation_angle": 120
         },
         {
-          "frame_number": 340,
-          "active_axis": "x",
-          "rotation_angle": 100
-        },
-        {
-          "frame_number": 520,
-          "active_axis": "x",
-          "rotation_angle": 110
-        },
-        {
-          "frame_number": 720,
+          "frame_number": 3,
           "active_axis": "x",
           "rotation_angle": 100
         },
         {
-          "frame_number": 900,
-          "active_axis": "x",
-          "rotation_angle": 110
-        },
-        {
-          "frame_number": 1120,
+          "frame_number": 7,
           "active_axis": "x",
           "rotation_angle": 100
         },
         {
-          "frame_number": 1280,
+          "frame_number": 9,
           "active_axis": "x",
-          "rotation_angle": 110
+          "rotation_angle": 115
         },
         {
-          "frame_number": 1500,
+          "frame_number": 24,
           "active_axis": "x",
-          "rotation_angle": 100
+          "rotation_angle": 115
         },
         {
-          "frame_number": 1660,
-          "active_axis": "x",
-          "rotation_angle": 110
-        },
-        {
-          "frame_number": 1900,
+          "frame_number": 28,
           "active_axis": "x",
           "rotation_angle": 100
         },
         {
-          "frame_number": 2080,
-          "active_axis": "x",
-          "rotation_angle": 110
-        },
-        {
-          "frame_number": 2320,
+          "frame_number": 60,
           "active_axis": "x",
           "rotation_angle": 100
         },
         {
-          "frame_number": 2520,
+          "frame_number": 61,
           "active_axis": "x",
-          "rotation_angle": 110
+          "rotation_angle": 120
         },
         {
-          "frame_number": 2900,
+          "frame_number": 63,
           "active_axis": "x",
           "rotation_angle": 100
         }

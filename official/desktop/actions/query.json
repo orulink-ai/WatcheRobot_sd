@@ -1,16 +1,21 @@
 {
-  "scene_name": "bluetooth_mouth",
+  "scene_name": "query",
   "frame_start": 0,
-  "frame_end": 30,
-  "fps": 10,
+  "frame_end": 1500,
+  "fps": 1000,
   "animated_objects": [
     {
       "object_name": "body_x",
       "object_type": "MESH",
-      "action_name": "bluetooth_mouth",
+      "action_name": "query",
       "keyframe_data": [
         {
           "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 1500,
           "active_axis": "z",
           "rotation_angle": 90
         }
@@ -19,7 +24,7 @@
     {
       "object_name": "head_y",
       "object_type": "EMPTY",
-      "action_name": "bluetooth_mouth",
+      "action_name": "query",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -27,32 +32,22 @@
           "rotation_angle": 100
         },
         {
-          "frame_number": 4,
+          "frame_number": 320,
           "active_axis": "x",
           "rotation_angle": 100
         },
         {
-          "frame_number": 6,
-          "active_axis": "x",
-          "rotation_angle": 100
-        },
-        {
-          "frame_number": 8,
+          "frame_number": 440,
           "active_axis": "x",
           "rotation_angle": 115
         },
         {
-          "frame_number": 12,
+          "frame_number": 860,
           "active_axis": "x",
-          "rotation_angle": 110
+          "rotation_angle": 115
         },
         {
-          "frame_number": 21,
-          "active_axis": "x",
-          "rotation_angle": 110
-        },
-        {
-          "frame_number": 28,
+          "frame_number": 1500,
           "active_axis": "x",
           "rotation_angle": 100
         }

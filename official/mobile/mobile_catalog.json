@@ -1,57 +1,57 @@
 {
   "schema_version": 1,
   "format": "watche-mobile-expression-catalog",
-  "version": "v0.0.9",
-  "content_hash": "06edd040870138594e4102536099e8a19ba73f6f2103181325f10f81daa1cbdb",
+  "version": "v0.0.10",
+  "content_hash": "7ba2937a5d9d7141cf42c8a07732b275b3ec181482f71c52b2e91a37f7a3c481",
   "expressions": [
     {
-      "id": "custom3_mouth",
+      "id": "custom3",
       "display_name": "工具",
       "order": 0,
-      "preview": "gif/custom3_mouth.gif",
+      "preview": "gif/custom3.gif",
       "preview_sha256": "fedbe6e04948a19a326b6a99465c171d41a97e2785cab781fea0190cec3a20c4",
       "preview_size": 399618,
       "device": {
-        "image_name": "custom3_mouth",
-        "action_file": "custom3_mouth"
+        "image_name": "custom3",
+        "action_file": "custom3"
       }
     },
     {
-      "id": "bluetooth_mouth",
+      "id": "bluetooth",
       "display_name": "蓝牙",
       "order": 1,
-      "preview": "gif/bluetooth_mouth.gif",
+      "preview": "gif/bluetooth.gif",
       "preview_sha256": "7818b75f13a037923fea842f1528563a7807b1fd3683efa994dbd18cd25274dd",
       "preview_size": 223079,
       "device": {
-        "image_name": "bluetooth_mouth",
-        "action_file": "bluetooth_mouth",
-        "sound_file": "bluetooth_mouth"
+        "image_name": "bluetooth",
+        "action_file": "bluetooth",
+        "sound_file": "bluetooth"
       }
     },
     {
-      "id": "disconnect_mouth",
+      "id": "disconnect",
       "display_name": "断开蓝牙",
       "order": 2,
-      "preview": "gif/disconnect_mouth.gif",
+      "preview": "gif/disconnect.gif",
       "preview_sha256": "5d2909bcc27cb8522fe0c79592e7bf72e1e409d88e351cd5a14ddbe48e2cecfa",
       "preview_size": 305081,
       "device": {
-        "image_name": "disconnect_mouth",
-        "action_file": "disconnect_mouth",
-        "sound_file": "disconnect_mouth"
+        "image_name": "disconnect",
+        "action_file": "disconnect",
+        "sound_file": "disconnect"
       }
     },
     {
-      "id": "recharge_mouth",
+      "id": "recharge",
       "display_name": "无线充电",
       "order": 3,
-      "preview": "gif/recharge_mouth.gif",
+      "preview": "gif/recharge.gif",
       "preview_sha256": "fc93a8fc4ba592fcb6c88f5cf4d637faa7cab5b88d418bffebeeabb7215e9929",
       "preview_size": 443178,
       "device": {
-        "image_name": "recharge_mouth",
-        "sound_file": "recharge_mouth"
+        "image_name": "recharge",
+        "sound_file": "recharge"
       }
     },
     {
@@ -66,15 +66,15 @@
       }
     },
     {
-      "id": "music_mouth",
+      "id": "music",
       "display_name": "听音乐",
       "order": 5,
-      "preview": "gif/music_mouth.gif",
+      "preview": "gif/music.gif",
       "preview_sha256": "a35d8bbb7c87b4e8507b99ef63a52784b627d95e9a348daacb547393cc1e1d20",
       "preview_size": 312210,
       "device": {
-        "image_name": "music_mouth",
-        "action_file": "music_mouth"
+        "image_name": "music",
+        "action_file": "music"
       }
     },
     {
@@ -103,140 +103,140 @@
       }
     },
     {
-      "id": "fondle_love_mouth",
+      "id": "fondle_love",
       "display_name": "摸头爱心",
       "order": 8,
-      "preview": "gif/fondle_love_mouth.gif",
+      "preview": "gif/fondle_love.gif",
       "preview_sha256": "c69269d242145c81fe10c8b73607a0f0f8c12ac63f5674130cb2550927117c6f",
       "preview_size": 390732,
       "device": {
-        "image_name": "fondle_love_mouth",
-        "action_file": "fondle_love_mouth"
+        "image_name": "fondle_love",
+        "action_file": "fondle_love"
       }
     },
     {
-      "id": "fondle_anger_mouth",
+      "id": "fondle_anger",
       "display_name": "摸头生气",
       "order": 9,
-      "preview": "gif/fondle_anger_mouth.gif",
+      "preview": "gif/fondle_anger.gif",
       "preview_sha256": "aa2d05bdf6fb93c6a42721e5ddcf3ab3e0e4d86fd83e90c2caf14672e0cfc660",
       "preview_size": 138944,
       "device": {
-        "image_name": "fondle_anger_mouth",
-        "action_file": "fondle_anger_mouth"
+        "image_name": "fondle_anger",
+        "action_file": "fondle_anger"
       }
     },
     {
-      "id": "standby_mouth1",
+      "id": "standby1",
       "display_name": "静默1",
       "order": 10,
-      "preview": "gif/standby_mouth1.gif",
+      "preview": "gif/standby1.gif",
       "preview_sha256": "4f24aa4533c5231f99917661ada0b161ba2dbc9b9c907d9b10edb3363af83a8d",
       "preview_size": 20076,
       "device": {
-        "image_name": "standby_mouth1"
+        "image_name": "standby1"
       }
     },
     {
-      "id": "standby_mouth2",
+      "id": "standby2",
       "display_name": "静默2",
       "order": 11,
-      "preview": "gif/standby_mouth2.gif",
+      "preview": "gif/standby2.gif",
       "preview_sha256": "7f72bc37b20bc1be9d77872ec349e2099df5e9e050be2b1ff50f2d570e0649f7",
       "preview_size": 69278,
       "device": {
-        "image_name": "standby_mouth2",
-        "action_file": "standby_mouth2"
+        "image_name": "standby2",
+        "action_file": "standby2"
       }
     },
     {
-      "id": "standby_mouth3",
+      "id": "standby3",
       "display_name": "静默3",
       "order": 12,
-      "preview": "gif/standby_mouth3.gif",
+      "preview": "gif/standby3.gif",
       "preview_sha256": "6190c7d529ef8d6bb71e569bc294f2aeafd1dd1a8d70378a808e58ea8e8d30cd",
       "preview_size": 85410,
       "device": {
-        "image_name": "standby_mouth3",
-        "action_file": "standby_mouth3"
+        "image_name": "standby3",
+        "action_file": "standby3"
       }
     },
     {
-      "id": "standby_mouth4",
+      "id": "standby4",
       "display_name": "静默4",
       "order": 13,
-      "preview": "gif/standby_mouth4.gif",
+      "preview": "gif/standby4.gif",
       "preview_sha256": "8b9acf8a8386728720db36d25135d93312b4192cff773dc0bfb0a5a168843cfb",
       "preview_size": 67575,
       "device": {
-        "image_name": "standby_mouth4"
+        "image_name": "standby4"
       }
     },
     {
-      "id": "standby_mouth5",
+      "id": "standby5",
       "display_name": "静默5",
       "order": 14,
-      "preview": "gif/standby_mouth5.gif",
+      "preview": "gif/standby5.gif",
       "preview_sha256": "18cc15584e2ab62333cb62fb0da4f458fdd34587f40f4274abf17b18fd96e056",
       "preview_size": 67426,
       "device": {
-        "image_name": "standby_mouth5"
+        "image_name": "standby5"
       }
     },
     {
-      "id": "standby_mouth6",
+      "id": "standby6",
       "display_name": "静默6",
       "order": 15,
-      "preview": "gif/standby_mouth6.gif",
+      "preview": "gif/standby6.gif",
       "preview_sha256": "a1150e3239c0c4c50f80961a66b71a789cec2cf4c4b63b731e77fb316d25296e",
       "preview_size": 73606,
       "device": {
-        "image_name": "standby_mouth6",
-        "action_file": "standby_mouth6"
+        "image_name": "standby6",
+        "action_file": "standby6"
       }
     },
     {
-      "id": "standby_little_mouth1",
+      "id": "standby_little1",
       "display_name": "静默-轻微1",
       "order": 16,
-      "preview": "gif/standby_little_mouth1.gif",
+      "preview": "gif/standby_little1.gif",
       "preview_sha256": "cbf6215c5bb7143bc4d0654916054d1164ced0f6288977a6bde49725e4f972fa",
       "preview_size": 30645,
       "device": {
-        "image_name": "standby_little_mouth1"
+        "image_name": "standby_little1"
       }
     },
     {
-      "id": "standby_little_mouth2",
+      "id": "standby_little2",
       "display_name": "静默-轻微2",
       "order": 17,
-      "preview": "gif/standby_little_mouth2.gif",
+      "preview": "gif/standby_little2.gif",
       "preview_sha256": "85dcb755867fc231d74b4e1827360b39743eb5f432991671349fe968050a401b",
       "preview_size": 38686,
       "device": {
-        "image_name": "standby_little_mouth2"
+        "image_name": "standby_little2"
       }
     },
     {
-      "id": "standby_little_mouth3",
+      "id": "standby_little3",
       "display_name": "静默-轻微3",
       "order": 18,
-      "preview": "gif/standby_little_mouth3.gif",
+      "preview": "gif/standby_little3.gif",
       "preview_sha256": "de83219ae0bac2c073445d6a8e2381041f4691c1e0851be9b750fd116b9287e6",
       "preview_size": 39321,
       "device": {
-        "image_name": "standby_little_mouth3"
+        "image_name": "standby_little3"
       }
     },
     {
-      "id": "standby_little_mouth4",
+      "id": "standby_little4",
       "display_name": "静默-轻微4",
       "order": 19,
-      "preview": "gif/standby_little_mouth4.gif",
+      "preview": "gif/standby_little4.gif",
       "preview_sha256": "bfdd44b76d00ad4ac3fe68d4b8ece3011118a81ad80f824cbe98123fb5320b47",
       "preview_size": 43812,
       "device": {
-        "image_name": "standby_little_mouth4"
+        "image_name": "standby_little4"
       }
     },
     {
@@ -265,168 +265,168 @@
       }
     },
     {
-      "id": "love_mouth",
+      "id": "love",
       "display_name": "爱心",
       "order": 22,
-      "preview": "gif/love_mouth.gif",
+      "preview": "gif/love.gif",
       "preview_sha256": "0c4548a1c62f3a16126d910836d56788becda1a8b0abc7dcfc1265e8174b2f10",
       "preview_size": 212808,
       "device": {
-        "image_name": "love_mouth"
+        "image_name": "love"
       }
     },
     {
-      "id": "happy_mouth",
+      "id": "happy",
       "display_name": "成功",
       "order": 23,
-      "preview": "gif/happy_mouth.gif",
+      "preview": "gif/happy.gif",
       "preview_sha256": "77fe2f2d7016ac0040b8e0fcacfa05f65480f7229b8499628983b4b6ad2fe963",
       "preview_size": 123106,
       "device": {
-        "image_name": "happy_mouth",
-        "action_file": "happy_mouth",
-        "sound_file": "happy_mouth"
+        "image_name": "happy",
+        "action_file": "happy",
+        "sound_file": "happy"
       }
     },
     {
-      "id": "biyeyes_mouth",
+      "id": "biyeyes",
       "display_name": "大眼",
       "order": 24,
-      "preview": "gif/biyeyes_mouth.gif",
+      "preview": "gif/biyeyes.gif",
       "preview_sha256": "443e58aaae15a7b17ae3603079010ae67de4f9ccd14b4e02622e693bb53b1aa2",
       "preview_size": 118388,
       "device": {
-        "image_name": "biyeyes_mouth"
+        "image_name": "biyeyes"
       }
     },
     {
-      "id": "clmness_mouth",
+      "id": "clmness",
       "display_name": "平静",
       "order": 25,
-      "preview": "gif/clmness_mouth.gif",
+      "preview": "gif/clmness.gif",
       "preview_sha256": "a679f5bd01a67602e93e8c1ab2a1d9230cebccee7b55ba6e06aafe69c1b6a16f",
       "preview_size": 85249,
       "device": {
-        "image_name": "clmness_mouth"
+        "image_name": "clmness"
       }
     },
     {
-      "id": "inquisitive_mouth",
+      "id": "inquisitive",
       "display_name": "好奇",
       "order": 26,
-      "preview": "gif/inquisitive_mouth.gif",
+      "preview": "gif/inquisitive.gif",
       "preview_sha256": "88bbd389ec6cc746bee4bea6f4c564e75680d14cfc5e643d5d38ca1cb7fc0fe3",
       "preview_size": 73646,
       "device": {
-        "image_name": "inquisitive_mouth"
+        "image_name": "inquisitive"
       }
     },
     {
-      "id": "sunglasses_mouth",
+      "id": "sunglasses",
       "display_name": "墨镜",
       "order": 27,
-      "preview": "gif/sunglasses_mouth.gif",
+      "preview": "gif/sunglasses.gif",
       "preview_sha256": "6b59fe001433f42b75d0813fd1d40b0c1f9b56b91105e13d7bd1a2c60b1991ea",
       "preview_size": 74393,
       "device": {
-        "image_name": "sunglasses_mouth",
-        "action_file": "sunglasses_mouth"
+        "image_name": "sunglasses",
+        "action_file": "sunglasses"
       }
     },
     {
-      "id": "hesitate_mouth",
+      "id": "hesitate",
       "display_name": "犹豫",
       "order": 28,
-      "preview": "gif/hesitate_mouth.gif",
+      "preview": "gif/hesitate.gif",
       "preview_sha256": "a4479c84f798b7ebb77c24b8e7a57662c063baa1a2b9912bf44bcb8ff498eeb6",
       "preview_size": 64554,
       "device": {
-        "image_name": "hesitate_mouth"
+        "image_name": "hesitate"
       }
     },
     {
-      "id": "anger_mouth",
+      "id": "anger",
       "display_name": "生气",
       "order": 29,
-      "preview": "gif/anger_mouth.gif",
+      "preview": "gif/anger.gif",
       "preview_sha256": "aacff1ca68b2b206dfde71f09631313e77b575a8ad453a5cff9d9652754dbe26",
       "preview_size": 93762,
       "device": {
-        "image_name": "anger_mouth",
-        "action_file": "anger_mouth"
+        "image_name": "anger",
+        "action_file": "anger"
       }
     },
     {
-      "id": "sad_mouth",
+      "id": "sad",
       "display_name": "伤心",
       "order": 30,
-      "preview": "gif/sad_mouth.gif",
+      "preview": "gif/sad.gif",
       "preview_sha256": "e841823c07bca8c3af08da4025b3884a01d19d2ecae674ae3919759bc2ca441e",
       "preview_size": 155220,
       "device": {
-        "image_name": "sad_mouth",
-        "action_file": "sad_mouth"
+        "image_name": "sad",
+        "action_file": "sad"
       }
     },
     {
-      "id": "speechless_mouth",
+      "id": "speechless",
       "display_name": "无语",
       "order": 31,
-      "preview": "gif/speechless_mouth.gif",
+      "preview": "gif/speechless.gif",
       "preview_sha256": "45c79af1399155592918d640f38c7386a8a2f9d032cc00c2c85cea85c758bb9f",
       "preview_size": 87561,
       "device": {
-        "image_name": "speechless_mouth"
+        "image_name": "speechless"
       }
     },
     {
-      "id": "wink_mouth",
+      "id": "wink",
       "display_name": "wink",
       "order": 32,
-      "preview": "gif/wink_mouth.gif",
+      "preview": "gif/wink.gif",
       "preview_sha256": "7647b1f22f25a381deb46cc42a699b888f68aba9dd0fc8be5b8243954a39c03f",
       "preview_size": 51870,
       "device": {
-        "image_name": "wink_mouth",
-        "action_file": "wink_mouth",
-        "sound_file": "wink_mouth"
+        "image_name": "wink",
+        "action_file": "wink",
+        "sound_file": "wink"
       }
     },
     {
-      "id": "boredom_mouth",
+      "id": "boredom",
       "display_name": "厌倦",
       "order": 33,
-      "preview": "gif/boredom_mouth.gif",
+      "preview": "gif/boredom.gif",
       "preview_sha256": "1b1fa52f74350afc6b417ba7ac5ba4b840d4fe3cc585ee17028ac1fcb7eb9ad6",
       "preview_size": 105958,
       "device": {
-        "image_name": "boredom_mouth"
+        "image_name": "boredom"
       }
     },
     {
-      "id": "shock_mouth",
+      "id": "shock",
       "display_name": "感叹号",
       "order": 34,
-      "preview": "gif/shock_mouth.gif",
+      "preview": "gif/shock.gif",
       "preview_sha256": "00776bdd0cf7c60299372476c92160e94c9124a6fa15fc91ad834a8849a3afd2",
       "preview_size": 59758,
       "device": {
-        "image_name": "shock_mouth",
-        "action_file": "shock_mouth",
-        "sound_file": "shock_mouth"
+        "image_name": "shock",
+        "action_file": "shock",
+        "sound_file": "shock"
       }
     },
     {
-      "id": "query_mouth",
+      "id": "query",
       "display_name": "问号",
       "order": 35,
-      "preview": "gif/query_mouth.gif",
+      "preview": "gif/query.gif",
       "preview_sha256": "491deaa236be9c66b3a97ecadd96a1127bbfff36179bbe79dd7b74906302a4df",
       "preview_size": 45415,
       "device": {
-        "image_name": "query_mouth",
-        "action_file": "query_mouth",
-        "sound_file": "query_mouth"
+        "image_name": "query",
+        "action_file": "query",
+        "sound_file": "query"
       }
     },
     {
@@ -507,6 +507,18 @@
       "preview_size": 89752,
       "device": {
         "image_name": "processing"
+      }
+    },
+    {
+      "id": "photo",
+      "display_name": "拍照",
+      "order": 43,
+      "preview": "gif/photo.gif",
+      "preview_sha256": "1b69fd6b473567c5c3fa41688056d98513ab66d8a374e6ea15dd5063c1a1e8d6",
+      "preview_size": 237390,
+      "device": {
+        "image_name": "photo",
+        "sound_file": "photo"
       }
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "scene_name": "music_mouth",
+  "scene_name": "music",
   "frame_start": 0,
   "frame_end": 3000,
   "fps": 1000,
@@ -7,7 +7,7 @@
     {
       "object_name": "body_x",
       "object_type": "MESH",
-      "action_name": "music_mouth",
+      "action_name": "music",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -44,7 +44,7 @@
     {
       "object_name": "head_y",
       "object_type": "EMPTY",
-      "action_name": "music_mouth",
+      "action_name": "music",
       "keyframe_data": [
         {
           "frame_number": 0,

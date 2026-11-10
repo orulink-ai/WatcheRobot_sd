@@ -1,5 +1,5 @@
 {
-  "scene_name": "fondle_anger_mouth",
+  "scene_name": "fondle_anger",
   "frame_start": 0,
   "frame_end": 71,
   "fps": 10,
@@ -7,7 +7,7 @@
     {
       "object_name": "body_x",
       "object_type": "MESH",
-      "action_name": "fondle_anger_mouth",
+      "action_name": "fondle_anger",
       "keyframe_data": [
         {
           "frame_number": 0,
@@ -144,7 +144,7 @@
     {
       "object_name": "head_y",
       "object_type": "EMPTY",
-      "action_name": "fondle_anger_mouth",
+      "action_name": "fondle_anger",
       "keyframe_data": [
         {
           "frame_number": 0,

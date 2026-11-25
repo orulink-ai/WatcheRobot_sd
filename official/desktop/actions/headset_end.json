@@ -1,0 +1,57 @@
+{
+  "scene_name": "headset_end",
+  "frame_start": 0,
+  "frame_end": 900,
+  "fps": 1000,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "headset_end",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 900,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "headset_end",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 290,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 420,
+          "active_axis": "x",
+          "rotation_angle": 119
+        },
+        {
+          "frame_number": 600,
+          "active_axis": "x",
+          "rotation_angle": 119
+        },
+        {
+          "frame_number": 900,
+          "active_axis": "x",
+          "rotation_angle": 115
+        }
+      ]
+    }
+  ]
+}

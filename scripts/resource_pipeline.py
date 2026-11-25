@@ -696,6 +696,8 @@ def build_resources(
             "preview_size": target_gif.stat().st_size,
             "device": mobile_device,
         }
+        if "display_names" in record:
+            mobile_entry["display_names"] = record["display_names"]
         mobile_entries.append(mobile_entry)
         mobile_digest.update(
             json.dumps(

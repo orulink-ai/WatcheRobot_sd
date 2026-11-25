@@ -1,0 +1,117 @@
+{
+  "scene_name": "headset_loop",
+  "frame_start": 0,
+  "frame_end": 3100,
+  "fps": 1000,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "headset_loop",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 3100,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "headset_loop",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 120,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 300,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 420,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 620,
+          "active_axis": "x",
+          "rotation_angle": 112
+        },
+        {
+          "frame_number": 900,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 1020,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 1220,
+          "active_axis": "x",
+          "rotation_angle": 112
+        },
+        {
+          "frame_number": 1500,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 1620,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 1820,
+          "active_axis": "x",
+          "rotation_angle": 111
+        },
+        {
+          "frame_number": 2100,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 2220,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 2440,
+          "active_axis": "x",
+          "rotation_angle": 111
+        },
+        {
+          "frame_number": 2750,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 2870,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 3100,
+          "active_axis": "x",
+          "rotation_angle": 115
+        }
+      ]
+    }
+  ]
+}

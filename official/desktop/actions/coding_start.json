@@ -1,0 +1,62 @@
+{
+  "scene_name": "coding_start",
+  "frame_start": 0,
+  "frame_end": 1900,
+  "fps": 1000,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "coding_start",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 1900,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "coding_start",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 180,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 480,
+          "active_axis": "x",
+          "rotation_angle": 110
+        },
+        {
+          "frame_number": 620,
+          "active_axis": "x",
+          "rotation_angle": 112
+        },
+        {
+          "frame_number": 1740,
+          "active_axis": "x",
+          "rotation_angle": 112
+        },
+        {
+          "frame_number": 1900,
+          "active_axis": "x",
+          "rotation_angle": 115
+        }
+      ]
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "format": "watche-mobile-expression-catalog",
-  "version": "v0.0.10",
-  "content_hash": "7ba2937a5d9d7141cf42c8a07732b275b3ec181482f71c52b2e91a37f7a3c481",
+  "version": "v0.0.11",
+  "content_hash": "42ff9cde8d28368afdbd6a838ca70c87772e64956bdf51f40d8e161a99221e1e",
   "expressions": [
     {
       "id": "custom3",
@@ -14,6 +14,11 @@
       "device": {
         "image_name": "custom3",
         "action_file": "custom3"
+      },
+      "display_names": {
+        "zh-Hans": "工具",
+        "en": "Custom 3",
+        "ja": "ツール"
       }
     },
     {
@@ -27,6 +32,11 @@
         "image_name": "bluetooth",
         "action_file": "bluetooth",
         "sound_file": "bluetooth"
+      },
+      "display_names": {
+        "zh-Hans": "蓝牙",
+        "en": "Bluetooth",
+        "ja": "Bluetooth"
       }
     },
     {
@@ -40,6 +50,11 @@
         "image_name": "disconnect",
         "action_file": "disconnect",
         "sound_file": "disconnect"
+      },
+      "display_names": {
+        "zh-Hans": "断开蓝牙",
+        "en": "Disconnect",
+        "ja": "Bluetooth切断"
       }
     },
     {
@@ -52,6 +67,11 @@
       "device": {
         "image_name": "recharge",
         "sound_file": "recharge"
+      },
+      "display_names": {
+        "zh-Hans": "无线充电",
+        "en": "Recharge",
+        "ja": "ワイヤレス充電"
       }
     },
     {
@@ -63,6 +83,11 @@
       "preview_size": 447155,
       "device": {
         "image_name": "upgrade"
+      },
+      "display_names": {
+        "zh-Hans": "固件升级",
+        "en": "Upgrade",
+        "ja": "ファームウェア更新"
       }
     },
     {
@@ -75,6 +100,11 @@
       "device": {
         "image_name": "music",
         "action_file": "music"
+      },
+      "display_names": {
+        "zh-Hans": "听音乐",
+        "en": "Music",
+        "ja": "音楽鑑賞"
       }
     },
     {
@@ -88,6 +118,11 @@
         "image_name": "coding",
         "action_file": "coding",
         "sound_file": "coding"
+      },
+      "display_names": {
+        "zh-Hans": "打代码",
+        "en": "Coding",
+        "ja": "コーディング"
       }
     },
     {
@@ -99,7 +134,13 @@
       "preview_size": 3575133,
       "device": {
         "image_name": "swimming",
+        "action_file": "swimming",
         "sound_file": "swimming"
+      },
+      "display_names": {
+        "zh-Hans": "潜水",
+        "en": "Swimming",
+        "ja": "潜水"
       }
     },
     {
@@ -112,6 +153,11 @@
       "device": {
         "image_name": "fondle_love",
         "action_file": "fondle_love"
+      },
+      "display_names": {
+        "zh-Hans": "摸头爱心",
+        "en": "Fondle Love",
+        "ja": "なでなで（ハート）"
       }
     },
     {
@@ -124,6 +170,11 @@
       "device": {
         "image_name": "fondle_anger",
         "action_file": "fondle_anger"
+      },
+      "display_names": {
+        "zh-Hans": "摸头生气",
+        "en": "Fondle Anger",
+        "ja": "なでなで（怒り）"
       }
     },
     {
@@ -135,6 +186,11 @@
       "preview_size": 20076,
       "device": {
         "image_name": "standby1"
+      },
+      "display_names": {
+        "zh-Hans": "静默1",
+        "en": "Standby 1",
+        "ja": "待機1"
       }
     },
     {
@@ -147,6 +203,11 @@
       "device": {
         "image_name": "standby2",
         "action_file": "standby2"
+      },
+      "display_names": {
+        "zh-Hans": "静默2",
+        "en": "Standby 2",
+        "ja": "待機2"
       }
     },
     {
@@ -159,6 +220,11 @@
       "device": {
         "image_name": "standby3",
         "action_file": "standby3"
+      },
+      "display_names": {
+        "zh-Hans": "静默3",
+        "en": "Standby 3",
+        "ja": "待機3"
       }
     },
     {
@@ -170,6 +236,11 @@
       "preview_size": 67575,
       "device": {
         "image_name": "standby4"
+      },
+      "display_names": {
+        "zh-Hans": "静默4",
+        "en": "Standby 4",
+        "ja": "待機4"
       }
     },
     {
@@ -181,6 +252,11 @@
       "preview_size": 67426,
       "device": {
         "image_name": "standby5"
+      },
+      "display_names": {
+        "zh-Hans": "静默5",
+        "en": "Standby 5",
+        "ja": "待機5"
       }
     },
     {
@@ -193,6 +269,11 @@
       "device": {
         "image_name": "standby6",
         "action_file": "standby6"
+      },
+      "display_names": {
+        "zh-Hans": "静默6",
+        "en": "Standby 6",
+        "ja": "待機6"
       }
     },
     {
@@ -204,6 +285,11 @@
       "preview_size": 30645,
       "device": {
         "image_name": "standby_little1"
+      },
+      "display_names": {
+        "zh-Hans": "静默-轻微1",
+        "en": "Standby Little 1",
+        "ja": "待機（小さな動き）1"
       }
     },
     {
@@ -215,6 +301,11 @@
       "preview_size": 38686,
       "device": {
         "image_name": "standby_little2"
+      },
+      "display_names": {
+        "zh-Hans": "静默-轻微2",
+        "en": "Standby Little 2",
+        "ja": "待機（小さな動き）2"
       }
     },
     {
@@ -226,6 +317,11 @@
       "preview_size": 39321,
       "device": {
         "image_name": "standby_little3"
+      },
+      "display_names": {
+        "zh-Hans": "静默-轻微3",
+        "en": "Standby Little 3",
+        "ja": "待機（小さな動き）3"
       }
     },
     {
@@ -237,6 +333,11 @@
       "preview_size": 43812,
       "device": {
         "image_name": "standby_little4"
+      },
+      "display_names": {
+        "zh-Hans": "静默-轻微4",
+        "en": "Standby Little 4",
+        "ja": "待機（小さな動き）4"
       }
     },
     {
@@ -250,6 +351,11 @@
         "image_name": "funnyface",
         "action_file": "funnyface",
         "sound_file": "funnyface"
+      },
+      "display_names": {
+        "zh-Hans": "鬼脸",
+        "en": "Funnyface",
+        "ja": "変顔"
       }
     },
     {
@@ -261,7 +367,13 @@
       "preview_size": 664782,
       "device": {
         "image_name": "snow",
-        "action_file": "snow"
+        "action_file": "snow",
+        "sound_file": "snow"
+      },
+      "display_names": {
+        "zh-Hans": "下雪",
+        "en": "Snow",
+        "ja": "雪"
       }
     },
     {
@@ -273,6 +385,11 @@
       "preview_size": 212808,
       "device": {
         "image_name": "love"
+      },
+      "display_names": {
+        "zh-Hans": "爱心",
+        "en": "Love",
+        "ja": "ハート"
       }
     },
     {
@@ -286,6 +403,11 @@
         "image_name": "happy",
         "action_file": "happy",
         "sound_file": "happy"
+      },
+      "display_names": {
+        "zh-Hans": "成功",
+        "en": "Happy",
+        "ja": "うれしい"
       }
     },
     {
@@ -297,6 +419,11 @@
       "preview_size": 118388,
       "device": {
         "image_name": "biyeyes"
+      },
+      "display_names": {
+        "zh-Hans": "大眼",
+        "en": "Biyeyes",
+        "ja": "ぱっちり目"
       }
     },
     {
@@ -308,6 +435,11 @@
       "preview_size": 85249,
       "device": {
         "image_name": "clmness"
+      },
+      "display_names": {
+        "zh-Hans": "平静",
+        "en": "Clmness",
+        "ja": "落ち着き"
       }
     },
     {
@@ -319,6 +451,11 @@
       "preview_size": 73646,
       "device": {
         "image_name": "inquisitive"
+      },
+      "display_names": {
+        "zh-Hans": "好奇",
+        "en": "Inquisitive",
+        "ja": "好奇心"
       }
     },
     {
@@ -331,6 +468,11 @@
       "device": {
         "image_name": "sunglasses",
         "action_file": "sunglasses"
+      },
+      "display_names": {
+        "zh-Hans": "墨镜",
+        "en": "Sunglasses",
+        "ja": "サングラス"
       }
     },
     {
@@ -342,6 +484,11 @@
       "preview_size": 64554,
       "device": {
         "image_name": "hesitate"
+      },
+      "display_names": {
+        "zh-Hans": "犹豫",
+        "en": "Hesitate",
+        "ja": "迷い"
       }
     },
     {
@@ -354,6 +501,11 @@
       "device": {
         "image_name": "anger",
         "action_file": "anger"
+      },
+      "display_names": {
+        "zh-Hans": "生气",
+        "en": "Anger",
+        "ja": "怒り"
       }
     },
     {
@@ -366,6 +518,11 @@
       "device": {
         "image_name": "sad",
         "action_file": "sad"
+      },
+      "display_names": {
+        "zh-Hans": "伤心",
+        "en": "Sad",
+        "ja": "悲しみ"
       }
     },
     {
@@ -377,6 +534,11 @@
       "preview_size": 87561,
       "device": {
         "image_name": "speechless"
+      },
+      "display_names": {
+        "zh-Hans": "无语",
+        "en": "Speechless",
+        "ja": "言葉が出ない"
       }
     },
     {
@@ -390,6 +552,11 @@
         "image_name": "wink",
         "action_file": "wink",
         "sound_file": "wink"
+      },
+      "display_names": {
+        "zh-Hans": "wink",
+        "en": "Wink",
+        "ja": "ウインク"
       }
     },
     {
@@ -401,6 +568,11 @@
       "preview_size": 105958,
       "device": {
         "image_name": "boredom"
+      },
+      "display_names": {
+        "zh-Hans": "厌倦",
+        "en": "Boredom",
+        "ja": "退屈"
       }
     },
     {
@@ -414,6 +586,11 @@
         "image_name": "shock",
         "action_file": "shock",
         "sound_file": "shock"
+      },
+      "display_names": {
+        "zh-Hans": "感叹号",
+        "en": "Shock",
+        "ja": "びっくりマーク"
       }
     },
     {
@@ -427,6 +604,11 @@
         "image_name": "query",
         "action_file": "query",
         "sound_file": "query"
+      },
+      "display_names": {
+        "zh-Hans": "问号",
+        "en": "Query",
+        "ja": "はてなマーク"
       }
     },
     {
@@ -439,6 +621,11 @@
       "device": {
         "image_name": "boot",
         "sound_file": "boot"
+      },
+      "display_names": {
+        "zh-Hans": "开机",
+        "en": "Boot",
+        "ja": "起動"
       }
     },
     {
@@ -452,6 +639,11 @@
         "image_name": "error",
         "action_file": "error",
         "sound_file": "error"
+      },
+      "display_names": {
+        "zh-Hans": "错误",
+        "en": "Error",
+        "ja": "エラー"
       }
     },
     {
@@ -463,6 +655,11 @@
       "preview_size": 20076,
       "device": {
         "image_name": "standby"
+      },
+      "display_names": {
+        "zh-Hans": "待机",
+        "en": "Standby",
+        "ja": "待機"
       }
     },
     {
@@ -474,6 +671,11 @@
       "preview_size": 167123,
       "device": {
         "image_name": "listening"
+      },
+      "display_names": {
+        "zh-Hans": "聆听",
+        "en": "Listening",
+        "ja": "聞き取り中"
       }
     },
     {
@@ -485,6 +687,11 @@
       "preview_size": 48116,
       "device": {
         "image_name": "thinking"
+      },
+      "display_names": {
+        "zh-Hans": "思考",
+        "en": "Thinking",
+        "ja": "考え中"
       }
     },
     {
@@ -496,6 +703,11 @@
       "preview_size": 33217,
       "device": {
         "image_name": "speaking"
+      },
+      "display_names": {
+        "zh-Hans": "说话",
+        "en": "Speaking",
+        "ja": "発話中"
       }
     },
     {
@@ -507,6 +719,11 @@
       "preview_size": 89752,
       "device": {
         "image_name": "processing"
+      },
+      "display_names": {
+        "zh-Hans": "处理中",
+        "en": "Processing",
+        "ja": "処理中"
       }
     },
     {
@@ -519,6 +736,271 @@
       "device": {
         "image_name": "photo",
         "sound_file": "photo"
+      },
+      "display_names": {
+        "zh-Hans": "拍照",
+        "en": "Photo",
+        "ja": "撮影"
+      }
+    },
+    {
+      "id": "wipe",
+      "display_name": "擦玻璃",
+      "order": 44,
+      "preview": "gif/wipe.gif",
+      "preview_sha256": "a8d51fa1e58ef785e45d157218b8c1e0eef08958c59977fd87035bcf5af0b394",
+      "preview_size": 845588,
+      "device": {
+        "image_name": "wipe",
+        "action_file": "wipe",
+        "sound_file": "wipe"
+      },
+      "display_names": {
+        "zh-Hans": "擦玻璃",
+        "en": "Wipe",
+        "ja": "ガラス拭き"
+      }
+    },
+    {
+      "id": "wait",
+      "display_name": "长时间等待",
+      "order": 45,
+      "preview": "gif/wait.gif",
+      "preview_sha256": "68659b1fb7a187b3053419088cf32e9eca26fa5d147dec6684be47f8e4549016",
+      "preview_size": 1845218,
+      "device": {
+        "image_name": "wait",
+        "action_file": "wait",
+        "sound_file": "wait"
+      },
+      "display_names": {
+        "zh-Hans": "长时间等待",
+        "en": "Wait",
+        "ja": "長時間待機"
+      }
+    },
+    {
+      "id": "sleep_start",
+      "display_name": "睡觉开始",
+      "order": 46,
+      "preview": "gif/sleep_start.gif",
+      "preview_sha256": "22a459d38e7462493d8729ecbe251ecdcac87a3394c91d5be11f7e8b272d54ad",
+      "preview_size": 91365,
+      "device": {
+        "image_name": "sleep_start"
+      },
+      "display_names": {
+        "zh-Hans": "睡觉开始",
+        "en": "Sleep Start",
+        "ja": "睡眠（開始）"
+      }
+    },
+    {
+      "id": "sleep_loop",
+      "display_name": "睡觉循环",
+      "order": 47,
+      "preview": "gif/sleep_loop.gif",
+      "preview_sha256": "83d8241d400d578f82f2ed104c6883542839cc218377feefe0012edc2ec70a43",
+      "preview_size": 112582,
+      "device": {
+        "image_name": "sleep_loop",
+        "sound_file": "sleep_loop"
+      },
+      "display_names": {
+        "zh-Hans": "睡觉循环",
+        "en": "Sleep Loop",
+        "ja": "睡眠（ループ）"
+      }
+    },
+    {
+      "id": "sleep_end",
+      "display_name": "睡觉结束",
+      "order": 48,
+      "preview": "gif/sleep_end.gif",
+      "preview_sha256": "3f0fecb334b435574e540d4b6590fcd8017f55d5de9a048528e337541d67d865",
+      "preview_size": 32949,
+      "device": {
+        "image_name": "sleep_end"
+      },
+      "display_names": {
+        "zh-Hans": "睡觉结束",
+        "en": "Sleep End",
+        "ja": "睡眠（終了）"
+      }
+    },
+    {
+      "id": "no_network",
+      "display_name": "无网络",
+      "order": 49,
+      "preview": "gif/no_network.gif",
+      "preview_sha256": "87008a43a501bd0315f485f54983cd8614820469e00831318a6783494f8f0163",
+      "preview_size": 281653,
+      "device": {
+        "image_name": "no_network"
+      },
+      "display_names": {
+        "zh-Hans": "无网络",
+        "en": "No Network",
+        "ja": "ネット未接続"
+      }
+    },
+    {
+      "id": "coding_start",
+      "display_name": "打代码-开始",
+      "order": 50,
+      "preview": "gif/coding_start.gif",
+      "preview_sha256": "15ed0203cf984c254825f302eec6393f3100480d2ccbfb86a777614b4cf6dadf",
+      "preview_size": 99573,
+      "device": {
+        "image_name": "coding_start",
+        "action_file": "coding_start",
+        "sound_file": "coding_start"
+      },
+      "display_names": {
+        "zh-Hans": "打代码-开始",
+        "en": "Coding Start",
+        "ja": "コーディング（開始）"
+      }
+    },
+    {
+      "id": "coding_loop",
+      "display_name": "打代码-循环",
+      "order": 51,
+      "preview": "gif/coding_loop.gif",
+      "preview_sha256": "861a55eb2fd2c9b4fdf83b74f9175317d1f352c84461610c602be8049b60db9a",
+      "preview_size": 546558,
+      "device": {
+        "image_name": "coding_loop",
+        "action_file": "coding_loop",
+        "sound_file": "coding_loop"
+      },
+      "display_names": {
+        "zh-Hans": "打代码-循环",
+        "en": "Coding Loop",
+        "ja": "コーディング（ループ）"
+      }
+    },
+    {
+      "id": "coding_end",
+      "display_name": "打代码-结束",
+      "order": 52,
+      "preview": "gif/coding_end.gif",
+      "preview_sha256": "4692efc4ee366b20a3e753060e48654b361d82b3eba0b26e5ef22412af7cbc8c",
+      "preview_size": 105849,
+      "device": {
+        "image_name": "coding_end",
+        "action_file": "coding_end",
+        "sound_file": "coding_end"
+      },
+      "display_names": {
+        "zh-Hans": "打代码-结束",
+        "en": "Coding End",
+        "ja": "コーディング（終了）"
+      }
+    },
+    {
+      "id": "swimming_start",
+      "display_name": "潜水-开始",
+      "order": 53,
+      "preview": "gif/swimming_start.gif",
+      "preview_sha256": "e473cb93ee0cdde7bbb98f4043c1cbeca1f3a9c689d67312be6509f755eeaff8",
+      "preview_size": 540254,
+      "device": {
+        "image_name": "swimming_start",
+        "action_file": "swimming_start",
+        "sound_file": "swimming_start"
+      },
+      "display_names": {
+        "zh-Hans": "潜水-开始",
+        "en": "Swimming Start",
+        "ja": "潜水（開始）"
+      }
+    },
+    {
+      "id": "swimming_loop",
+      "display_name": "潜水-循环",
+      "order": 54,
+      "preview": "gif/swimming_loop.gif",
+      "preview_sha256": "030285b336a364194c77a7fc6ae0aae9be6eb1b4a1fc7ac3942c77f07b4f219b",
+      "preview_size": 2923943,
+      "device": {
+        "image_name": "swimming_loop",
+        "action_file": "swimming_loop",
+        "sound_file": "swimming_loop"
+      },
+      "display_names": {
+        "zh-Hans": "潜水-循环",
+        "en": "Swimming Loop",
+        "ja": "潜水（ループ）"
+      }
+    },
+    {
+      "id": "swimming_end",
+      "display_name": "潜水-结束",
+      "order": 55,
+      "preview": "gif/swimming_end.gif",
+      "preview_sha256": "b709a2adfeacabffdf39e59df2c55e791e18450ce91dc449b98576cc499376cd",
+      "preview_size": 334951,
+      "device": {
+        "image_name": "swimming_end",
+        "action_file": "swimming_end",
+        "sound_file": "swimming_end"
+      },
+      "display_names": {
+        "zh-Hans": "潜水-结束",
+        "en": "Swimming End",
+        "ja": "潜水（終了）"
+      }
+    },
+    {
+      "id": "headset_start",
+      "display_name": "听歌-开始",
+      "order": 56,
+      "preview": "gif/headset_start.gif",
+      "preview_sha256": "46fc0896e5eba46782698eb0e1b7042bca7d3705d78a642f29d03e799e209eec",
+      "preview_size": 93317,
+      "device": {
+        "image_name": "headset_start",
+        "action_file": "headset_start"
+      },
+      "display_names": {
+        "zh-Hans": "听歌-开始",
+        "en": "Headset Start",
+        "ja": "ヘッドホン装着（開始）"
+      }
+    },
+    {
+      "id": "headset_loop",
+      "display_name": "听歌-循环",
+      "order": 57,
+      "preview": "gif/headset_loop.gif",
+      "preview_sha256": "6ac0c80a7fb3afa2c34e28cea471327977f38aefe7bec54d49e0a8c500273896",
+      "preview_size": 251562,
+      "device": {
+        "image_name": "headset_loop",
+        "action_file": "headset_loop"
+      },
+      "display_names": {
+        "zh-Hans": "听歌-循环",
+        "en": "Headset Loop",
+        "ja": "ヘッドホン装着（ループ）"
+      }
+    },
+    {
+      "id": "headset_end",
+      "display_name": "听歌-结束",
+      "order": 58,
+      "preview": "gif/headset_end.gif",
+      "preview_sha256": "97a9ed4a38d82519cb7c3bfc6959a25e2a5e7228140b17b025775f116394c94d",
+      "preview_size": 60849,
+      "device": {
+        "image_name": "headset_end",
+        "action_file": "headset_end"
+      },
+      "display_names": {
+        "zh-Hans": "听歌-结束",
+        "en": "Headset End",
+        "ja": "ヘッドホン装着（終了）"
       }
     }
   ]

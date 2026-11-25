@@ -1,0 +1,357 @@
+{
+  "scene_name": "swimming",
+  "frame_start": 0,
+  "frame_end": 21500,
+  "fps": 1000,
+  "animated_objects": [
+    {
+      "object_name": "body_x",
+      "object_type": "MESH",
+      "action_name": "swimming",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 4950,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 5250,
+          "active_axis": "z",
+          "rotation_angle": 98
+        },
+        {
+          "frame_number": 5550,
+          "active_axis": "z",
+          "rotation_angle": 98
+        },
+        {
+          "frame_number": 6100,
+          "active_axis": "z",
+          "rotation_angle": 92
+        },
+        {
+          "frame_number": 6750,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 7150,
+          "active_axis": "z",
+          "rotation_angle": 80
+        },
+        {
+          "frame_number": 7600,
+          "active_axis": "z",
+          "rotation_angle": 76
+        },
+        {
+          "frame_number": 7950,
+          "active_axis": "z",
+          "rotation_angle": 76
+        },
+        {
+          "frame_number": 8500,
+          "active_axis": "z",
+          "rotation_angle": 83
+        },
+        {
+          "frame_number": 9100,
+          "active_axis": "z",
+          "rotation_angle": 92
+        },
+        {
+          "frame_number": 9750,
+          "active_axis": "z",
+          "rotation_angle": 102
+        },
+        {
+          "frame_number": 10650,
+          "active_axis": "z",
+          "rotation_angle": 102
+        },
+        {
+          "frame_number": 11050,
+          "active_axis": "z",
+          "rotation_angle": 97
+        },
+        {
+          "frame_number": 11350,
+          "active_axis": "z",
+          "rotation_angle": 97
+        },
+        {
+          "frame_number": 11950,
+          "active_axis": "z",
+          "rotation_angle": 85
+        },
+        {
+          "frame_number": 12350,
+          "active_axis": "z",
+          "rotation_angle": 85
+        },
+        {
+          "frame_number": 12750,
+          "active_axis": "z",
+          "rotation_angle": 93
+        },
+        {
+          "frame_number": 13200,
+          "active_axis": "z",
+          "rotation_angle": 79
+        },
+        {
+          "frame_number": 13500,
+          "active_axis": "z",
+          "rotation_angle": 79
+        },
+        {
+          "frame_number": 14000,
+          "active_axis": "z",
+          "rotation_angle": 84
+        },
+        {
+          "frame_number": 14600,
+          "active_axis": "z",
+          "rotation_angle": 91
+        },
+        {
+          "frame_number": 15100,
+          "active_axis": "z",
+          "rotation_angle": 96
+        },
+        {
+          "frame_number": 16600,
+          "active_axis": "z",
+          "rotation_angle": 96
+        },
+        {
+          "frame_number": 17100,
+          "active_axis": "z",
+          "rotation_angle": 93
+        },
+        {
+          "frame_number": 17400,
+          "active_axis": "z",
+          "rotation_angle": 93
+        },
+        {
+          "frame_number": 17700,
+          "active_axis": "z",
+          "rotation_angle": 90
+        },
+        {
+          "frame_number": 19080,
+          "active_axis": "z",
+          "rotation_angle": 90
+        }
+      ]
+    },
+    {
+      "object_name": "head_y",
+      "object_type": "EMPTY",
+      "action_name": "swimming",
+      "keyframe_data": [
+        {
+          "frame_number": 0,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 300,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 600,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 1050,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 1450,
+          "active_axis": "x",
+          "rotation_angle": 103
+        },
+        {
+          "frame_number": 1850,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 2900,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 3100,
+          "active_axis": "x",
+          "rotation_angle": 112
+        },
+        {
+          "frame_number": 3400,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 4950,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 5250,
+          "active_axis": "x",
+          "rotation_angle": 110
+        },
+        {
+          "frame_number": 5550,
+          "active_axis": "x",
+          "rotation_angle": 110
+        },
+        {
+          "frame_number": 6100,
+          "active_axis": "x",
+          "rotation_angle": 108
+        },
+        {
+          "frame_number": 6750,
+          "active_axis": "x",
+          "rotation_angle": 109
+        },
+        {
+          "frame_number": 7150,
+          "active_axis": "x",
+          "rotation_angle": 109
+        },
+        {
+          "frame_number": 7600,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 7950,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 8500,
+          "active_axis": "x",
+          "rotation_angle": 121
+        },
+        {
+          "frame_number": 9100,
+          "active_axis": "x",
+          "rotation_angle": 121
+        },
+        {
+          "frame_number": 9750,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 10650,
+          "active_axis": "x",
+          "rotation_angle": 120
+        },
+        {
+          "frame_number": 11050,
+          "active_axis": "x",
+          "rotation_angle": 108
+        },
+        {
+          "frame_number": 11350,
+          "active_axis": "x",
+          "rotation_angle": 108
+        },
+        {
+          "frame_number": 11950,
+          "active_axis": "x",
+          "rotation_angle": 107
+        },
+        {
+          "frame_number": 12350,
+          "active_axis": "x",
+          "rotation_angle": 107
+        },
+        {
+          "frame_number": 12750,
+          "active_axis": "x",
+          "rotation_angle": 110
+        },
+        {
+          "frame_number": 13200,
+          "active_axis": "x",
+          "rotation_angle": 114
+        },
+        {
+          "frame_number": 13500,
+          "active_axis": "x",
+          "rotation_angle": 114
+        },
+        {
+          "frame_number": 14000,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 14600,
+          "active_axis": "x",
+          "rotation_angle": 116
+        },
+        {
+          "frame_number": 16600,
+          "active_axis": "x",
+          "rotation_angle": 116
+        },
+        {
+          "frame_number": 17100,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 18000,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 18500,
+          "active_axis": "x",
+          "rotation_angle": 105
+        },
+        {
+          "frame_number": 18800,
+          "active_axis": "x",
+          "rotation_angle": 115
+        },
+        {
+          "frame_number": 19300,
+          "active_axis": "x",
+          "rotation_angle": 105
+        },
+        {
+          "frame_number": 19700,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 21050,
+          "active_axis": "x",
+          "rotation_angle": 118
+        },
+        {
+          "frame_number": 21500,
+          "active_axis": "x",
+          "rotation_angle": 115
+        }
+      ]
+    }
+  ]
+}

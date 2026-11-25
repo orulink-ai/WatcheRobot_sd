@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "format": "watche-desktop-resource-catalog",
-  "version": "v0.0.10",
-  "content_hash": "ab2e0d7229137f9996b448ca49ad42d43969133bd6612e10dfe7e86a694578d7",
+  "version": "v0.0.11",
+  "content_hash": "ffd2bd5a50bc5e1ecd08b96672530451b03c5d6e89141abf1627d34f47c57f06",
   "expressions": [
     {
       "id": "custom3",
@@ -283,6 +283,13 @@
       "preview_sha256": "0bdfa5b65609f5702df3cebabaccd1a8c9eccd2e6dcc24645b5f336763719c9c",
       "order": 7,
       "creator": {
+        "action": {
+          "path": "actions/swimming.json",
+          "kind": "action",
+          "sha256": "3b29dba26d030949ea66e27338d6d94bc47e9211df09e33116482ceb2b7d2f52",
+          "size": 8456,
+          "format": "firmware-action-json-v1"
+        },
         "sound": {
           "path": "sounds/swimming.pcm",
           "kind": "sfx",
@@ -299,6 +306,12 @@
             "sha256": "d3f5f069d7a12fbe039650c0e6e62531e0a63bc3c3c8d0b9f0e4bd6b2ad1cd59",
             "size": 9193756,
             "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "3b29dba26d030949ea66e27338d6d94bc47e9211df09e33116482ceb2b7d2f52",
+            "size": 8456,
+            "format": "firmware-action-json-v1"
           },
           "sound": {
             "kind": "sfx",
@@ -694,6 +707,13 @@
           "sha256": "14cbe09fafb7cb47f52746e7eae830c98ab85392af5a53d9ac1c7b93bc546d72",
           "size": 2670,
           "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/snow.pcm",
+          "kind": "sfx",
+          "sha256": "e499f6ae08d9bf1d841e795164edd98fb66da593daeb3efe75bbc0f7dadc0e73",
+          "size": 584308,
+          "format": "pcm-s16le-24khz-mono"
         }
       },
       "device": {
@@ -710,6 +730,12 @@
             "sha256": "14cbe09fafb7cb47f52746e7eae830c98ab85392af5a53d9ac1c7b93bc546d72",
             "size": 2670,
             "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "e499f6ae08d9bf1d841e795164edd98fb66da593daeb3efe75bbc0f7dadc0e73",
+            "size": 584308,
+            "format": "pcm-s16le-24khz-mono"
           }
         }
       }
@@ -1377,6 +1403,593 @@
             "sha256": "6dae56f94efde1d537f9c0d7e45a6063f858e0f8174e64cf061b51a9661c7cfb",
             "size": 170528,
             "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "wipe",
+      "display_name": "擦玻璃",
+      "source_label": "watcher-擦玻璃",
+      "source_record_id": "reczz28aeQLDlyBf",
+      "preview": "previews/wipe.webp",
+      "preview_sha256": "2b93b3c7abe0ec93755ef2d9e48329b582862851d955a0dae509140164c9a357",
+      "order": 44,
+      "creator": {
+        "action": {
+          "path": "actions/wipe.json",
+          "kind": "action",
+          "sha256": "c2edcc655dd9c061fdc5589ece5ab7add7fa37c6297a63c54c36b8f960217020",
+          "size": 4476,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/wipe.pcm",
+          "kind": "sfx",
+          "sha256": "8f06941d3dc99d6351f590db971a1062241abc9d9c4980ea8f54d452d033b732",
+          "size": 660794,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "wipe",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "23afd93a779b40e4c5c30aa5f77eb68b14e44da473111bc63151fbdb8c0ee6ae",
+            "size": 5838972,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "c2edcc655dd9c061fdc5589ece5ab7add7fa37c6297a63c54c36b8f960217020",
+            "size": 4476,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "8f06941d3dc99d6351f590db971a1062241abc9d9c4980ea8f54d452d033b732",
+            "size": 660794,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "wait",
+      "display_name": "长时间等待",
+      "source_label": "watcher-长时间等待",
+      "source_record_id": "reczz28aeQMDjVpZ",
+      "preview": "previews/wait.webp",
+      "preview_sha256": "7400d4913c4e0e2ca7331acd2215d08dc5e6e6152f30101fee6673dce1e567e3",
+      "order": 45,
+      "creator": {
+        "action": {
+          "path": "actions/wait.json",
+          "kind": "action",
+          "sha256": "9cecde95747ee75226eb1c601cd8647edbd1c6170be43fe917e38a1ee5eb588e",
+          "size": 2080,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/wait.pcm",
+          "kind": "sfx",
+          "sha256": "1c0f2481af73fd2895237fe580f97c53c6369a8e2ade43da95113daefa0db5aa",
+          "size": 813766,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "wait",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "2057188697b6b708da45cbf7e1197f81f09c6f9b2cf9df044ba8ce619a1ebfe1",
+            "size": 7243746,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "9cecde95747ee75226eb1c601cd8647edbd1c6170be43fe917e38a1ee5eb588e",
+            "size": 2080,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "1c0f2481af73fd2895237fe580f97c53c6369a8e2ade43da95113daefa0db5aa",
+            "size": 813766,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "sleep_start",
+      "display_name": "睡觉开始",
+      "source_label": "watcher-睡觉开始",
+      "source_record_id": "reczz28afYZuE3y1",
+      "preview": "previews/sleep_start.webp",
+      "preview_sha256": "696078fcb5a9db4a1b8a756dacc20b153ccd093d7dd9b553729ec7dac8e88bde",
+      "order": 46,
+      "creator": {},
+      "device": {
+        "image_name": "sleep_start",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "34a69bf24cf627d1bfa76211fb9cfe53616b3f9652e11e70ce761f09ded969b6",
+            "size": 1702462,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "sleep_loop",
+      "display_name": "睡觉循环",
+      "source_label": "watcher-睡觉循环",
+      "source_record_id": "reczz28afYanwS0m",
+      "preview": "previews/sleep_loop.webp",
+      "preview_sha256": "7486e60e46278a2903f06c443b1b865fd71b7dd4e4824fe327eb7f6e816e97c6",
+      "order": 47,
+      "creator": {
+        "sound": {
+          "path": "sounds/sleep_loop.pcm",
+          "kind": "sfx",
+          "sha256": "9465a05b52acfe852a8cb5cc195db7ab700b36d661c384c84b7341751a5a7e50",
+          "size": 195606,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "sleep_loop",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "3932b697a47b51f6a469084205077aa526f830ae6f0a3fad115962cbf3e17b08",
+            "size": 1706034,
+            "format": "animpack-v2"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "9465a05b52acfe852a8cb5cc195db7ab700b36d661c384c84b7341751a5a7e50",
+            "size": 195606,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "sleep_end",
+      "display_name": "睡觉结束",
+      "source_label": "watcher-睡觉结束",
+      "source_record_id": "reczz28afYc1U7ei",
+      "preview": "previews/sleep_end.webp",
+      "preview_sha256": "1f9e88e0b28a31bdaf5c4a4b375a29343ca934eb5cb962df3e7c8c122c090c65",
+      "order": 48,
+      "creator": {},
+      "device": {
+        "image_name": "sleep_end",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "ac3aa108ad95d6d79855bbae2af52f9a5059a7215cf2c11fd6204b60fd42a7f1",
+            "size": 170236,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "no_network",
+      "display_name": "无网络",
+      "source_label": "watcher-无网络",
+      "source_record_id": "reczz28bVBygNeu1",
+      "preview": "previews/no_network.webp",
+      "preview_sha256": "f55901c098f8ce3d391a669995997f6f8ffc7fdfdb997f977539aa3b12708af9",
+      "order": 49,
+      "creator": {},
+      "device": {
+        "image_name": "no_network",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "81804716df17e9b9301be79dec45432b4972398de5ae60090f61ba32b42f1771",
+            "size": 1751194,
+            "format": "animpack-v2"
+          }
+        }
+      }
+    },
+    {
+      "id": "coding_start",
+      "display_name": "打代码-开始",
+      "source_label": "watcher-打代码-开始",
+      "source_record_id": "reczz28bqsWtTo4x",
+      "preview": "previews/coding_start.webp",
+      "preview_sha256": "d9901d6f6470d712d323bdeb1054f75b5334ba456ed66c4e1b437cf514ea2fd9",
+      "order": 50,
+      "creator": {
+        "action": {
+          "path": "actions/coding_start.json",
+          "kind": "action",
+          "sha256": "f7d96e934e7108610b268951c6d7cfb09613623970ed7e14d6eef32104fa7b0f",
+          "size": 1375,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/coding_start.pcm",
+          "kind": "sfx",
+          "sha256": "b0fb14f1e6a0daae2483186e526c1570e6b15fdc746f8ac78868149cf671e8af",
+          "size": 94042,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "coding_start",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "a9f87922db46485d99ffc1206e59e50b044d9ddd957b85aea30f48d73f1c544a",
+            "size": 813248,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "f7d96e934e7108610b268951c6d7cfb09613623970ed7e14d6eef32104fa7b0f",
+            "size": 1375,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "b0fb14f1e6a0daae2483186e526c1570e6b15fdc746f8ac78868149cf671e8af",
+            "size": 94042,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "coding_loop",
+      "display_name": "打代码-循环",
+      "source_label": "watcher-打代码-循环",
+      "source_record_id": "reczz28bqsYR14Fx",
+      "preview": "previews/coding_loop.webp",
+      "preview_sha256": "2fea6a2108fc77ca1f74a8fa548a153e0230363cdd256a6e5d296478801e1645",
+      "order": 51,
+      "creator": {
+        "action": {
+          "path": "actions/coding_loop.json",
+          "kind": "action",
+          "sha256": "30936fd8ec57c9818281fd91ffc6d988a65b677528668163b0c8e97163f92615",
+          "size": 4719,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/coding_loop.pcm",
+          "kind": "sfx",
+          "sha256": "d03211852ffce0370f48499985b93a7d26c09c08008244a1efbead252e13a92d",
+          "size": 319740,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "coding_loop",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "d6a51e1cd83eb2488c953dd8bc84e5c7b7658ba2f97c495495b80a3fc40f8d8a",
+            "size": 2831478,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "30936fd8ec57c9818281fd91ffc6d988a65b677528668163b0c8e97163f92615",
+            "size": 4719,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "d03211852ffce0370f48499985b93a7d26c09c08008244a1efbead252e13a92d",
+            "size": 319740,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "coding_end",
+      "display_name": "打代码-结束",
+      "source_label": "watcher-打代码-结束",
+      "source_record_id": "reczz28bqsZwxVdD",
+      "preview": "previews/coding_end.webp",
+      "preview_sha256": "186a87f3bba5e468a178919d2dad1f5eb60e50ffa0955112852b6ff4bcf984ba",
+      "order": 52,
+      "creator": {
+        "action": {
+          "path": "actions/coding_end.json",
+          "kind": "action",
+          "sha256": "0724474a40c39d8f2f519aa00925736baec0d5bfd5578ce34692a1fb029e00cb",
+          "size": 1368,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/coding_end.pcm",
+          "kind": "sfx",
+          "sha256": "aa74e06130da77022fc33225be1dc34df334278889b5a77d9d57f82471dd5cf0",
+          "size": 56424,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "coding_end",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "e4a20e0b0b6c7e0c6c4b367a647871a5f522b91a5344bcd8522c2a718a4e4540",
+            "size": 470450,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "0724474a40c39d8f2f519aa00925736baec0d5bfd5578ce34692a1fb029e00cb",
+            "size": 1368,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "aa74e06130da77022fc33225be1dc34df334278889b5a77d9d57f82471dd5cf0",
+            "size": 56424,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "swimming_start",
+      "display_name": "潜水-开始",
+      "source_label": "watcher-潜水-开始",
+      "source_record_id": "reczz28bqsau01RL",
+      "preview": "previews/swimming_start.webp",
+      "preview_sha256": "ef3716d8d5310d85b451dfaba2aa4aa56eb4ffd47ffb6b1fecd7b1761efc155e",
+      "order": 53,
+      "creator": {
+        "action": {
+          "path": "actions/swimming_start.json",
+          "kind": "action",
+          "sha256": "94aedc600facce859b050ed78485fb7bbac8c001d88f7235e3ec429f53a0646a",
+          "size": 2340,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/swimming_start.pcm",
+          "kind": "sfx",
+          "sha256": "261f82d9d5f85017295bfbf7b0da485a403aed882983b89d81adbd050cbee934",
+          "size": 224444,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "swimming_start",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "9b38d6d712845e0ac8efa0948c450ffe403628a5324ce8161d5257bfe5850bb5",
+            "size": 1964898,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "94aedc600facce859b050ed78485fb7bbac8c001d88f7235e3ec429f53a0646a",
+            "size": 2340,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "261f82d9d5f85017295bfbf7b0da485a403aed882983b89d81adbd050cbee934",
+            "size": 224444,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "swimming_loop",
+      "display_name": "潜水-循环",
+      "source_label": "watcher-潜水-循环",
+      "source_record_id": "reczz28bqsbukuuJ",
+      "preview": "previews/swimming_loop.webp",
+      "preview_sha256": "7657c56f5f31bf74b4c248d736f55097b3d08bc2f7ac7afb001d070707d60926",
+      "order": 54,
+      "creator": {
+        "action": {
+          "path": "actions/swimming_loop.json",
+          "kind": "action",
+          "sha256": "ffe1b4d09cc83cd41320e54fac5dd8ddc124716a1b141b51754852bda98097d1",
+          "size": 6648,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/swimming_loop.pcm",
+          "kind": "sfx",
+          "sha256": "6024a22edf4addc790d3ef68f44a7f21c67d1845d01ffd217fe430c15ec2d21d",
+          "size": 694648,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "swimming_loop",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "601c5c76b1db5f449b40c5632ad03a285979632a8fad78e538e997e01d6baa04",
+            "size": 6174708,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "ffe1b4d09cc83cd41320e54fac5dd8ddc124716a1b141b51754852bda98097d1",
+            "size": 6648,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "6024a22edf4addc790d3ef68f44a7f21c67d1845d01ffd217fe430c15ec2d21d",
+            "size": 694648,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "swimming_end",
+      "display_name": "潜水-结束",
+      "source_label": "watcher-潜水-结束",
+      "source_record_id": "reczz28bqscfmhjw",
+      "preview": "previews/swimming_end.webp",
+      "preview_sha256": "3481c879be08f4eadeb2d358017c210ed7611dc6ebb5475cac38ac2f01224a5e",
+      "order": 55,
+      "creator": {
+        "action": {
+          "path": "actions/swimming_end.json",
+          "kind": "action",
+          "sha256": "3824e10ecc050732766114878e7c8a0633208f352adacf1bfb1480f69071814e",
+          "size": 1616,
+          "format": "firmware-action-json-v1"
+        },
+        "sound": {
+          "path": "sounds/swimming_end.pcm",
+          "kind": "sfx",
+          "sha256": "ed20f654b92dad6ad840e50454b7cc65ba7ee5ede5cef27c47e873778a323719",
+          "size": 175544,
+          "format": "pcm-s16le-24khz-mono"
+        }
+      },
+      "device": {
+        "image_name": "swimming_end",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "8c172bec628fe73bff9411deb879b49e73e1aa5e3f9df59b702fee06f0e240e8",
+            "size": 1536012,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "3824e10ecc050732766114878e7c8a0633208f352adacf1bfb1480f69071814e",
+            "size": 1616,
+            "format": "firmware-action-json-v1"
+          },
+          "sound": {
+            "kind": "sfx",
+            "sha256": "ed20f654b92dad6ad840e50454b7cc65ba7ee5ede5cef27c47e873778a323719",
+            "size": 175544,
+            "format": "pcm-s16le-24khz-mono"
+          }
+        }
+      }
+    },
+    {
+      "id": "headset_start",
+      "display_name": "听歌-开始",
+      "source_label": "watcher-听歌-开始",
+      "source_record_id": "reczz28bqtf28lpn",
+      "preview": "previews/headset_start.webp",
+      "preview_sha256": "3f2a13e31992015de7a802c16e5d9c34fafc5f67edfd84f9fa11fe2a37df76a9",
+      "order": 56,
+      "creator": {
+        "action": {
+          "path": "actions/headset_start.json",
+          "kind": "action",
+          "sha256": "07bb3ac42335193a082220e02a336ff97ffa2bbe6ad755a3f88cac0a65f903d6",
+          "size": 2088,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "headset_start",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "911e6eddc71b1e2cd5724049764653d269b5a1600064cb967dd00b0e81b6f1ee",
+            "size": 555064,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "07bb3ac42335193a082220e02a336ff97ffa2bbe6ad755a3f88cac0a65f903d6",
+            "size": 2088,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "headset_loop",
+      "display_name": "听歌-循环",
+      "source_label": "watcher-听歌-循环",
+      "source_record_id": "reczz28bqtfqlbeZ",
+      "preview": "previews/headset_loop.webp",
+      "preview_sha256": "fb381bee9e545746dd56ca23af686d3c560eb68ec6f444493b144524ca499c02",
+      "order": 57,
+      "creator": {
+        "action": {
+          "path": "actions/headset_loop.json",
+          "kind": "action",
+          "sha256": "11bb295c0ba593624d5edc6392fe4afe3afdaec14ae861eb600573c350f2eabc",
+          "size": 2693,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "headset_loop",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "2bbf782e7f453c2ba658f16779065a89cea225ecf4a02da8d1a21ad06167e8d7",
+            "size": 1326794,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "11bb295c0ba593624d5edc6392fe4afe3afdaec14ae861eb600573c350f2eabc",
+            "size": 2693,
+            "format": "firmware-action-json-v1"
+          }
+        }
+      }
+    },
+    {
+      "id": "headset_end",
+      "display_name": "听歌-结束",
+      "source_label": "watcher-听歌-结束",
+      "source_record_id": "reczz28bqtho1hR2",
+      "preview": "previews/headset_end.webp",
+      "preview_sha256": "c161d5dfb3764d408d97b1db9a541d042f309ac8b9b56b9cf2898aa7f8ff6db8",
+      "order": 58,
+      "creator": {
+        "action": {
+          "path": "actions/headset_end.json",
+          "kind": "action",
+          "sha256": "58b9bae48c4be3ca11af769389effb3c6e2e4e0acb0926e09e9941a9466c7cdb",
+          "size": 1249,
+          "format": "firmware-action-json-v1"
+        }
+      },
+      "device": {
+        "image_name": "headset_end",
+        "assets": {
+          "animation": {
+            "kind": "anim",
+            "sha256": "aa8f21e5b580c1ef5bb847272997e078002dc06ca4d3fa053b06c7e1b7edf3a5",
+            "size": 384114,
+            "format": "animpack-v2"
+          },
+          "action": {
+            "kind": "action",
+            "sha256": "58b9bae48c4be3ca11af769389effb3c6e2e4e0acb0926e09e9941a9466c7cdb",
+            "size": 1249,
+            "format": "firmware-action-json-v1"
           }
         }
       }

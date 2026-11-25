@@ -1,0 +1,77 @@
+{
+  "kind": "watcher.motion-studio.action-draft",
+  "version": 1,
+  "actionId": "custom-action-b457c5f6-1e91-4cfd-8737-486c1f7037dc",
+  "label": "未命名大作品 2026/11/20",
+  "exportedAt": "2026-11-20T07:33:06.335Z",
+  "tracks": {
+    "xDeg": [
+      {
+        "id": "creator-ai-1795145855886-50b8yb-xDeg-0",
+        "axis": "xDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 90,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1795145855886-50b8yb-xDeg-5",
+        "axis": "xDeg",
+        "timeMs": 1900,
+        "frameNumber": 95,
+        "angleDeg": 90,
+        "source": "draft"
+      }
+    ],
+    "yDeg": [
+      {
+        "id": "creator-ai-1795145855886-50b8yb-yDeg-0",
+        "axis": "yDeg",
+        "timeMs": 0,
+        "frameNumber": 0,
+        "angleDeg": 115,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1795145855886-50b8yb-yDeg-1",
+        "axis": "yDeg",
+        "timeMs": 180,
+        "frameNumber": 9,
+        "angleDeg": 119.5,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1795145855886-50b8yb-yDeg-2",
+        "axis": "yDeg",
+        "timeMs": 480,
+        "frameNumber": 24,
+        "angleDeg": 109.7,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1795145855886-50b8yb-yDeg-3",
+        "axis": "yDeg",
+        "timeMs": 620,
+        "frameNumber": 31,
+        "angleDeg": 111.8,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1795145855886-50b8yb-yDeg-4",
+        "axis": "yDeg",
+        "timeMs": 1740,
+        "frameNumber": 87,
+        "angleDeg": 111.8,
+        "source": "draft"
+      },
+      {
+        "id": "creator-ai-1795145855886-50b8yb-yDeg-5",
+        "axis": "yDeg",
+        "timeMs": 1900,
+        "frameNumber": 95,
+        "angleDeg": 115,
+        "source": "draft"
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "Watcher expression overview",
-  "imported_at": "2026-11-25T02:09:18.252767+00:00",
+  "imported_at": "2026-11-25T03:28:42.371820+00:00",
   "records": [
     {
       "source_record_id": "recvdwKxW8TQzA",
@@ -694,51 +694,6 @@
       "sound": "sound/wait.mp3"
     },
     {
-      "source_record_id": "reczz28afYZuE3y1",
-      "source_label": "watcher-睡觉开始",
-      "display_name": "睡觉开始",
-      "display_names": {
-        "zh-Hans": "睡觉开始",
-        "en": "Sleep Start",
-        "ja": "睡眠（開始）"
-      },
-      "resource_id": "sleep_start",
-      "order": 46,
-      "gif": "gif/sleep_start.gif",
-      "action": null,
-      "sound": null
-    },
-    {
-      "source_record_id": "reczz28afYanwS0m",
-      "source_label": "watcher-睡觉循环",
-      "display_name": "睡觉循环",
-      "display_names": {
-        "zh-Hans": "睡觉循环",
-        "en": "Sleep Loop",
-        "ja": "睡眠（ループ）"
-      },
-      "resource_id": "sleep_loop",
-      "order": 47,
-      "gif": "gif/sleep_loop.gif",
-      "action": null,
-      "sound": "sound/sleep_loop.mp3"
-    },
-    {
-      "source_record_id": "reczz28afYc1U7ei",
-      "source_label": "watcher-睡觉结束",
-      "display_name": "睡觉结束",
-      "display_names": {
-        "zh-Hans": "睡觉结束",
-        "en": "Sleep End",
-        "ja": "睡眠（終了）"
-      },
-      "resource_id": "sleep_end",
-      "order": 48,
-      "gif": "gif/sleep_end.gif",
-      "action": null,
-      "sound": null
-    },
-    {
       "source_record_id": "reczz28bVBygNeu1",
       "source_label": "watcher-无网络",
       "display_name": "无网络",
@@ -748,144 +703,9 @@
         "ja": "ネット未接続"
       },
       "resource_id": "no_network",
-      "order": 49,
+      "order": 46,
       "gif": "gif/no_network.gif",
       "action": null,
-      "sound": null
-    },
-    {
-      "source_record_id": "reczz28bqsWtTo4x",
-      "source_label": "watcher-打代码-开始",
-      "display_name": "打代码-开始",
-      "display_names": {
-        "zh-Hans": "打代码-开始",
-        "en": "Coding Start",
-        "ja": "コーディング（開始）"
-      },
-      "resource_id": "coding_start",
-      "order": 50,
-      "gif": "gif/coding_start.gif",
-      "action": "actions/coding_start.json",
-      "sound": "sound/coding_start.mp3"
-    },
-    {
-      "source_record_id": "reczz28bqsYR14Fx",
-      "source_label": "watcher-打代码-循环",
-      "display_name": "打代码-循环",
-      "display_names": {
-        "zh-Hans": "打代码-循环",
-        "en": "Coding Loop",
-        "ja": "コーディング（ループ）"
-      },
-      "resource_id": "coding_loop",
-      "order": 51,
-      "gif": "gif/coding_loop.gif",
-      "action": "actions/coding_loop.json",
-      "sound": "sound/coding_loop.mp3"
-    },
-    {
-      "source_record_id": "reczz28bqsZwxVdD",
-      "source_label": "watcher-打代码-结束",
-      "display_name": "打代码-结束",
-      "display_names": {
-        "zh-Hans": "打代码-结束",
-        "en": "Coding End",
-        "ja": "コーディング（終了）"
-      },
-      "resource_id": "coding_end",
-      "order": 52,
-      "gif": "gif/coding_end.gif",
-      "action": "actions/coding_end.json",
-      "sound": "sound/coding_end.mp3"
-    },
-    {
-      "source_record_id": "reczz28bqsau01RL",
-      "source_label": "watcher-潜水-开始",
-      "display_name": "潜水-开始",
-      "display_names": {
-        "zh-Hans": "潜水-开始",
-        "en": "Swimming Start",
-        "ja": "潜水（開始）"
-      },
-      "resource_id": "swimming_start",
-      "order": 53,
-      "gif": "gif/swimming_start.gif",
-      "action": "actions/swimming_start.json",
-      "sound": "sound/swimming_start.mp3"
-    },
-    {
-      "source_record_id": "reczz28bqsbukuuJ",
-      "source_label": "watcher-潜水-循环",
-      "display_name": "潜水-循环",
-      "display_names": {
-        "zh-Hans": "潜水-循环",
-        "en": "Swimming Loop",
-        "ja": "潜水（ループ）"
-      },
-      "resource_id": "swimming_loop",
-      "order": 54,
-      "gif": "gif/swimming_loop.gif",
-      "action": "actions/swimming_loop.json",
-      "sound": "sound/swimming_loop.mp3"
-    },
-    {
-      "source_record_id": "reczz28bqscfmhjw",
-      "source_label": "watcher-潜水-结束",
-      "display_name": "潜水-结束",
-      "display_names": {
-        "zh-Hans": "潜水-结束",
-        "en": "Swimming End",
-        "ja": "潜水（終了）"
-      },
-      "resource_id": "swimming_end",
-      "order": 55,
-      "gif": "gif/swimming_end.gif",
-      "action": "actions/swimming_end.json",
-      "sound": "sound/swimming_end.mp3"
-    },
-    {
-      "source_record_id": "reczz28bqtf28lpn",
-      "source_label": "watcher-听歌-开始",
-      "display_name": "听歌-开始",
-      "display_names": {
-        "zh-Hans": "听歌-开始",
-        "en": "Headset Start",
-        "ja": "ヘッドホン装着（開始）"
-      },
-      "resource_id": "headset_start",
-      "order": 56,
-      "gif": "gif/headset_start.gif",
-      "action": "actions/headset_start.json",
-      "sound": null
-    },
-    {
-      "source_record_id": "reczz28bqtfqlbeZ",
-      "source_label": "watcher-听歌-循环",
-      "display_name": "听歌-循环",
-      "display_names": {
-        "zh-Hans": "听歌-循环",
-        "en": "Headset Loop",
-        "ja": "ヘッドホン装着（ループ）"
-      },
-      "resource_id": "headset_loop",
-      "order": 57,
-      "gif": "gif/headset_loop.gif",
-      "action": "actions/headset_loop.json",
-      "sound": null
-    },
-    {
-      "source_record_id": "reczz28bqtho1hR2",
-      "source_label": "watcher-听歌-结束",
-      "display_name": "听歌-结束",
-      "display_names": {
-        "zh-Hans": "听歌-结束",
-        "en": "Headset End",
-        "ja": "ヘッドホン装着（終了）"
-      },
-      "resource_id": "headset_end",
-      "order": 58,
-      "gif": "gif/headset_end.gif",
-      "action": "actions/headset_end.json",
       "sound": null
     }
   ]

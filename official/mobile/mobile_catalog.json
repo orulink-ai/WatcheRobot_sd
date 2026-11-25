@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "format": "watche-mobile-expression-catalog",
-  "version": "v0.0.11",
-  "content_hash": "42ff9cde8d28368afdbd6a838ca70c87772e64956bdf51f40d8e161a99221e1e",
+  "version": "v0.0.12",
+  "content_hash": "2249a42241f6e341ba13c6851627fbc4416f6a46263b61aced0b2755b5c2372f",
   "expressions": [
     {
       "id": "custom3",
@@ -780,58 +780,9 @@
       }
     },
     {
-      "id": "sleep_start",
-      "display_name": "睡觉开始",
-      "order": 46,
-      "preview": "gif/sleep_start.gif",
-      "preview_sha256": "22a459d38e7462493d8729ecbe251ecdcac87a3394c91d5be11f7e8b272d54ad",
-      "preview_size": 91365,
-      "device": {
-        "image_name": "sleep_start"
-      },
-      "display_names": {
-        "zh-Hans": "睡觉开始",
-        "en": "Sleep Start",
-        "ja": "睡眠（開始）"
-      }
-    },
-    {
-      "id": "sleep_loop",
-      "display_name": "睡觉循环",
-      "order": 47,
-      "preview": "gif/sleep_loop.gif",
-      "preview_sha256": "83d8241d400d578f82f2ed104c6883542839cc218377feefe0012edc2ec70a43",
-      "preview_size": 112582,
-      "device": {
-        "image_name": "sleep_loop",
-        "sound_file": "sleep_loop"
-      },
-      "display_names": {
-        "zh-Hans": "睡觉循环",
-        "en": "Sleep Loop",
-        "ja": "睡眠（ループ）"
-      }
-    },
-    {
-      "id": "sleep_end",
-      "display_name": "睡觉结束",
-      "order": 48,
-      "preview": "gif/sleep_end.gif",
-      "preview_sha256": "3f0fecb334b435574e540d4b6590fcd8017f55d5de9a048528e337541d67d865",
-      "preview_size": 32949,
-      "device": {
-        "image_name": "sleep_end"
-      },
-      "display_names": {
-        "zh-Hans": "睡觉结束",
-        "en": "Sleep End",
-        "ja": "睡眠（終了）"
-      }
-    },
-    {
       "id": "no_network",
       "display_name": "无网络",
-      "order": 49,
+      "order": 46,
       "preview": "gif/no_network.gif",
       "preview_sha256": "87008a43a501bd0315f485f54983cd8614820469e00831318a6783494f8f0163",
       "preview_size": 281653,
@@ -842,165 +793,6 @@
         "zh-Hans": "无网络",
         "en": "No Network",
         "ja": "ネット未接続"
-      }
-    },
-    {
-      "id": "coding_start",
-      "display_name": "打代码-开始",
-      "order": 50,
-      "preview": "gif/coding_start.gif",
-      "preview_sha256": "15ed0203cf984c254825f302eec6393f3100480d2ccbfb86a777614b4cf6dadf",
-      "preview_size": 99573,
-      "device": {
-        "image_name": "coding_start",
-        "action_file": "coding_start",
-        "sound_file": "coding_start"
-      },
-      "display_names": {
-        "zh-Hans": "打代码-开始",
-        "en": "Coding Start",
-        "ja": "コーディング（開始）"
-      }
-    },
-    {
-      "id": "coding_loop",
-      "display_name": "打代码-循环",
-      "order": 51,
-      "preview": "gif/coding_loop.gif",
-      "preview_sha256": "861a55eb2fd2c9b4fdf83b74f9175317d1f352c84461610c602be8049b60db9a",
-      "preview_size": 546558,
-      "device": {
-        "image_name": "coding_loop",
-        "action_file": "coding_loop",
-        "sound_file": "coding_loop"
-      },
-      "display_names": {
-        "zh-Hans": "打代码-循环",
-        "en": "Coding Loop",
-        "ja": "コーディング（ループ）"
-      }
-    },
-    {
-      "id": "coding_end",
-      "display_name": "打代码-结束",
-      "order": 52,
-      "preview": "gif/coding_end.gif",
-      "preview_sha256": "4692efc4ee366b20a3e753060e48654b361d82b3eba0b26e5ef22412af7cbc8c",
-      "preview_size": 105849,
-      "device": {
-        "image_name": "coding_end",
-        "action_file": "coding_end",
-        "sound_file": "coding_end"
-      },
-      "display_names": {
-        "zh-Hans": "打代码-结束",
-        "en": "Coding End",
-        "ja": "コーディング（終了）"
-      }
-    },
-    {
-      "id": "swimming_start",
-      "display_name": "潜水-开始",
-      "order": 53,
-      "preview": "gif/swimming_start.gif",
-      "preview_sha256": "e473cb93ee0cdde7bbb98f4043c1cbeca1f3a9c689d67312be6509f755eeaff8",
-      "preview_size": 540254,
-      "device": {
-        "image_name": "swimming_start",
-        "action_file": "swimming_start",
-        "sound_file": "swimming_start"
-      },
-      "display_names": {
-        "zh-Hans": "潜水-开始",
-        "en": "Swimming Start",
-        "ja": "潜水（開始）"
-      }
-    },
-    {
-      "id": "swimming_loop",
-      "display_name": "潜水-循环",
-      "order": 54,
-      "preview": "gif/swimming_loop.gif",
-      "preview_sha256": "030285b336a364194c77a7fc6ae0aae9be6eb1b4a1fc7ac3942c77f07b4f219b",
-      "preview_size": 2923943,
-      "device": {
-        "image_name": "swimming_loop",
-        "action_file": "swimming_loop",
-        "sound_file": "swimming_loop"
-      },
-      "display_names": {
-        "zh-Hans": "潜水-循环",
-        "en": "Swimming Loop",
-        "ja": "潜水（ループ）"
-      }
-    },
-    {
-      "id": "swimming_end",
-      "display_name": "潜水-结束",
-      "order": 55,
-      "preview": "gif/swimming_end.gif",
-      "preview_sha256": "b709a2adfeacabffdf39e59df2c55e791e18450ce91dc449b98576cc499376cd",
-      "preview_size": 334951,
-      "device": {
-        "image_name": "swimming_end",
-        "action_file": "swimming_end",
-        "sound_file": "swimming_end"
-      },
-      "display_names": {
-        "zh-Hans": "潜水-结束",
-        "en": "Swimming End",
-        "ja": "潜水（終了）"
-      }
-    },
-    {
-      "id": "headset_start",
-      "display_name": "听歌-开始",
-      "order": 56,
-      "preview": "gif/headset_start.gif",
-      "preview_sha256": "46fc0896e5eba46782698eb0e1b7042bca7d3705d78a642f29d03e799e209eec",
-      "preview_size": 93317,
-      "device": {
-        "image_name": "headset_start",
-        "action_file": "headset_start"
-      },
-      "display_names": {
-        "zh-Hans": "听歌-开始",
-        "en": "Headset Start",
-        "ja": "ヘッドホン装着（開始）"
-      }
-    },
-    {
-      "id": "headset_loop",
-      "display_name": "听歌-循环",
-      "order": 57,
-      "preview": "gif/headset_loop.gif",
-      "preview_sha256": "6ac0c80a7fb3afa2c34e28cea471327977f38aefe7bec54d49e0a8c500273896",
-      "preview_size": 251562,
-      "device": {
-        "image_name": "headset_loop",
-        "action_file": "headset_loop"
-      },
-      "display_names": {
-        "zh-Hans": "听歌-循环",
-        "en": "Headset Loop",
-        "ja": "ヘッドホン装着（ループ）"
-      }
-    },
-    {
-      "id": "headset_end",
-      "display_name": "听歌-结束",
-      "order": 58,
-      "preview": "gif/headset_end.gif",
-      "preview_sha256": "97a9ed4a38d82519cb7c3bfc6959a25e2a5e7228140b17b025775f116394c94d",
-      "preview_size": 60849,
-      "device": {
-        "image_name": "headset_end",
-        "action_file": "headset_end"
-      },
-      "display_names": {
-        "zh-Hans": "听歌-结束",
-        "en": "Headset End",
-        "ja": "ヘッドホン装着（終了）"
       }
     }
   ]

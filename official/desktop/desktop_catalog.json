@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
   "format": "watche-desktop-resource-catalog",
-  "version": "v0.0.11",
-  "content_hash": "9c31abdef501e97c20fc1447eadc04e227e393bf3e5f1259c865fe649bf8ad11",
+  "version": "v0.0.10",
+  "content_hash": "ab2e0d7229137f9996b448ca49ad42d43969133bd6612e10dfe7e86a694578d7",
   "expressions": [
     {
       "id": "custom3",
@@ -283,13 +283,6 @@
       "preview_sha256": "0bdfa5b65609f5702df3cebabaccd1a8c9eccd2e6dcc24645b5f336763719c9c",
       "order": 7,
       "creator": {
-        "action": {
-          "path": "actions/swimming.json",
-          "kind": "action",
-          "sha256": "3b29dba26d030949ea66e27338d6d94bc47e9211df09e33116482ceb2b7d2f52",
-          "size": 8456,
-          "format": "firmware-action-json-v1"
-        },
         "sound": {
           "path": "sounds/swimming.pcm",
           "kind": "sfx",
@@ -306,12 +299,6 @@
             "sha256": "d3f5f069d7a12fbe039650c0e6e62531e0a63bc3c3c8d0b9f0e4bd6b2ad1cd59",
             "size": 9193756,
             "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "3b29dba26d030949ea66e27338d6d94bc47e9211df09e33116482ceb2b7d2f52",
-            "size": 8456,
-            "format": "firmware-action-json-v1"
           },
           "sound": {
             "kind": "sfx",
@@ -707,13 +694,6 @@
           "sha256": "14cbe09fafb7cb47f52746e7eae830c98ab85392af5a53d9ac1c7b93bc546d72",
           "size": 2670,
           "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/snow.pcm",
-          "kind": "sfx",
-          "sha256": "e499f6ae08d9bf1d841e795164edd98fb66da593daeb3efe75bbc0f7dadc0e73",
-          "size": 584308,
-          "format": "pcm-s16le-24khz-mono"
         }
       },
       "device": {
@@ -730,12 +710,6 @@
             "sha256": "14cbe09fafb7cb47f52746e7eae830c98ab85392af5a53d9ac1c7b93bc546d72",
             "size": 2670,
             "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "e499f6ae08d9bf1d841e795164edd98fb66da593daeb3efe75bbc0f7dadc0e73",
-            "size": 584308,
-            "format": "pcm-s16le-24khz-mono"
           }
         }
       }
@@ -1403,123 +1377,6 @@
             "sha256": "6dae56f94efde1d537f9c0d7e45a6063f858e0f8174e64cf061b51a9661c7cfb",
             "size": 170528,
             "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "wipe",
-      "display_name": "擦玻璃",
-      "source_label": "watcher-擦玻璃",
-      "source_record_id": "reczz28aeQLDlyBf",
-      "preview": "previews/wipe.webp",
-      "preview_sha256": "2b93b3c7abe0ec93755ef2d9e48329b582862851d955a0dae509140164c9a357",
-      "order": 44,
-      "creator": {
-        "action": {
-          "path": "actions/wipe.json",
-          "kind": "action",
-          "sha256": "c2edcc655dd9c061fdc5589ece5ab7add7fa37c6297a63c54c36b8f960217020",
-          "size": 4476,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/wipe.pcm",
-          "kind": "sfx",
-          "sha256": "8f06941d3dc99d6351f590db971a1062241abc9d9c4980ea8f54d452d033b732",
-          "size": 660794,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "wipe",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "23afd93a779b40e4c5c30aa5f77eb68b14e44da473111bc63151fbdb8c0ee6ae",
-            "size": 5838972,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "c2edcc655dd9c061fdc5589ece5ab7add7fa37c6297a63c54c36b8f960217020",
-            "size": 4476,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "8f06941d3dc99d6351f590db971a1062241abc9d9c4980ea8f54d452d033b732",
-            "size": 660794,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "wait",
-      "display_name": "长时间等待",
-      "source_label": "watcher-长时间等待",
-      "source_record_id": "reczz28aeQMDjVpZ",
-      "preview": "previews/wait.webp",
-      "preview_sha256": "7400d4913c4e0e2ca7331acd2215d08dc5e6e6152f30101fee6673dce1e567e3",
-      "order": 45,
-      "creator": {
-        "action": {
-          "path": "actions/wait.json",
-          "kind": "action",
-          "sha256": "9cecde95747ee75226eb1c601cd8647edbd1c6170be43fe917e38a1ee5eb588e",
-          "size": 2080,
-          "format": "firmware-action-json-v1"
-        },
-        "sound": {
-          "path": "sounds/wait.pcm",
-          "kind": "sfx",
-          "sha256": "1c0f2481af73fd2895237fe580f97c53c6369a8e2ade43da95113daefa0db5aa",
-          "size": 813766,
-          "format": "pcm-s16le-24khz-mono"
-        }
-      },
-      "device": {
-        "image_name": "wait",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "2057188697b6b708da45cbf7e1197f81f09c6f9b2cf9df044ba8ce619a1ebfe1",
-            "size": 7243746,
-            "format": "animpack-v2"
-          },
-          "action": {
-            "kind": "action",
-            "sha256": "9cecde95747ee75226eb1c601cd8647edbd1c6170be43fe917e38a1ee5eb588e",
-            "size": 2080,
-            "format": "firmware-action-json-v1"
-          },
-          "sound": {
-            "kind": "sfx",
-            "sha256": "1c0f2481af73fd2895237fe580f97c53c6369a8e2ade43da95113daefa0db5aa",
-            "size": 813766,
-            "format": "pcm-s16le-24khz-mono"
-          }
-        }
-      }
-    },
-    {
-      "id": "no_network",
-      "display_name": "无网络",
-      "source_label": "watcher-无网络",
-      "source_record_id": "reczz28bVBygNeu1",
-      "preview": "previews/no_network.webp",
-      "preview_sha256": "f55901c098f8ce3d391a669995997f6f8ffc7fdfdb997f977539aa3b12708af9",
-      "order": 46,
-      "creator": {},
-      "device": {
-        "image_name": "no_network",
-        "assets": {
-          "animation": {
-            "kind": "anim",
-            "sha256": "81804716df17e9b9301be79dec45432b4972398de5ae60090f61ba32b42f1771",
-            "size": 1751194,
-            "format": "animpack-v2"
           }
         }
       }

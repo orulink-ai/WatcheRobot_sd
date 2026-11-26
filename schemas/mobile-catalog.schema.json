@@ -20,17 +20,6 @@
         "properties": {
           "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]{0,22}$"},
           "display_name": {"type": "string", "minLength": 1, "maxLength": 64},
-          "display_names": {
-            "type": "object",
-            "minProperties": 1,
-            "additionalProperties": false,
-            "properties": {
-              "zh-Hans": {"type": "string", "minLength": 1, "maxLength": 64},
-              "zh": {"type": "string", "minLength": 1, "maxLength": 64},
-              "en": {"type": "string", "minLength": 1, "maxLength": 64},
-              "ja": {"type": "string", "minLength": 1, "maxLength": 64}
-            }
-          },
           "order": {"type": "integer", "minimum": 0},
           "preview": {"type": "string", "pattern": "^gif/[a-z][a-z0-9_]{0,22}\\.gif$"},
           "preview_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "Watcher expression overview",
-  "imported_at": "2026-11-25T03:28:42.371820+00:00",
+  "imported_at": "2026-11-26T05:36:03Z",
   "records": [
     {
       "source_record_id": "recvdwKxW8TQzA",
@@ -9,7 +9,7 @@
       "display_name": "工具",
       "display_names": {
         "zh-Hans": "工具",
-        "en": "Custom 3",
+        "en": "Tool",
         "ja": "ツール"
       },
       "resource_id": "custom3",
@@ -39,7 +39,7 @@
       "display_name": "断开蓝牙",
       "display_names": {
         "zh-Hans": "断开蓝牙",
-        "en": "Disconnect",
+        "en": "Bluetooth disconnected",
         "ja": "Bluetooth切断"
       },
       "resource_id": "disconnect",
@@ -309,7 +309,7 @@
       "display_name": "鬼脸",
       "display_names": {
         "zh-Hans": "鬼脸",
-        "en": "Funnyface",
+        "en": "Funny face",
         "ja": "変顔"
       },
       "resource_id": "funnyface",
@@ -354,7 +354,7 @@
       "display_name": "成功",
       "display_names": {
         "zh-Hans": "成功",
-        "en": "Happy",
+        "en": "Success",
         "ja": "うれしい"
       },
       "resource_id": "happy",
@@ -369,7 +369,7 @@
       "display_name": "大眼",
       "display_names": {
         "zh-Hans": "大眼",
-        "en": "Biyeyes",
+        "en": "Big eyes",
         "ja": "ぱっちり目"
       },
       "resource_id": "biyeyes",
@@ -384,7 +384,7 @@
       "display_name": "平静",
       "display_names": {
         "zh-Hans": "平静",
-        "en": "Clmness",
+        "en": "Calm",
         "ja": "落ち着き"
       },
       "resource_id": "clmness",
@@ -399,7 +399,7 @@
       "display_name": "好奇",
       "display_names": {
         "zh-Hans": "好奇",
-        "en": "Inquisitive",
+        "en": "Curious",
         "ja": "好奇心"
       },
       "resource_id": "inquisitive",
@@ -429,7 +429,7 @@
       "display_name": "犹豫",
       "display_names": {
         "zh-Hans": "犹豫",
-        "en": "Hesitate",
+        "en": "Hesitant",
         "ja": "迷い"
       },
       "resource_id": "hesitate",
@@ -504,7 +504,7 @@
       "display_name": "厌倦",
       "display_names": {
         "zh-Hans": "厌倦",
-        "en": "Boredom",
+        "en": "Bored",
         "ja": "退屈"
       },
       "resource_id": "boredom",
@@ -579,7 +579,7 @@
       "display_name": "待机",
       "display_names": {
         "zh-Hans": "待机",
-        "en": "Standby",
+        "en": "Sleeping",
         "ja": "待機"
       },
       "resource_id": "standby",

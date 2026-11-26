@@ -1,11 +1,15 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://orulink.ai/schemas/watcher/asset-reference-v1.json",
+  "$id": "https://orulink.ai/schemas/watcher/asset-reference-v2.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["kind", "sha256", "size", "format"],
+  "required": ["kind", "path", "sha256", "size", "format"],
   "properties": {
     "kind": {"enum": ["anim", "action", "sfx"]},
+    "path": {
+      "type": "string",
+      "pattern": "^(anim/[a-z][a-z0-9_]{0,22}\\.animpack|actions/[a-z][a-z0-9_]{0,22}\\.json|sfx/[a-z][a-z0-9_]{0,22}\\.pcm)$"
+    },
     "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "size": {"type": "integer", "minimum": 1},
     "format": {

@@ -1,9 +1,18 @@
 #!/usr/bin/env python3
-"""Build, validate and package WatcheRobot SD resources.
+"""Build, validate and package WatcheRobot SD resources (Layout Revision 3).
 
-The generated bundle intentionally matches the formats consumed by the current
-ESP32 firmware: AnimPack v2 (RGB565 big-endian), raw PCM s16le/24 kHz/mono,
-and the existing behavior action JSON parser contract.
+SD-card root layout:
+  /sdcard/
+    anim/<id>.animpack
+    actions/<id>.json
+    sfx/<id>.pcm
+    catalog.json
+    fixed_states.json
+    resource_manifest.json
+
+Mobile App artifacts:
+  mobile_catalog.json (schema_version=1, with localized display_names)
+  mobile/gif/<id>.gif
 """
 
 from __future__ import annotations
@@ -34,20 +43,47 @@ POLICY_PATH = ROOT / "config" / "resource-policy.json"
 DEFAULT_SOURCE = ROOT / "official" / "source"
 DEFAULT_PCM = ROOT / "official" / "device-input" / "sound"
 DEFAULT_BUNDLE = ROOT / "build" / "current" / "bundle"
-DEFAULT_DESKTOP = ROOT / "official" / "desktop"
 DEFAULT_MOBILE = ROOT / "official" / "mobile"
 DEFAULT_DIST = ROOT / "dist"
 GITHUB_RELEASE_BASE = "https://github.com/orulink-ai/WatcheRobot_sd/releases/download"
 TOS_PUBLIC_BASE = "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd"
 
 PACK_MAGIC = b"ANPK"
-PACK_VERSION = 2
+PACK_VERSION_EFC = 3
 PACK_HEADER_FMT = "<4sHHHHBBHIII"
 FRAME_DESC_FMT = "<IIHH"
-FRAME_FLAG_INDEXED8 = 0x0001
+FRAME_FLAG_EFC = 0x0002
+FRAME_FLAG_EFC_SWAPPED = 0x0004
+FRAME_FLAG_EFC_MASK = FRAME_FLAG_EFC | FRAME_FLAG_EFC_SWAPPED
+EFC_FLAG_PREDICTOR = 0x08
+EFC_MAX_SEGMENT_BYTES = 2 * 1024 * 1024
+ANIMATION_FORMAT = "animpack-v3"
 DEVICE_CATALOG_MAX_BYTES = 128 * 1024
 DEVICE_PATH_MAX_BYTES = 192
 DEVICE_DISPLAY_NAME_MAX_BYTES = 192
+LAYOUT_REVISION = 3
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+ASSET_DIRECTORIES = {
+    "anim": "anim",
+    "action": "actions",
+    "sfx": "sfx",
+}
+
+ASSET_EXTENSIONS = {
+    "anim": ".animpack",
+    "action": ".json",
+    "sfx": ".pcm",
+}
+
+ASSET_FORMATS = {
+    "anim": ANIMATION_FORMAT,
+    "action": "firmware-action-json-v1",
+    "sfx": "pcm-s16le-24khz-mono",
+}
 
 
 class ResourceError(ValueError):
@@ -74,36 +110,27 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
-ASSET_EXTENSIONS = {
-    "anim": ".animpack",
-    "action": ".json",
-    "sfx": ".pcm",
-}
-
-ASSET_FORMATS = {
-    "anim": "animpack-v2",
-    "action": "firmware-action-json-v1",
-    "sfx": "pcm-s16le-24khz-mono",
-}
-
-
-def store_asset_object(bundle: Path, source: Path, kind: str) -> dict[str, Any]:
-    if kind not in ASSET_EXTENSIONS:
+def asset_relative_path(kind: str, resource_id: str) -> str:
+    if kind not in ASSET_DIRECTORIES:
         raise ResourceError(f"Unsupported asset kind: {kind}")
-    digest = sha256_file(source)
-    target = bundle / "assets" / ("actions" if kind == "action" else kind) / (
-        digest + ASSET_EXTENSIONS[kind]
-    )
+    return f"{ASSET_DIRECTORIES[kind]}/{resource_id}{ASSET_EXTENSIONS[kind]}"
+
+
+def store_asset_file(
+    bundle: Path,
+    source: Path,
+    kind: str,
+    resource_id: str,
+) -> dict[str, Any]:
+    relative = asset_relative_path(kind, resource_id)
+    target = bundle / relative
     target.parent.mkdir(parents=True, exist_ok=True)
-    if target.exists():
-        if target.stat().st_size != source.stat().st_size or sha256_file(target) != digest:
-            raise ResourceError(f"Asset hash collision or corrupt existing object: {target}")
-    else:
-        shutil.copyfile(source, target)
+    shutil.copyfile(source, target)
     return {
         "kind": kind,
-        "sha256": digest,
-        "size": source.stat().st_size,
+        "path": relative,
+        "sha256": sha256_file(target),
+        "size": target.stat().st_size,
         "format": ASSET_FORMATS[kind],
     }
 
@@ -153,23 +180,6 @@ def rgba_to_rgb565(image: Image.Image) -> bytes:
     return bytes(payload)
 
 
-def encode_indexed8(payload: bytes) -> bytes | None:
-    palette: list[bytes] = []
-    lookup: dict[bytes, int] = {}
-    indices = bytearray()
-    for offset in range(0, len(payload), 2):
-        color = payload[offset : offset + 2]
-        index = lookup.get(color)
-        if index is None:
-            if len(palette) >= 256:
-                return None
-            index = len(palette)
-            palette.append(color)
-            lookup[color] = index
-        indices.append(index)
-    return struct.pack("<H", len(palette)) + b"".join(palette) + bytes(indices)
-
-
 def read_gif(path: Path, policy: dict[str, Any]) -> list[tuple[Image.Image, int]]:
     expected = (policy["display"]["width"], policy["display"]["height"])
     max_frames = policy["limits"]["frames_per_expression"]
@@ -197,52 +207,97 @@ def read_gif(path: Path, policy: dict[str, Any]) -> list[tuple[Image.Image, int]
     return frames
 
 
-def write_animpack(
+def write_animpack_efc(
     target: Path,
     frames: list[tuple[Image.Image, int]],
     fps: int,
-    force_rgb565: bool,
-) -> dict[str, int]:
-    width, height = frames[0][0].size
-    raw_frames = [rgba_to_rgb565(frame) for frame, _ in frames]
-    encoded: list[tuple[bytes, int]] = []
-    for raw in raw_frames:
-        indexed = None if force_rgb565 else encode_indexed8(raw)
-        encoded.append((indexed, FRAME_FLAG_INDEXED8) if indexed is not None else (raw, 0))
+) -> dict[str, Any]:
+    """Encode RGB565 frames into segmented single-stream EFC (animpack-v3).
 
-    header_size = struct.calcsize(PACK_HEADER_FMT)
-    descriptor_size = struct.calcsize(FRAME_DESC_FMT)
-    payload_offset = header_size + descriptor_size * len(frames)
-    cursor = 0
-    descriptors: list[bytes] = []
-    for (payload, flags), (_, delay) in zip(encoded, frames):
-        descriptors.append(struct.pack(FRAME_DESC_FMT, cursor, len(payload), delay, flags))
-        cursor += len(payload)
-    header = struct.pack(
-        PACK_HEADER_FMT,
-        PACK_MAGIC,
-        PACK_VERSION,
-        width,
-        height,
-        len(frames),
-        0,
-        0,
-        max(1, round(1000 / fps)),
-        header_size,
-        payload_offset,
-        width * height * 2,
+    Hard guarantees enforced before writing:
+      - Exact big-endian (LV_COLOR_16_SWAP=1) pixel layout matching firmware LCD.
+      - Single-stream legacy EFC only ((blob[5] & 0x08) == 0) to bound ESP32-S3 PSRAM.
+      - Adaptive 2-slot prefetch budget segmentation with loop wrap-around protection.
+      - Per-segment byte cap (<= EFC_MAX_SEGMENT_BYTES) and 100% pixel-exact roundtrip check.
+    """
+    import numpy as np
+    import efc_codec
+    from anim_efc_segmenter import (
+        SegmentBudgetConfig,
+        pack_segmented_animpack_v3,
+        plan_adaptive_efc_segments,
+    )
+
+    width, height = frames[0][0].size
+    delays_ms = [max(20, int(delay)) for _, delay in frames]
+    raw_frames = [rgba_to_rgb565(frame) for frame, _ in frames]
+    # rgba_to_rgb565 emits big-endian RGB565 bytes; viewing as <u2 yields the exact
+    # byte-swapped u16 words expected by ANIM_FRAME_FLAG_EFC_SWAPPED on ESP32-S3.
+    swapped = np.empty((len(raw_frames), height, width), dtype="<u2")
+    for idx, raw in enumerate(raw_frames):
+        swapped[idx] = np.frombuffer(raw, dtype="<u2").reshape((height, width))
+
+    def encode_span(start: int, count: int) -> bytes:
+        blob = efc_codec.encode_frames(
+            swapped[start : start + count],
+            tile=4,
+            compress=True,
+            legacy=True,
+            hold=False,
+        )
+        if len(blob) < 20 or blob[:4] != b"EFC1":
+            raise ResourceError(f"EFC encoder emitted invalid header for {target.name}")
+        if (blob[5] & EFC_FLAG_PREDICTOR) != 0:
+            raise ResourceError(
+                f"EFC encoder emitted unsupported predictor-plane stream (flags=0x{blob[5]:02x}) for {target.name}"
+            )
+        return blob
+
+    # Always plan with loop=True so multi-segment clips have wrap-around prefetch safety
+    # even when firmware plays an expression in looping behavior states.
+    seg_res = plan_adaptive_efc_segments(
+        delays_ms,
+        encode_span,
+        loop=True,
+        config=SegmentBudgetConfig(),
+    )
+
+    reconstructed = []
+    for seg in seg_res.segments:
+        if len(seg.payload) > EFC_MAX_SEGMENT_BYTES:
+            raise ResourceError(
+                f"EFC segment for {target.name} (frames {seg.start_frame}..{seg.start_frame + seg.frame_count - 1}) "
+                f"exceeds {EFC_MAX_SEGMENT_BYTES} bytes ({len(seg.payload)})"
+            )
+        dec, _meta = efc_codec.decode_frames(seg.payload)
+        if dec.shape != (seg.frame_count, height, width):
+            raise ResourceError(f"EFC roundtrip geometry mismatch for {target.name}")
+        reconstructed.append(dec)
+    full_rt = np.concatenate(reconstructed, axis=0)
+    if not np.array_equal(full_rt, swapped):
+        raise ResourceError(f"EFC pixel-exact lossless roundtrip check failed for {target.name}")
+
+    v3_bytes = pack_segmented_animpack_v3(
+        width=width,
+        height=height,
+        loop=False,
+        default_delay_ms=max(1, round(1000 / fps)),
+        frame_delays_ms=delays_ms,
+        segments=seg_res.segments,
+        swapped_rgb565=True,
     )
     target.parent.mkdir(parents=True, exist_ok=True)
-    with target.open("wb") as handle:
-        handle.write(header)
-        handle.writelines(descriptors)
-        for payload, _ in encoded:
-            handle.write(payload)
+    target.write_bytes(v3_bytes)
     return {
         "width": width,
         "height": height,
         "frames": len(frames),
-        "indexed_frames": sum(bool(flags & FRAME_FLAG_INDEXED8) for _, flags in encoded),
+        "raw_bytes": len(raw_frames) * width * height * 2,
+        "encoded_bytes": len(v3_bytes),
+        "segments": seg_res.segment_count,
+        "first_segment_bytes": seg_res.first_segment_bytes,
+        "max_segment_bytes": seg_res.max_segment_bytes,
+        "prefetch_stall_free": bool(seg_res.single_pass_report.stall_free and seg_res.loop_report.stall_free),
     }
 
 
@@ -265,70 +320,93 @@ def decode_animpack(path: Path) -> tuple[dict[str, int], list[bytes]]:
         payload_offset,
         raw_size,
     ) = struct.unpack_from(PACK_HEADER_FMT, data)
-    if magic != PACK_MAGIC or version != PACK_VERSION:
+    if magic != PACK_MAGIC or version != PACK_VERSION_EFC:
         raise ResourceError(f"Unsupported AnimPack header: {path}")
     if width <= 0 or height <= 0 or frame_count <= 0 or raw_size != width * height * 2:
         raise ResourceError(f"Invalid AnimPack dimensions/count: {path}")
     if toc_offset != header_size or payload_offset != header_size + frame_count * descriptor_size:
         raise ResourceError(f"Invalid AnimPack offsets: {path}")
-    frames: list[bytes] = []
+
+    import numpy as np
+    import efc_codec
+
+    payload_total = len(data) - payload_offset
+    if payload_total <= 0:
+        raise ResourceError(f"Empty EFC AnimPack payload: {path}")
+    descs: list[tuple[int, int, int, int]] = []
     for index in range(frame_count):
         frame_offset, frame_size, frame_delay, flags = struct.unpack_from(
             FRAME_DESC_FMT, data, toc_offset + index * descriptor_size
         )
-        start = payload_offset + frame_offset
-        end = start + frame_size
-        if end > len(data) or frame_delay <= 0 or flags & ~FRAME_FLAG_INDEXED8:
-            raise ResourceError(f"Invalid AnimPack frame {index}: {path}")
-        payload = data[start:end]
-        if not flags & FRAME_FLAG_INDEXED8:
-            if len(payload) != raw_size:
-                raise ResourceError(f"Invalid RGB565 frame size in {path}")
-            frames.append(payload)
-            continue
-        if len(payload) < 4:
-            raise ResourceError(f"Invalid indexed frame in {path}")
-        palette_count = struct.unpack_from("<H", payload)[0]
-        palette_end = 2 + palette_count * 2
-        indices = payload[palette_end:]
-        if not 1 <= palette_count <= 256 or palette_end > len(payload) or len(indices) != width * height:
-            raise ResourceError(f"Invalid indexed palette in {path}")
-        palette = payload[2:palette_end]
-        raw = bytearray()
-        for palette_index in indices:
-            if palette_index >= palette_count:
-                raise ResourceError(f"Out-of-range palette index in {path}")
-            start_color = palette_index * 2
-            raw.extend(palette[start_color : start_color + 2])
-        frames.append(bytes(raw))
+        if (
+            frame_delay <= 0
+            or (flags & FRAME_FLAG_EFC) == 0
+            or (flags & ~FRAME_FLAG_EFC_MASK) != 0
+        ):
+            raise ResourceError(f"Invalid EFC AnimPack frame {index}: {path}")
+        if frame_offset == 0 and frame_size == 0:
+            frame_size = payload_total
+        if (
+            frame_size <= 0
+            or frame_size > EFC_MAX_SEGMENT_BYTES
+            or frame_offset > payload_total
+            or frame_size > payload_total - frame_offset
+        ):
+            raise ResourceError(f"Out-of-bounds EFC segment at frame {index}: {path}")
+        descs.append((frame_offset, frame_size, frame_delay, flags))
+
+    frames: list[bytes] = []
+    cursor = 0
+    while cursor < frame_count:
+        seg_off, seg_sz, _seg_delay, seg_flags = descs[cursor]
+        seg_end = cursor + 1
+        while seg_end < frame_count and descs[seg_end][0] == seg_off and descs[seg_end][1] == seg_sz:
+            if descs[seg_end][3] != seg_flags:
+                raise ResourceError(f"Inconsistent EFC flags inside segment at frame {seg_end}: {path}")
+            seg_end += 1
+        expected_seg_frames = seg_end - cursor
+        seg_blob = data[payload_offset + seg_off : payload_offset + seg_off + seg_sz]
+        if len(seg_blob) < 20 or seg_blob[:4] != b"EFC1":
+            raise ResourceError(f"Invalid EFC1 segment magic at frame {cursor}: {path}")
+        if (seg_blob[5] & EFC_FLAG_PREDICTOR) != 0:
+            raise ResourceError(
+                f"Unsupported predictor-plane EFC stream (flags=0x{seg_blob[5]:02x}) at frame {cursor}: {path}"
+            )
+        decoded, _meta = efc_codec.decode_frames(seg_blob)
+        if decoded.shape != (expected_seg_frames, height, width):
+            raise ResourceError(
+                f"EFC segment frame/geometry mismatch at frame {cursor}: "
+                f"got {decoded.shape}, expected {(expected_seg_frames, height, width)} ({path})"
+            )
+        if (seg_flags & FRAME_FLAG_EFC_SWAPPED) == 0:
+            decoded = decoded.byteswap()
+        decoded_le = np.ascontiguousarray(decoded, dtype="<u2")
+        for local_idx in range(expected_seg_frames):
+            frames.append(decoded_le[local_idx].tobytes())
+        cursor = seg_end
+
     return {
         "width": width,
         "height": height,
         "frame_count": frame_count,
         "loop": loop,
         "delay": delay,
+        "version": version,
     }, frames
 
 
 def device_asset_path(asset: dict[str, Any]) -> str:
-    """Return the exact content-addressed path resolved by the ESP32 catalog."""
-    kind = asset["kind"]
-    directory = "actions" if kind == "action" else kind
-    return f"/sdcard/watche/assets/{directory}/{asset['sha256']}{ASSET_EXTENSIONS[kind]}"
+    """Return the exact SD-card path resolved by ESP32 firmware (Layout Revision 3)."""
+    return f"/sdcard/{asset['path']}"
 
 
 def validate_device_playback_contract(
     catalog: dict[str, Any], bundle: Path, policy: dict[str, Any]
 ) -> dict[str, int]:
-    """Validate every official expression using the ESP32 dynamic-SD contract.
-
-    This deliberately does not consult the firmware's compiled animation registry.
-    A newly published resource is required to be playable solely from its catalog ID
-    and content-addressed SD objects.
-    """
+    """Validate every expression using the ESP32 root-layout SD contract."""
     expressions = catalog["expressions"]
-    if (bundle / "official_catalog.json").stat().st_size > DEVICE_CATALOG_MAX_BYTES:
-        raise ResourceError("official_catalog.json exceeds the ESP32 catalog size limit")
+    if (bundle / "catalog.json").stat().st_size > DEVICE_CATALOG_MAX_BYTES:
+        raise ResourceError("catalog.json exceeds the ESP32 catalog size limit")
 
     id_pattern = re.compile(policy["resource_id"]["pattern"])
     max_id_bytes = policy["resource_id"]["max_bytes"]
@@ -346,21 +424,19 @@ def validate_device_playback_contract(
         if resource_id not in fixed_ids:
             dynamic_count += 1
 
-        for kind, asset in entry["assets"].items():
-            expected_kind = {"animation": "anim", "action": "action", "sound": "sfx"}[kind]
-            if asset["kind"] != expected_kind:
-                raise ResourceError(f"Unexpected {kind} kind for {resource_id}")
+        for asset_key, asset in entry["assets"].items():
+            expected_kind = {"animation": "anim", "action": "action", "sound": "sfx"}[asset_key]
+            expected_relative = asset_relative_path(expected_kind, resource_id)
+            if asset["kind"] != expected_kind or asset["path"] != expected_relative:
+                raise ResourceError(f"Unexpected {asset_key} reference for {resource_id}")
             resolved = device_asset_path(asset)
             if len(resolved.encode("utf-8")) >= DEVICE_PATH_MAX_BYTES:
-                raise ResourceError(f"ESP32 asset path is too long: {resource_id}/{kind}")
-            path = bundle / "assets" / ("actions" if asset["kind"] == "action" else asset["kind"]) / (
-                asset["sha256"] + ASSET_EXTENSIONS[asset["kind"]]
-            )
+                raise ResourceError(f"ESP32 asset path is too long: {resource_id}/{asset_key}")
+            path = bundle / expected_relative
             if not path.is_file() or path.stat().st_size != asset["size"] or sha256_file(path) != asset["sha256"]:
-                raise ResourceError(f"ESP32 asset resolution failed: {resource_id}/{kind}")
+                raise ResourceError(f"ESP32 asset resolution failed: {resource_id}/{asset_key}")
 
-        animation = entry["assets"]["animation"]
-        animation_path = bundle / "assets" / "anim" / f"{animation['sha256']}.animpack"
+        animation_path = bundle / entry["assets"]["animation"]["path"]
         header, frames = decode_animpack(animation_path)
         if (
             header["width"] != policy["display"]["width"]
@@ -492,27 +568,6 @@ def require_integer(value: Any, field: str, minimum: int) -> int:
     return result
 
 
-def write_preview(source: Path, target: Path) -> None:
-    frames: list[Image.Image] = []
-    durations: list[int] = []
-    with Image.open(source) as image:
-        fallback = max(20, int(image.info.get("duration", 100) or 100))
-        for frame in ImageSequence.Iterator(image):
-            frames.append(frame.convert("RGBA").copy())
-            durations.append(max(20, int(frame.info.get("duration", fallback) or fallback)))
-    target.parent.mkdir(parents=True, exist_ok=True)
-    frames[0].save(
-        target,
-        "WEBP",
-        save_all=len(frames) > 1,
-        append_images=frames[1:],
-        duration=durations,
-        loop=0,
-        quality=68,
-        method=4,
-    )
-
-
 def source_snapshot(source: Path) -> dict[str, Any]:
     snapshot_path = source / "feishu-snapshot.json"
     if not snapshot_path.is_file():
@@ -535,9 +590,8 @@ def build_resources(
     source: Path,
     pcm_root: Path,
     bundle: Path,
-    desktop: Path,
+    mobile: Path,
     version: str,
-    mobile: Path | None = None,
 ) -> dict[str, Any]:
     policy = load_policy()
     if not re.fullmatch(r"v\d+\.\d+\.\d+", version):
@@ -546,13 +600,9 @@ def build_resources(
     records = sorted(snapshot["records"], key=lambda item: item["order"])
     if bundle.exists():
         shutil.rmtree(bundle)
-    if desktop.exists():
-        shutil.rmtree(desktop)
-    mobile = mobile or desktop.parent / "mobile"
     if mobile.exists():
         shutil.rmtree(mobile)
     bundle.mkdir(parents=True)
-    desktop.mkdir(parents=True)
     mobile.mkdir(parents=True)
     staging = bundle / ".build"
     staging.mkdir()
@@ -560,6 +610,10 @@ def build_resources(
     catalog: list[dict[str, Any]] = []
     adjustments: dict[str, list[str]] = {}
     fps = policy["display"]["default_fps"]
+    raw_anim_bytes = 0
+    encoded_anim_bytes = 0
+    total_segments = 0
+    prefetch_stall_free_all = True
     for record in records:
         resource_id = record["resource_id"]
         gif_path = source / "gif" / f"{resource_id}.gif"
@@ -567,14 +621,13 @@ def build_resources(
             raise ResourceError(f"Source GIF is missing for {resource_id}")
         frames = read_gif(gif_path, policy)
         animation_temp = staging / f"{resource_id}.animpack"
-        write_animpack(
-            animation_temp,
-            frames,
-            fps,
-            resource_id in policy["force_rgb565"],
-        )
+        stats = write_animpack_efc(animation_temp, frames, fps)
+        raw_anim_bytes += int(stats["raw_bytes"])
+        encoded_anim_bytes += int(stats["encoded_bytes"])
+        total_segments += int(stats["segments"])
+        prefetch_stall_free_all = prefetch_stall_free_all and bool(stats["prefetch_stall_free"])
         assets: dict[str, Any] = {
-            "animation": store_asset_object(bundle, animation_temp, "anim")
+            "animation": store_asset_file(bundle, animation_temp, "anim", resource_id)
         }
         entry: dict[str, Any] = {
             "id": resource_id,
@@ -590,89 +643,31 @@ def build_resources(
             action, changed = normalize_action(action_path)
             action_temp = staging / f"{resource_id}.json"
             write_json(action_temp, action)
-            assets["action"] = store_asset_object(bundle, action_temp, "action")
+            assets["action"] = store_asset_file(bundle, action_temp, "action", resource_id)
             if changed:
                 adjustments[resource_id] = changed
         sound_path = pcm_root / f"{resource_id}.pcm"
         if record.get("sound") is not None:
             if not sound_path.is_file():
                 raise ResourceError(f"PCM conversion output is missing for {resource_id}")
-            assets["sound"] = store_asset_object(bundle, sound_path, "sfx")
+            assets["sound"] = store_asset_file(bundle, sound_path, "sfx", resource_id)
         catalog.append(entry)
 
     catalog_document = {
-        "schema_version": 2,
-        "format": "watche-official-catalog",
+        "schema_version": 3,
+        "format": "watche-sd-catalog",
+        "version": version,
         "expressions": catalog,
     }
-    schema_validate(catalog_document, "resource-catalog.schema.json", "official_catalog.json")
-    write_json(bundle / "official_catalog.json", catalog_document)
+    schema_validate(catalog_document, "resource-catalog.schema.json", "catalog.json")
+    write_json(bundle / "catalog.json", catalog_document)
+
     fixed_states = {
         "schema_version": 1,
         "states": {state: state for state in policy["fixed_states"]},
     }
     schema_validate(fixed_states, "fixed-states.schema.json", "fixed_states.json")
     write_json(bundle / "fixed_states.json", fixed_states)
-
-    desktop_entries = []
-    for record, entry in zip(records, catalog):
-        preview = desktop / "previews" / f"{entry['id']}.webp"
-        write_preview(source / "gif" / f"{entry['id']}.gif", preview)
-        creator: dict[str, Any] = {}
-        if "action" in entry["assets"]:
-            reference = entry["assets"]["action"]
-            relative = f"actions/{entry['id']}.json"
-            target = desktop / relative
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(
-                bundle / "assets" / "actions" / f"{reference['sha256']}.json",
-                target,
-            )
-            creator["action"] = {"path": relative, **reference}
-        if "sound" in entry["assets"]:
-            reference = entry["assets"]["sound"]
-            relative = f"sounds/{entry['id']}.pcm"
-            target = desktop / relative
-            target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(
-                bundle / "assets" / "sfx" / f"{reference['sha256']}.pcm",
-                target,
-            )
-            creator["sound"] = {"path": relative, **reference}
-        device = {
-            "image_name": entry["id"],
-            "assets": entry["assets"],
-        }
-        desktop_entries.append(
-            {
-                "id": entry["id"],
-                "display_name": record["display_name"],
-                "source_label": record["source_label"],
-                "source_record_id": record["source_record_id"],
-                "preview": f"previews/{entry['id']}.webp",
-                "preview_sha256": sha256_file(preview),
-                "order": entry["order"],
-                "creator": creator,
-                "device": device,
-            }
-        )
-    content_digest = hashlib.sha256()
-    for item in desktop_entries:
-        content_digest.update(item["id"].encode())
-        content_digest.update(item["display_name"].encode())
-        content_digest.update(item["preview_sha256"].encode())
-        content_digest.update(
-            json.dumps(item["creator"], sort_keys=True, separators=(",", ":")).encode()
-        )
-    desktop_catalog = {
-        "schema_version": 3,
-        "format": "watche-desktop-resource-catalog",
-        "version": version,
-        "content_hash": content_digest.hexdigest(),
-        "expressions": desktop_entries,
-    }
-    schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
-    write_json(desktop / "desktop_catalog.json", desktop_catalog)
 
     mobile_entries = []
     mobile_digest = hashlib.sha256()
@@ -687,7 +682,7 @@ def build_resources(
             mobile_device["action_file"] = entry["id"]
         if "sound" in entry["assets"]:
             mobile_device["sound_file"] = entry["id"]
-        mobile_entry = {
+        mobile_entry: dict[str, Any] = {
             "id": entry["id"],
             "display_name": record["display_name"],
             "order": entry["order"],
@@ -696,6 +691,8 @@ def build_resources(
             "preview_size": target_gif.stat().st_size,
             "device": mobile_device,
         }
+        if "display_names" in record:
+            mobile_entry["display_names"] = record["display_names"]
         mobile_entries.append(mobile_entry)
         mobile_digest.update(
             json.dumps(
@@ -717,13 +714,18 @@ def build_resources(
 
     shutil.rmtree(staging)
     manifest = write_resource_manifest(bundle, version, policy, catalog)
-    validation = validate_resources(source, bundle, desktop)
+    validation = validate_resources(source, bundle, mobile)
     return {
         "version": version,
+        "animation_format": ANIMATION_FORMAT,
         "expressions": len(catalog),
         "actions": sum("action" in item["assets"] for item in catalog),
         "sounds": sum("sound" in item["assets"] for item in catalog),
         "frames": validation["frames"],
+        "raw_anim_bytes": raw_anim_bytes,
+        "encoded_anim_bytes": encoded_anim_bytes,
+        "total_segments": total_segments,
+        "prefetch_stall_free_all": prefetch_stall_free_all,
         "bundle_sha256": manifest["bundle_sha256"],
         "action_adjustments": adjustments,
     }
@@ -734,13 +736,6 @@ def bundle_files(bundle: Path, include_manifest: bool = True) -> list[Path]:
     if not include_manifest:
         files = [path for path in files if path.name != "resource_manifest.json"]
     return sorted(files, key=lambda path: path.relative_to(bundle).as_posix())
-
-
-def desktop_files(desktop: Path) -> list[Path]:
-    return sorted(
-        (path for path in desktop.rglob("*") if path.is_file()),
-        key=lambda path: path.relative_to(desktop).as_posix(),
-    )
 
 
 def mobile_files(mobile: Path) -> list[Path]:
@@ -800,17 +795,16 @@ def write_resource_manifest(
         for path in files
     ]
     manifest = {
-        "schema_version": 2,
+        "schema_version": 3,
         "product": policy["product"],
         "bundle_id": "adepto-official",
         "bundle_version": version,
-        "layout_revision": 2,
+        "layout_revision": LAYOUT_REVISION,
         "generated_at": utc_now(),
         "compatibility": {
-            "layout": "/watche",
-            "protocol": "WRSD/2",
+            "layout": "/",
             "animation": {
-                "format": "animpack-v2",
+                "format": ANIMATION_FORMAT,
                 "width": policy["display"]["width"],
                 "height": policy["display"]["height"],
                 "pixel_format": policy["display"]["pixel_format"],
@@ -821,16 +815,15 @@ def write_resource_manifest(
         },
         "contents": {
             "assets": {
-                "root": "assets",
-                "format": "animpack-v2",
-                "object_count": sum(
-                    len(entry["assets"])
-                    for entry in catalog
-                ),
+                "anim_root": "anim",
+                "actions_root": "actions",
+                "sfx_root": "sfx",
+                "format": ANIMATION_FORMAT,
+                "object_count": sum(len(entry["assets"]) for entry in catalog),
             },
             "catalog": {
-                "path": "official_catalog.json",
-                "format": "watche-official-catalog-v2",
+                "path": "catalog.json",
+                "format": "watche-sd-catalog-v3",
                 "count": len(catalog),
             },
             "fixed_states": {
@@ -849,19 +842,20 @@ def write_resource_manifest(
 def validate_resources(
     source: Path,
     bundle: Path,
-    desktop: Path | None,
     mobile: Path | None = None,
 ) -> dict[str, int]:
     policy = load_policy()
     snapshot = source_snapshot(source)
-    catalog = read_json(bundle / "official_catalog.json")
-    schema_validate(catalog, "resource-catalog.schema.json", "official_catalog.json")
+    catalog = read_json(bundle / "catalog.json")
+    schema_validate(catalog, "resource-catalog.schema.json", "catalog.json")
     manifest = read_json(bundle / "resource_manifest.json")
     schema_validate(manifest, "resource-manifest.schema.json", "resource_manifest.json")
     fixed_states = read_json(bundle / "fixed_states.json")
     schema_validate(fixed_states, "fixed-states.schema.json", "fixed_states.json")
     if set(fixed_states["states"]) != set(policy["fixed_states"]):
         raise ResourceError("fixed_states.json must contain exactly the eight fixed states")
+    if catalog["version"] != manifest["bundle_version"]:
+        raise ResourceError("catalog.json version does not match resource_manifest.json")
 
     source_by_id = {record["resource_id"]: record for record in snapshot["records"]}
     catalog_by_id = {entry["id"]: entry for entry in catalog["expressions"]}
@@ -874,10 +868,10 @@ def validate_resources(
             raise ResourceError(f"Record association mismatch for {resource_id}")
         source_frames = read_gif(source / "gif" / f"{resource_id}.gif", policy)
         animation = entry["assets"]["animation"]
-        animation_path = bundle / "assets" / "anim" / f"{animation['sha256']}.animpack"
+        animation_path = bundle / animation["path"]
         if animation_path.stat().st_size != animation["size"]:
             raise ResourceError(f"Animation size mismatch for {resource_id}")
-        header, frames = decode_animpack(animation_path)
+        _header, frames = decode_animpack(animation_path)
         if len(frames) != len(source_frames):
             raise ResourceError(f"Frame count mismatch for {resource_id}")
         for index, ((image, _), actual) in enumerate(zip(source_frames, frames)):
@@ -886,12 +880,12 @@ def validate_resources(
         total_frames += len(frames)
         if "action" in entry["assets"]:
             reference = entry["assets"]["action"]
-            action_path = bundle / "assets" / "actions" / f"{reference['sha256']}.json"
+            action_path = bundle / reference["path"]
             action = read_json(action_path)
             schema_validate(action, "action.schema.json", str(action_path))
         if "sound" in entry["assets"]:
             reference = entry["assets"]["sound"]
-            sound = bundle / "assets" / "sfx" / f"{reference['sha256']}.pcm"
+            sound = bundle / reference["path"]
             if not sound.is_file() or sound.stat().st_size <= 0 or sound.stat().st_size % 2:
                 raise ResourceError(f"Invalid raw PCM file for {resource_id}")
 
@@ -920,43 +914,8 @@ def validate_resources(
             f"Bundle contains {len(bundle_files(bundle))} files; "
             f"device limit is {policy['limits']['bundle_files']}"
         )
-    if desktop is not None:
-        desktop_catalog = read_json(desktop / "desktop_catalog.json")
-        schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
-        if desktop_catalog["version"] != manifest["bundle_version"]:
-            raise ResourceError("Desktop catalog version does not match the device bundle")
-        if [item["id"] for item in desktop_catalog["expressions"]] != [
-            item["id"] for item in catalog["expressions"]
-        ]:
-            raise ResourceError("Desktop and device catalog ordering/IDs do not match")
-        expected_desktop_files = {"desktop_catalog.json"}
-        for item in desktop_catalog["expressions"]:
-            expected_desktop_files.add(item["preview"])
-            expected_desktop_files.update(
-                asset["path"] for asset in item.get("creator", {}).values()
-            )
-        actual_desktop_files = {
-            path.relative_to(desktop).as_posix() for path in desktop_files(desktop)
-        }
-        if actual_desktop_files != expected_desktop_files:
-            raise ResourceError("Desktop file set does not match desktop_catalog.json")
-        for item in desktop_catalog["expressions"]:
-            preview = desktop / item["preview"]
-            if not preview.is_file() or sha256_file(preview) != item["preview_sha256"]:
-                raise ResourceError(f"Desktop preview hash mismatch: {item['id']}")
-            for kind, asset in item.get("creator", {}).items():
-                path = desktop / asset["path"]
-                if (
-                    not path.is_file()
-                    or path.stat().st_size != asset["size"]
-                    or sha256_file(path) != asset["sha256"]
-                ):
-                    raise ResourceError(f"Desktop {kind} hash mismatch: {item['id']}")
-                if kind == "action":
-                    schema_validate(read_json(path), "action.schema.json", str(path))
-                elif path.stat().st_size % 2:
-                    raise ResourceError(f"Desktop sound is not 16-bit PCM: {item['id']}")
-        mobile = mobile or desktop.parent / "mobile"
+
+    if mobile is not None:
         mobile_catalog = read_json(mobile / "mobile_catalog.json")
         schema_validate(mobile_catalog, "mobile-catalog.schema.json", "mobile_catalog.json")
         if mobile_catalog["version"] != manifest["bundle_version"]:
@@ -966,9 +925,7 @@ def validate_resources(
         ]:
             raise ResourceError("Mobile and device catalog ordering/IDs do not match")
         expected_mobile_files = {"mobile_catalog.json"}
-        expected_mobile_files.update(
-            item["preview"] for item in mobile_catalog["expressions"]
-        )
+        expected_mobile_files.update(item["preview"] for item in mobile_catalog["expressions"])
         actual_mobile_files = {
             path.relative_to(mobile).as_posix() for path in mobile_files(mobile)
         }
@@ -982,6 +939,7 @@ def validate_resources(
                 or sha256_file(preview) != item["preview_sha256"]
             ):
                 raise ResourceError(f"Mobile preview hash mismatch: {item['id']}")
+
     return {
         "expressions": len(catalog_by_id),
         "dynamic_expressions": device_contract["dynamic_expressions"],
@@ -994,13 +952,20 @@ def validate_resources(
 
 
 def validate_packaged_device_archive(archive: Path) -> dict[str, int]:
-    """Re-read the final tar.gz and validate the exact bytes sent to the ESP32."""
+    """Re-read the final tar.gz and validate the exact bytes written to SD."""
     with tempfile.TemporaryDirectory(prefix="watche-sd-archive-verify-") as temporary:
         root = Path(temporary)
         with tarfile.open(archive, "r:gz") as tar:
             members = tar.getmembers()
             names = [member.name for member in members]
-            if any(member.isdir() or member.issym() or member.islnk() or Path(member.name).is_absolute() or ".." in Path(member.name).parts for member in members):
+            if any(
+                member.isdir()
+                or member.issym()
+                or member.islnk()
+                or Path(member.name).is_absolute()
+                or ".." in Path(member.name).parts
+                for member in members
+            ):
                 raise ResourceError("Packaged SD archive contains an unsafe entry")
             if len(names) != len(set(names)):
                 raise ResourceError("Packaged SD archive contains duplicate paths")
@@ -1015,8 +980,8 @@ def validate_packaged_device_archive(archive: Path) -> dict[str, int]:
 
         manifest = read_json(root / "resource_manifest.json")
         schema_validate(manifest, "resource-manifest.schema.json", "packaged resource_manifest.json")
-        catalog = read_json(root / "official_catalog.json")
-        schema_validate(catalog, "resource-catalog.schema.json", "packaged official_catalog.json")
+        catalog = read_json(root / "catalog.json")
+        schema_validate(catalog, "resource-catalog.schema.json", "packaged catalog.json")
         expected = {item["path"]: item for item in manifest["files"]}
         actual = {
             path.relative_to(root).as_posix()
@@ -1033,24 +998,15 @@ def validate_packaged_device_archive(archive: Path) -> dict[str, int]:
 
 def package_resources(
     bundle: Path,
-    desktop: Path,
+    mobile: Path,
     dist: Path,
     version: str,
-    mobile: Path | None = None,
 ) -> dict[str, Any]:
     manifest = read_json(bundle / "resource_manifest.json")
     if manifest.get("bundle_version") != version:
         raise ResourceError(
             f"Bundle version {manifest.get('bundle_version')} does not match requested package {version}"
         )
-    desktop_catalog = read_json(desktop / "desktop_catalog.json")
-    schema_validate(desktop_catalog, "desktop-catalog.schema.json", "desktop_catalog.json")
-    if desktop_catalog.get("version") != version:
-        raise ResourceError(
-            f"Desktop catalog version {desktop_catalog.get('version')} "
-            f"does not match requested package {version}"
-        )
-    mobile = mobile or desktop.parent / "mobile"
     mobile_catalog = read_json(mobile / "mobile_catalog.json")
     schema_validate(mobile_catalog, "mobile-catalog.schema.json", "mobile_catalog.json")
     if mobile_catalog.get("version") != version:
@@ -1063,6 +1019,7 @@ def package_resources(
     if version_dir.exists():
         shutil.rmtree(version_dir)
     version_dir.mkdir(parents=True)
+
     archive = version_dir / f"watche-sd-resources-{version}.tar.gz"
     archive_files = bundle_files(bundle)
     write_deterministic_tar_gz(archive, bundle, archive_files, "watche-sd-")
@@ -1077,21 +1034,12 @@ def package_resources(
     object_count = sum(
         1
         for path in archive_files
-        if path.relative_to(bundle).as_posix().startswith("assets/")
+        if path.relative_to(bundle).as_posix().split("/", 1)[0] in {"anim", "actions", "sfx"}
     )
-    catalog_source = bundle / "official_catalog.json"
-    catalog_target = version_dir / "official_catalog.json"
+    catalog_source = bundle / "catalog.json"
+    catalog_target = version_dir / "catalog.json"
     shutil.copyfile(catalog_source, catalog_target)
-    desktop_catalog_target = version_dir / "desktop_catalog.json"
-    shutil.copyfile(desktop / "desktop_catalog.json", desktop_catalog_target)
-    desktop_archive_files = desktop_files(desktop)
-    desktop_archive = version_dir / f"watche-desktop-resources-{version}.tar.gz"
-    write_deterministic_tar_gz(
-        desktop_archive,
-        desktop,
-        desktop_archive_files,
-        "watche-desktop-",
-    )
+
     mobile_catalog_target = version_dir / "mobile_catalog.json"
     shutil.copyfile(mobile / "mobile_catalog.json", mobile_catalog_target)
     mobile_asset_root = version_dir / "mobile" / "gif"
@@ -1101,15 +1049,13 @@ def package_resources(
             mobile / expression["preview"],
             mobile_asset_root / f"{expression['id']}.gif",
         )
-    mobile_size = sum(
-        expression["preview_size"] for expression in mobile_catalog["expressions"]
-    )
+    mobile_size = sum(expression["preview_size"] for expression in mobile_catalog["expressions"])
+
     ota = {
-        "schema_version": 3,
+        "schema_version": 4,
         "product": "WatcheRobot-S3",
         "version": version,
-        "layout_revision": 2,
-        "protocol": "WRSD/2",
+        "layout_revision": LAYOUT_REVISION,
         "published_at": utc_now(),
         "archive": {
             "name": archive.name,
@@ -1124,50 +1070,19 @@ def package_resources(
             "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/{archive.name}",
         },
         "catalog": {
-            "name": "official_catalog.json",
-            "github_url": f"{GITHUB_RELEASE_BASE}/{version}/official_catalog.json",
-            "tos_url": f"{TOS_PUBLIC_BASE}/{version}/official_catalog.json",
-            "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/official_catalog.json",
+            "name": "catalog.json",
+            "github_url": f"{GITHUB_RELEASE_BASE}/{version}/catalog.json",
+            "tos_url": f"{TOS_PUBLIC_BASE}/{version}/catalog.json",
+            "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/catalog.json",
             "sha256": sha256_file(catalog_target),
-        },
-        "desktop": {
-            "catalog": {
-                "name": desktop_catalog_target.name,
-                "size": desktop_catalog_target.stat().st_size,
-                "github_url": (
-                    f"{GITHUB_RELEASE_BASE}/{version}/{desktop_catalog_target.name}"
-                ),
-                "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{desktop_catalog_target.name}",
-                "tos_uri": (
-                    f"tos://erroright/WatcherRobot/sd/{version}/{desktop_catalog_target.name}"
-                ),
-                "sha256": sha256_file(desktop_catalog_target),
-            },
-            "archive": {
-                "name": desktop_archive.name,
-                "format": "tar.gz",
-                "size": desktop_archive.stat().st_size,
-                "expanded_size": sum(path.stat().st_size for path in desktop_archive_files),
-                "file_count": len(desktop_archive_files),
-                "sha256": sha256_file(desktop_archive),
-                "github_url": f"{GITHUB_RELEASE_BASE}/{version}/{desktop_archive.name}",
-                "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{desktop_archive.name}",
-                "tos_uri": (
-                    f"tos://erroright/WatcherRobot/sd/{version}/{desktop_archive.name}"
-                ),
-            },
         },
         "mobile": {
             "catalog": {
                 "name": mobile_catalog_target.name,
                 "size": mobile_catalog_target.stat().st_size,
-                "github_url": (
-                    f"{GITHUB_RELEASE_BASE}/{version}/{mobile_catalog_target.name}"
-                ),
+                "github_url": f"{GITHUB_RELEASE_BASE}/{version}/{mobile_catalog_target.name}",
                 "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{mobile_catalog_target.name}",
-                "tos_uri": (
-                    f"tos://erroright/WatcherRobot/sd/{version}/{mobile_catalog_target.name}"
-                ),
+                "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/{mobile_catalog_target.name}",
                 "sha256": sha256_file(mobile_catalog_target),
             },
             "assets": {
@@ -1218,20 +1133,20 @@ def parser() -> argparse.ArgumentParser:
     build.add_argument("--source-root", type=Path, default=DEFAULT_SOURCE)
     build.add_argument("--pcm-root", type=Path, default=DEFAULT_PCM)
     build.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
-    build.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
     build.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
     build.add_argument("--version", required=True)
+
     validate = subcommands.add_parser("validate")
     validate.add_argument("--source-root", type=Path, default=DEFAULT_SOURCE)
     validate.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
-    validate.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
     validate.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
+
     package = subcommands.add_parser("package")
     package.add_argument("--bundle-root", type=Path, default=DEFAULT_BUNDLE)
-    package.add_argument("--desktop-root", type=Path, default=DEFAULT_DESKTOP)
     package.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
     package.add_argument("--dist-root", type=Path, default=DEFAULT_DIST)
     package.add_argument("--version", required=True)
+
     next_command = subcommands.add_parser("next-version")
     next_command.add_argument(
         "--releases",
@@ -1249,13 +1164,17 @@ def main() -> int:
                 args.source_root.resolve(),
                 args.pcm_root.resolve(),
                 args.bundle_root.resolve(),
-                args.desktop_root.resolve(),
-                args.version,
                 args.mobile_root.resolve(),
+                args.version,
             )
+            raw_mb = result["raw_anim_bytes"] / (1024 * 1024)
+            enc_mb = result["encoded_anim_bytes"] / (1024 * 1024)
+            ratio = (1.0 - (result["encoded_anim_bytes"] / max(1, result["raw_anim_bytes"]))) * 100.0
             print(
                 f"Built {result['expressions']} expression(s), {result['actions']} action(s), "
-                f"{result['sounds']} sound(s), {result['frames']} frame(s)."
+                f"{result['sounds']} sound(s), {result['frames']} frame(s) "
+                f"[{result['animation_format']}: {raw_mb:.2f} MiB -> {enc_mb:.2f} MiB (-{ratio:.1f}%), "
+                f"segments={result['total_segments']}, stall_free={result['prefetch_stall_free_all']}]."
             )
             for resource_id, changes in result["action_adjustments"].items():
                 print(f"  normalized action {resource_id}: {len(changes)} angle adjustment(s)")
@@ -1264,7 +1183,6 @@ def main() -> int:
             result = validate_resources(
                 args.source_root.resolve(),
                 args.bundle_root.resolve(),
-                args.desktop_root.resolve(),
                 args.mobile_root.resolve(),
             )
             print(
@@ -1274,10 +1192,9 @@ def main() -> int:
         elif args.command == "package":
             result = package_resources(
                 args.bundle_root.resolve(),
-                args.desktop_root.resolve(),
+                args.mobile_root.resolve(),
                 args.dist_root.resolve(),
                 args.version,
-                args.mobile_root.resolve(),
             )
             print(f"Packaged {args.version}: {result['archive']['sha256']}")
         else:

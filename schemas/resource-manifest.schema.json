@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://orulink.ai/schemas/watcher/resource-manifest-v2.json",
+  "$id": "https://orulink.ai/schemas/watcher/resource-manifest-v3.json",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -16,11 +16,11 @@
     "bundle_sha256"
   ],
   "properties": {
-    "schema_version": {"const": 2},
+    "schema_version": {"const": 3},
     "product": {"const": "WatcheRobot-S3"},
     "bundle_id": {"const": "adepto-official"},
     "bundle_version": {"type": "string", "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"},
-    "layout_revision": {"const": 2},
+    "layout_revision": {"const": 3},
     "generated_at": {"type": "string", "format": "date-time"},
     "compatibility": {"type": "object"},
     "contents": {"type": "object"},
@@ -35,7 +35,7 @@
         "properties": {
           "path": {
             "type": "string",
-            "pattern": "^(assets/(anim/[a-f0-9]{64}\\.animpack|actions/[a-f0-9]{64}\\.json|sfx/[a-f0-9]{64}\\.pcm)|official_catalog\\.json|fixed_states\\.json)$"
+            "pattern": "^(anim/[a-z][a-z0-9_]{0,22}\\.animpack|actions/[a-z][a-z0-9_]{0,22}\\.json|sfx/[a-z][a-z0-9_]{0,22}\\.pcm|catalog\\.json|fixed_states\\.json)$"
           },
           "size": {"type": "integer", "minimum": 1},
           "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}

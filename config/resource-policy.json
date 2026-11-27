@@ -19,7 +19,7 @@
     "sound_files": 128,
     "single_file_bytes": 16777216,
     "bundle_files": 512,
-    "bundle_bytes": 134217728,
+    "bundle_bytes": 100663296,
     "transfer_archive_bytes": 67108864
   },
   "audio": {

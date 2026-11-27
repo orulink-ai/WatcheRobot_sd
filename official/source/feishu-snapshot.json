@@ -1,55 +1,80 @@
 {
   "schema_version": 1,
   "source": "Watcher expression overview",
-  "imported_at": "2026-11-10T12:31:27.3674698Z",
+  "imported_at": "2026-11-27T08:23:21Z",
   "records": [
     {
       "source_record_id": "recvdwKxW8TQzA",
       "source_label": "watcher-工具",
       "display_name": "工具",
+      "display_names": {
+        "zh-Hans": "工具",
+        "en": "Tool",
+        "ja": "ツール"
+      },
       "resource_id": "custom3",
       "order": 0,
-      "gif": "BEjbb8Pk5oEAakxviUDcbv9nn9b",
-      "action": "SkDsbD8YFoNjJFxVLyqc22CFnVh",
+      "gif": "gif/custom3.gif",
+      "action": "actions/custom3.json",
       "sound": null
     },
     {
       "source_record_id": "recvdxn4DMRrnB",
       "source_label": "watcher-蓝牙",
       "display_name": "蓝牙",
+      "display_names": {
+        "zh-Hans": "蓝牙",
+        "en": "Bluetooth",
+        "ja": "Bluetooth"
+      },
       "resource_id": "bluetooth",
       "order": 1,
-      "gif": "IfrkbUIl4oJiVlxtL29c1PTYnCd",
-      "action": "Jf1KbRhJBouJb0xfjUKcQkQVnQ4",
-      "sound": "L5i0b8E44ojVw2x1yeLcjj4inle"
+      "gif": "gif/bluetooth.gif",
+      "action": "actions/bluetooth.json",
+      "sound": "sound/bluetooth.mp3"
     },
     {
       "source_record_id": "recvdxn4R6TqKS",
       "source_label": "watcher-断开蓝牙",
       "display_name": "断开蓝牙",
+      "display_names": {
+        "zh-Hans": "断开蓝牙",
+        "en": "Bluetooth disconnected",
+        "ja": "Bluetooth切断"
+      },
       "resource_id": "disconnect",
       "order": 2,
-      "gif": "De7qbyK3tomESTx5SCFctpxyn4d",
-      "action": "LQlnbQPDroqMSVxqcb8cig7ZnUd",
-      "sound": "SCrxbPNCEoPZJXxxAHtcVlwXneh"
+      "gif": "gif/disconnect.gif",
+      "action": "actions/disconnect.json",
+      "sound": "sound/disconnect.mp3"
     },
     {
       "source_record_id": "recvi30buNF2qB",
       "source_label": "watcher-无线充电",
       "display_name": "无线充电",
+      "display_names": {
+        "zh-Hans": "无线充电",
+        "en": "Recharge",
+        "ja": "ワイヤレス充電"
+      },
       "resource_id": "recharge",
       "order": 3,
-      "gif": "T0BjbXZyfoiuj6xJAxPcWdpTnFb",
+      "gif": "gif/recharge.gif",
       "action": null,
-      "sound": "FH0Mbu4IHovu28xUc6TckGrQnBp"
+      "sound": "sound/recharge.mp3"
     },
     {
       "source_record_id": "recviVuvF18Wfz",
       "source_label": "watcher-固件升级",
       "display_name": "固件升级",
+      "display_names": {
+        "zh-Hans": "固件升级",
+        "en": "Upgrade",
+        "ja": "ファームウェア更新"
+      },
       "resource_id": "upgrade",
       "order": 4,
-      "gif": "IvF1bGpJJoBac5xX1rMcS7BznaX",
+      "gif": "gif/upgrade.gif",
       "action": null,
       "sound": null
     },
@@ -57,59 +82,89 @@
       "source_record_id": "recvo1ti0CFCeG",
       "source_label": "watcher-听音乐",
       "display_name": "听音乐",
+      "display_names": {
+        "zh-Hans": "听音乐",
+        "en": "Music",
+        "ja": "音楽鑑賞"
+      },
       "resource_id": "music",
       "order": 5,
-      "gif": "DHEWb9rIEoRjjjxfV2AcLoOrnbU",
-      "action": "IpfQb3KTmoSC0QxODqacOMs9nbh",
+      "gif": "gif/music.gif",
+      "action": "actions/music.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28NzOF6jJAm",
       "source_label": "watcher-打代码",
       "display_name": "打代码",
+      "display_names": {
+        "zh-Hans": "打代码",
+        "en": "Coding",
+        "ja": "コーディング"
+      },
       "resource_id": "coding",
       "order": 6,
-      "gif": "I94dbIec3oXQWGxpUircgKjRnPX",
-      "action": "LZvkbYHLPoLLo6xoSjVccxfUnxb",
-      "sound": "M7PhbrgBPofZUkxiJtoc8mMEnwF"
+      "gif": "gif/coding.gif",
+      "action": "actions/coding.json",
+      "sound": "sound/coding.mp3"
     },
     {
       "source_record_id": "reczz28NzOGXy4Rd",
       "source_label": "watcher-潜水",
       "display_name": "潜水",
+      "display_names": {
+        "zh-Hans": "潜水",
+        "en": "Swimming",
+        "ja": "潜水"
+      },
       "resource_id": "swimming",
       "order": 7,
-      "gif": "Ys14bn27romqyOxn55ycejlqnic",
-      "action": null,
-      "sound": "BfA1bhvjeoiyZMxhZi3cNBeonsd"
+      "gif": "gif/swimming.gif",
+      "action": "actions/swimming.json",
+      "sound": "sound/swimming.mp3"
     },
     {
       "source_record_id": "reczz28TbhNqIeLZ",
       "source_label": "watcher-摸头爱心",
       "display_name": "摸头爱心",
+      "display_names": {
+        "zh-Hans": "摸头爱心",
+        "en": "Fondle Love",
+        "ja": "なでなで（ハート）"
+      },
       "resource_id": "fondle_love",
       "order": 8,
-      "gif": "PSF6bts4mo5SPqxFzYqchShGnfg",
-      "action": "MZ8RbaVtgo7sIJxRSsMc7Q6bn5g",
+      "gif": "gif/fondle_love.gif",
+      "action": "actions/fondle_love.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28TbhOejlKY",
       "source_label": "watcher-摸头生气",
       "display_name": "摸头生气",
+      "display_names": {
+        "zh-Hans": "摸头生气",
+        "en": "Fondle Anger",
+        "ja": "なでなで（怒り）"
+      },
       "resource_id": "fondle_anger",
       "order": 9,
-      "gif": "X3jOb4F8yok8FfxOiykcRPDSnZd",
-      "action": "ZQZXbYeEXovCKextwRQcgl9Tnsc",
+      "gif": "gif/fondle_anger.gif",
+      "action": "actions/fondle_anger.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28Uj3YX4xoH",
       "source_label": "watcher-静默1",
       "display_name": "静默1",
+      "display_names": {
+        "zh-Hans": "静默1",
+        "en": "Standby 1",
+        "ja": "待機1"
+      },
       "resource_id": "standby1",
       "order": 10,
-      "gif": "DmKbbVWvvoAwwNxZJmXcnHCrnxe",
+      "gif": "gif/standby1.gif",
       "action": null,
       "sound": null
     },
@@ -117,29 +172,44 @@
       "source_record_id": "reczz28Uj3ZKQVif",
       "source_label": "watcher-静默2",
       "display_name": "静默2",
+      "display_names": {
+        "zh-Hans": "静默2",
+        "en": "Standby 2",
+        "ja": "待機2"
+      },
       "resource_id": "standby2",
       "order": 11,
-      "gif": "NVmcbALILoIDFzx2n7IcuS2BnPf",
-      "action": "Xlo2bwPSEovo1LxIAt0cpQ4Undc",
+      "gif": "gif/standby2.gif",
+      "action": "actions/standby2.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28Uj3a8chNV",
       "source_label": "watcher-静默3",
       "display_name": "静默3",
+      "display_names": {
+        "zh-Hans": "静默3",
+        "en": "Standby 3",
+        "ja": "待機3"
+      },
       "resource_id": "standby3",
       "order": 12,
-      "gif": "PVcRb5iD6orLZ1xV37BceKj5nlf",
-      "action": "JkYWbJkZposjRJxZVFXc29uYngf",
+      "gif": "gif/standby3.gif",
+      "action": "actions/standby3.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28UjOgUIcJg",
       "source_label": "watcher-静默4",
       "display_name": "静默4",
+      "display_names": {
+        "zh-Hans": "静默4",
+        "en": "Standby 4",
+        "ja": "待機4"
+      },
       "resource_id": "standby4",
       "order": 13,
-      "gif": "L3bQblO1IogyJVxyeDgcZz0ZnOh",
+      "gif": "gif/standby4.gif",
       "action": null,
       "sound": null
     },
@@ -147,9 +217,14 @@
       "source_record_id": "reczz28UjOhF8ciy",
       "source_label": "watcher-静默5",
       "display_name": "静默5",
+      "display_names": {
+        "zh-Hans": "静默5",
+        "en": "Standby 5",
+        "ja": "待機5"
+      },
       "resource_id": "standby5",
       "order": 14,
-      "gif": "PpYgb2B7Koma94xD3q0clIRxnid",
+      "gif": "gif/standby5.gif",
       "action": null,
       "sound": null
     },
@@ -157,19 +232,29 @@
       "source_record_id": "reczz28UjOi9PUYC",
       "source_label": "watcher-静默6",
       "display_name": "静默6",
+      "display_names": {
+        "zh-Hans": "静默6",
+        "en": "Standby 6",
+        "ja": "待機6"
+      },
       "resource_id": "standby6",
       "order": 15,
-      "gif": "LCZkb1sE7odsQcxVa2YcBWN6nhc",
-      "action": "ZZeJbtZh3oo5e5xpQRhcMMlGnif",
+      "gif": "gif/standby6.gif",
+      "action": "actions/standby6.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28UjOyYWte8",
       "source_label": "watcher-静默-轻微1",
       "display_name": "静默-轻微1",
+      "display_names": {
+        "zh-Hans": "静默-轻微1",
+        "en": "Standby Little 1",
+        "ja": "待機（小さな動き）1"
+      },
       "resource_id": "standby_little1",
       "order": 16,
-      "gif": "IpKUbGDyQoOGwox70yJc0Sprn9c",
+      "gif": "gif/standby_little1.gif",
       "action": null,
       "sound": null
     },
@@ -177,9 +262,14 @@
       "source_record_id": "reczz28UjOzIwZLU",
       "source_label": "watcher-静默-轻微2",
       "display_name": "静默-轻微2",
+      "display_names": {
+        "zh-Hans": "静默-轻微2",
+        "en": "Standby Little 2",
+        "ja": "待機（小さな動き）2"
+      },
       "resource_id": "standby_little2",
       "order": 17,
-      "gif": "CNNxbRXxyoAyXNxVbXUcNcX3noe",
+      "gif": "gif/standby_little2.gif",
       "action": null,
       "sound": null
     },
@@ -187,9 +277,14 @@
       "source_record_id": "reczz28UjP0AddPH",
       "source_label": "watcher-静默-轻微3",
       "display_name": "静默-轻微3",
+      "display_names": {
+        "zh-Hans": "静默-轻微3",
+        "en": "Standby Little 3",
+        "ja": "待機（小さな動き）3"
+      },
       "resource_id": "standby_little3",
       "order": 18,
-      "gif": "JjIebLWY1oIGxex7tNXchiOsnwb",
+      "gif": "gif/standby_little3.gif",
       "action": null,
       "sound": null
     },
@@ -197,9 +292,14 @@
       "source_record_id": "reczz28UjP16bnPo",
       "source_label": "watcher-静默-轻微4",
       "display_name": "静默-轻微4",
+      "display_names": {
+        "zh-Hans": "静默-轻微4",
+        "en": "Standby Little 4",
+        "ja": "待機（小さな動き）4"
+      },
       "resource_id": "standby_little4",
       "order": 19,
-      "gif": "STP2bLg0YombHAxdHzMclVNhnIh",
+      "gif": "gif/standby_little4.gif",
       "action": null,
       "sound": null
     },
@@ -207,29 +307,44 @@
       "source_record_id": "reczz28UjP2FwK7x",
       "source_label": "watcher-鬼脸",
       "display_name": "鬼脸",
+      "display_names": {
+        "zh-Hans": "鬼脸",
+        "en": "Funny face",
+        "ja": "変顔"
+      },
       "resource_id": "funnyface",
       "order": 20,
-      "gif": "RMKVbIEW2oLiPRxcCOccIv7CnUe",
-      "action": "VdzjbJJDooRDytxcodfcQNq7nJh",
-      "sound": "Oe5cbPjIJoen9nxbXKQcSw3ynAc"
+      "gif": "gif/funnyface.gif",
+      "action": "actions/funnyface.json",
+      "sound": "sound/funnyface.mp3"
     },
     {
       "source_record_id": "reczz28UjUW9GBod",
       "source_label": "watcher-下雪",
       "display_name": "下雪",
+      "display_names": {
+        "zh-Hans": "下雪",
+        "en": "Snow",
+        "ja": "雪"
+      },
       "resource_id": "snow",
       "order": 21,
-      "gif": "OjgVbiSOYoEAZRx1odKcNPrGnsh",
-      "action": "SJrsbPo26obzU4xEYkIcVH3Ench",
-      "sound": null
+      "gif": "gif/snow.gif",
+      "action": "actions/snow.json",
+      "sound": "sound/snow.mp3"
     },
     {
       "source_record_id": "reczz28V7gCpLRL8",
       "source_label": "watcher-爱心",
       "display_name": "爱心",
+      "display_names": {
+        "zh-Hans": "爱心",
+        "en": "Love",
+        "ja": "ハート"
+      },
       "resource_id": "love",
       "order": 22,
-      "gif": "BXFCbgZeKos7nkx89nTczeKunAc",
+      "gif": "gif/love.gif",
       "action": null,
       "sound": null
     },
@@ -237,19 +352,29 @@
       "source_record_id": "reczz28V7gDfU8GX",
       "source_label": "watcher-成功",
       "display_name": "成功",
+      "display_names": {
+        "zh-Hans": "成功",
+        "en": "Success",
+        "ja": "うれしい"
+      },
       "resource_id": "happy",
       "order": 23,
-      "gif": "MFIvbTwPmoad8tx3Cwccj7YEnMd",
-      "action": "INxlb38uXoSLfyxuh5zcvDP8nMc",
-      "sound": "JaexbAhLsoYDUqxcjEhcnTUfn7f"
+      "gif": "gif/happy.gif",
+      "action": "actions/happy.json",
+      "sound": "sound/happy.mp3"
     },
     {
       "source_record_id": "reczz28V7gEULu17",
       "source_label": "watcher-大眼",
       "display_name": "大眼",
+      "display_names": {
+        "zh-Hans": "大眼",
+        "en": "Big eyes",
+        "ja": "ぱっちり目"
+      },
       "resource_id": "biyeyes",
       "order": 24,
-      "gif": "MCbJbil8GoFs87x7Sq3ccbsXn5f",
+      "gif": "gif/biyeyes.gif",
       "action": null,
       "sound": null
     },
@@ -257,9 +382,14 @@
       "source_record_id": "reczz28V7gFGIOKJ",
       "source_label": "watcher-平静",
       "display_name": "平静",
+      "display_names": {
+        "zh-Hans": "平静",
+        "en": "Calm",
+        "ja": "落ち着き"
+      },
       "resource_id": "clmness",
       "order": 25,
-      "gif": "MIB7b50JVolaQWxWIBUcUWDjn2g",
+      "gif": "gif/clmness.gif",
       "action": null,
       "sound": null
     },
@@ -267,9 +397,14 @@
       "source_record_id": "reczz28V7gG1XZGI",
       "source_label": "watcher-好奇",
       "display_name": "好奇",
+      "display_names": {
+        "zh-Hans": "好奇",
+        "en": "Curious",
+        "ja": "好奇心"
+      },
       "resource_id": "inquisitive",
       "order": 26,
-      "gif": "FEOvbQI1VomsdVx231ic8Z8cnNf",
+      "gif": "gif/inquisitive.gif",
       "action": null,
       "sound": null
     },
@@ -277,19 +412,29 @@
       "source_record_id": "reczz28V7gGhK9pW",
       "source_label": "watcher-墨镜",
       "display_name": "墨镜",
+      "display_names": {
+        "zh-Hans": "墨镜",
+        "en": "Sunglasses",
+        "ja": "サングラス"
+      },
       "resource_id": "sunglasses",
       "order": 27,
-      "gif": "VvcubbaTroi5zMxXAxxcUPKDnDb",
-      "action": "VQVIbu4mao45ddxwwVKcrOennOc",
+      "gif": "gif/sunglasses.gif",
+      "action": "actions/sunglasses.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28V7iIqQqsA",
       "source_label": "watcher-犹豫",
       "display_name": "犹豫",
+      "display_names": {
+        "zh-Hans": "犹豫",
+        "en": "Hesitant",
+        "ja": "迷い"
+      },
       "resource_id": "hesitate",
       "order": 28,
-      "gif": "ELqHbltZYoLuOwxNzlNcYVfanre",
+      "gif": "gif/hesitate.gif",
       "action": null,
       "sound": null
     },
@@ -297,29 +442,44 @@
       "source_record_id": "reczz28VPpbp3BOn",
       "source_label": "watcher-生气",
       "display_name": "生气",
+      "display_names": {
+        "zh-Hans": "生气",
+        "en": "Anger",
+        "ja": "怒り"
+      },
       "resource_id": "anger",
       "order": 29,
-      "gif": "LjH0bwIA9o4D8RxeL6JctQPXnpg",
-      "action": "MNY4bcRYfoc1FqxmU4rcPwfqnoe",
+      "gif": "gif/anger.gif",
+      "action": "actions/anger.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28VPpcpmEPB",
       "source_label": "watcher-伤心",
       "display_name": "伤心",
+      "display_names": {
+        "zh-Hans": "伤心",
+        "en": "Sad",
+        "ja": "悲しみ"
+      },
       "resource_id": "sad",
       "order": 30,
-      "gif": "BCsrbQKWWoM5MCxXqUbcK1GFn9c",
-      "action": "OREqb5muNobZZgxufkRcBlzgnEf",
+      "gif": "gif/sad.gif",
+      "action": "actions/sad.json",
       "sound": null
     },
     {
       "source_record_id": "reczz28VqTUtcNgN",
       "source_label": "watcher-无语",
       "display_name": "无语",
+      "display_names": {
+        "zh-Hans": "无语",
+        "en": "Speechless",
+        "ja": "言葉が出ない"
+      },
       "resource_id": "speechless",
       "order": 31,
-      "gif": "Ei8NbPJj5oDqlTxIxeUcKhTQnoc",
+      "gif": "gif/speechless.gif",
       "action": null,
       "sound": null
     },
@@ -327,19 +487,29 @@
       "source_record_id": "reczz28VqTWEsm0b",
       "source_label": "watcher-wink",
       "display_name": "wink",
+      "display_names": {
+        "zh-Hans": "wink",
+        "en": "Wink",
+        "ja": "ウインク"
+      },
       "resource_id": "wink",
       "order": 32,
-      "gif": "CEuqbaEHdozIppxUUNucIOZInJd",
-      "action": "N28nbNA6LoWE1ExTxJLcEyAQn1c",
-      "sound": "J2qIbWjOLoAP3Lxnv84cWKUhnzd"
+      "gif": "gif/wink.gif",
+      "action": "actions/wink.json",
+      "sound": "sound/wink.mp3"
     },
     {
       "source_record_id": "reczz28VqU2JDM72",
       "source_label": "watcher-厌倦",
       "display_name": "厌倦",
+      "display_names": {
+        "zh-Hans": "厌倦",
+        "en": "Bored",
+        "ja": "退屈"
+      },
       "resource_id": "boredom",
       "order": 33,
-      "gif": "CotUbbDPXoIyl9xXF0ocxSTknBv",
+      "gif": "gif/boredom.gif",
       "action": null,
       "sound": null
     },
@@ -347,49 +517,74 @@
       "source_record_id": "reczz28VqiNu0QKI",
       "source_label": "watcher-感叹号",
       "display_name": "感叹号",
+      "display_names": {
+        "zh-Hans": "感叹号",
+        "en": "Shock",
+        "ja": "びっくりマーク"
+      },
       "resource_id": "shock",
       "order": 34,
-      "gif": "PyCNbNjhWoL4u2x6MqrcVn0Gnsc",
-      "action": "Fx4CbsYPooiJ2VxEat7c0TmEnte",
-      "sound": "K35lb5tILodm49xufx0cl4ginKf"
+      "gif": "gif/shock.gif",
+      "action": "actions/shock.json",
+      "sound": "sound/shock.mp3"
     },
     {
       "source_record_id": "reczz28VqiOqP2gg",
       "source_label": "watcher-问号",
       "display_name": "问号",
+      "display_names": {
+        "zh-Hans": "问号",
+        "en": "Query",
+        "ja": "はてなマーク"
+      },
       "resource_id": "query",
       "order": 35,
-      "gif": "TuwabCkiaopnpnxj4occEXcwnIn",
-      "action": "Ny2mbV17xoOngnx0Ow2cdiOmnvf",
-      "sound": "Ngukb6zvMo1WVBxkim8cPm2RnNg"
+      "gif": "gif/query.gif",
+      "action": "actions/query.json",
+      "sound": "sound/query.mp3"
     },
     {
       "source_record_id": "reczz28XWUrC7agw",
       "source_label": "watcher-开机",
       "display_name": "开机",
+      "display_names": {
+        "zh-Hans": "开机",
+        "en": "Boot",
+        "ja": "起動"
+      },
       "resource_id": "boot",
       "order": 36,
-      "gif": "PJoubpYepoo0tUxn1lDcHUT1nqc",
+      "gif": "gif/boot.gif",
       "action": null,
-      "sound": "WQrkbjL1moWXdtx1fqScIvUQn2c"
+      "sound": "sound/boot.mp3"
     },
     {
       "source_record_id": "reczz28XWUs0Kzgo",
       "source_label": "watcher-错误",
       "display_name": "错误",
+      "display_names": {
+        "zh-Hans": "错误",
+        "en": "Error",
+        "ja": "エラー"
+      },
       "resource_id": "error",
       "order": 37,
-      "gif": "DgCobxqIno6CtMxoJ7wcOCbpnAh",
-      "action": "Aru9bWKopo6wG6xOVl4cmI6zn9e",
-      "sound": "NiaHbAijnoWUQDxNtQHcZdUZnTb"
+      "gif": "gif/error.gif",
+      "action": "actions/error.json",
+      "sound": "sound/error.mp3"
     },
     {
       "source_record_id": "reczz28XWYOeUuQV",
       "source_label": "watcher-待机",
       "display_name": "待机",
+      "display_names": {
+        "zh-Hans": "待机",
+        "en": "Sleeping",
+        "ja": "待機"
+      },
       "resource_id": "standby",
       "order": 38,
-      "gif": "ZegHbOyIiouwJ4xIxewcnzjIn2g",
+      "gif": "gif/standby.gif",
       "action": null,
       "sound": null
     },
@@ -397,9 +592,14 @@
       "source_record_id": "reczz28XWYPp4mrJ",
       "source_label": "watcher-聆听",
       "display_name": "聆听",
+      "display_names": {
+        "zh-Hans": "聆听",
+        "en": "Listening",
+        "ja": "聞き取り中"
+      },
       "resource_id": "listening",
       "order": 39,
-      "gif": "TxoYbu7sgo7CwwxmxW0cmVM9n0b",
+      "gif": "gif/listening.gif",
       "action": null,
       "sound": null
     },
@@ -407,9 +607,14 @@
       "source_record_id": "reczz28XWYREiJci",
       "source_label": "watcher-思考",
       "display_name": "思考",
+      "display_names": {
+        "zh-Hans": "思考",
+        "en": "Thinking",
+        "ja": "考え中"
+      },
       "resource_id": "thinking",
       "order": 40,
-      "gif": "KWMfb6SBTonBPAxl8ODcKOKWnMd",
+      "gif": "gif/thinking.gif",
       "action": null,
       "sound": null
     },
@@ -417,9 +622,14 @@
       "source_record_id": "reczz28XWZem9ELi",
       "source_label": "watcher-说话",
       "display_name": "说话",
+      "display_names": {
+        "zh-Hans": "说话",
+        "en": "Speaking",
+        "ja": "発話中"
+      },
       "resource_id": "speaking",
       "order": 41,
-      "gif": "Ml9lbCU3ooZoD7xdG72colWznWf",
+      "gif": "gif/speaking.gif",
       "action": null,
       "sound": null
     },
@@ -427,9 +637,14 @@
       "source_record_id": "reczz28XWZg0M820",
       "source_label": "watcher-处理中",
       "display_name": "处理中",
+      "display_names": {
+        "zh-Hans": "处理中",
+        "en": "Processing",
+        "ja": "処理中"
+      },
       "resource_id": "processing",
       "order": 42,
-      "gif": "LGpLbVgWRoVrEextGN4cfnr5nZd",
+      "gif": "gif/processing.gif",
       "action": null,
       "sound": null
     },
@@ -437,11 +652,61 @@
       "source_record_id": "reczz28XuZ2UXVJ1",
       "source_label": "watcher-拍照",
       "display_name": "拍照",
+      "display_names": {
+        "zh-Hans": "拍照",
+        "en": "Photo",
+        "ja": "撮影"
+      },
       "resource_id": "photo",
       "order": 43,
-      "gif": "PRnjb2qCooPvRGxCBK3coJoqnXg",
+      "gif": "gif/photo.gif",
       "action": null,
-      "sound": "QWtFbyDxwoUyHAxawvNcu4hMnlh"
+      "sound": "sound/photo.mp3"
+    },
+    {
+      "source_record_id": "reczz28aeQLDlyBf",
+      "source_label": "watcher-擦玻璃",
+      "display_name": "擦玻璃",
+      "display_names": {
+        "zh-Hans": "擦玻璃",
+        "en": "Wipe",
+        "ja": "ガラス拭き"
+      },
+      "resource_id": "wipe",
+      "order": 44,
+      "gif": "gif/wipe.gif",
+      "action": "actions/wipe.json",
+      "sound": "sound/wipe.mp3"
+    },
+    {
+      "source_record_id": "reczz28aeQMDjVpZ",
+      "source_label": "watcher-长时间等待",
+      "display_name": "长时间等待",
+      "display_names": {
+        "zh-Hans": "长时间等待",
+        "en": "Wait",
+        "ja": "長時間待機"
+      },
+      "resource_id": "wait",
+      "order": 45,
+      "gif": "gif/wait.gif",
+      "action": "actions/wait.json",
+      "sound": "sound/wait.mp3"
+    },
+    {
+      "source_record_id": "reczz28bVBygNeu1",
+      "source_label": "watcher-无网络",
+      "display_name": "无网络",
+      "display_names": {
+        "zh-Hans": "无网络",
+        "en": "No Network",
+        "ja": "ネット未接続"
+      },
+      "resource_id": "no_network",
+      "order": 46,
+      "gif": "gif/no_network.gif",
+      "action": null,
+      "sound": null
     }
   ]
 }

@@ -49,14 +49,23 @@ GITHUB_RELEASE_BASE = "https://github.com/orulink-ai/WatcheRobot_sd/releases/dow
 TOS_PUBLIC_BASE = "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd"
 
 PACK_MAGIC = b"ANPK"
-PACK_VERSION = 2
+PACK_VERSION_EFC = 3
 PACK_HEADER_FMT = "<4sHHHHBBHIII"
 FRAME_DESC_FMT = "<IIHH"
-FRAME_FLAG_INDEXED8 = 0x0001
+FRAME_FLAG_EFC = 0x0002
+FRAME_FLAG_EFC_SWAPPED = 0x0004
+FRAME_FLAG_EFC_MASK = FRAME_FLAG_EFC | FRAME_FLAG_EFC_SWAPPED
+EFC_FLAG_PREDICTOR = 0x08
+EFC_MAX_SEGMENT_BYTES = 2 * 1024 * 1024
+ANIMATION_FORMAT = "animpack-v3"
 DEVICE_CATALOG_MAX_BYTES = 128 * 1024
 DEVICE_PATH_MAX_BYTES = 192
 DEVICE_DISPLAY_NAME_MAX_BYTES = 192
 LAYOUT_REVISION = 3
+
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
 
 ASSET_DIRECTORIES = {
     "anim": "anim",
@@ -71,7 +80,7 @@ ASSET_EXTENSIONS = {
 }
 
 ASSET_FORMATS = {
-    "anim": "animpack-v2",
+    "anim": ANIMATION_FORMAT,
     "action": "firmware-action-json-v1",
     "sfx": "pcm-s16le-24khz-mono",
 }
@@ -107,7 +116,12 @@ def asset_relative_path(kind: str, resource_id: str) -> str:
     return f"{ASSET_DIRECTORIES[kind]}/{resource_id}{ASSET_EXTENSIONS[kind]}"
 
 
-def store_asset_file(bundle: Path, source: Path, kind: str, resource_id: str) -> dict[str, Any]:
+def store_asset_file(
+    bundle: Path,
+    source: Path,
+    kind: str,
+    resource_id: str,
+) -> dict[str, Any]:
     relative = asset_relative_path(kind, resource_id)
     target = bundle / relative
     target.parent.mkdir(parents=True, exist_ok=True)
@@ -166,23 +180,6 @@ def rgba_to_rgb565(image: Image.Image) -> bytes:
     return bytes(payload)
 
 
-def encode_indexed8(payload: bytes) -> bytes | None:
-    palette: list[bytes] = []
-    lookup: dict[bytes, int] = {}
-    indices = bytearray()
-    for offset in range(0, len(payload), 2):
-        color = payload[offset : offset + 2]
-        index = lookup.get(color)
-        if index is None:
-            if len(palette) >= 256:
-                return None
-            index = len(palette)
-            palette.append(color)
-            lookup[color] = index
-        indices.append(index)
-    return struct.pack("<H", len(palette)) + b"".join(palette) + bytes(indices)
-
-
 def read_gif(path: Path, policy: dict[str, Any]) -> list[tuple[Image.Image, int]]:
     expected = (policy["display"]["width"], policy["display"]["height"])
     max_frames = policy["limits"]["frames_per_expression"]
@@ -210,52 +207,97 @@ def read_gif(path: Path, policy: dict[str, Any]) -> list[tuple[Image.Image, int]
     return frames
 
 
-def write_animpack(
+def write_animpack_efc(
     target: Path,
     frames: list[tuple[Image.Image, int]],
     fps: int,
-    force_rgb565: bool,
-) -> dict[str, int]:
-    width, height = frames[0][0].size
-    raw_frames = [rgba_to_rgb565(frame) for frame, _ in frames]
-    encoded: list[tuple[bytes, int]] = []
-    for raw in raw_frames:
-        indexed = None if force_rgb565 else encode_indexed8(raw)
-        encoded.append((indexed, FRAME_FLAG_INDEXED8) if indexed is not None else (raw, 0))
+) -> dict[str, Any]:
+    """Encode RGB565 frames into segmented single-stream EFC (animpack-v3).
 
-    header_size = struct.calcsize(PACK_HEADER_FMT)
-    descriptor_size = struct.calcsize(FRAME_DESC_FMT)
-    payload_offset = header_size + descriptor_size * len(frames)
-    cursor = 0
-    descriptors: list[bytes] = []
-    for (payload, flags), (_, delay) in zip(encoded, frames):
-        descriptors.append(struct.pack(FRAME_DESC_FMT, cursor, len(payload), delay, flags))
-        cursor += len(payload)
-    header = struct.pack(
-        PACK_HEADER_FMT,
-        PACK_MAGIC,
-        PACK_VERSION,
-        width,
-        height,
-        len(frames),
-        0,
-        0,
-        max(1, round(1000 / fps)),
-        header_size,
-        payload_offset,
-        width * height * 2,
+    Hard guarantees enforced before writing:
+      - Exact big-endian (LV_COLOR_16_SWAP=1) pixel layout matching firmware LCD.
+      - Single-stream legacy EFC only ((blob[5] & 0x08) == 0) to bound ESP32-S3 PSRAM.
+      - Adaptive 2-slot prefetch budget segmentation with loop wrap-around protection.
+      - Per-segment byte cap (<= EFC_MAX_SEGMENT_BYTES) and 100% pixel-exact roundtrip check.
+    """
+    import numpy as np
+    import efc_codec
+    from anim_efc_segmenter import (
+        SegmentBudgetConfig,
+        pack_segmented_animpack_v3,
+        plan_adaptive_efc_segments,
+    )
+
+    width, height = frames[0][0].size
+    delays_ms = [max(20, int(delay)) for _, delay in frames]
+    raw_frames = [rgba_to_rgb565(frame) for frame, _ in frames]
+    # rgba_to_rgb565 emits big-endian RGB565 bytes; viewing as <u2 yields the exact
+    # byte-swapped u16 words expected by ANIM_FRAME_FLAG_EFC_SWAPPED on ESP32-S3.
+    swapped = np.empty((len(raw_frames), height, width), dtype="<u2")
+    for idx, raw in enumerate(raw_frames):
+        swapped[idx] = np.frombuffer(raw, dtype="<u2").reshape((height, width))
+
+    def encode_span(start: int, count: int) -> bytes:
+        blob = efc_codec.encode_frames(
+            swapped[start : start + count],
+            tile=4,
+            compress=True,
+            legacy=True,
+            hold=False,
+        )
+        if len(blob) < 20 or blob[:4] != b"EFC1":
+            raise ResourceError(f"EFC encoder emitted invalid header for {target.name}")
+        if (blob[5] & EFC_FLAG_PREDICTOR) != 0:
+            raise ResourceError(
+                f"EFC encoder emitted unsupported predictor-plane stream (flags=0x{blob[5]:02x}) for {target.name}"
+            )
+        return blob
+
+    # Always plan with loop=True so multi-segment clips have wrap-around prefetch safety
+    # even when firmware plays an expression in looping behavior states.
+    seg_res = plan_adaptive_efc_segments(
+        delays_ms,
+        encode_span,
+        loop=True,
+        config=SegmentBudgetConfig(),
+    )
+
+    reconstructed = []
+    for seg in seg_res.segments:
+        if len(seg.payload) > EFC_MAX_SEGMENT_BYTES:
+            raise ResourceError(
+                f"EFC segment for {target.name} (frames {seg.start_frame}..{seg.start_frame + seg.frame_count - 1}) "
+                f"exceeds {EFC_MAX_SEGMENT_BYTES} bytes ({len(seg.payload)})"
+            )
+        dec, _meta = efc_codec.decode_frames(seg.payload)
+        if dec.shape != (seg.frame_count, height, width):
+            raise ResourceError(f"EFC roundtrip geometry mismatch for {target.name}")
+        reconstructed.append(dec)
+    full_rt = np.concatenate(reconstructed, axis=0)
+    if not np.array_equal(full_rt, swapped):
+        raise ResourceError(f"EFC pixel-exact lossless roundtrip check failed for {target.name}")
+
+    v3_bytes = pack_segmented_animpack_v3(
+        width=width,
+        height=height,
+        loop=False,
+        default_delay_ms=max(1, round(1000 / fps)),
+        frame_delays_ms=delays_ms,
+        segments=seg_res.segments,
+        swapped_rgb565=True,
     )
     target.parent.mkdir(parents=True, exist_ok=True)
-    with target.open("wb") as handle:
-        handle.write(header)
-        handle.writelines(descriptors)
-        for payload, _ in encoded:
-            handle.write(payload)
+    target.write_bytes(v3_bytes)
     return {
         "width": width,
         "height": height,
         "frames": len(frames),
-        "indexed_frames": sum(bool(flags & FRAME_FLAG_INDEXED8) for _, flags in encoded),
+        "raw_bytes": len(raw_frames) * width * height * 2,
+        "encoded_bytes": len(v3_bytes),
+        "segments": seg_res.segment_count,
+        "first_segment_bytes": seg_res.first_segment_bytes,
+        "max_segment_bytes": seg_res.max_segment_bytes,
+        "prefetch_stall_free": bool(seg_res.single_pass_report.stall_free and seg_res.loop_report.stall_free),
     }
 
 
@@ -278,48 +320,78 @@ def decode_animpack(path: Path) -> tuple[dict[str, int], list[bytes]]:
         payload_offset,
         raw_size,
     ) = struct.unpack_from(PACK_HEADER_FMT, data)
-    if magic != PACK_MAGIC or version != PACK_VERSION:
+    if magic != PACK_MAGIC or version != PACK_VERSION_EFC:
         raise ResourceError(f"Unsupported AnimPack header: {path}")
     if width <= 0 or height <= 0 or frame_count <= 0 or raw_size != width * height * 2:
         raise ResourceError(f"Invalid AnimPack dimensions/count: {path}")
     if toc_offset != header_size or payload_offset != header_size + frame_count * descriptor_size:
         raise ResourceError(f"Invalid AnimPack offsets: {path}")
-    frames: list[bytes] = []
+
+    import numpy as np
+    import efc_codec
+
+    payload_total = len(data) - payload_offset
+    if payload_total <= 0:
+        raise ResourceError(f"Empty EFC AnimPack payload: {path}")
+    descs: list[tuple[int, int, int, int]] = []
     for index in range(frame_count):
         frame_offset, frame_size, frame_delay, flags = struct.unpack_from(
             FRAME_DESC_FMT, data, toc_offset + index * descriptor_size
         )
-        start = payload_offset + frame_offset
-        end = start + frame_size
-        if end > len(data) or frame_delay <= 0 or flags & ~FRAME_FLAG_INDEXED8:
-            raise ResourceError(f"Invalid AnimPack frame {index}: {path}")
-        payload = data[start:end]
-        if not flags & FRAME_FLAG_INDEXED8:
-            if len(payload) != raw_size:
-                raise ResourceError(f"Invalid RGB565 frame size in {path}")
-            frames.append(payload)
-            continue
-        if len(payload) < 4:
-            raise ResourceError(f"Invalid indexed frame in {path}")
-        palette_count = struct.unpack_from("<H", payload)[0]
-        palette_end = 2 + palette_count * 2
-        indices = payload[palette_end:]
-        if not 1 <= palette_count <= 256 or palette_end > len(payload) or len(indices) != width * height:
-            raise ResourceError(f"Invalid indexed palette in {path}")
-        palette = payload[2:palette_end]
-        raw = bytearray()
-        for palette_index in indices:
-            if palette_index >= palette_count:
-                raise ResourceError(f"Out-of-range palette index in {path}")
-            start_color = palette_index * 2
-            raw.extend(palette[start_color : start_color + 2])
-        frames.append(bytes(raw))
+        if (
+            frame_delay <= 0
+            or (flags & FRAME_FLAG_EFC) == 0
+            or (flags & ~FRAME_FLAG_EFC_MASK) != 0
+        ):
+            raise ResourceError(f"Invalid EFC AnimPack frame {index}: {path}")
+        if frame_offset == 0 and frame_size == 0:
+            frame_size = payload_total
+        if (
+            frame_size <= 0
+            or frame_size > EFC_MAX_SEGMENT_BYTES
+            or frame_offset > payload_total
+            or frame_size > payload_total - frame_offset
+        ):
+            raise ResourceError(f"Out-of-bounds EFC segment at frame {index}: {path}")
+        descs.append((frame_offset, frame_size, frame_delay, flags))
+
+    frames: list[bytes] = []
+    cursor = 0
+    while cursor < frame_count:
+        seg_off, seg_sz, _seg_delay, seg_flags = descs[cursor]
+        seg_end = cursor + 1
+        while seg_end < frame_count and descs[seg_end][0] == seg_off and descs[seg_end][1] == seg_sz:
+            if descs[seg_end][3] != seg_flags:
+                raise ResourceError(f"Inconsistent EFC flags inside segment at frame {seg_end}: {path}")
+            seg_end += 1
+        expected_seg_frames = seg_end - cursor
+        seg_blob = data[payload_offset + seg_off : payload_offset + seg_off + seg_sz]
+        if len(seg_blob) < 20 or seg_blob[:4] != b"EFC1":
+            raise ResourceError(f"Invalid EFC1 segment magic at frame {cursor}: {path}")
+        if (seg_blob[5] & EFC_FLAG_PREDICTOR) != 0:
+            raise ResourceError(
+                f"Unsupported predictor-plane EFC stream (flags=0x{seg_blob[5]:02x}) at frame {cursor}: {path}"
+            )
+        decoded, _meta = efc_codec.decode_frames(seg_blob)
+        if decoded.shape != (expected_seg_frames, height, width):
+            raise ResourceError(
+                f"EFC segment frame/geometry mismatch at frame {cursor}: "
+                f"got {decoded.shape}, expected {(expected_seg_frames, height, width)} ({path})"
+            )
+        if (seg_flags & FRAME_FLAG_EFC_SWAPPED) == 0:
+            decoded = decoded.byteswap()
+        decoded_le = np.ascontiguousarray(decoded, dtype="<u2")
+        for local_idx in range(expected_seg_frames):
+            frames.append(decoded_le[local_idx].tobytes())
+        cursor = seg_end
+
     return {
         "width": width,
         "height": height,
         "frame_count": frame_count,
         "loop": loop,
         "delay": delay,
+        "version": version,
     }, frames
 
 
@@ -538,6 +610,10 @@ def build_resources(
     catalog: list[dict[str, Any]] = []
     adjustments: dict[str, list[str]] = {}
     fps = policy["display"]["default_fps"]
+    raw_anim_bytes = 0
+    encoded_anim_bytes = 0
+    total_segments = 0
+    prefetch_stall_free_all = True
     for record in records:
         resource_id = record["resource_id"]
         gif_path = source / "gif" / f"{resource_id}.gif"
@@ -545,12 +621,11 @@ def build_resources(
             raise ResourceError(f"Source GIF is missing for {resource_id}")
         frames = read_gif(gif_path, policy)
         animation_temp = staging / f"{resource_id}.animpack"
-        write_animpack(
-            animation_temp,
-            frames,
-            fps,
-            resource_id in policy["force_rgb565"],
-        )
+        stats = write_animpack_efc(animation_temp, frames, fps)
+        raw_anim_bytes += int(stats["raw_bytes"])
+        encoded_anim_bytes += int(stats["encoded_bytes"])
+        total_segments += int(stats["segments"])
+        prefetch_stall_free_all = prefetch_stall_free_all and bool(stats["prefetch_stall_free"])
         assets: dict[str, Any] = {
             "animation": store_asset_file(bundle, animation_temp, "anim", resource_id)
         }
@@ -642,10 +717,15 @@ def build_resources(
     validation = validate_resources(source, bundle, mobile)
     return {
         "version": version,
+        "animation_format": ANIMATION_FORMAT,
         "expressions": len(catalog),
         "actions": sum("action" in item["assets"] for item in catalog),
         "sounds": sum("sound" in item["assets"] for item in catalog),
         "frames": validation["frames"],
+        "raw_anim_bytes": raw_anim_bytes,
+        "encoded_anim_bytes": encoded_anim_bytes,
+        "total_segments": total_segments,
+        "prefetch_stall_free_all": prefetch_stall_free_all,
         "bundle_sha256": manifest["bundle_sha256"],
         "action_adjustments": adjustments,
     }
@@ -724,7 +804,7 @@ def write_resource_manifest(
         "compatibility": {
             "layout": "/",
             "animation": {
-                "format": "animpack-v2",
+                "format": ANIMATION_FORMAT,
                 "width": policy["display"]["width"],
                 "height": policy["display"]["height"],
                 "pixel_format": policy["display"]["pixel_format"],
@@ -738,7 +818,7 @@ def write_resource_manifest(
                 "anim_root": "anim",
                 "actions_root": "actions",
                 "sfx_root": "sfx",
-                "format": "animpack-v2",
+                "format": ANIMATION_FORMAT,
                 "object_count": sum(len(entry["assets"]) for entry in catalog),
             },
             "catalog": {
@@ -1087,9 +1167,14 @@ def main() -> int:
                 args.mobile_root.resolve(),
                 args.version,
             )
+            raw_mb = result["raw_anim_bytes"] / (1024 * 1024)
+            enc_mb = result["encoded_anim_bytes"] / (1024 * 1024)
+            ratio = (1.0 - (result["encoded_anim_bytes"] / max(1, result["raw_anim_bytes"]))) * 100.0
             print(
                 f"Built {result['expressions']} expression(s), {result['actions']} action(s), "
-                f"{result['sounds']} sound(s), {result['frames']} frame(s)."
+                f"{result['sounds']} sound(s), {result['frames']} frame(s) "
+                f"[{result['animation_format']}: {raw_mb:.2f} MiB -> {enc_mb:.2f} MiB (-{ratio:.1f}%), "
+                f"segments={result['total_segments']}, stall_free={result['prefetch_stall_free_all']}]."
             )
             for resource_id, changes in result["action_adjustments"].items():
                 print(f"  normalized action {resource_id}: {len(changes)} angle adjustment(s)")

@@ -140,6 +140,8 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertFalse((bundle / "official_catalog.json").exists())
             boot_header, _ = PIPELINE.decode_animpack(boot_pack)
             self.assertEqual(0, boot_header["loop"])
+            self.assertEqual(3, boot_header["version"])
+            self.assertEqual("animpack-v3", boot["assets"]["animation"]["format"])
             self.assertEqual(
                 set(self.fixed_states),
                 set(json.loads((bundle / "fixed_states.json").read_text(encoding="utf-8"))["states"]),
@@ -149,6 +151,8 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertEqual(3, manifest["layout_revision"])
             self.assertEqual("v0.0.11", manifest["bundle_version"])
             self.assertEqual("/", manifest["compatibility"]["layout"])
+            self.assertEqual("animpack-v3", manifest["compatibility"]["animation"]["format"])
+            self.assertEqual("animpack-v3", manifest["contents"]["assets"]["format"])
 
             validated = PIPELINE.validate_resources(source, bundle, mobile)
             self.assertEqual(9, validated["expressions"])
@@ -312,6 +316,68 @@ class ResourcePipelineTests(unittest.TestCase):
             preview = mobile / item["preview"]
             self.assertEqual(item["preview_size"], preview.stat().st_size)
             self.assertEqual(item["preview_sha256"], PIPELINE.sha256_file(preview))
+
+    def test_animpack_v3_roundtrip_and_rejects_v2_and_predictor_flag(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = self.create_source(root)
+            bundle = root / "bundle"
+            mobile = root / "mobile"
+            result = PIPELINE.build_resources(
+                source, source / "sound", bundle, mobile, "v0.0.11"
+            )
+            self.assertEqual("animpack-v3", result["animation_format"])
+            self.assertTrue(result["prefetch_stall_free_all"])
+            self.assertLess(result["encoded_anim_bytes"], result["raw_anim_bytes"])
+            pack_v3 = bundle / "anim" / "boot.animpack"
+            header_v3, frames_v3 = PIPELINE.decode_animpack(pack_v3)
+            self.assertEqual(3, header_v3["version"])
+            self.assertEqual(1, len(frames_v3))
+            policy = PIPELINE.load_policy()
+            expected_raw = [
+                PIPELINE.rgba_to_rgb565(image)
+                for image, _ in PIPELINE.read_gif(source / "gif" / "boot.gif", policy)
+            ]
+            self.assertEqual(expected_raw, frames_v3)
+
+            # Mutate the header version from 3 -> 2 -> legacy v2 must be rejected
+            legacy_bytes = bytearray(pack_v3.read_bytes())
+            legacy_bytes[4:6] = (2).to_bytes(2, "little")
+            legacy_pack = root / "legacy_v2.animpack"
+            legacy_pack.write_bytes(bytes(legacy_bytes))
+            with self.assertRaisesRegex(PIPELINE.ResourceError, "Unsupported AnimPack header"):
+                PIPELINE.decode_animpack(legacy_pack)
+
+            # Mutate the embedded EFC1 header byte[5] to set predictor bit 0x08 -> must be rejected
+            raw = bytearray(pack_v3.read_bytes())
+            efc_pos = raw.index(b"EFC1")
+            raw[efc_pos + 5] |= 0x08
+            bad_pack = root / "bad_predictor.animpack"
+            bad_pack.write_bytes(bytes(raw))
+            with self.assertRaisesRegex(PIPELINE.ResourceError, "Unsupported predictor-plane EFC stream"):
+                PIPELINE.decode_animpack(bad_pack)
+
+    def test_animpack_v3_splits_high_entropy_gif_within_esp32_segment_cap(self) -> None:
+        import numpy as np
+
+        rng = np.random.default_rng(20261127)
+        frames = []
+        # 12 frames of uncompressible random RGB noise (> 1 MB total if unsplit)
+        for _ in range(12):
+            arr = rng.integers(0, 256, size=(206, 206, 3), dtype=np.uint8)
+            frames.append((Image.fromarray(arr, mode="RGB").convert("RGBA"), 100))
+
+        with tempfile.TemporaryDirectory() as temporary:
+            pack = Path(temporary) / "noisy.animpack"
+            stats = PIPELINE.write_animpack_efc(pack, frames, fps=10)
+            self.assertGreater(stats["segments"], 1)
+            self.assertLessEqual(stats["max_segment_bytes"], 450 * 1024)
+            self.assertLessEqual(stats["max_segment_bytes"], PIPELINE.EFC_MAX_SEGMENT_BYTES)
+            header, decoded = PIPELINE.decode_animpack(pack)
+            self.assertEqual(3, header["version"])
+            self.assertEqual(12, len(decoded))
+            expected = [PIPELINE.rgba_to_rgb565(img) for img, _ in frames]
+            self.assertEqual(expected, decoded)
 
 
 if __name__ == "__main__":

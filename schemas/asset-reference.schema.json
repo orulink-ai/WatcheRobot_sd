@@ -13,7 +13,7 @@
     "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
     "size": {"type": "integer", "minimum": 1},
     "format": {
-      "enum": ["animpack-v2", "firmware-action-json-v1", "pcm-s16le-24khz-mono"]
+      "enum": ["animpack-v3", "firmware-action-json-v1", "pcm-s16le-24khz-mono"]
     }
   }
 }

@@ -1,6 +1,6 @@
 # WatcheRobot_sd
 
-本仓库管理 WatcheRobot 官方 SD 资源的格式、校验和版本发布，不包含 ESP32 固件，也不再生成桌面端产物。官方资源从飞书「数据表加嘴」生成后发布到 GitHub Release 与火山引擎 TOS；设备包与移动端三语目录共用同一版本号及 SHA-256 清单。
+本仓库管理 WatcheRobot 官方 SD 资源的格式、校验和版本发布，不包含 ESP32 固件，也不再生成桌面端产物。官方资源从飞书「数据表加嘴」生成后按发行区域发布到 GitHub Releases 或火山引擎广州 orulink 桶；设备包与移动端三语目录共用同一版本号及 SHA-256 清单。
 
 ## 目录职责
 
@@ -13,7 +13,8 @@ schemas/                          对外 JSON Schema
 config/resource-policy.json       硬件参数、大小上限（128 MiB）和固定状态
 scripts/                          单一 EFC 打包校验管线（resource_pipeline.py / efc_codec.py / anim_efc_segmenter.py）
 build/current/bundle/             当前设备包，构建产物，不入 Git
-dist/vX.Y.Z/                      OTA 包和下载清单，构建产物，不入 Git
+dist/vX.Y.Z/                      GLOBAL 版本资源和 GitHub 清单
+dist/cn/WatcherRobot/sd/           CN 版本资源、latest.json 和 releases.json
 ```
 
 ## 飞书字段映射
@@ -67,8 +68,17 @@ mobile/gif/<resource_id>.gif
 
 ```powershell
 python -m pip install -r requirements.txt
-python scripts/resource_pipeline.py build --version v0.0.11
-python scripts/resource_pipeline.py validate
-python scripts/resource_pipeline.py package --version v0.0.11
+./scripts/resource-pipeline.ps1 build --version v0.1.1
+./scripts/resource-pipeline.ps1 validate
+./scripts/resource-pipeline.ps1 package --version v0.1.1
 python -m unittest discover -s tests -v
 ```
+
+
+macOS/Linux 使用同名 `scripts/resource-pipeline.sh` 和相同的参数。后续发布在 package 时传入 `--cn-index previous-releases.json` 合并已有的国内版本。package 只生成文件，上传由 workspace 的 sd-publish 入口执行。国内从 v0.1.0 开始发布。
+
+CN 与 GLOBAL 清单均使用 `region`、`archive.url`、`catalog.url`、`mobile.catalog.url` 和 `mobile.assets.base_url`。国内域名为 `https://download.orulink.cn/WatcherRobot/sd/`。桌面列表读取 `releases.json` 中的 `releases[].version` 和 `published_at`，选定后读取对应版本目录内的 `ota-manifest.json`。预览按 mobile_catalog.json 的 ID、显示名、大小与 SHA-256 读取 GIF。
+
+GLOBAL 同时提供传统字段 `github_url` 和 `github_base_url`，与各自的新字段指向同一 GitHub URL。旧版 App 即使选择海外发行，也会校验旧 TOS 域名，并在 GitHub 下载失败后回退到旧桶；需要更新 App 才能读取新分区清单。旧桌面预览器依赖专用的 `desktop.archive`，请升级至支持 mobile_catalog.json 的版本。
+
+上传中断时，保留原 dist 与该次构建的输入快照。使用同一入口执行 `stage-cn --dist-root dist --version v0.1.1 --cn-index current-releases.json`，先验证版本、整卡包、目录与每个 GIF 的摘要和大小，再从原始打包文件重建国内版本目录及两个指针。失败后修复原始输入再重试。重新导入飞书会生成新的快照时间，恢复既有版本应使用原 dist。

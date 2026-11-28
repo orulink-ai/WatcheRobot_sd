@@ -29,7 +29,6 @@ import struct
 import sys
 import tarfile
 import tempfile
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -100,7 +99,7 @@ def read_json(path: Path) -> Any:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    path.write_bytes((json.dumps(value, ensure_ascii=False, indent=2) + "\n").encode("utf-8"))
 
 
 def sha256_file(path: Path) -> str:
@@ -134,10 +133,6 @@ def store_asset_file(
         "size": target.stat().st_size,
         "format": ASSET_FORMATS[kind],
     }
-
-
-def utc_now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
 
 
 def load_policy() -> dict[str, Any]:
@@ -714,7 +709,7 @@ def build_resources(
     write_json(mobile / "mobile_catalog.json", mobile_catalog)
 
     shutil.rmtree(staging)
-    manifest = write_resource_manifest(bundle, version, policy, catalog)
+    manifest = write_resource_manifest(bundle, version, policy, catalog, snapshot["imported_at"])
     validation = validate_resources(source, bundle, mobile)
     return {
         "version": version,
@@ -755,6 +750,7 @@ def write_deterministic_tar_gz(archive: Path, root: Path, files: list[Path], pre
                 info = tar.gettarinfo(str(path), arcname=relative)
                 info.uid = info.gid = 0
                 info.uname = info.gname = ""
+                info.mode = 0o644
                 info.mtime = 0
                 with path.open("rb") as handle:
                     tar.addfile(info, handle)
@@ -785,6 +781,7 @@ def write_resource_manifest(
     version: str,
     policy: dict[str, Any],
     catalog: list[dict[str, Any]],
+    timestamp: str,
 ) -> dict[str, Any]:
     files = bundle_files(bundle, include_manifest=False)
     entries = [
@@ -801,7 +798,7 @@ def write_resource_manifest(
         "bundle_id": "adepto-official",
         "bundle_version": version,
         "layout_revision": LAYOUT_REVISION,
-        "generated_at": utc_now(),
+        "generated_at": timestamp,
         "compatibility": {
             "layout": "/",
             "animation": {
@@ -1026,7 +1023,7 @@ def regional_manifest(source: dict[str, Any], region: str) -> dict[str, Any]:
     return ota
 
 
-def verify_assets(directory: Path, ota: dict[str, Any]) -> None:
+def verify_assets(directory: Path, ota: dict[str, Any]) -> dict[str, Any]:
     for asset in [ota["archive"], ota["catalog"], ota["mobile"]["catalog"]]:
         path = directory / asset["name"]
         if sha256_file(path) != asset["sha256"] or path.stat().st_size != asset.get("size", path.stat().st_size):
@@ -1045,6 +1042,7 @@ def verify_assets(directory: Path, ota: dict[str, Any]) -> None:
     assets = ota["mobile"]["assets"]
     if total != assets["size"] or len(catalog["expressions"]) != assets["count"]:
         raise ResourceError("GIF count or total size differs from the release")
+    return catalog
 
 
 def stage_cn_release(directory: Path, ota: dict[str, Any], root: Path, index: Path | None) -> None:
@@ -1052,23 +1050,38 @@ def stage_cn_release(directory: Path, ota: dict[str, Any], root: Path, index: Pa
     if version_tuple(version) < (0, 1, 0):
         raise ResourceError("CN SD distribution starts at v0.1.0")
     manifest = regional_manifest(ota, "cn")
-    verify_assets(directory, manifest)
+    catalog = verify_assets(directory, manifest)
     history = read_json(index)["releases"] if index else []
     releases = {entry["version"]: entry for entry in history if version_tuple(entry["version"]) >= (0, 1, 0)}
     if any(version_tuple(v) > version_tuple(version) for v in releases):
         raise ResourceError("Refusing to roll back latest.json")
     releases[version] = {"version": version, "published_at": ota["published_at"]}
-    dest = root / version
-    dest.mkdir(parents=True, exist_ok=True)
-    for asset in (manifest["archive"], manifest["catalog"], manifest["mobile"]["catalog"]):
-        shutil.copyfile(directory / asset["name"], dest / asset["name"])
-    for item in read_json(directory / "mobile_catalog.json")["expressions"]:
-        path = Path("mobile/gif") / (item["id"] + ".gif")
-        (dest / path).parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(directory / path, dest / path)
-    write_json(dest / "ota-manifest.json", manifest)
-    write_json(root / "releases.json", {"releases": [releases[v] for v in sorted(releases, key=version_tuple, reverse=True)]})
-    write_json(root / "latest.json", manifest)
+    root.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(dir=root) as work:
+        temp = Path(work)
+        staged = temp / version
+        staged.mkdir()
+        for asset in (manifest["archive"], manifest["catalog"], manifest["mobile"]["catalog"]):
+            shutil.copyfile(directory / asset["name"], staged / asset["name"])
+        for item in catalog["expressions"]:
+            path = Path("mobile/gif") / (item["id"] + ".gif")
+            (staged / path).parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(directory / path, staged / path)
+        verify_assets(staged, manifest)
+        write_json(staged / "ota-manifest.json", manifest)
+        write_json(temp / "releases.json", {"releases": [releases[v] for v in sorted(releases, key=version_tuple, reverse=True)]})
+        write_json(temp / "latest.json", manifest)
+        dest = root / version
+        if dest.exists():
+            dest.rename(temp / "previous")
+        try:
+            staged.rename(dest)
+        except OSError:
+            if (temp / "previous").exists():
+                (temp / "previous").rename(dest)
+            raise
+        for name in ("releases.json", "latest.json"):
+            (temp / name).replace(root / name)
 
 
 def package_resources(
@@ -1214,6 +1227,11 @@ def parser() -> argparse.ArgumentParser:
     package.add_argument("--version", required=True)
     package.add_argument("--cn-index", type=Path, help="Existing CN releases.json to merge")
 
+    stage = subcommands.add_parser("stage-cn", help="Resume CN staging from verified packaged files")
+    stage.add_argument("--version", required=True)
+    stage.add_argument("--dist-root", type=Path, default=DEFAULT_DIST)
+    stage.add_argument("--cn-index", type=Path, required=True)
+
     next_command = subcommands.add_parser("next-version")
     next_command.add_argument(
         "--releases",
@@ -1265,6 +1283,16 @@ def main() -> int:
                 args.cn_index,
             )
             print(f"Packaged {args.version}: {result['archive']['sha256']}")
+        elif args.command == "stage-cn":
+            version_tuple(args.version)
+            directory = args.dist_root / args.version
+            ota = read_json(directory / "ota-manifest.json")
+            if ota.get("version") != args.version:
+                raise ResourceError("Packaged manifest version does not match the requested version")
+            if ota.get("region") != "global":
+                raise ResourceError("Expected the GLOBAL package as the source of CN staging")
+            schema_validate(ota, "ota-manifest.schema.json", "ota-manifest.json")
+            stage_cn_release(directory, ota, args.dist_root / "cn" / "WatcherRobot" / "sd", args.cn_index)
         else:
             print(next_version(args.releases.resolve()))
     except (OSError, ResourceError) as exc:

@@ -80,3 +80,5 @@ macOS/Linux 使用同名 `scripts/resource-pipeline.sh` 和相同的参数。后
 CN 与 GLOBAL 清单均使用 `region`、`archive.url`、`catalog.url`、`mobile.catalog.url` 和 `mobile.assets.base_url`。国内域名为 `https://download.orulink.cn/WatcherRobot/sd/`。桌面列表读取 `releases.json` 中的 `releases[].version` 和 `published_at`，选定后读取对应版本目录内的 `ota-manifest.json`。预览按 mobile_catalog.json 的 ID、显示名、大小与 SHA-256 读取 GIF。
 
 GLOBAL 同时提供传统字段 `github_url` 和 `github_base_url`，与各自的新字段指向同一 GitHub URL。旧版 App 即使选择海外发行，也会校验旧 TOS 域名，并在 GitHub 下载失败后回退到旧桶；需要更新 App 才能读取新分区清单。旧桌面预览器依赖专用的 `desktop.archive`，请升级至支持 mobile_catalog.json 的版本。
+
+上传中断时，保留原 dist 与该次构建的输入快照。使用同一入口执行 `stage-cn --dist-root dist --version v0.1.1 --cn-index current-releases.json`，先验证版本、整卡包、目录与每个 GIF 的摘要和大小，再从原始打包文件重建国内版本目录及两个指针。失败后修复原始输入再重试。重新导入飞书会生成新的快照时间，恢复既有版本应使用原 dist。

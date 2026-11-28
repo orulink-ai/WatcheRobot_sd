@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import subprocess
+import sys
 import tarfile
 import tempfile
 import unittest
@@ -218,6 +220,32 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertEqual(cn["archive"]["sha256"], ota["archive"]["sha256"])
             self.assertEqual("https://download.orulink.cn/WatcherRobot/sd/v0.1.1/mobile/gif/", cn["mobile"]["assets"]["base_url"])
             self.assertEqual("v0.1.1", PIPELINE.read_json(cn_root / "releases.json")["releases"][0]["version"])
+
+            snapshot = PIPELINE.read_json(source / "feishu-snapshot.json")
+            self.assertEqual(snapshot["imported_at"], ota["published_at"])
+            with tarfile.open(version_dir / ota["archive"]["name"]) as package:
+                self.assertTrue(all(member.mode == 0o644 for member in package))
+            stale = cn_root / ota["version"] / "mobile/gif/removed.gif"
+            stale.write_bytes(b"stale")
+            PIPELINE.stage_cn_release(version_dir, ota, cn_root, None)
+            self.assertFalse(stale.exists())
+
+            previous = root / "previous.json"
+            PIPELINE.write_json(previous, {"releases": [{"version": "v0.1.0", "published_at": ota["published_at"]}]})
+            resume = [sys.executable, str(SCRIPT), "stage-cn", "--dist-root", str(root / "dist"),
+                      "--version", ota["version"], "--cn-index", str(previous)]
+            subprocess.run(resume, check=True, capture_output=True)
+            releases = PIPELINE.read_json(cn_root / "releases.json")["releases"]
+            self.assertEqual(["v0.1.1", "v0.1.0"], [r["version"] for r in releases])
+            pointer = (cn_root / "latest.json").read_bytes()
+            archive_path = version_dir / ota["archive"]["name"]
+            archive_bytes = archive_path.read_bytes()
+            archive_path.write_bytes(b"truncated")
+            failed = subprocess.run(resume, capture_output=True, text=True)
+            self.assertEqual(1, failed.returncode)
+            self.assertIn("differs from manifest", failed.stderr)
+            self.assertEqual(pointer, (cn_root / "latest.json").read_bytes())
+            archive_path.write_bytes(archive_bytes)
 
             later = root / "later.json"
             PIPELINE.write_json(later, {"releases": [{"version": "v0.10.0", "published_at": ota["published_at"]}]})

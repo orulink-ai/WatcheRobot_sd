@@ -122,12 +122,12 @@ class ResourcePipelineTests(unittest.TestCase):
             source = self.create_source(root)
             bundle = root / "bundle"
             mobile = root / "mobile"
-            result = PIPELINE.build_resources(source, source / "sound", bundle, mobile, "v0.0.11")
+            result = PIPELINE.build_resources(source, source / "sound", bundle, mobile, "v0.1.1")
             self.assertEqual(9, result["expressions"])
             catalog = json.loads((bundle / "catalog.json").read_text(encoding="utf-8"))
             self.assertEqual(3, catalog["schema_version"])
             self.assertEqual("watche-sd-catalog", catalog["format"])
-            self.assertEqual("v0.0.11", catalog["version"])
+            self.assertEqual("v0.1.1", catalog["version"])
             boot = next(item for item in catalog["expressions"] if item["id"] == "boot")
             self.assertEqual("anim/boot.animpack", boot["assets"]["animation"]["path"])
             self.assertEqual("actions/boot.json", boot["assets"]["action"]["path"])
@@ -149,7 +149,7 @@ class ResourcePipelineTests(unittest.TestCase):
             manifest = json.loads((bundle / "resource_manifest.json").read_text(encoding="utf-8"))
             self.assertEqual(3, manifest["schema_version"])
             self.assertEqual(3, manifest["layout_revision"])
-            self.assertEqual("v0.0.11", manifest["bundle_version"])
+            self.assertEqual("v0.1.1", manifest["bundle_version"])
             self.assertEqual("/", manifest["compatibility"]["layout"])
             self.assertEqual("animpack-v3", manifest["compatibility"]["animation"]["format"])
             self.assertEqual("animpack-v3", manifest["contents"]["assets"]["format"])
@@ -162,7 +162,7 @@ class ResourcePipelineTests(unittest.TestCase):
             mobile_catalog = json.loads((mobile / "mobile_catalog.json").read_text(encoding="utf-8"))
             self.assertEqual(1, mobile_catalog["schema_version"])
             self.assertEqual("watche-mobile-expression-catalog", mobile_catalog["format"])
-            self.assertEqual("v0.0.11", mobile_catalog["version"])
+            self.assertEqual("v0.1.1", mobile_catalog["version"])
             mobile_future = next(
                 item for item in mobile_catalog["expressions"] if item["id"] == "future_expression"
             )
@@ -176,23 +176,23 @@ class ResourcePipelineTests(unittest.TestCase):
             )
             self.assertTrue((mobile / "gif" / "boot.gif").is_file())
 
-            ota = PIPELINE.package_resources(bundle, mobile, root / "dist", "v0.0.11")
+            ota = PIPELINE.package_resources(bundle, mobile, root / "dist", "v0.1.1")
             self.assertEqual(4, ota["schema_version"])
             self.assertEqual(3, ota["layout_revision"])
             self.assertNotIn("desktop", ota)
             self.assertNotIn("protocol", ota)
             self.assertEqual("catalog.json", ota["catalog"]["name"])
-            self.assertEqual("watche-sd-resources-v0.0.11.tar.gz", ota["archive"]["name"])
+            self.assertEqual("watche-sd-resources-v0.1.1.tar.gz", ota["archive"]["name"])
             self.assertEqual(11, ota["archive"]["object_count"])
-            version_dir = root / "dist" / "v0.0.11"
-            self.assertTrue((version_dir / "watche-sd-resources-v0.0.11.tar.gz").is_file())
+            version_dir = root / "dist" / "v0.1.1"
+            self.assertTrue((version_dir / "watche-sd-resources-v0.1.1.tar.gz").is_file())
             self.assertTrue((version_dir / "catalog.json").is_file())
             self.assertTrue((version_dir / "mobile_catalog.json").is_file())
             self.assertTrue((version_dir / "mobile" / "gif" / "boot.gif").is_file())
             self.assertFalse((version_dir / "desktop_catalog.json").exists())
             self.assertFalse((version_dir / "official_catalog.json").exists())
 
-            with tarfile.open(version_dir / "watche-sd-resources-v0.0.11.tar.gz", "r:gz") as archive:
+            with tarfile.open(version_dir / "watche-sd-resources-v0.1.1.tar.gz", "r:gz") as archive:
                 members = set(archive.getnames())
             self.assertIn("anim/boot.animpack", members)
             self.assertIn("actions/boot.json", members)
@@ -204,16 +204,28 @@ class ResourcePipelineTests(unittest.TestCase):
 
             self.assertEqual("mobile_catalog.json", ota["mobile"]["catalog"]["name"])
             self.assertEqual(9, ota["mobile"]["assets"]["count"])
-            self.assertEqual(
-                "https://raw.githubusercontent.com/orulink-ai/WatcheRobot_sd/v0.0.11/"
-                "official/mobile/gif/",
-                ota["mobile"]["assets"]["github_base_url"],
-            )
-            self.assertEqual(
-                "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd/v0.0.11/"
-                "mobile/gif/",
-                ota["mobile"]["assets"]["tos_base_url"],
-            )
+            self.assertEqual("global", ota["region"])
+            self.assertTrue(ota["mobile"]["assets"]["base_url"].startswith("https://raw.githubusercontent.com/"))
+            cn_root = root / "dist" / "cn" / "WatcherRobot" / "sd"
+            cn = PIPELINE.read_json(cn_root / "latest.json")
+            self.assertEqual("cn", cn["region"])
+            self.assertNotIn("github", json.dumps(cn))
+            self.assertNotIn("download.orulink.cn", json.dumps(ota))
+            for asset in (ota["archive"], ota["catalog"], ota["mobile"]["catalog"]):
+                self.assertEqual(asset["url"], asset["github_url"])
+            self.assertEqual(ota["mobile"]["assets"]["base_url"], ota["mobile"]["assets"]["github_base_url"])
+            self.assertNotIn("tos_", json.dumps(ota))
+            self.assertEqual(cn["archive"]["sha256"], ota["archive"]["sha256"])
+            self.assertEqual("https://download.orulink.cn/WatcherRobot/sd/v0.1.1/mobile/gif/", cn["mobile"]["assets"]["base_url"])
+            self.assertEqual("v0.1.1", PIPELINE.read_json(cn_root / "releases.json")["releases"][0]["version"])
+
+            later = root / "later.json"
+            PIPELINE.write_json(later, {"releases": [{"version": "v0.10.0", "published_at": ota["published_at"]}]})
+            with self.assertRaisesRegex(PIPELINE.ResourceError, "roll back"):
+                PIPELINE.stage_cn_release(version_dir, ota, cn_root, later)
+            (version_dir / "mobile/gif/boot.gif").write_bytes(b"broken")
+            with self.assertRaisesRegex(PIPELINE.ResourceError, "GIF differs"):
+                PIPELINE.stage_cn_release(version_dir, ota, cn_root, None)
 
     def test_rejects_stale_mobile_gif_files(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
@@ -283,7 +295,7 @@ class ResourcePipelineTests(unittest.TestCase):
             self.assertEqual("v0.0.4", PIPELINE.next_version(index))
 
         checked_in = SCRIPT.parents[1] / "official" / "releases" / "index.json"
-        self.assertEqual("v0.0.11", PIPELINE.next_version(checked_in))
+        self.assertEqual("v0.1.1", PIPELINE.next_version(checked_in))
         self.assertFalse((SCRIPT.parents[1] / "official" / "releases" / "v0.0.11.json").exists())
         self.assertFalse((SCRIPT.parents[1] / "official" / "desktop").exists())
 

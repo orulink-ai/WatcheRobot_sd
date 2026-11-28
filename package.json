@@ -3,9 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "resources:build": "python scripts/resource_pipeline.py build",
-    "resources:validate": "python scripts/resource_pipeline.py validate",
-    "resources:package": "python scripts/resource_pipeline.py package",
+    "resources:build": "node scripts/resource-pipeline.mjs build",
+    "resources:validate": "node scripts/resource-pipeline.mjs validate",
+    "resources:package": "node scripts/resource-pipeline.mjs package",
     "test": "python -m unittest discover -s tests -v"
   }
 }

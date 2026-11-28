@@ -18,6 +18,7 @@ Mobile App artifacts:
 from __future__ import annotations
 
 import argparse
+import copy
 import gzip
 import hashlib
 import json
@@ -46,7 +47,7 @@ DEFAULT_BUNDLE = ROOT / "build" / "current" / "bundle"
 DEFAULT_MOBILE = ROOT / "official" / "mobile"
 DEFAULT_DIST = ROOT / "dist"
 GITHUB_RELEASE_BASE = "https://github.com/orulink-ai/WatcheRobot_sd/releases/download"
-TOS_PUBLIC_BASE = "https://erroright.tos-cn-guangzhou.volces.com/WatcherRobot/sd"
+CN_PUBLIC_BASE = "https://download.orulink.cn/WatcherRobot/sd"
 
 PACK_MAGIC = b"ANPK"
 PACK_VERSION_EFC = 3
@@ -996,12 +997,88 @@ def validate_packaged_device_archive(archive: Path) -> dict[str, int]:
         return validate_device_playback_contract(catalog, root, load_policy())
 
 
+def version_tuple(version: str) -> tuple[int, ...]:
+    if not re.fullmatch(r"v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)", version):
+        raise ResourceError(f"Invalid release version: {version}")
+    return tuple(map(int, version[1:].split(".")))
+
+
+def regional_manifest(source: dict[str, Any], region: str) -> dict[str, Any]:
+    ota = copy.deepcopy(source)
+    version = ota["version"]
+    version_tuple(version)
+    ota["region"] = region
+    base = CN_PUBLIC_BASE if region == "cn" else GITHUB_RELEASE_BASE
+    for asset in [ota["archive"], ota["catalog"], ota["mobile"]["catalog"]]:
+        for key in ("tos_url", "tos_uri", "github_url"):
+            asset.pop(key, None)
+        asset["url"] = f"{base}/{version}/{asset['name']}"
+        if region == "global":
+            asset["github_url"] = asset["url"]
+    gifs = ota["mobile"]["assets"]
+    for key in ("tos_base_url", "tos_uri", "github_base_url"):
+        gifs.pop(key, None)
+    gifs["base_url"] = (f"{base}/{version}/mobile/gif/" if region == "cn" else
+                        f"https://raw.githubusercontent.com/orulink-ai/WatcheRobot_sd/{version}/official/mobile/gif/")
+    if region == "global":
+        gifs["github_base_url"] = gifs["base_url"]
+    schema_validate(ota, "ota-manifest.schema.json", "ota-manifest.json")
+    return ota
+
+
+def verify_assets(directory: Path, ota: dict[str, Any]) -> None:
+    for asset in [ota["archive"], ota["catalog"], ota["mobile"]["catalog"]]:
+        path = directory / asset["name"]
+        if sha256_file(path) != asset["sha256"] or path.stat().st_size != asset.get("size", path.stat().st_size):
+            raise ResourceError(f"Release asset differs from manifest: {path.name}")
+    catalog = read_json(directory / "mobile_catalog.json")
+    schema_validate(catalog, "mobile-catalog.schema.json", "mobile_catalog.json")
+    if catalog["version"] != ota["version"]:
+        raise ResourceError("Mobile catalog version differs from the release")
+    total = 0
+    for item in catalog["expressions"]:
+        path = directory / "mobile" / "gif" / (item["id"] + ".gif")
+        if (item["preview"] != "gif/" + path.name or path.stat().st_size != item["preview_size"]
+                or sha256_file(path) != item["preview_sha256"]):
+            raise ResourceError(f"GIF differs from mobile catalog: {path.name}")
+        total += item["preview_size"]
+    assets = ota["mobile"]["assets"]
+    if total != assets["size"] or len(catalog["expressions"]) != assets["count"]:
+        raise ResourceError("GIF count or total size differs from the release")
+
+
+def stage_cn_release(directory: Path, ota: dict[str, Any], root: Path, index: Path | None) -> None:
+    version = ota["version"]
+    if version_tuple(version) < (0, 1, 0):
+        raise ResourceError("CN SD distribution starts at v0.1.0")
+    manifest = regional_manifest(ota, "cn")
+    verify_assets(directory, manifest)
+    history = read_json(index)["releases"] if index else []
+    releases = {entry["version"]: entry for entry in history if version_tuple(entry["version"]) >= (0, 1, 0)}
+    if any(version_tuple(v) > version_tuple(version) for v in releases):
+        raise ResourceError("Refusing to roll back latest.json")
+    releases[version] = {"version": version, "published_at": ota["published_at"]}
+    dest = root / version
+    dest.mkdir(parents=True, exist_ok=True)
+    for asset in (manifest["archive"], manifest["catalog"], manifest["mobile"]["catalog"]):
+        shutil.copyfile(directory / asset["name"], dest / asset["name"])
+    for item in read_json(directory / "mobile_catalog.json")["expressions"]:
+        path = Path("mobile/gif") / (item["id"] + ".gif")
+        (dest / path).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(directory / path, dest / path)
+    write_json(dest / "ota-manifest.json", manifest)
+    write_json(root / "releases.json", {"releases": [releases[v] for v in sorted(releases, key=version_tuple, reverse=True)]})
+    write_json(root / "latest.json", manifest)
+
+
 def package_resources(
     bundle: Path,
     mobile: Path,
     dist: Path,
     version: str,
+    cn_index: Path | None = None,
 ) -> dict[str, Any]:
+    version_tuple(version)
     manifest = read_json(bundle / "resource_manifest.json")
     if manifest.get("bundle_version") != version:
         raise ResourceError(
@@ -1056,7 +1133,7 @@ def package_resources(
         "product": "WatcheRobot-S3",
         "version": version,
         "layout_revision": LAYOUT_REVISION,
-        "published_at": utc_now(),
+        "published_at": manifest["generated_at"],
         "archive": {
             "name": archive.name,
             "format": "tar.gz",
@@ -1065,40 +1142,29 @@ def package_resources(
             "file_count": len(archive_files),
             "object_count": object_count,
             "sha256": sha256_file(archive),
-            "github_url": f"{GITHUB_RELEASE_BASE}/{version}/{archive.name}",
-            "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{archive.name}",
-            "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/{archive.name}",
         },
         "catalog": {
             "name": "catalog.json",
-            "github_url": f"{GITHUB_RELEASE_BASE}/{version}/catalog.json",
-            "tos_url": f"{TOS_PUBLIC_BASE}/{version}/catalog.json",
-            "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/catalog.json",
             "sha256": sha256_file(catalog_target),
         },
         "mobile": {
             "catalog": {
                 "name": mobile_catalog_target.name,
                 "size": mobile_catalog_target.stat().st_size,
-                "github_url": f"{GITHUB_RELEASE_BASE}/{version}/{mobile_catalog_target.name}",
-                "tos_url": f"{TOS_PUBLIC_BASE}/{version}/{mobile_catalog_target.name}",
-                "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/{mobile_catalog_target.name}",
                 "sha256": sha256_file(mobile_catalog_target),
             },
             "assets": {
                 "format": "individual-gif",
                 "count": len(mobile_catalog["expressions"]),
                 "size": mobile_size,
-                "github_base_url": (
-                    "https://raw.githubusercontent.com/orulink-ai/WatcheRobot_sd/"
-                    f"{version}/official/mobile/gif/"
-                ),
-                "tos_base_url": f"{TOS_PUBLIC_BASE}/{version}/mobile/gif/",
-                "tos_uri": f"tos://erroright/WatcherRobot/sd/{version}/mobile/gif/",
             },
         },
     }
-    schema_validate(ota, "ota-manifest.schema.json", "ota-manifest.json")
+    ota = regional_manifest(ota, "global")
+    if version_tuple(version) >= (0, 1, 0):
+        stage_cn_release(version_dir, ota, dist / "cn" / "WatcherRobot" / "sd", cn_index)
+    else:
+        verify_assets(version_dir, ota)
     write_json(version_dir / "ota-manifest.json", ota)
     write_json(dist / "latest.json", ota)
     print(
@@ -1146,6 +1212,7 @@ def parser() -> argparse.ArgumentParser:
     package.add_argument("--mobile-root", type=Path, default=DEFAULT_MOBILE)
     package.add_argument("--dist-root", type=Path, default=DEFAULT_DIST)
     package.add_argument("--version", required=True)
+    package.add_argument("--cn-index", type=Path, help="Existing CN releases.json to merge")
 
     next_command = subcommands.add_parser("next-version")
     next_command.add_argument(
@@ -1195,6 +1262,7 @@ def main() -> int:
                 args.mobile_root.resolve(),
                 args.dist_root.resolve(),
                 args.version,
+                args.cn_index,
             )
             print(f"Packaged {args.version}: {result['archive']['sha256']}")
         else:

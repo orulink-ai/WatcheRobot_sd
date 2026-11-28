@@ -1,6 +1,12 @@
 name: Resource Pipeline
 
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Resource version (vX.Y.Z)
+        required: true
+        type: string
   push:
     paths:
       - "config/**"
@@ -26,7 +32,10 @@ permissions:
 jobs:
   resource-pipeline:
     name: Resource Pipeline Tests
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout resource repository
@@ -41,5 +50,30 @@ jobs:
       - name: Install dependencies
         run: python -m pip install -r requirements.txt
 
+      - name: Check platform entry point
+        run: npm run resources:package -- --help
+
       - name: Run resource pipeline tests
         run: python -m unittest discover -s tests -v
+
+  package:
+    if: github.event_name == 'workflow_dispatch'
+    needs: resource-pipeline
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_VERSION: ${{ inputs.version }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: npm run resources:build -- --version "$RELEASE_VERSION"
+      - run: npm run resources:validate
+      - run: npm run resources:package -- --version "$RELEASE_VERSION"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sd-regional-packages
+          path: dist/
+          if-no-files-found: error
